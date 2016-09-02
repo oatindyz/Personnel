@@ -7,75 +7,59 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Microsoft.AspNet.Identity;
+using System.Data.OracleClient;
+using Personnel.Class;
 
 namespace Personnel
 {
-    public partial class SiteMaster : MasterPage
+    public partial class Site : System.Web.UI.MasterPage
     {
-        private const string AntiXsrfTokenKey = "__AntiXsrfToken";
-        private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
-        private string _antiXsrfTokenValue;
-
         protected void Page_Init(object sender, EventArgs e)
         {
-            // The code below helps to protect against XSRF attacks
-            var requestCookie = Request.Cookies[AntiXsrfTokenKey];
-            Guid requestCookieGuidValue;
-            if (requestCookie != null && Guid.TryParse(requestCookie.Value, out requestCookieGuidValue))
+            if (PersonnelSystem.GetPersonnelSystem(this) == null)
             {
-                // Use the Anti-XSRF token from the cookie
-                _antiXsrfTokenValue = requestCookie.Value;
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
+                Response.Redirect("Access.aspx");
+                return;
             }
-            else
-            {
-                // Generate a new Anti-XSRF token and save to the cookie
-                _antiXsrfTokenValue = Guid.NewGuid().ToString("N");
-                Page.ViewStateUserKey = _antiXsrfTokenValue;
-
-                var responseCookie = new HttpCookie(AntiXsrfTokenKey)
-                {
-                    HttpOnly = true,
-                    Value = _antiXsrfTokenValue
-                };
-                if (FormsAuthentication.RequireSSL && Request.IsSecureConnection)
-                {
-                    responseCookie.Secure = true;
-                }
-                Response.Cookies.Set(responseCookie);
-            }
-
-            Page.PreLoad += master_Page_PreLoad;
-        }
-
-        protected void master_Page_PreLoad(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                // Set Anti-XSRF token
-                ViewState[AntiXsrfTokenKey] = Page.ViewStateUserKey;
-                ViewState[AntiXsrfUserNameKey] = Context.User.Identity.Name ?? String.Empty;
-            }
-            else
-            {
-                // Validate the Anti-XSRF token
-                if ((string)ViewState[AntiXsrfTokenKey] != _antiXsrfTokenValue
-                    || (string)ViewState[AntiXsrfUserNameKey] != (Context.User.Identity.Name ?? String.Empty))
-                {
-                    throw new InvalidOperationException("Validation of Anti-XSRF token failed.");
-                }
-            }
+            Session.Timeout = 300;
+            OracleConnection.ClearAllPools();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            UOC_STAFF loginPerson = ps.LoginPerson;
 
+            lbName.Text = loginPerson.FullName;
+            //lbStaffType.Text = loginPerson.StaffTypeName;
+            //lbPosition.Text = loginPerson.PositionWorkName;
+            //lbPositionRank.Text = loginPerson.AdminPositionName;
+            //lbDepartment.Text = loginPerson.DivisionName;
+
+            string name = loginPerson.FirstNameAndLastName;
+            profile_name.InnerText = name;
         }
 
-        protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
+        private void Logout()
         {
-            Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Remove("login_person");
+            Session.Remove("login_id");
+            Session.Remove("login_system_status");
+            Session.Remove("login_name");
+            Session.Remove("login_lastname");
+            Session.Remove("redirect_to");
+            Session.Remove("login_system_status_id");
+        }
+
+        protected void lbuLogout_Click(object sender, EventArgs e)
+        {
+            Session.Remove("PersonnelSystem");
+            Response.Redirect("Access.aspx");
+        }
+
+        protected void lbuUser_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Profile.aspx");
         }
     }
-
 }

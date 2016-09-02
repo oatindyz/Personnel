@@ -1,86 +1,376 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Personnel.SiteMaster" %>
-
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Personnel.Site" %>
 <!DOCTYPE html>
 
-<html lang="en">
-<head runat="server">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-    <asp:PlaceHolder runat="server">
-        <%: Scripts.Render("~/bundles/modernizr") %>
-    </asp:PlaceHolder>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
-    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="icon" href="Image/favicon.ico" />
+    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
+    <link href="CSS/Master.css" rel="stylesheet" />
+    <link href="CSS/Access.css" rel="stylesheet" />
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Script/JSFunction.js"></script>
+
+    <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
+    <link href="jQueryCalendarThai/SpecialDateSheet.css" rel="stylesheet" />
+    <script src="jQueryCalendarThai/jquery-1.9.0.min.js"></script>
+    <script src="jQueryCalendarThai/jquery-ui-1.10.3.custom.js"></script>
+    <script src="jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <link href="jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="datetimepicker/jquery.datetimepicker.full.js"></script>
+    <script src="datetimepicker/jquery.datetimepicker.full.min.js"></script>
+    <link href="datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <script src="datetimepicker/jquery.datetimepicker.min.js"></script>
+
+    <script>
+        $.datepicker.regional['th'] = {
+            changeMonth: true,
+            changeYear: true,
+            showOn: "button",
+            buttonImage: 'jQueryCalendarThai/images/calendar.gif',
+            buttonImageOnly: true,
+            yearOffSet: 543,
+            dateFormat: 'dd/MM/yy',
+            dayNames: ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'],
+            dayNamesMin: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
+            monthNames: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+            monthNamesShort: ['ม.ค.', 'ก.พ.', 'มี.ค.', 'เม.ย.', 'พ.ค.', 'มิ.ย.', 'ก.ค.', 'ส.ค.', 'ก.ย.', 'ต.ค.', 'พ.ย.', 'ธ.ค.'],
+            constrainInput: true,
+
+            prevText: 'ก่อนหน้า',
+            nextText: 'ถัดไป',
+            yearRange: '-100:+100',
+            beforeShow: function () {
+                if ($(this).val() != "") {
+                    var arrayDate = $(this).val().split(" ");
+                    if (arrayDate.length == 4) {
+                        arrayDate[2] = arrayDate[3];
+                    }
+                } else {
+                    $(this).datepicker("setDate", new Date()); //Set ค่าวันปัจจุบัน
+                }
+            }
+        };
+        $.datepicker.setDefaults($.datepicker.regional['th']);
+    </script>
+
+    <script>
+        function startTime() {
+            var today = new Date();
+            var d = today.getDate();
+            var M = (today.getMonth() + 1);
+            var y = (today.getFullYear() + 543);
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            d = checkTime(d);
+            M = checkTime(M);
+            m = checkTime(m); 
+            s = checkTime(s);
+
+            var days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
+            var months = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'];
+
+            var day = days[today.getDay()];
+            var month = months[today.getMonth()];
+
+            document.getElementById('txt_date').innerHTML = "วัน" + day + "ที่ " + d + " " + month + " พ.ศ. " + y + " เวลา " + h + ":" + m + ":" + s + "น.";
+            var t = setTimeout(startTime, 500);
+        }
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            return i;
+        }
+        $(document).ready(function () {
+            //startTime();
+            $('#menu1').click(function () {
+                $('#menu1-ct').slideToggle(300);
+                $('#menu2-ct').slideUp(300);
+            });
+            $('#menu2').click(function () {
+                $('#menu2-ct').slideToggle(300);
+                $('#menu1-ct').slideUp(300);
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+              && (charCode < 48 || charCode > 57)) {
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
+    <style>
+
+    </style>
+
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
 
 </head>
 <body>
-    <form runat="server">
-        <asp:ScriptManager runat="server">
-            <Scripts>
-                <%--To learn more about bundling scripts in ScriptManager see http://go.microsoft.com/fwlink/?LinkID=301884 --%>
-                <%--Framework Scripts--%>
-                <asp:ScriptReference Name="MsAjaxBundle" />
-                <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
-                <asp:ScriptReference Name="respond" />
-                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
-                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
-                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
-                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
-                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
-                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
-                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
-                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
-                <asp:ScriptReference Name="WebFormsBundle" />
-                <%--Site Scripts--%>
-            </Scripts>
-        </asp:ScriptManager>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <form id="form1" runat="server">
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" runat="server" href="~/">Application name</a>
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/">Home</a></li>
-                        <li><a runat="server" href="~/About">About</a></li>
-                        <li><a runat="server" href="~/Contact">Contact</a></li>
-                    </ul>
-                    <asp:LoginView runat="server" ViewStateMode="Disabled">
-                        <AnonymousTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Register">Register</a></li>
-                                <li><a runat="server" href="~/Account/Login">Log in</a></li>
+        <div class="ps-ms-wrapper">
+
+            <div class="ps-ms-main">
+                <div class="ps-ms-main-hd-wrapper">
+                    <div class="ps-ms-main-hd">
+                        <div class="ps-ms-main-hd-left">
+                        <!--div id="txt_date" class="ps-ms-main-hd-date"></!--div-->
+                            <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>
+                            <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
+                            
+                    </div>
+                    <div class="ps-ms-main-hd-right">
+                        <div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></div>
+                        <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
+                        <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
+                            <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></span>
+                            <span id="profile_name" runat="server"></span>
+                        </asp:LinkButton>
+
+                        <div class="ps-ms-main-hd-button">
+                            <div class="dropdown">
+                            <button class="btn btn-default dropdown-toggle" type="button" id="menu11" data-toggle="dropdown">
+                            <span class="caret"></span></button>
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                              <li><a href="Profile.aspx"/><img src='Image/Doc16.png' class='icon_left' />ดูประวัติส่วนตัว</li>
+                                <li class="divider"></li>
+                              <li><a href="ChangePassword.aspx"/><img src='Image/lock-icon.png' class='icon_left' />เปลี่ยนรหัสผ่าน</li>
+                                <li class="divider"></li>
+                              <li><a href="Access.aspx"/><img src='Image/logout.png' class='icon_left' />ออกจากระบบ</li>
+                              <li class="divider"></li>
                             </ul>
-                        </AnonymousTemplate>
-                        <LoggedInTemplate>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a runat="server" href="~/Account/Manage" title="Manage your account">Hello, <%: Context.User.Identity.GetUserName()  %> !</a></li>
-                                <li>
-                                    <asp:LoginStatus runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                                </li>
-                            </ul>
-                        </LoggedInTemplate>
-                    </asp:LoginView>
+                          </div>
+                        </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    
+                    <div class="ps-ms-main-drop" id="menu1-ct">
+                       <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/menu.png"/>เมนู
+                        </div>
+                        <div class="ps-box-il-ms">
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <img src="Image/rmutto-ms-drop.png" class="rmutto"/>
+                                    <br />
+                                    <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />Personnel System</span>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="Default.aspx"><img src="Image/Small/home3.png" />หน้าหลัก</a>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <div>เวอร์ชั่น : v1.2.9</div>
+                                    <div style="display: none;">ตัวนับ : <span id="s_counter" runat="server"></span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/person2.png" />ข้อมูลผู้ใช้</div>
+                            </div>
+                            <div class="ps-box-i0" style="text-align: center;">
+                                <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-main-drop-profile-pic" id="profile_pic2" runat="server"/></span>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <table class="ps-table-ms">
+                                        <tr>
+                                            <td class="col1">ชื่อ</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbName" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">ประเภท</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbStaffType" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">ตำแหน่ง</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbPosition" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">บริหาร</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbPositionRank" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="col1">สังกัด</td>
+                                            <td class="col2">
+                                                <asp:Label ID="lbDepartment" runat="server" Text="-"></asp:Label></td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10" style="text-align: center;">
+                                    <a href="profile.aspx"><img src="Image/Small/search.png" class="icon_left"/>ดูประวัติส่วนตัว</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="AddPerson.aspx" id="cbAddPerson1" runat="server"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
+                                    <a href="AddPerson-Edit.aspx" id="cbAddPerson2" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                                    <a href="ListPerson-ADMIN.aspx" id="cbAddPerson5" runat="server"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
+                                    <a href="SEMINAR-GENERAL.aspx" id="cbNotPerson1" runat="server"><img src="Image/Small/add.png" />การเพิ่มพัฒนาบุคลากร</a>
+                                    <a href="SEMINAR-ADMIN.aspx" id="cbAddPerson6" runat="server"><img src="Image/Small/edit.png" />การแก้ไขพัฒนาบุคลากร</a>
+                                    <a href="PersonBranch.aspx" id="cbPersonMap" runat="server"><img src="Image/Small/list.png" />แผนผังบุคลากร</a>
+                                    <a href="Boss.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการแต่งตั้งหัวหน้า</a>
+                                    <a href="PersonReport.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
+                                    <a href="Report-Custom-Person.aspx" id="A1" runat="server"><img src="Image/Small/report.png" />ออกรายงาน ก.พ.7</a>
+                                    <a href="Report-Seminar.aspx" id="A2" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
+                                    <a href="Report-Seminar-ADMIN.aspx" id="cbAddPerson3" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร(admin)</a>
+                                    <a href="Report-Person-Quit.aspx" id="A3" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลาออกบุคลากร</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />การลา</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="Leave.aspx"><img src="Image/Small/document-create.png" />ทำการลา</a>
+                                    <a href="LeaveCancel.aspx"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</a>
+                                    <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
+                                    <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
+                                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
+                                    <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
+                                    <a href="LeaveReport.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
+                                    <a href="WorkingDay.aspx" id="WorkingDay" runat="server"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="INSG_Request.aspx" id="cbNotInsig1" runat="server"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>                   
+                                    <a href="INSG_Qualified.aspx" id="cbAddInsig1" runat="server"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
+                                    <a href="INSG_RequestList.aspx" id="cbAddInsig2" runat="server"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
+                                    <a href="INSG_Qualified_Detail.aspx" id="cbNotInsig2" runat="server"><img src="Image/Small/medal.png" />ประวัติการได้รับเครื่องราชฯ</a>
+                                    
+                               </div>
+                            </div>
+                        </div>
+
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                               <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
+                             </div>
+                             <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="DataManager.aspx" id="cbAddManage1" runat="server"><img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
+                                    <a href="Permission.aspx" id="cbAddManage2" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
+                                    <a href="ChangePassword.aspx" id="cbNotManage1" runat="server"><img src="Image/Small/wrench.png" />เปลี่ยนรหัสผ่าน</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="ps-ms-main-drop" id="menu2-ct">
+                        <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
+                        </div>
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />การลา</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_leave_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนการลา</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_approve" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่ต้องอนุมัติการลา</div><br />
+                                    <div><a href='LeaveAllow.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_leave_finish" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่การลาที่เสร็จสิ้น</div><br />
+                                    <div><a href='LeaveHistory.aspx'>ไปหน้าประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
+
+                <div class="ps-ms-main-ct">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+                    </div>
+
+                <div class="ps-ms-main-ft-wrapper">
+                    <div class="ps-ms-main-ft">
+                        Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
+                    </div>
+                </div>
+                
+
             </div>
-        </div>
-        <div class="container body-content">
-            <asp:ContentPlaceHolder ID="MainContent" runat="server">
-            </asp:ContentPlaceHolder>
-            <hr />
-            <footer>
-                <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
-            </footer>
-        </div>
+
     </form>
 </body>
 </html>
