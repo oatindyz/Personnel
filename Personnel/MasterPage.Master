@@ -11,6 +11,8 @@
     <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
     <link href="CSS/Access.css" rel="stylesheet" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
+    <script src="Script/jquery-ui-1.8.20.min.js"></script>
+    <script src="Script/jquery-1.7.1.min.js"></script>
     <script src="Script/JSFunction.js"></script>
 
     <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />

@@ -1,15 +1,28 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Access.aspx.cs" Inherits="Personnel.Access" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-
+    
     <script>
         $(function () {
-            $('#ContentPlaceHolder1_datePassword,#datePassword').datetimepicker({
+            $('#ContentPlaceHolder1_xx,#datePassword').datetimepicker({
                 yearOffset: 543,
                 format:"d/m/Y",
                 formatDate: "d/m/Y"
             });
         });
+    </script>
+    <script type="text/javascript">
+        function ShowHidePassword() {
+            var txt = $('#<%=tbPassword.ClientID%>');
+            if (txt.prop("type") == "password") {
+                txt.prop("type", "text");
+                $("label[for='cbShowHidePassword']").text("Hide Password");
+            }
+            else {
+                txt.prop("type", "password");
+                $("label[for='cbShowHidePassword']").text("Show Password");
+            }
+        }
     </script>
 
     <style type="text/css">
@@ -48,12 +61,12 @@
                         </div>
 
                         <div class="well input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
-                            <asp:TextBox ID="tbPassword" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="10"></asp:TextBox>
-                        <div class="input-group-addon">
-                            <span id="datePassword" class="glyphicon glyphicon-calendar"></span>
-                        </div>
+                            <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="20"></asp:TextBox>
+                        <div class="input-group-addon"><span id="datePassword" class="glyphicon glyphicon-calendar"></span></div>
+                            <asp:CheckBox ID="ShowHide" runat="server" onclick="ShowHidePassword();" />แสดงรหัสผ่าน
                         </div>
                         
+                
                         <div class="well">
                             <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="ps-button" Style="font-size: 16px; margin-top: 2px;"><img src="Image/Small/key.png" class="icon_left"/>เข้าสู่ระบบ</asp:LinkButton>
                         </div>

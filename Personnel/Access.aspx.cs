@@ -11,6 +11,7 @@ namespace Personnel
 {
     public partial class Access : System.Web.UI.Page
     {
+        public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -31,23 +32,57 @@ namespace Personnel
             {
                 Label12X.Text = "ไม่พบผู้ใช้งาน!";
                 return;
-            }
-            else
+            }         
+
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(strConn))
             {
-                if (DatabaseManager.ValidateUser(tbUsername.Text, tbPassword.Text))
+                con.Open();
+                int First = 0;
+                int NotFirst = 1;
+                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'" ,con))
                 {
-                    PersonnelSystem ps = new PersonnelSystem();
-                    ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
-                    Session["PersonnelSystem"] = ps;
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.GetInt32(0) == First)
+                            {
+                                if (DatabaseManager.ValidatePasswordFirst(tbUsername.Text, tbPassword.Text))
+                                {
+                                    PersonnelSystem ps = new PersonnelSystem();
+                                    ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                                    Session["PersonnelSystem"] = ps;
+                                    Response.Redirect("ChangePassword.aspx");
+                                }
+                                else
+                                {
+                                    Label12X.Text = "รหัสผ่านไม่ถูกต้อง!";
+                                    return;                         
+                                }
+                                Response.Redirect("Default.aspx");
+                            }
+
+                            if (reader.GetInt32(0) == NotFirst)
+                            {
+                                if (DatabaseManager.ValidatePasswordNotFirst(tbUsername.Text, tbPassword.Text))
+                                {
+                                    PersonnelSystem ps = new PersonnelSystem();
+                                    ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                                    Session["PersonnelSystem"] = ps;
+                                }
+                                else
+                                {
+                                    Label12X.Text = "รหัสผ่านไม่ถูกต้อง!";
+                                    return;
+                                }
+                                Response.Redirect("Default.aspx");
+                            }
+                        }
+                    }
                 }
-                else
-                {
-                    Label12X.Text = "รหัสผ่านไม่ถูกต้อง!";
-                    return;
-                }
-                Response.Redirect("Default.aspx");
-            }
-            
+            }      
         }
+
     }
 }

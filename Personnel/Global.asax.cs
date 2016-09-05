@@ -17,5 +17,21 @@ namespace Personnel
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-    }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            var serverError = Server.GetLastError() as HttpException;
+
+            if (null != serverError)
+            {
+                int errorCode = serverError.GetHttpCode();
+
+                if (404 == errorCode)
+                {
+                    Server.ClearError();
+                    Response.Redirect("404.aspx");
+                }
+            }
+        }
+    }  
 }

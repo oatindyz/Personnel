@@ -57,6 +57,7 @@ namespace Personnel.Class
         public string RESULT2;
         public string PERCENT_SALARY2;
         public string PASSWORD;
+        public string LOGIN_FIRST;
 
         public string FullName
         {
