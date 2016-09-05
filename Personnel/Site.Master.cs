@@ -21,7 +21,7 @@ namespace Personnel
                 Response.Redirect("Access.aspx");
                 return;
             }
-            Session.Timeout = 300;
+            Session.Timeout = 60;
             OracleConnection.ClearAllPools();
         }
 

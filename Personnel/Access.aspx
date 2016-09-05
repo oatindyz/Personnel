@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Access.aspx.cs" Inherits="Personnel.Access" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    
     <script>
         $(function () {
             $('#ContentPlaceHolder1_xx,#datePassword').datetimepicker({
@@ -26,18 +25,6 @@
     </script>
 
     <style type="text/css">
-        .col1 {
-            text-align: right;
-        }
-
-        .col2 {
-            text-align: left;
-        }
-
-        .textred {
-            color: red;
-        }
-
         .center {
             text-align: center;
         }
@@ -45,8 +32,11 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" CssClass="center">
-        <div class="ps-box-il" style="width: 400px;">
-            <div class="ps-box-i0">
+        <div class="login_popup">
+            <div class="login_popup_in_access">
+                <div class="login_popup_in2">
+                    <div class="ps-box-il" style="width: 400px;">
+                        <div class="ps-box-i0">
                 <div class="ps-box-ct10-cen">
                     <img class="login_logo" src="Image/RMUTTO.png" />
                     <div class="t1">ระบบบุคลากร</div>
@@ -61,7 +51,7 @@
                         </div>
 
                         <div class="well input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
-                            <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="20"></asp:TextBox>
+                            <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="25"></asp:TextBox>
                         <div class="input-group-addon"><span id="datePassword" class="glyphicon glyphicon-calendar"></span></div>
                             <asp:CheckBox ID="ShowHide" runat="server" onclick="ShowHidePassword();" />แสดงรหัสผ่าน
                         </div>
@@ -87,6 +77,9 @@
                         </div>
                     </asp:Panel>
                 </div>
+            </div>
+        </div>
+            </div>
             </div>
         </div>
     </asp:Panel>

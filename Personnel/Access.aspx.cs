@@ -11,14 +11,17 @@ namespace Personnel
 {
     public partial class Access : System.Web.UI.Page
     {
-        public static string strConn = @"Data Source = ORCL_RMUTTO;USER ID=RMUTTO;PASSWORD=Zxcvbnm";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
+                PersonnelSystem ps = new PersonnelSystem();
+                ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                Session["PersonnelSystem"] = ps;
+
             }
-        }
+        }   
 
         protected void lbuLogin_Click(object sender, EventArgs e)
         {
@@ -35,7 +38,7 @@ namespace Personnel
             }         
 
             OracleConnection.ClearAllPools();
-            using (OracleConnection con = new OracleConnection(strConn))
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
                 int First = 0;

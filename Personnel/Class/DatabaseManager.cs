@@ -231,7 +231,7 @@ namespace Personnel.Class
                             uoc_staff.RESULT2 = reader.GetValue(i++).ToString();
                             uoc_staff.PERCENT_SALARY2 = reader.GetValue(i++).ToString();
                             uoc_staff.PASSWORD = reader.GetValue(i++).ToString();
-                            uoc_staff.LOGIN_FIRST = reader.GetValue(i++).ToString();
+                            uoc_staff.LOGIN_FIRST = reader.GetInt32(i++);
 
                             return uoc_staff;
                         }

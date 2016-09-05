@@ -1,12 +1,11 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Personnel.MasterPage" %>
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="Image/favicon.ico" />
+    <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
 
     <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
     <link href="CSS/Access.css" rel="stylesheet" />
