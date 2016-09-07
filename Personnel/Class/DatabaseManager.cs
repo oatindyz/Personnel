@@ -15,11 +15,9 @@ namespace Personnel.Class
         public static readonly string DATA_SOURCE = "203.158.140.67";
         public static readonly string PORT = "1521";
         public static readonly string SID = "orcl";
-        public static readonly string USER_ID = "rmutto";
+        public static readonly string USER_ID = "PERSONNEL";
         public static readonly string PASSWORD = "Zxcvbnm";
-        //public static readonly string CONNECTION_STRING_OLE = @"Provider=" + PROVIDER + "; Data Source = " + DATA_SOURCE + ":" + PORT + "/" + SID + ";USER ID=" + USER_ID + ";PASSWORD=" + PASSWORD;
         public static readonly string CONNECTION_STRING = @"Data Source = " + DATA_SOURCE + ":" + PORT + "/" + SID + ";USER ID=" + USER_ID + ";PASSWORD=" + PASSWORD + ";";
-        //public static readonly string CONNECTION_STRING_FIXED = @"Provider=OraOLEDB.Oracle; Data Source = 203.158.140.67:1521/orcl;USER ID=rmutto;PASSWORD=Zxcvbnm";
 
         public static void ExecuteNonQuery(string sql)
         {
