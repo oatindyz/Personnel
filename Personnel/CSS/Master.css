@@ -1351,3 +1351,12 @@ input[type=radio] + label {
     height: 130px;
     object-fit: contain;
 }
+.col1 {
+    text-align: right;
+}
+.col2 {
+    text-align: left;
+}
+.textred {
+    color: red;
+}

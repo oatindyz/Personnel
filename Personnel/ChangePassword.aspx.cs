@@ -4,9 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data;
+using System.Configuration;
 using System.Data.OracleClient;
 using Personnel.Class;
-using System.Data;
 
 namespace Personnel
 {
@@ -14,29 +15,23 @@ namespace Personnel
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            /*PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
-            string never = loginPerson.LOGIN_FIRST;
 
-            OracleConnection.ClearAllPools();
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            if (!IsPostBack)
             {
-                con.Open();
-                int Login = 0;
-                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + loginPerson.CITIZEN_ID + "'", con))
+                if (loginPerson.IsLoginFirst())
                 {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            if (reader.GetInt32(0) == Login)
-                            {
-                                
-                            }
-                        }
-                    }
+                    divPassOld.Visible = false;
+                    tbPasswordOld.Visible = false;
                 }
-            }*/
+                if (loginPerson.IsLoginSecond())
+                {
+                    tbPasswordOld.Visible = true;
+                }
+            }
+
+
         }
 
         protected void lbuFinish_Click(object sender, EventArgs e)
@@ -49,76 +44,87 @@ namespace Personnel
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
 
-            Label12X.Text = "";
-            /*if (tbPasswordNew.Text.Length < 8)
+            if (loginPerson.IsLoginFirst())
             {
-                Label12X.Text = "รหัสต้องมีความยาวอย่างน้อย 8 ตัวอักษร";
-                Label12X.ForeColor = System.Drawing.Color.Red;
-                return;
-            }*/
+                Label12X.Text = "";
 
-            if (tbPasswordNew.Text == "")
-            {
-                Label12X.Text = "กรุณากรอกรหัสผ่านใหม่";
-                Label12X.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-            if (tbPasswordNewAgain.Text == "")
-            {
-                Label12X.Text = "กรุณากรอกรหัสผ่านใหม่อีกครั้ง";
-                Label12X.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-            if (tbPasswordNew.Text == "" || tbPasswordNewAgain.Text == "")
-            {
-                Label12X.Text = "กรุณากรอกรหัสผ่านใหม่ให้ครบถ้วน";
-                Label12X.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-            if (tbPasswordNew.Text != tbPasswordNewAgain.Text)
-            {
-                Label12X.Text = "รหัสผ่านไม่ตรงกัน";
-                Label12X.ForeColor = System.Drawing.Color.Red;
-                return;
-            }
-
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST,BIRTHDAY,PASSWORD FROM UOC_STAFF WHERE CITIZEN_ID ='" + loginPerson.CITIZEN_ID + "'", con))
+                if (tbPasswordNew.Text == "")
                 {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            if (reader.GetInt32(0) == 0)
-                            {
-                                if (tbPasswordOld.Text != reader.GetString(1))
-                                {
-                                    Label12X.Text = "รหัสผ่านเก่าไม่ถูกต้อง";
-                                    Label12X.ForeColor = System.Drawing.Color.Red;
-                                    return;
-                                }
-                                if (tbPasswordNew.Text == reader.GetString(1))
-                                {
-                                    Label12X.Text = "รหัสผ่านใหม่ไม่สามารถซ้ำรหัสผ่านเดิม";
-                                    Label12X.ForeColor = System.Drawing.Color.Red;
-                                    return;
-                                }
-                                DatabaseManager.ExecuteNonQuery("UPDATE UOC_STAFF SET PASSWORD = '" + tbPasswordNew.Text + "', LOGIN_FIRST = 1 WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'");
-                                Label12X.Text = "เปลี่ยนรหัสผ่านสำเร็จ";
-                                Label12X.ForeColor = System.Drawing.Color.Green;
-                            }
+                    Label12X.Text = "กรุณากรอกรหัสผ่านใหม่";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+                if (tbPasswordNewAgain.Text == "")
+                {
+                    Label12X.Text = "กรุณากรอกรหัสผ่านใหม่อีกครั้ง";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+                if (tbPasswordNew.Text == "" || tbPasswordNewAgain.Text == "")
+                {
+                    Label12X.Text = "กรุณากรอกรหัสผ่านใหม่ให้ครบถ้วน";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+                if (tbPasswordNew.Text != tbPasswordNewAgain.Text)
+                {
+                    Label12X.Text = "รหัสผ่านไม่ตรงกัน";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
 
-                            if (reader.GetInt32(0) == 1)
+                DatabaseManager.ExecuteNonQuery("UPDATE UOC_STAFF SET PASSWORD = '" + tbPasswordNew.Text + "', LOGIN_FIRST = 1 WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'");
+                Label12X.Text = "ตั้งรหัสผ่านสำเร็จ";
+                Label12X.ForeColor = System.Drawing.Color.Green;
+            }
+
+            //
+            if (loginPerson.IsLoginSecond())
+            {
+                Label12X.Text = "";
+
+                if (tbPasswordNew.Text == "")
+                {
+                    Label12X.Text = "กรุณากรอกรหัสผ่านใหม่";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+                if (tbPasswordNewAgain.Text == "")
+                {
+                    Label12X.Text = "กรุณากรอกรหัสผ่านใหม่อีกครั้ง";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+                if (tbPasswordNew.Text == "" || tbPasswordNewAgain.Text == "")
+                {
+                    Label12X.Text = "กรุณากรอกรหัสผ่านใหม่ให้ครบถ้วน";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+                if (tbPasswordNew.Text != tbPasswordNewAgain.Text)
+                {
+                    Label12X.Text = "รหัสผ่านไม่ตรงกัน";
+                    Label12X.ForeColor = System.Drawing.Color.Red;
+                    return;
+                }
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT PASSWORD FROM UOC_STAFF WHERE CITIZEN_ID ='" + loginPerson.CITIZEN_ID + "'", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
                             {
-                                if (tbPasswordOld.Text != reader.GetString(2))
+                                if (reader.IsDBNull(0)){return;}
+                                if (tbPasswordOld.Text != reader.GetString(0))
                                 {
                                     Label12X.Text = "รหัสผ่านเก่าไม่ถูกต้อง";
                                     Label12X.ForeColor = System.Drawing.Color.Red;
                                     return;
                                 }
-                                if (tbPasswordNew.Text == reader.GetString(2))
+                                if (tbPasswordNew.Text == reader.GetString(0))
                                 {
                                     Label12X.Text = "รหัสผ่านใหม่ไม่สามารถซ้ำรหัสผ่านเดิม";
                                     Label12X.ForeColor = System.Drawing.Color.Red;
@@ -127,14 +133,13 @@ namespace Personnel
                                 DatabaseManager.ExecuteNonQuery("UPDATE UOC_STAFF SET PASSWORD = '" + tbPasswordNew.Text + "' WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'");
                                 Label12X.Text = "เปลี่ยนรหัสผ่านสำเร็จ";
                                 Label12X.ForeColor = System.Drawing.Color.Green;
-                            }
 
-                        }   
+                            }
+                        }
                     }
                 }
             }
-        }
-    
 
+        }
     }
 }

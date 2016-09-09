@@ -13,6 +13,15 @@ namespace Personnel {
     public partial class ChangePassword {
         
         /// <summary>
+        /// ErrorMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        
+        /// <summary>
         /// Panel1 control.
         /// </summary>
         /// <remarks>
@@ -20,6 +29,15 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
+        /// divPassOld control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPassOld;
         
         /// <summary>
         /// tbPasswordOld control.
@@ -31,6 +49,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbPasswordOld;
         
         /// <summary>
+        /// RqIDold control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RqIDold;
+        
+        /// <summary>
         /// tbPasswordNew control.
         /// </summary>
         /// <remarks>
@@ -40,6 +67,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbPasswordNew;
         
         /// <summary>
+        /// RqIDnew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RqIDnew;
+        
+        /// <summary>
         /// tbPasswordNewAgain control.
         /// </summary>
         /// <remarks>
@@ -47,6 +83,15 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbPasswordNewAgain;
+        
+        /// <summary>
+        /// RqIDnewAgain control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RqIDnewAgain;
         
         /// <summary>
         /// lbuChangePassword control.

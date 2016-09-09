@@ -89,7 +89,25 @@ namespace Personnel.Class
             }
             return seq;
         }
-        public static void BindDropDown(DropDownList ddl, string sql, string text, string value)
+        public static void ExeDDL2string(DropDownList ddl ,string sql)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand(sql, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ddl.Items.Add(new ListItem(reader.GetString(0) + " | " + reader.GetString(1), reader.GetString(0) + ""));
+                        }
+                    }
+                }
+            }
+        }
+        public static void BindDropDownNon(DropDownList ddl, string sql, string text, string value)
         {
             OracleConnection.ClearAllPools();
             ddl.DataSource = CreateSQLDataSource(sql);
@@ -239,148 +257,6 @@ namespace Personnel.Class
             return null;
         }
 
-        public static int GetLeaveRequiredCountByCommander(string citizenID)
-        {
-            OracleConnection.ClearAllPools();
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + citizenID + "'", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int count = int.Parse(reader.GetInt32(0).ToString());
-                            return count;
-                        }
-                    }
-                }
-            }
-            return -1;
-        }
-        public static List<DateTime> GetLeaveDateTimeFromToDate(string citizenID)
-        {
-            OracleConnection.ClearAllPools();
-            List<DateTime> list = new List<DateTime>();
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "'", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            DateTime start = reader.GetDateTime(0);
-                            DateTime to = reader.GetDateTime(1);
-                            while (true)
-                            {
-                                if (!list.Contains(start))
-                                {
-                                    list.Add(start);
-                                }
-                                start = start.AddDays(1);
-                                if ((to - start).TotalDays < 0)
-                                {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return list;
-        }
-        public static string รหัสหัวหน้าฝ่าย(string DVID)
-        {
-            OracleConnection.ClearAllPools();
-            string citizenID = "-1";
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 4 AND PS_WORK_DIVISION_ID = " + DVID, con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            citizenID = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return citizenID;
-        }
-        public static string รหัสหัวหน้าภาควิชา(string DVID)
-        {
-            OracleConnection.ClearAllPools();
-            string citizenID = "-1";
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 7 AND PS_DIVISION_ID = " + DVID, con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            citizenID = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return citizenID;
-        }
-        public static string รหัสคณบดี(string FID)
-        {
-            OracleConnection.ClearAllPools();
-            string citizenID = "-1";
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 3 AND PS_FACULTY_ID = " + FID, con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            citizenID = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return citizenID;
-        }
-        public static string รหัสอธิการบดี(string CID)
-        {
-            OracleConnection.ClearAllPools();
-            string citizenID = "-1";
-            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 1", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            citizenID = reader.GetString(0);
-                        }
-                    }
-                }
-            }
-            return citizenID;
-        }
-       
-        public static void AddCounter()
-        {
-            ExecuteNonQuery("UPDATE TB_WEB SET COUNTER = COUNTER+1 WHERE ID = 1");
-        }
-        public static int GetCounter()
-        {
-            return ExecuteInt("SELECT COUNTER FROM TB_WEB WHERE ID = 1");
-        }
         public static string GetPersonImageFileName(string citizenID)
         {
             OracleConnection.ClearAllPools();

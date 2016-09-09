@@ -20,8 +20,13 @@ namespace Personnel
                 ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                 Session["PersonnelSystem"] = ps;
 
+                if (tbUsername.Text.Length < 13)
+                {
+                    Label12X.Text = "";
+                }
             }
-        }   
+
+        }
 
         protected void lbuLogin_Click(object sender, EventArgs e)
         {
@@ -35,7 +40,7 @@ namespace Personnel
             {
                 Label12X.Text = "ไม่พบผู้ใช้งาน!";
                 return;
-            }         
+            }
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
@@ -87,5 +92,36 @@ namespace Personnel
             }      
         }
 
+        protected void tbUsername_TextChanged(object sender, EventArgs e)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int Login = reader.GetInt32(0);
+
+                            if (tbUsername.Text.Length == 13)
+                            {
+                                if (Login == 0)
+                                {
+                                    Label12X.Text = "รหัสบัตรประชาชนดังกล่าวเป็นการล็อคอินครั้งแรก โปรดยืนยันตัวตน ด้วยการใส่รหัสผ่านเป็นวันเกิด รูปแบบ(01/01/0000)";
+                                }
+                                if (Login == 1)
+                                {
+                                    Label12X.Text = "";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
     }
 }

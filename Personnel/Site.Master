@@ -2,12 +2,12 @@
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="Image/favicon.ico" />
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
     <link href="CSS/Master.css" rel="stylesheet" />
-    <link href="CSS/Access.css" rel="stylesheet" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Script/JSFunction.js"></script>
 
@@ -133,10 +133,20 @@
                     <div class="ps-ms-main-hd">
                         <div class="ps-ms-main-hd-left">
                         <!--div id="txt_date" class="ps-ms-main-hd-date"></!--div-->
-                            <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>
-                            <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
-                            
-                    </div>
+                         <!-- <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>-->
+                          <!-- <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>-->
+                            </div>
+                        <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <div class="ps-ms-main-hd-name" data-toggle="dropdown" role="button" aria-expanded="false">การจัดการบุคลากร <span class="caret"></span></div>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="adduser.aspx"><img src='Image/Small/add.png' class='icon_left' />เพิ่มข้อมูลบุคลากร</a></li>
+
+                                <li><a href="listperson.aspx"><img src='Image/Small/edit.png' class='icon_left' />รายการข้อมูลบุคลากร</a></li>
+                                <li class="divider"></li>
+                            </ul>
+                        </li>
+                    </ul>
                     <div class="ps-ms-main-hd-right">
                         <div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></div>
                         <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
@@ -175,6 +185,7 @@
                                     <br />
                                     <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />Personnel System</span>
                                 </div>
+                                 
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -242,52 +253,10 @@
                              </div>
                              <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="AddPerson.aspx" id="cbAddPerson1" runat="server"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
-                                    <a href="AddPerson-Edit.aspx" id="cbAddPerson2" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
-                                    <a href="ListPerson-ADMIN.aspx" id="cbAddPerson5" runat="server"><img src="Image/Small/person2.png" />รายชื่อบุคลากร</a>
-                                    <a href="SEMINAR-GENERAL.aspx" id="cbNotPerson1" runat="server"><img src="Image/Small/add.png" />การเพิ่มพัฒนาบุคลากร</a>
-                                    <a href="SEMINAR-ADMIN.aspx" id="cbAddPerson6" runat="server"><img src="Image/Small/edit.png" />การแก้ไขพัฒนาบุคลากร</a>
-                                    <a href="PersonBranch.aspx" id="cbPersonMap" runat="server"><img src="Image/Small/list.png" />แผนผังบุคลากร</a>
-                                    <a href="Boss.aspx" id="cbPersonPosition" runat="server"><img src="Image/Small/person2.png" />จัดการแต่งตั้งหัวหน้า</a>
-                                    <a href="PersonReport.aspx" id="cbNotPerson2" runat="server"><img src="Image/Small/report.png" />ออกรายงานบุคลากร</a>
-                                    <a href="Report-Custom-Person.aspx" id="A1" runat="server"><img src="Image/Small/report.png" />ออกรายงาน ก.พ.7</a>
-                                    <a href="Report-Seminar.aspx" id="A2" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร</a>
-                                    <a href="Report-Seminar-ADMIN.aspx" id="cbAddPerson3" runat="server"><img src="Image/Small/report.png" />ออกรายงานพัฒนาบุคลากร(admin)</a>
-                                    <a href="Report-Person-Quit.aspx" id="A3" runat="server"><img src="Image/Small/report.png" />ออกรายงานการลาออกบุคลากร</a>
-                                </div>
-                            </div>
-                        </div>
+                                    <a href="adduser.aspx" id="CBadduser" runat="server"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
+                                    <a href="listuser.aspx" id="CBlistuser" runat="server"><img src="Image/Small/edit.png" />รายการข้อมูลบุคลากร</a>
 
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />การลา</div>
-                             </div>
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="Leave.aspx"><img src="Image/Small/document-create.png" />ทำการลา</a>
-                                    <a href="LeaveCancel.aspx"><img src="Image/Small/document-delete.png" />ยกเลิกการลา</a>
-                                    <a href="LeaveAllow.aspx"><img src="Image/Small/document-accept.png" />อนุมัติการลา<asp:Label ID="lbLeaveAllowCount" runat="server" Text="ทดสอบ" CssClass="master_text_alert"></asp:Label></a>
-                                    <a href="LeaveHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติการลา</a>
-                                    <a href="WorkingTimeHistory.aspx"><img src="Image/Small/clock-history.png" />ประวัติเวลาปฏิบัติงาน</a>
-                                    <a href="LeavePermission.aspx"><img src="Image/Small/info.png" />ตารางสิทธิการอนุญาต</a>
-                                    <a href="LeaveReport.aspx"><img src="Image/Small/report.png" />ออกรายงานการลา</a>
-                                    <a href="WorkingDay.aspx" id="WorkingDay" runat="server"><img src="Image/Small/wrench.png" />จัดการวันปฏิบัติราชการ</a>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
-                             </div>
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="INSG_Request.aspx" id="cbNotInsig1" runat="server"><img src="Image/Small/medal.png" />การขอเครื่องราชฯ</a>                   
-                                    <a href="INSG_Qualified.aspx" id="cbAddInsig1" runat="server"><img src="Image/Small/medal.png" />รายชื่อผู้ที่เข้าเกณฑ์การรับเครื่องราชฯ</a>
-                                    <a href="INSG_RequestList.aspx" id="cbAddInsig2" runat="server"><img src="Image/Small/medal.png" />รายชื่อการขอเครื่องราชฯ</a>
-                                    <a href="INSG_Qualified_Detail.aspx" id="cbNotInsig2" runat="server"><img src="Image/Small/medal.png" />ประวัติการได้รับเครื่องราชฯ</a>
-                                    
-                               </div>
                             </div>
                         </div>
 
@@ -299,60 +268,13 @@
                                 <div class="ps-box-ct10">
                                     <a href="DataManager.aspx" id="cbAddManage1" runat="server"><img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
                                     <a href="Permission.aspx" id="cbAddManage2" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
-                                    <a href="ChangePassword.aspx" id="cbNotManage1" runat="server"><img src="Image/Small/wrench.png" />เปลี่ยนรหัสผ่าน</a>
                                 </div>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="ps-ms-main-drop" id="menu2-ct">
-                        <div class="ps-ms-main-drop-hd">
-                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
-                        </div>
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />การลา</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_leave_none" runat="server">
-                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนการลา</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_approve" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่ต้องอนุมัติการลา</div><br />
-                                    <div><a href='LeaveAllow.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_leave_finish" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/correct.png' class='icon_left' />คุณมีรายการที่การลาที่เสร็จสิ้น</div><br />
-                                    <div><a href='LeaveHistory.aspx'>ไปหน้าประวัติการลา<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
-                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ins" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
-                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
-                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
+  
                 </div>
 
                 <div class="ps-ms-main-ct">

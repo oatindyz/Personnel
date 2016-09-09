@@ -30,7 +30,7 @@ namespace Personnel
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
 
-            lbName.Text = loginPerson.FullName;
+            //lbName.Text = loginPerson.FullName;
             //lbStaffType.Text = loginPerson.StaffTypeName;
             //lbPosition.Text = loginPerson.PositionWorkName;
             //lbPositionRank.Text = loginPerson.AdminPositionName;

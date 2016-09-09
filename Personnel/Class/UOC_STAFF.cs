@@ -68,6 +68,15 @@ namespace Personnel.Class
             get { return STF_FNAME + " " + STF_LNAME; }
         }
 
+        public bool IsLoginFirst()
+        {
+            return LOGIN_FIRST == 0;
+        }
+        public bool IsLoginSecond()
+        {
+            return LOGIN_FIRST == 1;
+        }
+
 
     }
 }
