@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Personnel
 {
-    public partial class Masterpage : System.Web.UI.MasterPage
+    public partial class edituser_admin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

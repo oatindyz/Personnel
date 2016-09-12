@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="Image/favicon.ico" />
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
-    <link href="CSS/Master.css" rel="stylesheet" />
+    
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Script/JSFunction.js"></script>
 
@@ -26,6 +26,8 @@
     <script src="datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <link href="datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
     <script src="datetimepicker/jquery.datetimepicker.min.js"></script>
+
+    <link href="CSS/Master.css" rel="stylesheet" />
 
     <script>
         $.datepicker.regional['th'] = {
@@ -112,6 +114,31 @@
         }
     </script>
 
+    <script type="text/javascript">
+        function checkCitizenID(id) {
+            if (id.length != 13) return false;
+            for (i = 0, sum = 0; i < 12; i++)
+                sum += parseFloat(id.charAt(i)) * (13 - i);
+            if ((11 - sum % 11) % 10 != parseFloat(id.charAt(12)))
+                return false;
+            return true;
+        }
+    </script>
+
+    <script type="text/javascript">
+    function ValidateDate(sender, args) {
+        var dateString = document.getElementById(sender.controltovalidate).value;
+        var regex = /(((0|1)[1-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+        if (regex.test(dateString)) {
+            var parts = dateString.split("/");
+            var dt = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+            args.IsValid = (dt.getDate() == parts[0] && dt.getMonth() + 1 == parts[1] && dt.getFullYear() == parts[2]);
+        } else {
+            args.IsValid = false;
+        }
+    }
+</script>
+
     <style>
 
     </style>
@@ -140,7 +167,7 @@
                         <li class="dropdown">
                             <div class="ps-ms-main-hd-name" data-toggle="dropdown" role="button" aria-expanded="false">การจัดการบุคลากร <span class="caret"></span></div>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="adduser.aspx"><img src='Image/Small/add.png' class='icon_left' />เพิ่มข้อมูลบุคลากร</a></li>
+                                <li><a href="adduser-admin.aspx"><img src='Image/Small/add.png' class='icon_left' />เพิ่มข้อมูลบุคลากร</a></li>
 
                                 <li><a href="listperson.aspx"><img src='Image/Small/edit.png' class='icon_left' />รายการข้อมูลบุคลากร</a></li>
                                 <li class="divider"></li>

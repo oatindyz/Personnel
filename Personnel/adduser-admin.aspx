@@ -1,6 +1,19 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="adduser.aspx.cs" Inherits="Personnel.adduser" MaintainScrollPositionOnPostback="true" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="adduser-admin.aspx.cs" Inherits="Personnel.adduser" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <script>
+        $(function () {
+            $('#ContentPlaceHolder1_tbBirthday,#datePassword').datetimepicker({
+                yearOffset: 543,
+                format: "d/m/Y",
+                formatDate: "d/m/Y"
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $("#ContentPlaceHolder1_tbBirthday, #ContentPlaceHolder1_tbS1ToDate").datepicker($.datepicker.regional["th"]);
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -21,6 +34,7 @@
                                 <td class="col1">รหัสประจำตัวประชาชน</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox><span class="textred">*</span>
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbCitizenID" ErrorMessage="กรุณากรอก รหัสประจำตัวประชาชน." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -39,12 +53,14 @@
                                 <td class="col1">ชื่อ</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbName" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbName" ErrorMessage="กรุณากรอก ชื่อ." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbLastName" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLastName" ErrorMessage="กรุณากรอก นามสกุล." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -57,6 +73,8 @@
                                 <td class="col1">วันเกิด</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbBirthday" ErrorMessage="กรุณากรอก วันเกิด." ForeColor="Red"></asp:RequiredFieldValidator>
+                                    <asp:CustomValidator runat="server" ClientValidationFunction="ValidateDate" ControlToValidate="tbBirthday" ErrorMessage="รูปแบบวันที่ไม่ถูกต้อง." ForeColor="Red"></asp:CustomValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -206,7 +224,7 @@
                             <tr>
                                 <td class="col1">หลักสูตรที่จบการศึกษาสูงสุด</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="ddlGradCURR" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
+                                    <asp:TextBox ID="tbGradCURR" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
                                 </td>
                             </tr>
                             <tr>

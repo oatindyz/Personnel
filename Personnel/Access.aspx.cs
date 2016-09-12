@@ -15,15 +15,9 @@ namespace Personnel
         {
             if (!IsPostBack)
             {
-
                 PersonnelSystem ps = new PersonnelSystem();
                 ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                 Session["PersonnelSystem"] = ps;
-
-                if (tbUsername.Text.Length < 13)
-                {
-                    Label12X.Text = "";
-                }
             }
 
         }

@@ -9,6 +9,7 @@ namespace Personnel.Class
 {
     public class UOC_STAFF
     {
+        public int UOC_ID;
         public string CITIZEN_ID;
         public string YEAR;
         public string UNIV_ID;
@@ -58,6 +59,11 @@ namespace Personnel.Class
         public string PERCENT_SALARY2;
         public string PASSWORD;
         public int LOGIN_FIRST;
+        public int CAMPUS_ID;
+        public int FACULTY_ID;
+        public int DIVISION_ID;
+        public int WORK_DIVISION_ID;
+        public int PERSON_ROLE_ID;
 
         public string FullName
         {

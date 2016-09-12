@@ -14,7 +14,7 @@ namespace Personnel
 {
     public partial class Site : System.Web.UI.MasterPage
     {
-        protected void Page_Init(object sender, EventArgs e)
+        protected void Page_Load(object sender, EventArgs e)
         {
             if (PersonnelSystem.GetPersonnelSystem(this) == null)
             {
@@ -23,10 +23,7 @@ namespace Personnel
             }
             Session.Timeout = 60;
             OracleConnection.ClearAllPools();
-        }
 
-        protected void Page_Load(object sender, EventArgs e)
-        {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
 

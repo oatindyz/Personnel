@@ -10,7 +10,7 @@
 namespace Personnel {
     
     
-    public partial class MasterPage {
+    public partial class Masterpage {
         
         /// <summary>
         /// head control.

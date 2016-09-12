@@ -185,7 +185,7 @@
   <ItemGroup>
     <Content Include="404.aspx" />
     <Content Include="Access.aspx" />
-    <Content Include="adduser.aspx" />
+    <Content Include="adduser-admin.aspx" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl_res_cs.cab" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl_res_da.cab" />
@@ -802,6 +802,7 @@
     <Content Include="datetimepicker\jquery.datetimepicker.min.css" />
     <Content Include="datetimepicker\jquery.datetimepicker.min.js" />
     <Content Include="Default.aspx" />
+    <Content Include="edituser-admin.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -826,14 +827,80 @@
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\js\crviewer\images\Thumbs.db" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
-    <Content Include="jQueryCalendarThai\images\Contact\Thumbs.db" />
+    <Content Include="jQueryCalendarThai\images\add.gif" />
+    <Content Include="jQueryCalendarThai\images\ajax-loader.gif" />
+    <Content Include="jQueryCalendarThai\images\ajax-loader_blue.gif" />
+    <Content Include="jQueryCalendarThai\images\animated-overlay.gif" />
+    <Content Include="jQueryCalendarThai\images\arrow-left.png" />
+    <Content Include="jQueryCalendarThai\images\arrows-ffffff.png" />
+    <Content Include="jQueryCalendarThai\images\asc.gif" />
+    <Content Include="jQueryCalendarThai\images\bg.gif" />
+    <Content Include="jQueryCalendarThai\images\calendar.gif" />
+    <Content Include="jQueryCalendarThai\images\calendar.png" />
+    <Content Include="jQueryCalendarThai\images\Contact\blog-21x17-left-BW.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\Facebook-21x17-left-BW.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\foursquare-21x17-left-BW.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\JavaScriptThaiLogo.png" />
+    <Content Include="jQueryCalendarThai\images\Contact\LinkedIn-21x17-left-BW %281%29.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\LinkedIn-21x17-left-BW.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\Logo_JavaScriptThai3.png" />
+    <Content Include="jQueryCalendarThai\images\Contact\Pinterest-21x17-left-BW.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\Twitter-21x17-left-BW.gif" />
+    <Content Include="jQueryCalendarThai\images\Contact\VitalDesign-logo-148x26.gif" />
+    <Content Include="jQueryCalendarThai\images\del.png" />
+    <Content Include="jQueryCalendarThai\images\delete.png" />
+    <Content Include="jQueryCalendarThai\images\desc.gif" />
+    <Content Include="jQueryCalendarThai\images\down.gif" />
+    <Content Include="jQueryCalendarThai\images\empty.gif" />
+    <Content Include="jQueryCalendarThai\images\error.png" />
+    <Content Include="jQueryCalendarThai\images\fill.gif" />
+    <Content Include="jQueryCalendarThai\images\hd-bg.png" />
+    <Content Include="jQueryCalendarThai\images\icon_close.png" />
+    <Content Include="jQueryCalendarThai\images\info.png" />
+    <Content Include="jQueryCalendarThai\images\loadingAnimation.gif" />
+    <Content Include="jQueryCalendarThai\images\Logo.gif" />
+    <Content Include="jQueryCalendarThai\images\Logo.jpg" />
+    <Content Include="jQueryCalendarThai\images\logo.png" />
+    <Content Include="jQueryCalendarThai\images\Logo_JavaScriptThai3.png" />
+    <Content Include="jQueryCalendarThai\images\minus %281%29.gif" />
+    <Content Include="jQueryCalendarThai\images\minus.gif" />
+    <Content Include="jQueryCalendarThai\images\personal-information.png" />
+    <Content Include="jQueryCalendarThai\images\set.gif" />
+    <Content Include="jQueryCalendarThai\images\sort_asc.png" />
+    <Content Include="jQueryCalendarThai\images\sort_both.png" />
+    <Content Include="jQueryCalendarThai\images\sort_desc.png" />
+    <Content Include="jQueryCalendarThai\images\success.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_flat_10_000000_40x100.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_glass_100_f6f6f6_1x400.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_glass_100_fdf5ce_1x400.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
+    <Content Include="jQueryCalendarThai\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
+    <Content Include="jQueryCalendarThai\images\ui-icons_222222_256x240.png" />
+    <Content Include="jQueryCalendarThai\images\ui-icons_228ef1_256x240.png" />
+    <Content Include="jQueryCalendarThai\images\ui-icons_888888_256x240.png" />
+    <Content Include="jQueryCalendarThai\images\ui-icons_ef8c08_256x240.png" />
+    <Content Include="jQueryCalendarThai\images\ui-icons_ffd27a_256x240.png" />
+    <Content Include="jQueryCalendarThai\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="jQueryCalendarThai\images\up.gif" />
+    <Content Include="jQueryCalendarThai\images\validation.png" />
+    <Content Include="jQueryCalendarThai\images\warning.png" />
+    <Content Include="jQueryCalendarThai\images\webbg.gif" />
+    <Content Include="jQueryCalendarThai\jquery-1.9.0.min.js" />
+    <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.css" />
+    <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.js" />
+    <Content Include="jQueryCalendarThai\SpecialDateSheet.css" />
     <Content Include="js\JsValidate.js" />
     <Content Include="listuser.aspx" />
-    <Content Include="MasterPage.Master" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="MasterPage.Master" />
+    <Content Include="jQueryCalendarThai\images\Contact\Thumbs.db" />
     <None Include="Properties\PublishProfiles\Web.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Image\333.jpg" />
@@ -993,72 +1060,6 @@
     <Content Include="Image\x32\PDF32.png" />
     <Content Include="Image\x32\Word32.png" />
     <Content Include="Image\มทร.ตะวันออก.jpg" />
-    <Content Include="jQueryCalendarThai\images\add.gif" />
-    <Content Include="jQueryCalendarThai\images\ajax-loader.gif" />
-    <Content Include="jQueryCalendarThai\images\ajax-loader_blue.gif" />
-    <Content Include="jQueryCalendarThai\images\animated-overlay.gif" />
-    <Content Include="jQueryCalendarThai\images\arrow-left.png" />
-    <Content Include="jQueryCalendarThai\images\arrows-ffffff.png" />
-    <Content Include="jQueryCalendarThai\images\asc.gif" />
-    <Content Include="jQueryCalendarThai\images\bg.gif" />
-    <Content Include="jQueryCalendarThai\images\calendar.gif" />
-    <Content Include="jQueryCalendarThai\images\calendar.png" />
-    <Content Include="jQueryCalendarThai\images\Contact\blog-21x17-left-BW.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\Facebook-21x17-left-BW.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\foursquare-21x17-left-BW.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\JavaScriptThaiLogo.png" />
-    <Content Include="jQueryCalendarThai\images\Contact\LinkedIn-21x17-left-BW %281%29.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\LinkedIn-21x17-left-BW.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\Logo_JavaScriptThai3.png" />
-    <Content Include="jQueryCalendarThai\images\Contact\Pinterest-21x17-left-BW.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\Twitter-21x17-left-BW.gif" />
-    <Content Include="jQueryCalendarThai\images\Contact\VitalDesign-logo-148x26.gif" />
-    <Content Include="jQueryCalendarThai\images\del.png" />
-    <Content Include="jQueryCalendarThai\images\delete.png" />
-    <Content Include="jQueryCalendarThai\images\desc.gif" />
-    <Content Include="jQueryCalendarThai\images\down.gif" />
-    <Content Include="jQueryCalendarThai\images\empty.gif" />
-    <Content Include="jQueryCalendarThai\images\error.png" />
-    <Content Include="jQueryCalendarThai\images\fill.gif" />
-    <Content Include="jQueryCalendarThai\images\hd-bg.png" />
-    <Content Include="jQueryCalendarThai\images\icon_close.png" />
-    <Content Include="jQueryCalendarThai\images\info.png" />
-    <Content Include="jQueryCalendarThai\images\loadingAnimation.gif" />
-    <Content Include="jQueryCalendarThai\images\Logo.gif" />
-    <Content Include="jQueryCalendarThai\images\Logo.jpg" />
-    <Content Include="jQueryCalendarThai\images\logo.png" />
-    <Content Include="jQueryCalendarThai\images\Logo_JavaScriptThai3.png" />
-    <Content Include="jQueryCalendarThai\images\minus %281%29.gif" />
-    <Content Include="jQueryCalendarThai\images\minus.gif" />
-    <Content Include="jQueryCalendarThai\images\personal-information.png" />
-    <Content Include="jQueryCalendarThai\images\set.gif" />
-    <Content Include="jQueryCalendarThai\images\sort_asc.png" />
-    <Content Include="jQueryCalendarThai\images\sort_both.png" />
-    <Content Include="jQueryCalendarThai\images\sort_desc.png" />
-    <Content Include="jQueryCalendarThai\images\success.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_diagonals-thick_20_666666_40x40.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_flat_10_000000_40x100.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_glass_100_f6f6f6_1x400.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_glass_100_fdf5ce_1x400.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_gloss-wave_35_f6a828_500x100.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_highlight-soft_100_eeeeee_1x100.png" />
-    <Content Include="jQueryCalendarThai\images\ui-bg_highlight-soft_75_ffe45c_1x100.png" />
-    <Content Include="jQueryCalendarThai\images\ui-icons_222222_256x240.png" />
-    <Content Include="jQueryCalendarThai\images\ui-icons_228ef1_256x240.png" />
-    <Content Include="jQueryCalendarThai\images\ui-icons_888888_256x240.png" />
-    <Content Include="jQueryCalendarThai\images\ui-icons_ef8c08_256x240.png" />
-    <Content Include="jQueryCalendarThai\images\ui-icons_ffd27a_256x240.png" />
-    <Content Include="jQueryCalendarThai\images\ui-icons_ffffff_256x240.png" />
-    <Content Include="jQueryCalendarThai\images\up.gif" />
-    <Content Include="jQueryCalendarThai\images\validation.png" />
-    <Content Include="jQueryCalendarThai\images\warning.png" />
-    <Content Include="jQueryCalendarThai\images\webbg.gif" />
-    <Content Include="jQueryCalendarThai\jquery-1.9.0.min.js" />
-    <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.css" />
-    <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.js" />
-    <Content Include="jQueryCalendarThai\SpecialDateSheet.css" />
     <Content Include="js\index.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
@@ -1091,7 +1092,6 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Script\jquery-1.7.1.min.js" />
     <Content Include="Script\jquery-ui-1.8.20.min.js" />
@@ -1125,12 +1125,12 @@
     <Compile Include="Access.aspx.designer.cs">
       <DependentUpon>Access.aspx</DependentUpon>
     </Compile>
-    <Compile Include="adduser.aspx.cs">
-      <DependentUpon>adduser.aspx</DependentUpon>
+    <Compile Include="adduser-admin.aspx.cs">
+      <DependentUpon>adduser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="adduser.aspx.designer.cs">
-      <DependentUpon>adduser.aspx</DependentUpon>
+    <Compile Include="adduser-admin.aspx.designer.cs">
+      <DependentUpon>adduser-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -1144,7 +1144,7 @@
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Class\DatabaseManager.cs" />
-    <Compile Include="Class\Insert-Update-Delete.cs" />
+    <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
     <Compile Include="Class\UOC_STAFF.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
@@ -1154,6 +1154,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="edituser-admin.aspx.cs">
+      <DependentUpon>edituser-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="edituser-admin.aspx.designer.cs">
+      <DependentUpon>edituser-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
