@@ -10,7 +10,7 @@
 namespace Personnel {
     
     
-    public partial class adduser {
+    public partial class adduser_admin {
         
         /// <summary>
         /// ScriptManager1 control.

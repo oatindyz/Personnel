@@ -7,27 +7,31 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="icon" href="Image/favicon.ico" />
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
-    
+    <link href="CSS/Master.css" rel="stylesheet" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <script src="Script/JSFunction.js"></script>
 
+    <!-- for DatePicker THAI Jquery Bootstraps -->
     <link href="jQueryCalendarThai/jquery-ui-1.10.3.custom.css" rel="stylesheet" />
     <link href="jQueryCalendarThai/SpecialDateSheet.css" rel="stylesheet" />
     <script src="jQueryCalendarThai/jquery-1.9.0.min.js"></script>
     <script src="jQueryCalendarThai/jquery-ui-1.10.3.custom.js"></script>
     <script src="jquery.mCustomScrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
     <link href="jquery.mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" />
+    <!-- for DatePicker THAI Jquery Bootstraps -->
 
+    <!-- for Menu Logout Bootstraps -->
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- for Menu Logout Bootstraps -->
 
+    <!-- for DatePicker Bootstraps -->
     <script src="datetimepicker/jquery.datetimepicker.full.js"></script>
     <script src="datetimepicker/jquery.datetimepicker.full.min.js"></script>
     <link href="datetimepicker/jquery.datetimepicker.min.css" rel="stylesheet" />
     <script src="datetimepicker/jquery.datetimepicker.min.js"></script>
-
-    <link href="CSS/Master.css" rel="stylesheet" />
+    <!-- for DatePicker Bootstraps -->
 
     <script>
         $.datepicker.regional['th'] = {
@@ -150,7 +154,7 @@
 
 </head>
 <body>
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+
     <form id="form1" runat="server">
 
         <div class="ps-ms-wrapper">
@@ -160,20 +164,10 @@
                     <div class="ps-ms-main-hd">
                         <div class="ps-ms-main-hd-left">
                         <!--div id="txt_date" class="ps-ms-main-hd-date"></!--div-->
-                         <!-- <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>-->
-                          <!-- <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>-->
-                            </div>
-                        <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <div class="ps-ms-main-hd-name" data-toggle="dropdown" role="button" aria-expanded="false">การจัดการบุคลากร <span class="caret"></span></div>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="adduser-admin.aspx"><img src='Image/Small/add.png' class='icon_left' />เพิ่มข้อมูลบุคลากร</a></li>
-
-                                <li><a href="listperson.aspx"><img src='Image/Small/edit.png' class='icon_left' />รายการข้อมูลบุคลากร</a></li>
-                                <li class="divider"></li>
-                            </ul>
-                        </li>
-                    </ul>
+                            <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>
+                            <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
+                            
+                    </div>
                     <div class="ps-ms-main-hd-right">
                         <div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></div>
                         <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
@@ -181,7 +175,6 @@
                             <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></span>
                             <span id="profile_name" runat="server"></span>
                         </asp:LinkButton>
-
                         <div class="ps-ms-main-hd-button">
                             <div class="dropdown">
                             <button class="btn btn-default dropdown-toggle" type="button" id="menu11" data-toggle="dropdown">
@@ -196,9 +189,7 @@
                             </ul>
                           </div>
                         </div>
-                        </div>
                     </div>
-
                     </div>
                     
                     <div class="ps-ms-main-drop" id="menu1-ct">
@@ -212,7 +203,6 @@
                                     <br />
                                     <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />Personnel System</span>
                                 </div>
-                                 
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -280,9 +270,8 @@
                              </div>
                              <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="adduser.aspx" id="CBadduser" runat="server"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
-                                    <a href="listuser.aspx" id="CBlistuser" runat="server"><img src="Image/Small/edit.png" />รายการข้อมูลบุคลากร</a>
-
+                                    <a href="adduser-admin.aspx" id="cbPerson1" runat="server"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
+                                    <a href="edituser-admin.aspx" id="cbPerson2" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
                                 </div>
                             </div>
                         </div>
@@ -301,8 +290,9 @@
 
                     </div>
 
-  
                 </div>
+                
+
 
                 <div class="ps-ms-main-ct">
                 <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
@@ -317,6 +307,11 @@
                 
 
             </div>
+
+
+
+        </div>
+        
 
     </form>
 </body>

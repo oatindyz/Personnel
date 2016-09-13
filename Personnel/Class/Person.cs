@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data;
 using System.Data.OracleClient;
 
 namespace Personnel.Class
@@ -178,6 +179,39 @@ namespace Personnel.Class
             this.DIVISION_ID = DIVISION_ID;
             this.WORK_DIVISION_ID = WORK_DIVISION_ID;
             this.PERSON_ROLE_ID = PERSON_ROLE_ID;
+        }
+
+        public DataTable GetDataUOC(string UOC_ID)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string query = "SELECT * FROM UOC_STAFF";
+                if (!string.IsNullOrEmpty(UOC_ID))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID :UOC_ID";
+                    }
+                }
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
+                    using(OracleDataAdapter da = new OracleDataAdapter(com))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+            }
+
+            return dt;
         }
 
         public int INSERT_PERSON()

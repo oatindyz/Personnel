@@ -1,19 +1,40 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masterpage.Master" AutoEventWireup="true" CodeBehind="adduser-admin.aspx.cs" Inherits="Personnel.adduser" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="adduser-admin.aspx.cs" Inherits="Personnel.adduser_admin" MaintainScrollPositionOnPostback="true" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         $(function () {
-            $('#ContentPlaceHolder1_tbBirthday,#datePassword').datetimepicker({
+            $('#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateStartThisU').datetimepicker({
                 yearOffset: 543,
                 format: "d/m/Y",
                 formatDate: "d/m/Y"
             });
         });
     </script>
-    <script>
-        $(function () {
-            $("#ContentPlaceHolder1_tbBirthday, #ContentPlaceHolder1_tbS1ToDate").datepicker($.datepicker.regional["th"]);
-        });
+    <script type="text/javascript">               
+        function validateFields() {
+
+                var message = "";
+                var error = false;
+
+                var citizen = document.getElementById("<%=tbCitizenID.ClientID %>");
+                var name = document.getElementById("<%=tbName.ClientID %>");
+
+                if ((/\S+/.test(citizen.value)) == false) {message += "กรุณากรอก รหัสบัตรประชาชน" + "<br>";error = true;}
+                if ((/\S+/.test(name.value)) == false) { message += "กรุณากรอก ชื่อ" + "<br>"; error = true; }
+
+                if (error) {
+                        document.getElementById("validationSummary").innerHTML = message;
+                        document.getElementById("validationSummary").style.display = "block";
+                        document.getElementById("validationSummary").style.color = "red";
+                        return false;
+                    } else {
+                        document.getElementById("validationSummary").innerHTML = "";
+                        document.getElementById("validationSummary").style.display = "none";
+                        return true;
+                    }
+                }
     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -23,6 +44,7 @@
             <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</div>
 
         <div id="notification" runat="server"></div>
+        <div id="validationSummary" style="display: none; float: left"></div>
 
         <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
             <asp:View ID="View0" runat="server">
@@ -34,7 +56,6 @@
                                 <td class="col1">รหัสประจำตัวประชาชน</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox><span class="textred">*</span>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbCitizenID" ErrorMessage="กรุณากรอก รหัสประจำตัวประชาชน." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -53,14 +74,12 @@
                                 <td class="col1">ชื่อ</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbName" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbName" ErrorMessage="กรุณากรอก ชื่อ." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
                                 <td class="col1">นามสกุล</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbLastName" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbLastName" ErrorMessage="กรุณากรอก นามสกุล." ForeColor="Red"></asp:RequiredFieldValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -73,8 +92,6 @@
                                 <td class="col1">วันเกิด</td>
                                 <td class="col2">
                                     <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="textred">*</span>
-                                    <asp:RequiredFieldValidator runat="server" ControlToValidate="tbBirthday" ErrorMessage="กรุณากรอก วันเกิด." ForeColor="Red"></asp:RequiredFieldValidator>
-                                    <asp:CustomValidator runat="server" ClientValidationFunction="ValidateDate" ControlToValidate="tbBirthday" ErrorMessage="รูปแบบวันที่ไม่ถูกต้อง." ForeColor="Red"></asp:CustomValidator>
                                 </td>
                             </tr>
                             <tr>
@@ -133,7 +150,7 @@
                             </tr>
                         </table>
                         <div style="text-align: center; margin-top: 10px;">
-                            <asp:LinkButton ID="lbuNextToView1" runat="server" CssClass="ps-button" OnClick="lbuNextToView1_Click"><img src="Image/Small/next.png" class="icon_left"/>ถัดไป</asp:LinkButton>
+                            <asp:LinkButton ID="lbuNextToView1" runat="server" CssClass="ps-button" OnClientClick="return validateFields()" OnClick="lbuNextToView1_Click"><img src="Image/Small/next.png" class="icon_left"/>ถัดไป</asp:LinkButton>
                         </div>
                     </div>
                 </div>
@@ -350,7 +367,7 @@
                 <div>
                     <div class="ps-div-title-red">ทำการเพิ่มข้อมูลบุคลากรสำเร็จ</div>
                     <div style="color: #808080; margin-top: 10px; text-align: center;">
-                        ระบบจะมีการส่งแจ้งเตือนรหัสผ่านสำหรับบุคลากรใหม่ โดยสามารถเข้าไปตรวจสอบได้ที่อีเมลของตัวเอง เพื่อไว้สำหรับเข้าสู่ระบบในเว็บไซต์นี้
+                        ระบบได้ทำการเพิ่มข้อมูลบุคลากรเรียบร้อยแล้ว
                     </div>
                     <div style="text-align: center; margin-top: 10px;">
                         <a href="Default.aspx" class="ps-button">

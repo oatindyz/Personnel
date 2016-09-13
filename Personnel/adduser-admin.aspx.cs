@@ -10,7 +10,7 @@ using System.Data.OracleClient;
 
 namespace Personnel
 {
-    public partial class adduser : System.Web.UI.Page
+    public partial class adduser_admin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -46,6 +46,42 @@ namespace Personnel
             DatabaseManager.BindDropDownNon(ddlDeform, "SELECT * FROM REF_DEFORM ORDER BY DEFORM_ID", "DEFORM_NAME", "DEFORM_ID");
             DatabaseManager.BindDropDownNon(ddlReligion, "SELECT * FROM REF_RELIGION ORDER BY RELIGION_ID", "RELIGION_NAME", "RELIGION_ID");
             DatabaseManager.BindDropDownNon(ddlMovementType, "SELECT * FROM REF_MOVEMENT_TYPE ORDER BY MOVEMENT_TYPE_ID", "MOVEMENT_TYPE_NAME", "MOVEMENT_TYPE_ID");
+        }
+
+        private void ChangeNotification(string type)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+        }
+
+        private void ChangeNotification(string type, string text)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+            notification.InnerHtml = text;
+        }
+
+        private void ClearNotification()
+        {
+            notification.Attributes["class"] = null;
+            notification.InnerHtml = "";
+        }
+
+        private void AddNotification(string text)
+        {
+            notification.InnerHtml += text;
         }
 
         protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
@@ -105,6 +141,73 @@ namespace Personnel
                 }
             }
             catch { }
+        }
+
+        protected void ValidationViewZero()
+        {
+            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            {
+                ChangeNotification("danger", "กรุณากรอกรหัสประจำตัวประชาชน");
+                return;
+            }
+            if (string.IsNullOrEmpty(tbName.Text))
+            {
+                ChangeNotification("danger", "กรุณากรอกชื่อ");
+                return;
+            }
+            if (string.IsNullOrEmpty(tbLastName.Text))
+            {
+                ChangeNotification("danger", "กรุณากรอกนามสกุล");
+                return;
+            }
+            if (string.IsNullOrEmpty(tbBirthday.Text))
+            {
+                ChangeNotification("danger", "กรุณากรอกวันเกิด");
+                return;
+            }
+            if (string.IsNullOrEmpty(tbHomeAdd.Text))
+            {
+                ChangeNotification("danger", "กรุณากรอกบ้านเลขที่");
+                return;
+            }
+            if (string.IsNullOrEmpty(ddlProvince.SelectedValue))
+            {
+                ChangeNotification("danger", "กรุณาเลือกจังหวัด");
+                return;
+            }
+            if (string.IsNullOrEmpty(ddlDistrict.SelectedValue))
+            {
+                ChangeNotification("danger", "กรุณาเลือกอำเภอ");
+                return;
+            }
+            if (string.IsNullOrEmpty(ddlSubDistrict.SelectedValue))
+            {
+                ChangeNotification("danger", "กรุณาเลือกตำบล");
+                return;
+            }
+            if (string.IsNullOrEmpty(tbZipcode.Text))
+            {
+                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์");
+                return;
+            }
+        }
+        protected void ValidationViewOne()
+        {
+            if (string.IsNullOrEmpty(ddlStafftype.SelectedValue))
+            {
+                ChangeNotification("danger", "กรุณาเลือกจังหวัด");
+                return;
+            }
+            if (string.IsNullOrEmpty(ddlDistrict.SelectedValue))
+            {
+                ChangeNotification("danger", "กรุณาเลือกอำเภอ");
+                return;
+            }
+            if (string.IsNullOrEmpty(ddlSubDistrict.SelectedValue))
+            {
+                ChangeNotification("danger", "กรุณาเลือกตำบล");
+                return;
+            }
         }
 
         protected void lbuNextToView1_Click(object sender, EventArgs e)

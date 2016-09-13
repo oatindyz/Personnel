@@ -130,22 +130,22 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbDepartment;
         
         /// <summary>
-        /// CBadduser control.
+        /// cbPerson1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor CBadduser;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPerson1;
         
         /// <summary>
-        /// CBlistuser control.
+        /// cbPerson2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor CBlistuser;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbPerson2;
         
         /// <summary>
         /// cbAddManage1 control.
