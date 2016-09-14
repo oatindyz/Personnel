@@ -37,17 +37,6 @@ namespace Personnel
             profile_name.InnerText = name;
         }
 
-        private void Logout()
-        {
-            Session.Remove("login_person");
-            Session.Remove("login_id");
-            Session.Remove("login_system_status");
-            Session.Remove("login_name");
-            Session.Remove("login_lastname");
-            Session.Remove("redirect_to");
-            Session.Remove("login_system_status_id");
-        }
-
         protected void lbuLogout_Click(object sender, EventArgs e)
         {
             Session.Remove("PersonnelSystem");

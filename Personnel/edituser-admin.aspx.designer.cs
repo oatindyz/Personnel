@@ -544,13 +544,13 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.LinkButton lbuBackToView1;
         
         /// <summary>
-        /// lbuAddPerson control.
+        /// lbuUpdatePerson control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuAddPerson;
+        protected global::System.Web.UI.WebControls.LinkButton lbuUpdatePerson;
         
         /// <summary>
         /// View3 control.

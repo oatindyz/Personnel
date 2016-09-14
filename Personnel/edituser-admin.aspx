@@ -16,13 +16,6 @@
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#dataTables-example').DataTable({
-                responsive: true
-            });
-        });
-    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -55,7 +48,7 @@
                                     <tr>
                                         <td class="col1">มหาวิทยาลัย</td>
                                         <td class="col2">
-                                            <asp:DropDownList ID="ddlUniv" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlUniv_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                            <asp:DropDownList ID="ddlUniv" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
                                         </td>
                                     </tr>
                                     <tr>
@@ -355,15 +348,15 @@
                         <div style="text-align: center; margin-top: 10px;">
                             <div style="text-align: center; margin-top: 10px;">
                                 <asp:LinkButton ID="lbuBackToView1" runat="server" CssClass="ps-button" OnClick="lbuBackToView1_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
-                                <asp:LinkButton ID="lbuAddPerson" runat="server" CssClass="ps-button" OnClick="lbuAddPerson_Click"><img src="Image/Small/save.png" class="icon_left"/>เพิ่มข้อมูลบุคลากร</asp:LinkButton>
+                                <asp:LinkButton ID="lbuUpdatePerson" runat="server" CssClass="ps-button" OnClick="lbuUpdatePerson_Click"><img src="Image/Small/save.png" class="icon_left"/>บันทึกข้อมูลบุคลากร</asp:LinkButton>
                             </div>
                         </div>
                     </asp:View>
                     <asp:View ID="View3" runat="server">
                         <div>
-                            <div class="ps-div-title-red">ทำการเพิ่มข้อมูลบุคลากรสำเร็จ</div>
+                            <div class="ps-div-title-red">ทำการบันทึกมูลบุคลากรสำเร็จ</div>
                             <div style="color: #808080; margin-top: 10px; text-align: center;">
-                                ระบบจะมีการส่งแจ้งเตือนรหัสผ่านสำหรับบุคลากรใหม่ โดยสามารถเข้าไปตรวจสอบได้ที่อีเมลของตัวเอง เพื่อไว้สำหรับเข้าสู่ระบบในเว็บไซต์นี้
+                                ระบบได้ทำการบันทึกข้อมูลบุคลากรเรียบร้อยแล้ว
                             </div>
                             <div style="text-align: center; margin-top: 10px;">
                                 <a href="Default.aspx" class="ps-button">

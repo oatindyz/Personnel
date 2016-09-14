@@ -276,5 +276,121 @@ namespace Personnel.Class
             }
             return id;
         }
+
+        public bool UPDATE_PERSON()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update UOC_STAFF Set";
+                query += " UNIV_ID = :UNIV_ID ,";
+                query += " CITIZEN_ID = :CITIZEN_ID ,";
+                query += " PREFIX_NAME = :PREFIX_NAME ,";
+                query += " STF_FNAME = :STF_FNAME ,";
+                query += " STF_LNAME = :STF_LNAME ,";
+                query += " GENDER_ID = :GENDER_ID ,";
+                query += " BIRTHDAY = :BIRTHDAY ,";
+                query += " HOMEADD = :HOMEADD ,";
+                query += " MOO = :MOO ,";
+                query += " STREET = :STREET ,";
+                query += " PROVINCE_ID = :PROVINCE_ID ,";
+                query += " DISTRICT_ID = :DISTRICT_ID ,";
+                query += " SUB_DISTRICT_ID = :SUB_DISTRICT_ID ,";
+                query += " TELEPHONE = :TELEPHONE ,";
+                query += " ZIPCODE = :ZIPCODE ,";
+                query += " NATION_ID = :NATION_ID ,";
+                query += " STAFFTYPE_ID = :STAFFTYPE_ID ,";
+                query += " TIME_CONTACT_ID = :TIME_CONTACT_ID ,";
+                query += " BUDGET_ID = :BUDGET_ID ,";
+                query += " SUBSTAFFTYPE_ID = :SUBSTAFFTYPE_ID ,";
+                query += " ADMIN_POSITION_ID = :ADMIN_POSITION_ID ,";
+                query += " POSITION_ID = :POSITION_ID ,";
+                query += " POSITION_WORK = :POSITION_WORK ,";
+                query += " DEPARTMENT_ID = :DEPARTMENT_ID ,";
+                query += " DATE_INWORK = :DATE_INWORK ,";
+                query += " DATE_START_THIS_U = :DATE_START_THIS_U ,";
+                query += " SPECIAL_NAME = :SPECIAL_NAME ,";
+                query += " TEACH_ISCED_ID = :TEACH_ISCED_ID ,";
+                query += " GRAD_LEV_ID = :GRAD_LEV_ID ,";
+                query += " GRAD_CURR = :GRAD_CURR ,";
+                query += " GRAD_ISCED_ID = :GRAD_ISCED_ID ,";
+                query += " GRAD_PROG = :GRAD_PROG ,";
+                query += " GRAD_UNIV = :GRAD_UNIV ,";
+                query += " GRAD_COUNTRY_ID = :GRAD_COUNTRY_ID ,";
+                query += " DEFORM_ID = :DEFORM_ID ,";
+                query += " SIT_NO = :SIT_NO ,";
+                query += " SALARY = :SALARY ,";
+                query += " POSITION_SALARY = :POSITION_SALARY ,";
+                query += " RELIGION_ID = :RELIGION_ID ,";
+                query += " MOVEMENT_TYPE_ID = :MOVEMENT_TYPE_ID ,";
+                query += " MOVEMENT_DATE = :MOVEMENT_DATE ,";
+                query += " DECORATION = :DECORATION ,";
+                query += " RESULT1 = :RESULT1 ,";
+                query += " PERCENT_SALARY1 = :PERCENT_SALARY1 ,";
+                query += " RESULT2 = :RESULT2 ,";
+                query += " PERCENT_SALARY2 = :PERCENT_SALARY2 ";
+                query += " where UOC_ID = :UOC_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UNIV_ID", UNIV_ID));
+                    com.Parameters.Add(new OracleParameter("CITIZEN_ID", CITIZEN_ID));
+                    com.Parameters.Add(new OracleParameter("PREFIX_NAME", PREFIX_NAME));
+                    com.Parameters.Add(new OracleParameter("STF_FNAME", STF_FNAME));
+                    com.Parameters.Add(new OracleParameter("STF_LNAME", STF_LNAME));
+                    com.Parameters.Add(new OracleParameter("GENDER_ID", GENDER_ID));
+                    com.Parameters.Add(new OracleParameter("BIRTHDAY", BIRTHDAY));
+                    com.Parameters.Add(new OracleParameter("HOMEADD", HOMEADD));
+                    com.Parameters.Add(new OracleParameter("MOO", MOO));
+                    com.Parameters.Add(new OracleParameter("STREET", STREET));
+                    com.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
+                    com.Parameters.Add(new OracleParameter("DISTRICT_ID", DISTRICT_ID));
+                    com.Parameters.Add(new OracleParameter("SUB_DISTRICT_ID", SUB_DISTRICT_ID));
+                    com.Parameters.Add(new OracleParameter("TELEPHONE", TELEPHONE));
+                    com.Parameters.Add(new OracleParameter("ZIPCODE", ZIPCODE));
+                    com.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID));
+                    com.Parameters.Add(new OracleParameter("STAFFTYPE_ID", STAFFTYPE_ID));
+                    com.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", TIME_CONTACT_ID));
+                    com.Parameters.Add(new OracleParameter("BUDGET_ID", BUDGET_ID));
+                    com.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", SUBSTAFFTYPE_ID));
+                    com.Parameters.Add(new OracleParameter("ADMIN_POSITION_ID", ADMIN_POSITION_ID));
+                    com.Parameters.Add(new OracleParameter("POSITION_ID", POSITION_ID));
+                    com.Parameters.Add(new OracleParameter("POSITION_WORK", POSITION_WORK));
+                    com.Parameters.Add(new OracleParameter("DEPARTMENT_ID", DEPARTMENT_ID));
+                    com.Parameters.Add(new OracleParameter("DATE_INWORK", DATE_INWORK));
+                    com.Parameters.Add(new OracleParameter("DATE_START_THIS_U", DATE_START_THIS_U));
+                    com.Parameters.Add(new OracleParameter("SPECIAL_NAME", SPECIAL_NAME));
+                    com.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", TEACH_ISCED_ID));
+                    com.Parameters.Add(new OracleParameter("GRAD_LEV_ID", GRAD_LEV_ID));
+                    com.Parameters.Add(new OracleParameter("GRAD_CURR", GRAD_CURR));
+                    com.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", GRAD_ISCED_ID));
+                    com.Parameters.Add(new OracleParameter("GRAD_PROG", GRAD_PROG));
+                    com.Parameters.Add(new OracleParameter("GRAD_UNIV", GRAD_UNIV));
+                    com.Parameters.Add(new OracleParameter("GRAD_COUNTRY_ID", GRAD_COUNTRY_ID));
+                    com.Parameters.Add(new OracleParameter("DEFORM_ID", DEFORM_ID));
+                    com.Parameters.Add(new OracleParameter("SIT_NO", SIT_NO));
+                    com.Parameters.Add(new OracleParameter("SALARY", SALARY));
+                    com.Parameters.Add(new OracleParameter("POSITION_SALARY", POSITION_SALARY));
+                    com.Parameters.Add(new OracleParameter("RELIGION_ID", RELIGION_ID));
+                    com.Parameters.Add(new OracleParameter("MOVEMENT_TYPE_ID", MOVEMENT_TYPE_ID));
+                    com.Parameters.Add(new OracleParameter("MOVEMENT_DATE", MOVEMENT_DATE));
+                    com.Parameters.Add(new OracleParameter("DECORATION", DECORATION));
+                    com.Parameters.Add(new OracleParameter("RESULT1", RESULT1));
+                    com.Parameters.Add(new OracleParameter("PERCENT_SALARY1", PERCENT_SALARY1));
+                    com.Parameters.Add(new OracleParameter("RESULT2", RESULT2));
+                    com.Parameters.Add(new OracleParameter("PERCENT_SALARY2", PERCENT_SALARY2));
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+
+                    if(com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+            return result;
+            }
+        }
     }
 } 
