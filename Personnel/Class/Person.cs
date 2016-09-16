@@ -220,7 +220,7 @@ namespace Personnel.Class
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING)) {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO UOC_STAFF (UOC_ID,YEAR,UNIV_ID,CITIZEN_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,HOMEADD,MOO,STREET,SUB_DISTRICT_ID,DISTRICT_ID,PROVINCE_ID,TELEPHONE,ZIPCODE,NATION_ID,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,DEFORM_ID,SIT_NO,SALARY,POSITION_SALARY,RELIGION_ID,MOVEMENT_TYPE_ID,MOVEMENT_DATE,DECORATION,RESULT1,PERCENT_SALARY1,RESULT2,PERCENT_SALARY2) VALUES (:UOC_ID,:YEAR,:UNIV_ID,:CITIZEN_ID,:PREFIX_NAME,:STF_FNAME,:STF_LNAME,:GENDER_ID,:BIRTHDAY,:HOMEADD,:MOO,:STREET,:SUB_DISTRICT_ID,:DISTRICT_ID,:PROVINCE_ID,:TELEPHONE,:ZIPCODE,:NATION_ID,:STAFFTYPE_ID,:TIME_CONTACT_ID,:BUDGET_ID,:SUBSTAFFTYPE_ID,:ADMIN_POSITION_ID,:POSITION_ID,:POSITION_WORK,:DEPARTMENT_ID,:DATE_INWORK,:DATE_START_THIS_U,:SPECIAL_NAME,:TEACH_ISCED_ID,:GRAD_LEV_ID,:GRAD_CURR,:GRAD_ISCED_ID,:GRAD_PROG,:GRAD_UNIV,:GRAD_COUNTRY_ID,:DEFORM_ID,:SIT_NO,:SALARY,:POSITION_SALARY,:RELIGION_ID,:MOVEMENT_TYPE_ID,:MOVEMENT_DATE,:DECORATION,:RESULT1,:PERCENT_SALARY1,:RESULT2,:PERCENT_SALARY2)", con))
+                using (OracleCommand com = new OracleCommand("INSERT INTO UOC_STAFF (UOC_ID,YEAR,UNIV_ID,CITIZEN_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,HOMEADD,MOO,STREET,SUB_DISTRICT_ID,DISTRICT_ID,PROVINCE_ID,TELEPHONE,ZIPCODE,NATION_ID,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,DEFORM_ID,SIT_NO,SALARY,POSITION_SALARY,RELIGION_ID,MOVEMENT_TYPE_ID,MOVEMENT_DATE,DECORATION,RESULT1,PERCENT_SALARY1,RESULT2,PERCENT_SALARY2,LOGIN_FIRST) VALUES (:UOC_ID,:YEAR,:UNIV_ID,:CITIZEN_ID,:PREFIX_NAME,:STF_FNAME,:STF_LNAME,:GENDER_ID,:BIRTHDAY,:HOMEADD,:MOO,:STREET,:SUB_DISTRICT_ID,:DISTRICT_ID,:PROVINCE_ID,:TELEPHONE,:ZIPCODE,:NATION_ID,:STAFFTYPE_ID,:TIME_CONTACT_ID,:BUDGET_ID,:SUBSTAFFTYPE_ID,:ADMIN_POSITION_ID,:POSITION_ID,:POSITION_WORK,:DEPARTMENT_ID,:DATE_INWORK,:DATE_START_THIS_U,:SPECIAL_NAME,:TEACH_ISCED_ID,:GRAD_LEV_ID,:GRAD_CURR,:GRAD_ISCED_ID,:GRAD_PROG,:GRAD_UNIV,:GRAD_COUNTRY_ID,:DEFORM_ID,:SIT_NO,:SALARY,:POSITION_SALARY,:RELIGION_ID,:MOVEMENT_TYPE_ID,:MOVEMENT_DATE,:DECORATION,:RESULT1,:PERCENT_SALARY1,:RESULT2,:PERCENT_SALARY2,:LOGIN_FIRST)", con))
                 {
                     com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
                     com.Parameters.Add(new OracleParameter("YEAR", YEAR));
@@ -270,6 +270,7 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("PERCENT_SALARY1", PERCENT_SALARY1));
                     com.Parameters.Add(new OracleParameter("RESULT2", RESULT2));
                     com.Parameters.Add(new OracleParameter("PERCENT_SALARY2", PERCENT_SALARY2));
+                    com.Parameters.Add(new OracleParameter("LOGIN_FIRST", LOGIN_FIRST));
                     id = com.ExecuteNonQuery();
 
                 }
@@ -331,7 +332,7 @@ namespace Personnel.Class
                 query += " PERCENT_SALARY1 = :PERCENT_SALARY1 ,";
                 query += " RESULT2 = :RESULT2 ,";
                 query += " PERCENT_SALARY2 = :PERCENT_SALARY2 ";
-                query += " where UOC_ID = :UOC_ID ";
+                query += " where CITIZEN_ID = :CITIZEN_ID ";
 
                 using (OracleCommand com = new OracleCommand(query, con))
                 {
@@ -381,7 +382,7 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("PERCENT_SALARY1", PERCENT_SALARY1));
                     com.Parameters.Add(new OracleParameter("RESULT2", RESULT2));
                     com.Parameters.Add(new OracleParameter("PERCENT_SALARY2", PERCENT_SALARY2));
-                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("CITIZEN_ID", CITIZEN_ID));
 
                     if(com.ExecuteNonQuery() > 0)
                     {
@@ -390,6 +391,60 @@ namespace Personnel.Class
                 }
 
             return result;
+            }
+        }
+
+        public bool UPDATE_PERSON_USER()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update UOC_STAFF Set";
+                query += " UNIV_ID = :UNIV_ID ,";
+                query += " PREFIX_NAME = :PREFIX_NAME ,";
+                query += " STF_FNAME = :STF_FNAME ,";
+                query += " STF_LNAME = :STF_LNAME ,";
+                query += " GENDER_ID = :GENDER_ID ,";
+                query += " BIRTHDAY = :BIRTHDAY ,";
+                query += " HOMEADD = :HOMEADD ,";
+                query += " MOO = :MOO ,";
+                query += " STREET = :STREET ,";
+                query += " PROVINCE_ID = :PROVINCE_ID ,";
+                query += " DISTRICT_ID = :DISTRICT_ID ,";
+                query += " SUB_DISTRICT_ID = :SUB_DISTRICT_ID ,";
+                query += " TELEPHONE = :TELEPHONE ,";
+                query += " ZIPCODE = :ZIPCODE ,";
+                query += " NATION_ID = :NATION_ID ";
+                query += " where UOC_ID = :UOC_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UNIV_ID", UNIV_ID));
+                    com.Parameters.Add(new OracleParameter("PREFIX_NAME", PREFIX_NAME));
+                    com.Parameters.Add(new OracleParameter("STF_FNAME", STF_FNAME));
+                    com.Parameters.Add(new OracleParameter("STF_LNAME", STF_LNAME));
+                    com.Parameters.Add(new OracleParameter("GENDER_ID", GENDER_ID));
+                    com.Parameters.Add(new OracleParameter("BIRTHDAY", BIRTHDAY));
+                    com.Parameters.Add(new OracleParameter("HOMEADD", HOMEADD));
+                    com.Parameters.Add(new OracleParameter("MOO", MOO));
+                    com.Parameters.Add(new OracleParameter("STREET", STREET));
+                    com.Parameters.Add(new OracleParameter("PROVINCE_ID", PROVINCE_ID));
+                    com.Parameters.Add(new OracleParameter("DISTRICT_ID", DISTRICT_ID));
+                    com.Parameters.Add(new OracleParameter("SUB_DISTRICT_ID", SUB_DISTRICT_ID));
+                    com.Parameters.Add(new OracleParameter("TELEPHONE", TELEPHONE));
+                    com.Parameters.Add(new OracleParameter("ZIPCODE", ZIPCODE));
+                    com.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID));
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
             }
         }
     }

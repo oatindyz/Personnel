@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="Personnel.Site" %>
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -21,7 +22,7 @@
     <!-- for DatePicker THAI Jquery Bootstraps -->
 
     <!-- for Menu Logout Bootstraps -->
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- for Menu Logout Bootstraps -->
@@ -76,7 +77,7 @@
             var s = today.getSeconds();
             d = checkTime(d);
             M = checkTime(M);
-            m = checkTime(m); 
+            m = checkTime(m);
             s = checkTime(s);
 
             var days = ['อาทิตย์', 'จันทร์', 'อังคาร', 'พุธ', 'พฤหัสบดี', 'ศุกร์', 'เสาร์'];
@@ -89,18 +90,18 @@
             var t = setTimeout(startTime, 500);
         }
         function checkTime(i) {
-            if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+            if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
             return i;
         }
         $(document).ready(function () {
             //startTime();
             $('#menu1').click(function () {
-                $('#menu1-ct').slideToggle(300);
-                $('#menu2-ct').slideUp(300);
+                $('#menu1-ct').slideToggle(500);
+                $('#menu2-ct').slideUp(500);
             });
             $('#menu2').click(function () {
-                $('#menu2-ct').slideToggle(300);
-                $('#menu1-ct').slideUp(300);
+                $('#menu2-ct').slideToggle(500);
+                $('#menu1-ct').slideUp(500);
             });
         });
 
@@ -130,21 +131,20 @@
     </script>
 
     <script type="text/javascript">
-    function ValidateDate(sender, args) {
-        var dateString = document.getElementById(sender.controltovalidate).value;
-        var regex = /(((0|1)[1-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
-        if (regex.test(dateString)) {
-            var parts = dateString.split("/");
-            var dt = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
-            args.IsValid = (dt.getDate() == parts[0] && dt.getMonth() + 1 == parts[1] && dt.getFullYear() == parts[2]);
-        } else {
-            args.IsValid = false;
+        function ValidateDate(sender, args) {
+            var dateString = document.getElementById(sender.controltovalidate).value;
+            var regex = /(((0|1)[1-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+            if (regex.test(dateString)) {
+                var parts = dateString.split("/");
+                var dt = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+                args.IsValid = (dt.getDate() == parts[0] && dt.getMonth() + 1 == parts[1] && dt.getFullYear() == parts[2]);
+            } else {
+                args.IsValid = false;
+            }
         }
-    }
-</script>
+    </script>
 
     <style>
-
     </style>
 
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
@@ -163,34 +163,43 @@
                 <div class="ps-ms-main-hd-wrapper">
                     <div class="ps-ms-main-hd">
                         <div class="ps-ms-main-hd-left">
-                        <!--div id="txt_date" class="ps-ms-main-hd-date"></!--div-->
-                            <div id="menu1" class="ps-ms-main-hd-button"><img src="Image/x32/menu.png" /></div>
+                            <div id="menu1" runat="server" class="ps-ms-main-hd-button">
+                                <img src="Image/x32/menu.png" /></div>
                             <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
-                            
-                    </div>
-                    <div class="ps-ms-main-hd-right">
-                        <div id="menu2" class="ps-ms-main-hd-button"><img src="Image/x32/notification.png" /></div>
-                        <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
-                        <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
-                            <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server"/></span>
-                            <span id="profile_name" runat="server"></span>
-                        </asp:LinkButton>
-                        <div class="ps-ms-main-hd-button">
-                            <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="menu11" data-toggle="dropdown">
-                            <span class="caret"></span></button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                              <li><a href="Profile.aspx"/><img src='Image/Doc16.png' class='icon_left' />ดูประวัติส่วนตัว</li>
-                                <li class="divider"></li>
-                              <li><a href="ChangePassword.aspx"/><img src='Image/lock-icon.png' class='icon_left' />เปลี่ยนรหัสผ่าน</li>
-                                <li class="divider"></li>
-                              <li><a href="Access.aspx"/><img src='Image/logout.png' class='icon_left' />ออกจากระบบ</li>
-                              <li class="divider"></li>
-                            </ul>
-                          </div>
+
                         </div>
-                    </div>
-                    </div>
+                        <div class="ps-ms-main-hd-right">
+                            <div id="menu2" class="ps-ms-main-hd-button">
+                                <img src="Image/x32/notification.png" /></div>
+                            <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
+                            <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
+                                <span class="ps-ms-profile-div">
+                                    <img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server" /></span>
+                                <span id="profile_name" runat="server"></span>
+                            </asp:LinkButton>
+
+                            <div class="ps-ms-main-hd-button">
+                                <div class="dropdown">
+                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu11" data-toggle="dropdown">
+                                        <span class="caret"></span>
+                                    </button>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                                        <li><a href="Profile.aspx" />
+                                            <img src='Image/Doc16.png' class='icon_left' />ดูประวัติส่วนตัว</li>
+                                        <li class="divider"></li>
+                                        <li><a href="ChangePassword.aspx" />
+                                            <img src='Image/lock-icon.png' class='icon_left' />เปลี่ยนรหัสผ่าน</li>
+                                        <li class="divider"></li>
+                                        <li><a href="Access.aspx" />
+                                            <img src='Image/logout.png' class='icon_left' />ออกจากระบบ</li>
+                                        <li class="divider"></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        </div>
+
                     
                     <div class="ps-ms-main-drop" id="menu1-ct">
                        <div class="ps-ms-main-drop-hd">
@@ -264,32 +273,79 @@
                             </div>
                         </div>
 
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
-                             </div>
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="adduser-admin.aspx" id="cbPerson1" runat="server"><img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
-                                    <a href="edituser-admin.aspx" id="cbPerson2" runat="server"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
-                                </div>
-                            </div>
+                        <div id="MenuAdminRolePerson" runat="server" class="ps-box-il-ms">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-hd10">
+                            <img src="Image/Small/person2.png" />บุคลากร</div>
+                    </div>
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <a href="adduser-admin.aspx" id="cbAdminPersonAdd" runat="server">
+                                <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
+                            <a href="edituser-admin.aspx" id="cbAdminPersonEdit" runat="server">
+                                <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                               <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
-                             </div>
-                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="DataManager.aspx" id="cbAddManage1" runat="server"><img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
-                                    <a href="Permission.aspx" id="cbAddManage2" runat="server"><img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
-                                </div>
-                            </div>
+                <div id="MenuAdminRoleManage" runat="server" class="ps-box-il-ms">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-hd10">
+                            <img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
+                    </div>
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <a href="DataManager.aspx" id="cbAdminManage1" runat="server">
+                                <img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
+                            <a href="Permission.aspx" id="cbAdminManage2" runat="server">
+                                <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
                         </div>
+                    </div>
+                </div>
+
+                <div id="MenuUserRolePerson" runat="server" class="ps-box-il-ms">
+                    <div class="ps-box-i0">
+                        <div class="ps-box-hd10">
+                            <img src="Image/Small/person2.png" />บุคลากร</div>
+                    </div>
+                    <div class="ps-box-i0">
+                        <div class="ps-box-ct10">
+                            <a href="edituser.aspx" id="cbUserPersonAdd" runat="server">
+                                <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                        </div>
+                    </div>
+                </div>
+
 
                     </div>
 
+                    <div class="ps-ms-main-drop" id="menu2-ct">
+                        <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
+                        </div>
+                        <div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
                 
 

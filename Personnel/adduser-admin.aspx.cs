@@ -210,24 +210,17 @@ namespace Personnel
             }
         }
 
-        protected void lbuNextToView1_Click(object sender, EventArgs e)
+        protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
-            string CheckCitizen = DatabaseManager.ExecuteString("SELECT CITIZEN_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + tbCitizenID.Text + "'");
-            if (tbCitizenID.Text == CheckCitizen)
-            {
-                notification.Attributes["class"] = "alert alert-danger";
-                notification.InnerHtml += "<div><strong>รหัสบัตรประชาชนซ้ำ</strong></div>";
-                return;
-            }
-            else
-            {
-                notification.Attributes["class"] = "none";
-                notification.InnerHtml = "";
-            }
+            MultiView1.ActiveViewIndex = 0;
+        }
+
+        protected void lbuSelectView1_Click(object sender, EventArgs e)
+        {
             MultiView1.ActiveViewIndex = 1;
         }
 
-        protected void lbuNextToView2_Click(object sender, EventArgs e)
+        protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 2;
         }
@@ -242,70 +235,72 @@ namespace Personnel
                 return;
             }
 
-            PS_PERSON ps = new PS_PERSON();
+            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            {
+                notification.InnerHtml = "Require";
+                return;
+            }
+
+            PS_PERSON person = new PS_PERSON();
             int LastID = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT UOC_ID +1 UOC_ID FROM UOC_STAFF ORDER BY UOC_ID DESC) WHERE ROWNUM = 1");
-            ps.UOC_ID = LastID;
-            ps.YEAR = DateTime.Now.Year.ToString();
-            ps.UNIV_ID = ddlUniv.SelectedValue;
-            ps.CITIZEN_ID = tbCitizenID.Text;
-            ps.PREFIX_NAME = ddlPrefixName.SelectedValue;
-            ps.STF_FNAME = tbName.Text;
-            ps.STF_LNAME = tbLastName.Text;
-            ps.GENDER_ID = ddlGender.SelectedValue;
-            ps.BIRTHDAY = tbBirthday.Text;
-            ps.HOMEADD = tbHomeAdd.Text;
-            ps.MOO = tbMoo.Text;
-            ps.STREET = tbStreet.Text;
-            ps.SUB_DISTRICT_ID = ddlSubDistrict.SelectedValue;
-            ps.DISTRICT_ID = ddlDistrict.SelectedValue;
-            ps.PROVINCE_ID = ddlProvince.SelectedValue;
-            ps.TELEPHONE = tbTelephone.Text;
-            ps.ZIPCODE = tbZipcode.Text;
-            ps.NATION_ID = ddlNation.SelectedValue;
-            ps.STAFFTYPE_ID = ddlStafftype.SelectedValue;
-            ps.TIME_CONTACT_ID = ddlTimeContact.SelectedValue;
-            ps.BUDGET_ID = ddlBudget.SelectedValue;
-            ps.SUBSTAFFTYPE_ID = ddlSubStafftype.SelectedValue;
-            ps.ADMIN_POSITION_ID = ddlAdminPosition.SelectedValue;
-            ps.POSITION_ID = ddlPosition.SelectedValue;
-            ps.POSITION_WORK = tbPositionWork.Text;
-            ps.DEPARTMENT_ID = ddlDepartment.SelectedValue;
-            ps.DATE_INWORK = tbDateInwork.Text;
-            ps.DATE_START_THIS_U = tbDateStartThisU.Text;
-            ps.SPECIAL_NAME = tbSpecialName.Text;
-            ps.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
-            ps.GRAD_LEV_ID = ddlGradLev.SelectedValue;
-            ps.GRAD_CURR = tbGradCURR.Text;
-            ps.GRAD_ISCED_ID = ddlGradISCED.SelectedValue;
-            ps.GRAD_PROG = ddlGradProg.SelectedValue;
-            ps.GRAD_UNIV = tbGradUniv.Text;
-            ps.GRAD_COUNTRY_ID = ddlGradCountry.SelectedValue;
-            ps.DEFORM_ID = ddlDeform.SelectedValue;
-            ps.SIT_NO = tbSitNo.Text;
-            ps.SALARY = tbSalary.Text;
-            ps.POSITION_SALARY = tbPositionSalary.Text;
-            ps.RELIGION_ID = ddlReligion.SelectedValue;
-            ps.MOVEMENT_TYPE_ID = ddlMovementType.SelectedValue;
-            ps.MOVEMENT_DATE = tbMovementDate.Text;
-            ps.DECORATION = tbDecoration.Text;
-            ps.RESULT1 = tbResult1.Text;
-            ps.PERCENT_SALARY1 = tbPercentSalary1.Text;
-            ps.RESULT2 = tbResult2.Text;
-            ps.PERCENT_SALARY2 = tbPercentSalary2.Text;
+            person.UOC_ID = LastID;
+            person.YEAR = DateTime.Now.Year.ToString();
+            person.UNIV_ID = ddlUniv.SelectedValue;
+            person.CITIZEN_ID = tbCitizenID.Text;
+            person.PREFIX_NAME = ddlPrefixName.SelectedValue;
+            person.STF_FNAME = tbName.Text;
+            person.STF_LNAME = tbLastName.Text;
+            person.GENDER_ID = ddlGender.SelectedValue;
+            person.BIRTHDAY = tbBirthday.Text;
+            person.HOMEADD = tbHomeAdd.Text;
+            person.MOO = tbMoo.Text;
+            person.STREET = tbStreet.Text;
+            person.SUB_DISTRICT_ID = ddlSubDistrict.SelectedValue;
+            person.DISTRICT_ID = ddlDistrict.SelectedValue;
+            person.PROVINCE_ID = ddlProvince.SelectedValue;
+            person.TELEPHONE = tbTelephone.Text;
+            person.ZIPCODE = tbZipcode.Text;
+            person.NATION_ID = ddlNation.SelectedValue;
+            person.STAFFTYPE_ID = ddlStafftype.SelectedValue;
+            person.TIME_CONTACT_ID = ddlTimeContact.SelectedValue;
+            person.BUDGET_ID = ddlBudget.SelectedValue;
+            person.SUBSTAFFTYPE_ID = ddlSubStafftype.SelectedValue;
+            person.ADMIN_POSITION_ID = ddlAdminPosition.SelectedValue;
+            person.POSITION_ID = ddlPosition.SelectedValue;
+            person.POSITION_WORK = tbPositionWork.Text;
+            person.DEPARTMENT_ID = ddlDepartment.SelectedValue;
+            person.DATE_INWORK = tbDateInwork.Text;
+            person.DATE_START_THIS_U = tbDateStartThisU.Text;
+            person.SPECIAL_NAME = tbSpecialName.Text;
+            person.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
+            person.GRAD_LEV_ID = ddlGradLev.SelectedValue;
+            person.GRAD_CURR = tbGradCURR.Text;
+            person.GRAD_ISCED_ID = ddlGradISCED.SelectedValue;
+            person.GRAD_PROG = ddlGradProg.SelectedValue;
+            person.GRAD_UNIV = tbGradUniv.Text;
+            person.GRAD_COUNTRY_ID = ddlGradCountry.SelectedValue;
+            person.DEFORM_ID = ddlDeform.SelectedValue;
+            person.SIT_NO = tbSitNo.Text;
+            person.SALARY = tbSalary.Text;
+            person.POSITION_SALARY = tbPositionSalary.Text;
+            person.RELIGION_ID = ddlReligion.SelectedValue;
+            person.MOVEMENT_TYPE_ID = ddlMovementType.SelectedValue;
+            person.MOVEMENT_DATE = tbMovementDate.Text;
+            person.DECORATION = tbDecoration.Text;
+            person.RESULT1 = tbResult1.Text;
+            person.PERCENT_SALARY1 = tbPercentSalary1.Text;
+            person.RESULT2 = tbResult2.Text;
+            person.PERCENT_SALARY2 = tbPercentSalary2.Text;
+            person.LOGIN_FIRST = 0;
 
-            ps.INSERT_PERSON();
+            person.INSERT_PERSON();
             MultiView1.ActiveViewIndex = 3;
-            
-        }
 
-        protected void lbuBackToView0_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 0;
-        }
+            lbuSelectView0.Visible = false;
+            lbuSelectView1.Visible = false;
+            lbuSelectView2.Visible = false;
+            lbuAddPerson.Visible = false;
 
-        protected void lbuBackToView1_Click(object sender, EventArgs e)
-        {
-            MultiView1.ActiveViewIndex = 1;
         }
 
     }

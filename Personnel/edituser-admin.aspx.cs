@@ -13,23 +13,30 @@ namespace Personnel
 {
     public partial class edituser_admin : System.Web.UI.Page
     {
-        private string p;
-
+        int id = 0;
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (hfuocID.Value != "")
+        {            
+            if (!IsPostBack)
             {
-                p = hfuocID.Value;
-            }
-            if (p == null)
-            {
-                MultiView1.Visible = false;
-                if (CreateSelectPersonPageLoad(this, "edituser-admin.aspx"))
+                if(Request.QueryString["id"] != null)
                 {
-                    return;
-                }
-            }
+                    divTitle.Visible = false;
+                    int.TryParse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()), out id);
 
+                }else{divTitle.Visible = true;}
+                
+                OracleConnection con = new OracleConnection("DATA SOURCE=ORCL_RMUTTO;PERSIST SECURITY INFO=True;USER ID=PERSONNEL;PASSWORD=Zxcvbnm");
+                OracleDataAdapter sda = new OracleDataAdapter("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME,(SELECT STAFFTYPE_NAME FROM REF_STAFFTYPE WHERE UOC_STAFF.STAFFTYPE_ID = REF_STAFFTYPE.STAFFTYPE_ID) STAFF_NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME FROM UOC_STAFF", con);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                myRepeater.DataSource = dt;
+                myRepeater.DataBind();
+                BindDDL();
+                ReadSelectID();
+                
+                MultiView1.ActiveViewIndex = 0;  
+
+            }
         }
 
         protected void BindDDL()
@@ -119,102 +126,20 @@ namespace Personnel
             catch { }
         }
 
-        protected void lbuNextToView1_Click(object sender, EventArgs e)
-        {
-            MultiView1.Visible = true;
-            MultiView1.ActiveViewIndex = 1;
-        }
-
-        protected void lbuNextToView2_Click(object sender, EventArgs e)
-        {
-            MultiView1.Visible = true;
-            MultiView1.ActiveViewIndex = 2;
-        }
-
-        protected void lbuUpdatePerson_Click(object sender, EventArgs e)
-        {
-            PS_PERSON ps = new PS_PERSON();
-
-            ps.UNIV_ID = ddlUniv.SelectedValue;
-            ps.CITIZEN_ID = tbCitizenID.Text;
-            ps.PREFIX_NAME = ddlPrefixName.SelectedValue;
-            ps.STF_FNAME = tbName.Text;
-            ps.STF_LNAME = tbLastName.Text;
-            ps.GENDER_ID = ddlGender.SelectedValue;
-            ps.BIRTHDAY = tbBirthday.Text;
-            ps.HOMEADD = tbHomeAdd.Text;
-            ps.MOO = tbMoo.Text;
-            ps.STREET = tbStreet.Text;
-            ps.SUB_DISTRICT_ID = ddlSubDistrict.SelectedValue;
-            ps.DISTRICT_ID = ddlDistrict.SelectedValue;
-            ps.PROVINCE_ID = ddlProvince.SelectedValue;
-            ps.TELEPHONE = tbTelephone.Text;
-            ps.ZIPCODE = tbZipcode.Text;
-            ps.NATION_ID = ddlNation.SelectedValue;
-            ps.STAFFTYPE_ID = ddlStafftype.SelectedValue;
-            ps.TIME_CONTACT_ID = ddlTimeContact.SelectedValue;
-            ps.BUDGET_ID = ddlBudget.SelectedValue;
-            ps.SUBSTAFFTYPE_ID = ddlSubStafftype.SelectedValue;
-            ps.ADMIN_POSITION_ID = ddlAdminPosition.SelectedValue;
-            ps.POSITION_ID = ddlPosition.SelectedValue;
-            ps.POSITION_WORK = tbPositionWork.Text;
-            ps.DEPARTMENT_ID = ddlDepartment.SelectedValue;
-            ps.DATE_INWORK = tbDateInwork.Text;
-            ps.DATE_START_THIS_U = tbDateStartThisU.Text;
-            ps.SPECIAL_NAME = tbSpecialName.Text;
-            ps.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
-            ps.GRAD_LEV_ID = ddlGradLev.SelectedValue;
-            ps.GRAD_CURR = tbGradCURR.Text;
-            ps.GRAD_ISCED_ID = ddlGradISCED.SelectedValue;
-            ps.GRAD_PROG = ddlGradProg.SelectedValue;
-            ps.GRAD_UNIV = tbGradUniv.Text;
-            ps.GRAD_COUNTRY_ID = ddlGradCountry.SelectedValue;
-            ps.DEFORM_ID = ddlDeform.SelectedValue;
-            ps.SIT_NO = tbSitNo.Text;
-            ps.SALARY = tbSalary.Text;
-            ps.POSITION_SALARY = tbPositionSalary.Text;
-            ps.RELIGION_ID = ddlReligion.SelectedValue;
-            ps.MOVEMENT_TYPE_ID = ddlMovementType.SelectedValue;
-            ps.MOVEMENT_DATE = tbMovementDate.Text;
-            ps.DECORATION = tbDecoration.Text;
-            ps.RESULT1 = tbResult1.Text;
-            ps.PERCENT_SALARY1 = tbPercentSalary1.Text;
-            ps.RESULT2 = tbResult2.Text;
-            ps.PERCENT_SALARY2 = tbPercentSalary2.Text;
-            ps.UOC_ID = Convert.ToInt32(p);
-
-            ps.UPDATE_PERSON();
-
-            MultiView1.Visible = true;
-            MultiView1.ActiveViewIndex = 3;
-
-        }
-
-        protected void lbuBackToView0_Click(object sender, EventArgs e)
-        {
-            MultiView1.Visible = true;
-            MultiView1.ActiveViewIndex = 0;
-        }
-
-        protected void lbuBackToView1_Click(object sender, EventArgs e)
-        {
-            MultiView1.Visible = true;
-            MultiView1.ActiveViewIndex = 1;
-        }
-
         private void ReadSelectID()
         {
+            
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT CITIZEN_ID,UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,HOMEADD,MOO,STREET,PROVINCE_ID,DISTRICT_ID,SUB_DISTRICT_ID,TELEPHONE,ZIPCODE,NATION_ID,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,DEFORM_ID,SIT_NO,SALARY,POSITION_SALARY,RELIGION_ID,MOVEMENT_TYPE_ID,MOVEMENT_DATE,DECORATION,RESULT1,PERCENT_SALARY1,RESULT2,PERCENT_SALARY2 FROM UOC_STAFF WHERE UOC_ID = '" + p + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT CITIZEN_ID,UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,HOMEADD,MOO,STREET,PROVINCE_ID,DISTRICT_ID,SUB_DISTRICT_ID,TELEPHONE,ZIPCODE,NATION_ID,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,DEFORM_ID,SIT_NO,SALARY,POSITION_SALARY,RELIGION_ID,MOVEMENT_TYPE_ID,MOVEMENT_DATE,DECORATION,RESULT1,PERCENT_SALARY1,RESULT2,PERCENT_SALARY2 FROM UOC_STAFF WHERE UOC_ID = '" + id + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
                             int i = 0;
-                            tbCitizenID.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lbCitizenID.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlUniv.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i; 
                             ddlPrefixName.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             tbName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
@@ -281,137 +206,85 @@ namespace Personnel
             }
         }
 
-        public bool CreateSelectPersonPageLoad(Page page, string pageURL)
+        protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
-
-            string ps = null;
-
-            if (page.Request.QueryString["ps"] != null)
-            {
-                ps = page.Request.QueryString["ps"];
-            }
-
-            if (ps != null)
-            {
-                CreateSelectPersonPanel(page, pageURL, ps);
-                return true;
-            }
-            if (p == null)
-            {
-                CreateSelectPersonPanel(page, pageURL);
-                return true;
-            }
-            return false;
+            
+            MultiView1.ActiveViewIndex = 0;
         }
 
-        public void CreateSelectPersonPanel(Page page, string pageURL)
+        protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
-            CreateSelectPersonPanel(page, pageURL, null);
+            
+            MultiView1.ActiveViewIndex = 1;
         }
 
-        public void CreateSelectPersonPanel(Page page, string pageURL, string ps)
+        protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
-            {
-                Table1.Rows.Clear();
-                TableRow row = new TableRow();
+            
+            MultiView1.ActiveViewIndex = 2;
+        }
 
-                {
-                    TableHeaderCell cell = new TableHeaderCell();
-                    cell.Text = "ลำดับ";
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableHeaderCell cell = new TableHeaderCell();
-                    cell.Text = "ชื่อ - นามสกุล";
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableHeaderCell cell = new TableHeaderCell();
-                    cell.Text = "ประเภทบุคลากร";
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableHeaderCell cell = new TableHeaderCell();
-                    cell.Text = "คณะ/หน่วยงาน";
-                    row.Cells.Add(cell);
-                }
-                {
-                    TableHeaderCell cell = new TableHeaderCell();
-                    cell.Text = "แก้ไขข้อมูล";
-                    row.Cells.Add(cell);
-                }
+        protected void lbuUpdatePerson_Click(object sender, EventArgs e)
+        {
+            PS_PERSON person = new PS_PERSON();
 
-                Table1.Rows.Add(row);
-            }
+            person.UNIV_ID = ddlUniv.SelectedValue;
+            person.CITIZEN_ID = lbCitizenID.Text;
+            person.PREFIX_NAME = ddlPrefixName.SelectedValue;
+            person.STF_FNAME = tbName.Text;
+            person.STF_LNAME = tbLastName.Text;
+            person.GENDER_ID = ddlGender.SelectedValue;
+            person.BIRTHDAY = tbBirthday.Text;
+            person.HOMEADD = tbHomeAdd.Text;
+            person.MOO = tbMoo.Text;
+            person.STREET = tbStreet.Text;
+            person.SUB_DISTRICT_ID = ddlSubDistrict.SelectedValue;
+            person.DISTRICT_ID = ddlDistrict.SelectedValue;
+            person.PROVINCE_ID = ddlProvince.SelectedValue;
+            person.TELEPHONE = tbTelephone.Text;
+            person.ZIPCODE = tbZipcode.Text;
+            person.NATION_ID = ddlNation.SelectedValue;
+            person.STAFFTYPE_ID = ddlStafftype.SelectedValue;
+            person.TIME_CONTACT_ID = ddlTimeContact.SelectedValue;
+            person.BUDGET_ID = ddlBudget.SelectedValue;
+            person.SUBSTAFFTYPE_ID = ddlSubStafftype.SelectedValue;
+            person.ADMIN_POSITION_ID = ddlAdminPosition.SelectedValue;
+            person.POSITION_ID = ddlPosition.SelectedValue;
+            person.POSITION_WORK = tbPositionWork.Text;
+            person.DEPARTMENT_ID = ddlDepartment.SelectedValue;
+            person.DATE_INWORK = tbDateInwork.Text;
+            person.DATE_START_THIS_U = tbDateStartThisU.Text;
+            person.SPECIAL_NAME = tbSpecialName.Text;
+            person.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
+            person.GRAD_LEV_ID = ddlGradLev.SelectedValue;
+            person.GRAD_CURR = tbGradCURR.Text;
+            person.GRAD_ISCED_ID = ddlGradISCED.SelectedValue;
+            person.GRAD_PROG = ddlGradProg.SelectedValue;
+            person.GRAD_UNIV = tbGradUniv.Text;
+            person.GRAD_COUNTRY_ID = ddlGradCountry.SelectedValue;
+            person.DEFORM_ID = ddlDeform.SelectedValue;
+            person.SIT_NO = tbSitNo.Text;
+            person.SALARY = tbSalary.Text;
+            person.POSITION_SALARY = tbPositionSalary.Text;
+            person.RELIGION_ID = ddlReligion.SelectedValue;
+            person.MOVEMENT_TYPE_ID = ddlMovementType.SelectedValue;
+            person.MOVEMENT_DATE = tbMovementDate.Text;
+            person.DECORATION = tbDecoration.Text;
+            person.RESULT1 = tbResult1.Text;
+            person.PERCENT_SALARY1 = tbPercentSalary1.Text;
+            person.RESULT2 = tbResult2.Text;
+            person.PERCENT_SALARY2 = tbPercentSalary2.Text;
+            person.CITIZEN_ID = lbCitizenID.Text;
 
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME,(SELECT STAFFTYPE_NAME FROM REF_STAFFTYPE WHERE UOC_STAFF.STAFFTYPE_ID = REF_STAFFTYPE.STAFFTYPE_ID) STAFF_NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME FROM UOC_STAFF ORDER BY UOC_ID", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            TableRow row = new TableRow();
-                            int uoc_id = reader.GetInt32(0);
+            person.UPDATE_PERSON();
 
-                            {
-                                Label lblID = new Label();
-                                lblID.Text = reader.IsDBNull(0) ? "-" : uoc_id.ToString();
-                                TableCell cell = new TableCell();
-                                cell.Controls.Add(lblID);
-                                row.Cells.Add(cell);
-                            }
+            
+            MultiView1.ActiveViewIndex = 3;
 
-                            {
-                                Label lblName = new Label();
-                                lblName.Text = reader.IsDBNull(1) ? "-" : reader.GetString(1); //name
-                                TableCell cell = new TableCell();
-                                cell.Controls.Add(lblName);
-                                row.Cells.Add(cell);
-                            }
-
-                            {
-                                Label lblStaffName = new Label();
-                                lblStaffName.Text = reader.IsDBNull(2) ? "-" : reader.GetString(2); //staffname
-                                TableCell cell = new TableCell();
-                                cell.Controls.Add(lblStaffName);
-                                row.Cells.Add(cell);
-                            }
-
-                            {
-                                Label lblFacName = new Label();
-                                lblFacName.Text = reader.IsDBNull(3) ? "-" : reader.GetString(3); //FacName
-                                TableCell cell = new TableCell();
-                                cell.Controls.Add(lblFacName);
-                                row.Cells.Add(cell);
-                            }
-
-                            {
-                                LinkButton lbuEdit = new LinkButton();
-                                lbuEdit.Text = "เลือก";
-                                lbuEdit.Click += (e2, e3) =>
-                                {
-                                    p = uoc_id.ToString();
-                                    BindDDL();
-                                    ReadSelectID();
-                                    divLoad.Visible = false;
-                                    divTitle.Visible = false;
-                                    MultiView1.Visible = true;
-                                    MultiView1.ActiveViewIndex = 0;
-                                    hfuocID.Value = p;
-                                };
-                                TableCell cell = new TableCell();
-                                cell.Controls.Add(lbuEdit);
-                                row.Cells.Add(cell);
-                            }
-
-                            Table1.Rows.Add(row);
-                        }
-                    }
-                }
-            }
+            lbuSelectView0.Visible = false;
+            lbuSelectView1.Visible = false;
+            lbuSelectView2.Visible = false;
+            lbuUpdatePerson.Visible = false;
         }
 
 

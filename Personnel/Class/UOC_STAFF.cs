@@ -13,44 +13,65 @@ namespace Personnel.Class
         public string CITIZEN_ID;
         public string YEAR;
         public string UNIV_ID;
+        public string UNIV_NAME;
+        public string PREFIX_ID;
         public string PREFIX_NAME;
         public string STF_FNAME;
         public string STF_LNAME;
         public string GENDER_ID;
+        public string GENDER_NAME;
         public string BIRTHDAY;
         public string HOMEADD;
         public string MOO;
         public string STREET;
         public string SUB_DISTRICT_ID;
+        public string SUB_DISTRICT_NAME;
         public string DISTRICT_ID;
+        public string DISTRICT_NAME;
         public string PROVINCE_ID;
+        public string PROVINCE_NAME;
         public string TELEPHONE;
         public string ZIPCODE;
         public string NATION_ID;
+        public string NATION_NAME;
         public string STAFFTYPE_ID;
+        public string STAFFTYPE_NAME;
         public string TIME_CONTACT_ID;
+        public string TIME_CONTACT_NAME;
         public string BUDGET_ID;
+        public string BUDGET_NAME;
         public string SUBSTAFFTYPE_ID;
+        public string SUBSTAFFTYPE_NAME;
         public string ADMIN_POSITION_ID;
+        public string ADMIN_POSITION_NAME;
         public string POSITION_ID;
+        public string POSITION_NAME;
         public string POSITION_WORK;
         public string DEPARTMENT_ID;
+        public string DEPARTMENT_NAME;
         public string DATE_INWORK;
         public string DATE_START_THIS_U;
         public string SPECIAL_NAME;
         public string TEACH_ISCED_ID;
+        public string TEACH_ISCED_NAME;
         public string GRAD_LEV_ID;
+        public string GRAD_LEV_NAME;
         public string GRAD_CURR;
         public string GRAD_ISCED_ID;
+        public string GRAD_ISCED_NAME;
         public string GRAD_PROG;
         public string GRAD_UNIV;
         public string GRAD_COUNTRY_ID;
+        public string GRAD_COUNTRY_NAME;
         public string DEFORM_ID;
+        public string DEFORM_NAME;
         public string SIT_NO;
         public string SALARY;
         public string POSITION_SALARY;
         public string RELIGION_ID;
+        public string RELIGION_NAME;
         public string MOVEMENT_TYPE_ID;
+        public string MOVEMENT_TYPE_NAME;
         public string MOVEMENT_DATE;
         public string DECORATION;
         public string RESULT1;
@@ -60,14 +81,19 @@ namespace Personnel.Class
         public string PASSWORD;
         public int LOGIN_FIRST;
         public int CAMPUS_ID;
+        public string CAMPUS_NAME;
         public int FACULTY_ID;
+        public string FACULTY_NAME;
         public int DIVISION_ID;
+        public string DIVISION_NAME;
         public int WORK_DIVISION_ID;
+        public string WORK_DIVISION_NAME;
         public int PERSON_ROLE_ID;
+        public string PERSON_ROLE_NAME;
 
         public string FullName
         {
-            get { return PREFIX_NAME + STF_FNAME + " " + STF_LNAME; }
+            get { return PREFIX_NAME + " " + STF_FNAME + " " + STF_LNAME; }
         }
         public string FirstNameAndLastName
         {

@@ -67,15 +67,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
         
         /// <summary>
-        /// ShowHide control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox ShowHide;
-        
-        /// <summary>
         /// lbuLogin control.
         /// </summary>
         /// <remarks>

@@ -193,15 +193,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.DropDownList ddlNation;
         
         /// <summary>
-        /// lbuNextToView1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuNextToView1;
-        
-        /// <summary>
         /// View1 control.
         /// </summary>
         /// <remarks>
@@ -373,24 +364,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.DropDownList ddlGradCountry;
         
         /// <summary>
-        /// lbuBackToView0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuBackToView0;
-        
-        /// <summary>
-        /// lbuNextToView2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuNextToView2;
-        
-        /// <summary>
         /// View2 control.
         /// </summary>
         /// <remarks>
@@ -508,13 +481,40 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbPercentSalary2;
         
         /// <summary>
-        /// lbuBackToView1 control.
+        /// View3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuBackToView1;
+        protected global::System.Web.UI.WebControls.View View3;
+        
+        /// <summary>
+        /// lbuSelectView0 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSelectView0;
+        
+        /// <summary>
+        /// lbuSelectView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSelectView1;
+        
+        /// <summary>
+        /// lbuSelectView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton lbuSelectView2;
         
         /// <summary>
         /// lbuAddPerson control.
@@ -524,14 +524,5 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton lbuAddPerson;
-        
-        /// <summary>
-        /// View3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View View3;
     }
 }

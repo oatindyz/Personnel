@@ -22,6 +22,7 @@ namespace Personnel
             {
                 if (loginPerson.IsLoginFirst())
                 {
+                    TitleDivNamePassOld.Visible = false;
                     divPassOld.Visible = false;
                     tbPasswordOld.Visible = false;
                 }

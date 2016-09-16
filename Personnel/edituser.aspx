@@ -1,50 +1,12 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="adduser-admin.aspx.cs" Inherits="Personnel.adduser_admin" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="edituser.aspx.cs" Inherits="Personnel.edituser" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script>
-        $(function () {
-            $('#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateStartThisU').datetimepicker({
-                yearOffset: 543,
-                format: "d/m/Y",
-                formatDate: "d/m/Y"
-            });
-        });
-    </script>
-    <script type="text/javascript">
-        function validateFields() {
-
-            var message = "";
-            var error = false;
-
-            var citizen = document.getElementById("<%=tbCitizenID.ClientID %>");
-            var name = document.getElementById("<%=tbName.ClientID %>");
-
-            if ((/\S+/.test(citizen.value)) == false) { message += "กรุณากรอก รหัสบัตรประชาชน" + "<br>"; error = true; }
-            if ((/\S+/.test(name.value)) == false) { message += "กรุณากรอก ชื่อ" + "<br>"; error = true; }
-
-            if (error) {
-                document.getElementById("validationSummary").innerHTML = message;
-                document.getElementById("validationSummary").style.display = "block";
-                document.getElementById("validationSummary").style.color = "red";
-                return false;
-            } else {
-                document.getElementById("validationSummary").innerHTML = "";
-                document.getElementById("validationSummary").style.display = "none";
-                return true;
-            }
-        }
-    </script>
-
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
-    <div class="default_page_style">
         <div class="ps-header">
-            <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร
+            <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร
         </div>
-        <div id="notification" runat="server"></div>
-        <div id="validationSummary" style="display: none; float: left"></div>
-
         <div class="panel panel-default">
             <div class="panel-body">
                 <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
@@ -54,7 +16,7 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox>
+                                        <asp:Label ID="lbCitizenID" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
@@ -156,109 +118,109 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">ประเภทบุคลากร</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlStafftype" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbStaffType" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ระยะเวลาจ้าง</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlTimeContact" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbTimeContact" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเภทเงินจ้าง</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlBudget" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbBudget" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเภทตำแหน่ง</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbSubStafftype" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ตำแหน่งบริหาร</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbAdminPosition" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ระดับตำแหน่ง</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlPosition" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbPosition" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ตำแหน่งในสายงาน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbPositionWork" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbPositionWork" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">คณะ/หน่วยงานที่สังกัด หรือเทียบเท่า</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbDepartment" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">วันที่เข้าทำงานครั้งแรก</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbDateInwork" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbDateInwork" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbDateStartThisU" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbDateStartThisU" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">สาขางานที่เชี่ยวชาญ</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbSpecialName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbSpecialName" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbTeachISCED" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ระดับการศึกษาที่จบสูงสุด</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbGradLev" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">หลักสูตรที่จบการศึกษาสูงสุด</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbGradCURR" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbGradCURR" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradISCED" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbGradISCED" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">สาขาวิชาที่จบสูงสุด</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradProg" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbGradProg" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ชื่อสถาบันที่จบการศึกษาสูงสุด</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbGradUniv" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbGradUniv" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเทศที่จบการศึกษาสูงสุด</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradCountry" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbGradCountry" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
@@ -270,73 +232,73 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">ความพิการ</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDeform" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbDeform" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เลขที่ตำแหน่ง</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbSitNo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbSitNo" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เงินเดือนปัจจุบัน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbSalary" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbSalary" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เงินประจำตำแหน่งที่ได้รับ</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbPositionSalary" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ศาสนา</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlReligion" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbReligion" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเภทการดำรงตำแหน่งปัจจุบัน</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlMovementType" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbMovementType" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">วันที่มีผลบังคับใช้ตามข้อมูล"การเข้าสู่ตำแหน่งปัจจุบัน"</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbMovementDate" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbMovementDate" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เครื่องราชอิสริยาภรณ์สูงสุดที่ได้รับ</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbDecoration" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbDecoration" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ข้อความระดับผลการประเมิณรอบงานที่1</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbResult1" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbResult1" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ร้อยละการเลื่อนขั้นเงินเดือนตามผลการประเมินรอบที่1</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbPercentSalary1" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbPercentSalary1" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ข้อความระดับผลการประเมิณรอบงานที่2</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbResult2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbResult2" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ร้อยละการเลื่อนขั้นเงินเดือนตามผลการประเมินรอบที่2</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbPercentSalary2" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbPercentSalary2" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                             </table>
@@ -357,11 +319,10 @@
                 </asp:MultiView>
             </div>
         </div>
-    </div>
     <div style="text-align: center;">
         <asp:LinkButton ID="lbuSelectView0" runat="server" CssClass="ps-button" OnClick="lbuSelectView0_Click">หน้าที่ 1<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
         <asp:LinkButton ID="lbuSelectView1" runat="server" CssClass="ps-button" OnClick="lbuSelectView1_Click"><img src="Image/Small/back.png" class="icon_left"/>หน้าที่ 2<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
         <asp:LinkButton ID="lbuSelectView2" runat="server" CssClass="ps-button" OnClick="lbuSelectView2_Click"><img src="Image/Small/back.png" class="icon_left"/>หน้าที่ 3</asp:LinkButton>
-        <asp:LinkButton ID="lbuAddPerson" runat="server" CssClass="ps-button" OnClick="lbuAddPerson_Click"><img src="Image/Small/save.png" class="icon_left"/>เพิ่มข้อมูลบุคลากร</asp:LinkButton>
+        <asp:LinkButton ID="lbuUpdatePerson" runat="server" CssClass="ps-button" OnClick="lbuUpdatePerson_Click"><img src="Image/Small/save.png" class="icon_left"/>แก้ไขข้อมูลบุคลากร</asp:LinkButton>
     </div>
 </asp:Content>

@@ -14,27 +14,91 @@ namespace Personnel
 {
     public partial class Site : System.Web.UI.MasterPage
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             if (PersonnelSystem.GetPersonnelSystem(this) == null)
             {
                 Response.Redirect("Access.aspx");
                 return;
             }
-            Session.Timeout = 60;
+            Session.Timeout = 300;
             OracleConnection.ClearAllPools();
+        }
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
 
-            //lbName.Text = loginPerson.FullName;
-            //lbStaffType.Text = loginPerson.StaffTypeName;
-            //lbPosition.Text = loginPerson.PositionWorkName;
-            //lbPositionRank.Text = loginPerson.AdminPositionName;
-            //lbDepartment.Text = loginPerson.DivisionName;
+            if (!IsPostBack)
+            {
+                lbName.Text = loginPerson.FullName;
+                lbStaffType.Text = loginPerson.STAFFTYPE_NAME;
+                lbPosition.Text = loginPerson.POSITION_NAME;
+                lbPositionRank.Text = loginPerson.ADMIN_POSITION_NAME;
+                lbDepartment.Text = loginPerson.DEPARTMENT_NAME;
 
-            string name = loginPerson.FirstNameAndLastName;
-            profile_name.InnerText = name;
+                string name = loginPerson.FirstNameAndLastName;
+                profile_name.InnerText = name;
+
+                if (loginPerson.LOGIN_FIRST == 0)
+                {
+                    menu1.Visible = false;
+                }
+
+                if (loginPerson.PERSON_ROLE_ID == 1)
+                {
+                    MenuAdminRolePerson.Visible = false;
+                    MenuAdminRoleManage.Visible = false;
+                    MenuUserRolePerson.Visible = true;
+                }
+                else if (loginPerson.PERSON_ROLE_ID == 2)
+                {
+                    MenuAdminRolePerson.Visible = true;
+                    MenuUserRolePerson.Visible = false;
+                }
+                else if (loginPerson.PERSON_ROLE_ID == 3)
+                {
+
+                }
+                else if (loginPerson.PERSON_ROLE_ID == 4)
+                {
+
+                }
+                else if (loginPerson.PERSON_ROLE_ID == 5)
+                {
+
+                }
+            }
+
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                using (OracleCommand com = new OracleCommand("SELECT URL FROM PS_PERSON_IMAGE WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "' AND PRESENT = 1", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string fileName;
+                            fileName = reader.GetValue(0).ToString();
+                            string personImageFileName = DatabaseManager.GetPersonImageFileName(loginPerson.CITIZEN_ID);
+                            if (personImageFileName != "")
+                            {
+                                profile_pic.Src = "Upload/PersonImage/" + personImageFileName;
+                                profile_pic2.Src = "Upload/PersonImage/" + personImageFileName;
+                            }
+                            else
+                            {
+                                profile_pic.Src = "Image/Small/person2.png";
+                            }
+                        }
+                    }
+                }
+            }
+
         }
 
         protected void lbuLogout_Click(object sender, EventArgs e)

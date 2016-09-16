@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Access.aspx.cs"  Inherits="Personnel.Access" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Access.aspx.cs" Inherits="Personnel.Access" %>
 
 <!DOCTYPE html>
 
@@ -26,7 +26,7 @@
     </script>
     <script type="text/javascript">
         function RefreshUpdatePanel() {
-            __doPostBack('<%= tbUsername.ClientID %>', '').value().length == 13;
+            if (this.value.length == 13) __doPostBack('<%= tbUsername.ClientID %>', '');
         };
     </script>
 </head>
@@ -61,7 +61,6 @@
                                             </Triggers>
                                         </asp:UpdatePanel>
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
-                                        <asp:CheckBox ID="ShowHide" runat="server" onclick="ShowHidePassword();" />แสดงรหัสผ่าน
                                     </div>
                                     <div>
                                         <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="ps-button" Style="font-size: 16px; margin-top: 2px;"><img src="Image/Small/key.png" class="icon_left"/>เข้าสู่ระบบ</asp:LinkButton>
@@ -76,17 +75,18 @@
                                 </asp:Panel>
                             </div>
                         </div>
-                        <div class="ps-box-i0">
-                            <div class="ps-box-hd10-cen"><img src="Image/Small/web.png" class="icon_left"/>เว็บไซต์ในสถาบัน</div>
-                            <div class="ps-box-ct10-cen">
-                                <div class="web-link">
-                                    <a href="http://www.rmutto.ac.th">บางพระ</a>
-                                    <a href="http://www.chan.rmutto.ac.th">จันทบุรี</a>
-                                    <a href="http://www.cpc.rmutto.ac.th">จักรพงษภูวนารถ</a>
-                                    <a href="http://www.uthen.rmutto.ac.th">อุเทนถวาย</a>
-                                </div>
-                                
+                    </div>
+                    <div class="ps-box-i0">
+                        <div class="ps-box-hd10-cen">
+                            <img src="Image/Small/web.png" class="icon_left" />เว็บไซต์ในสถาบัน</div>
+                        <div class="ps-box-ct10-cen">
+                            <div class="web-link">
+                                <a href="http://www.rmutto.ac.th">บางพระ</a>
+                                <a href="http://www.chan.rmutto.ac.th">จันทบุรี</a>
+                                <a href="http://www.cpc.rmutto.ac.th">จักรพงษภูวนารถ</a>
+                                <a href="http://www.uthen.rmutto.ac.th">อุเทนถวาย</a>
                             </div>
+
                         </div>
                     </div>
                 </div>
