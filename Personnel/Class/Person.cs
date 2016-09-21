@@ -402,12 +402,6 @@ namespace Personnel.Class
                 con.Open();
 
                 string query = "Update UOC_STAFF Set";
-                query += " UNIV_ID = :UNIV_ID ,";
-                query += " PREFIX_NAME = :PREFIX_NAME ,";
-                query += " STF_FNAME = :STF_FNAME ,";
-                query += " STF_LNAME = :STF_LNAME ,";
-                query += " GENDER_ID = :GENDER_ID ,";
-                query += " BIRTHDAY = :BIRTHDAY ,";
                 query += " HOMEADD = :HOMEADD ,";
                 query += " MOO = :MOO ,";
                 query += " STREET = :STREET ,";
@@ -421,12 +415,6 @@ namespace Personnel.Class
 
                 using (OracleCommand com = new OracleCommand(query, con))
                 {
-                    com.Parameters.Add(new OracleParameter("UNIV_ID", UNIV_ID));
-                    com.Parameters.Add(new OracleParameter("PREFIX_NAME", PREFIX_NAME));
-                    com.Parameters.Add(new OracleParameter("STF_FNAME", STF_FNAME));
-                    com.Parameters.Add(new OracleParameter("STF_LNAME", STF_LNAME));
-                    com.Parameters.Add(new OracleParameter("GENDER_ID", GENDER_ID));
-                    com.Parameters.Add(new OracleParameter("BIRTHDAY", BIRTHDAY));
                     com.Parameters.Add(new OracleParameter("HOMEADD", HOMEADD));
                     com.Parameters.Add(new OracleParameter("MOO", MOO));
                     com.Parameters.Add(new OracleParameter("STREET", STREET));

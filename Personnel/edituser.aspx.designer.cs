@@ -49,58 +49,58 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbCitizenID;
         
         /// <summary>
-        /// ddlUniv control.
+        /// lbUniv control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlUniv;
+        protected global::System.Web.UI.WebControls.Label lbUniv;
         
         /// <summary>
-        /// ddlPrefixName control.
+        /// lbPrefixName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPrefixName;
+        protected global::System.Web.UI.WebControls.Label lbPrefixName;
         
         /// <summary>
-        /// tbName control.
+        /// lbName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbName;
+        protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
-        /// tbLastName control.
+        /// lbLastName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbLastName;
+        protected global::System.Web.UI.WebControls.Label lbLastName;
         
         /// <summary>
-        /// ddlGender control.
+        /// lbGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlGender;
+        protected global::System.Web.UI.WebControls.Label lbGender;
         
         /// <summary>
-        /// tbBirthday control.
+        /// lbBirthday control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbBirthday;
+        protected global::System.Web.UI.WebControls.Label lbBirthday;
         
         /// <summary>
         /// tbHomeAdd control.

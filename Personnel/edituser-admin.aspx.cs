@@ -127,8 +127,7 @@ namespace Personnel
         }
 
         private void ReadSelectID()
-        {
-            
+        {          
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();

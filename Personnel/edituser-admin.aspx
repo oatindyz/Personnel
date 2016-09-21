@@ -20,7 +20,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
-        <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร
+        <img src="Image/book_edit.png" />แก้ไขข้อมูลบุคลากร
+        <span style="text-align:right; float:right;"><a href="adduser-admin.aspx" id="cbAdminPersonAdd" runat="server">
+        <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a></span>
     </div>
     <div id="notification" runat="server"></div>
     <% if (Request.QueryString["id"] == null)
@@ -38,7 +40,8 @@
                                 <th>ชื่อ-สกุล</th>
                                 <th>ประเภทบุครากร</th>
                                 <th>คณะ/หน่วยงาน</th>
-                                <th>แก้ไข</th>
+                                <th>ดูข้อมูล</th>
+                                <th>แก้ไขข้อมูล</th>
                             </tr>
                         </thead>
                         <asp:Repeater ID="myRepeater" runat="server">
@@ -48,6 +51,8 @@
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "STAFF_NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
+                                    <td><a href="previewuser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
+                                        <img src="Image/Small/next.png" class="icon_left" />เลือก</a></td>
                                     <td><a href="edituser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
                                         <img src="Image/Small/next.png" class="icon_left" />เลือก</a></td>
                                 </tr>

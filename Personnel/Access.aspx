@@ -24,6 +24,19 @@
             }
         }
     </script>
+
+    <script type="text/javascript">
+        function isNumberKey(evt) {
+            var charCode = (evt.which) ? evt.which : event.keyCode;
+            if (charCode != 46 && charCode > 31
+              && (charCode < 48 || charCode > 57)) {
+                $("#errmsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            }
+            return true;
+        }
+    </script>
+
     <script type="text/javascript">
         function RefreshUpdatePanel() {
             if (this.value.length == 13) __doPostBack('<%= tbUsername.ClientID %>', '');
@@ -51,6 +64,13 @@
                                         <asp:TextBox ID="tbUsername" runat="server" CssClass="form-control" MaxLength="13" placeHolder="รหัสประชาชน" onkeyup="RefreshUpdatePanel();" onkeypress="return isNumberKey(event)" AutoPostBack="true" OnTextChanged="tbUsername_TextChanged"></asp:TextBox>
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                                     </div>
+                                    <div>
+                                        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                            <ContentTemplate>
+                                                <asp:Label ID="LabelTop" runat="server" CssClass="cerror"></asp:Label>
+                                            </ContentTemplate>
+                                        </asp:UpdatePanel>
+                                    </div>
                                     <div class="well input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
                                         <asp:UpdatePanel ID="UpdatetbPassword" runat="server">
                                             <ContentTemplate>
@@ -68,7 +88,7 @@
                                     <div>
                                         <asp:UpdatePanel ID="UpdateLabel12X" runat="server">
                                             <ContentTemplate>
-                                                <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
+                                                <asp:Label ID="LabelBottom" runat="server" CssClass="cerror"></asp:Label>
                                             </ContentTemplate>
                                         </asp:UpdatePanel>
                                     </div>

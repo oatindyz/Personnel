@@ -1193,7 +1193,7 @@ input[type=radio] + label {
     margin-bottom: 10px;
 }
 .ps-lb-red {
-    color: rgb(206,91,91);
+    color: red;
 }
 .ps-lb-red-b {
     color: rgb(206,91,91);

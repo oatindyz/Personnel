@@ -34,7 +34,25 @@
             }
         }
     </script>
-
+    <!-- for Seach Dropdown-List -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="Scripts/jquery.searchabledropdown-1.0.8.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+        $("select").searchable({
+          maxListSize: 200, // if list size are less than maxListSize, show them all
+          maxMultiMatch: 300, // how many matching entries should be displayed
+          exactMatch: false, // Exact matching on search
+          wildcards: true, // Support for wildcard characters (*, ?)
+          ignoreCase: true, // Ignore case sensitivity
+          latency: 200, // how many millis to wait until starting search
+          warnMultiMatch: 'top {0} matches ...', 
+          warnNoMatch: 'no matches ...', 
+          zIndex: 'auto'
+              });
+           });
+    </script>
+    <!-- for Seach Dropdown-List -->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -54,7 +72,7 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox>
+                                        <asp:TextBox ID="tbCitizenID" runat="server" CssClass="ps-textbox" MaxLength="13"></asp:TextBox><span class="ps-lb-red">*</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -72,7 +90,7 @@
                                 <tr>
                                     <td class="col1">ชื่อ</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:TextBox ID="tbName" runat="server" CssClass="ps-textbox"></asp:TextBox><span class="ps-lb-red">*</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -174,7 +192,7 @@
                                 <tr>
                                     <td class="col1">ประเภทตำแหน่ง</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlSubStafftype_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>

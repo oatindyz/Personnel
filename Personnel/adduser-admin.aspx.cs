@@ -143,54 +143,6 @@ namespace Personnel
             catch { }
         }
 
-        protected void ValidationViewZero()
-        {
-            if (string.IsNullOrEmpty(tbCitizenID.Text))
-            {
-                ChangeNotification("danger", "กรุณากรอกรหัสประจำตัวประชาชน");
-                return;
-            }
-            if (string.IsNullOrEmpty(tbName.Text))
-            {
-                ChangeNotification("danger", "กรุณากรอกชื่อ");
-                return;
-            }
-            if (string.IsNullOrEmpty(tbLastName.Text))
-            {
-                ChangeNotification("danger", "กรุณากรอกนามสกุล");
-                return;
-            }
-            if (string.IsNullOrEmpty(tbBirthday.Text))
-            {
-                ChangeNotification("danger", "กรุณากรอกวันเกิด");
-                return;
-            }
-            if (string.IsNullOrEmpty(tbHomeAdd.Text))
-            {
-                ChangeNotification("danger", "กรุณากรอกบ้านเลขที่");
-                return;
-            }
-            if (string.IsNullOrEmpty(ddlProvince.SelectedValue))
-            {
-                ChangeNotification("danger", "กรุณาเลือกจังหวัด");
-                return;
-            }
-            if (string.IsNullOrEmpty(ddlDistrict.SelectedValue))
-            {
-                ChangeNotification("danger", "กรุณาเลือกอำเภอ");
-                return;
-            }
-            if (string.IsNullOrEmpty(ddlSubDistrict.SelectedValue))
-            {
-                ChangeNotification("danger", "กรุณาเลือกตำบล");
-                return;
-            }
-            if (string.IsNullOrEmpty(tbZipcode.Text))
-            {
-                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์");
-                return;
-            }
-        }
         protected void ValidationViewOne()
         {
             if (string.IsNullOrEmpty(ddlStafftype.SelectedValue))
@@ -210,6 +162,28 @@ namespace Personnel
             }
         }
 
+        protected bool ValidateForm()
+        {
+            bool isvalidate = true;
+
+            string citizenID = this.tbCitizenID.Text;
+            string name = this.tbName.Text;
+
+            if (string.IsNullOrEmpty(citizenID))
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbCitizenID);
+                isvalidate = false;
+            }
+            else if (string.IsNullOrEmpty(name))
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbName);
+                isvalidate = false;
+            }
+            return isvalidate;
+        }
+
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
             MultiView1.ActiveViewIndex = 0;
@@ -227,6 +201,9 @@ namespace Personnel
 
         protected void lbuAddPerson_Click(object sender, EventArgs e)
         {
+            ValidateForm();
+            return;
+
             string CheckCitizen = DatabaseManager.ExecuteString("SELECT CITIZEN_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + tbCitizenID.Text + "'");
             if (tbCitizenID.Text == CheckCitizen)
             {
@@ -303,5 +280,15 @@ namespace Personnel
 
         }
 
+        protected void ddlSubStafftype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(ddlSubStafftype.SelectedIndex == 2)
+            {
+                ddlTeachISCED.Enabled = false;
+            }else
+            {
+                ddlTeachISCED.Enabled = true;
+            }
+        }
     }
 }

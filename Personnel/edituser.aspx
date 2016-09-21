@@ -22,37 +22,37 @@
                                 <tr>
                                     <td class="col1">มหาวิทยาลัย</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlUniv" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbUniv" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">คำนำหน้าชื่อ(ยึดตามบัตรประชาชน)</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbPrefixName" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ชื่อ</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbName" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">นามสกุล</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbLastName" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbLastName" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เพศ</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGender" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:Label ID="lbGender" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">วันเกิด</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbBirthday" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:Label ID="lbBirthday" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>

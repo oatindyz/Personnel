@@ -29,9 +29,6 @@ namespace Personnel
 
         protected void BindDDL()
         {
-            DatabaseManager.BindDropDown(ddlUniv, "SELECT * FROM REF_UNIV ORDER BY UNIV_ID", "UNIV_NAME_TH", "UNIV_ID", "--กรุณาเลือก--");
-            DatabaseManager.BindDropDown(ddlPrefixName, "SELECT * FROM REF_PREFIX_NAME ORDER BY PREFIX_NAME_ID", "FULLNAME", "PREFIX_NAME_ID", "--กรุณาเลือก--");
-            DatabaseManager.BindDropDown(ddlGender, "SELECT * FROM REF_GENDER ORDER BY GENDER_ID", "GENDER_NAME", "GENDER_ID", "--กรุณาเลือก--");
             DatabaseManager.BindDropDown(ddlProvince, "SELECT * FROM REF_PROVINCE", "PROVINCE_NAME_TH", "PROVINCE_ID", "--กรุณาเลือก จังหวัด--");
             ddlDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก อำเภอ--", "0"));
             ddlSubDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", "0"));
@@ -41,6 +38,12 @@ namespace Personnel
         protected void BindLabel()
         {
             lbCitizenID.Text = loginPerson.CITIZEN_ID;
+            lbUniv.Text = loginPerson.UNIV_NAME;
+            lbPrefixName.Text = loginPerson.PREFIX_NAME;
+            lbName.Text = loginPerson.STF_FNAME;
+            lbLastName.Text = loginPerson.STF_LNAME;
+            lbGender.Text = loginPerson.GENDER_NAME;
+            lbBirthday.Text = loginPerson.BIRTHDAY;
             lbStaffType.Text = loginPerson.STAFFTYPE_NAME;
             lbTimeContact.Text = loginPerson.TIME_CONTACT_NAME;
             lbBudget.Text = loginPerson.BUDGET_NAME;
@@ -140,7 +143,7 @@ namespace Personnel
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,HOMEADD,MOO,STREET,PROVINCE_ID,DISTRICT_ID,SUB_DISTRICT_ID,TELEPHONE,ZIPCODE,NATION_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT HOMEADD,MOO,STREET,PROVINCE_ID,DISTRICT_ID,SUB_DISTRICT_ID,TELEPHONE,ZIPCODE,NATION_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -148,12 +151,6 @@ namespace Personnel
                         {
                             int i = 0;
 
-                            ddlUniv.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            ddlPrefixName.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            tbName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            tbLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            ddlGender.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            tbBirthday.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbHomeAdd.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbMoo.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbStreet.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
@@ -200,12 +197,6 @@ namespace Personnel
             UOC_STAFF loginPerson = ps.LoginPerson;
             PS_PERSON person = new PS_PERSON();
 
-            person.UNIV_ID = ddlUniv.SelectedValue;
-            person.PREFIX_NAME = ddlPrefixName.SelectedValue;
-            person.STF_FNAME = tbName.Text;
-            person.STF_LNAME = tbLastName.Text;
-            person.GENDER_ID = ddlGender.SelectedValue;
-            person.BIRTHDAY = tbBirthday.Text;
             person.HOMEADD = tbHomeAdd.Text;
             person.MOO = tbMoo.Text;
             person.STREET = tbStreet.Text;

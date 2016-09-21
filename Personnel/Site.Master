@@ -280,10 +280,8 @@
                     </div>
                     <div class="ps-box-i0">
                         <div class="ps-box-ct10">
-                            <a href="adduser-admin.aspx" id="cbAdminPersonAdd" runat="server">
-                                <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a>
-                            <a href="edituser-admin.aspx" id="cbAdminPersonEdit" runat="server">
-                                <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                            <a href="edituser-admin.aspx" id="cbAdminPersonAdd" runat="server">
+                                <img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร</a>
                         </div>
                     </div>
                 </div>

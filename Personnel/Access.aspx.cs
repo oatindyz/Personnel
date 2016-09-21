@@ -22,17 +22,95 @@ namespace Personnel
 
         }
 
+        private bool ValidateForm()
+        {
+            bool isvalidate = true;
+
+            string username = this.tbUsername.Text;
+            string password = this.tbPassword.Text;
+
+            if (string.IsNullOrEmpty(username))
+            {
+                this.LabelBottom.Text = "กรุณากรอกรหัสบัตรประชาชน";
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbUsername);
+                isvalidate = false;
+            }
+            else if (string.IsNullOrEmpty(password))
+            {
+                this.LabelBottom.Text = "กรุณากรอกรหัสผ่าน";
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbPassword);
+                isvalidate = false;
+            }
+
+            return isvalidate;
+        }
+
+        protected void tbUsername_TextChanged(object sender, EventArgs e)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            if (!reader.IsDBNull(0))
+                            {
+                                int Login = reader.GetInt32(0);
+
+                                if (tbUsername.Text.Length == 13)
+                                {
+                                    if (Login == 0)
+                                    {
+                                        LabelTop.Text = "รหัสบัตรประชาชนดังกล่าวเป็นการล็อคอินครั้งแรก โปรดยืนยันตัวตน ด้วยการใส่รหัสผ่านเป็นวันเกิด รูปแบบ(01/01/0101)";
+                                    }
+                                    if (Login == 1)
+                                    {
+                                        LabelTop.Text = "";
+                                    }
+                                }
+
+                            }
+
+                        }
+                    }
+                }
+                using (OracleCommand com2 = new OracleCommand("SELECT COUNT(*) FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
+                {
+                    using (OracleDataReader reader2 = com2.ExecuteReader())
+                    {
+                        while (reader2.Read())
+                        {
+                            if (reader2.GetInt32(0) == 0)
+                            {
+                                LabelBottom.Text = "ไม่พบผู้ใช้งาน!";
+                                return;
+                            }else
+                            {
+                                LabelBottom.Text = "";
+                            }
+                        }
+                    }
+                }
+            }
+
+        }
+
         protected void lbuLogin_Click(object sender, EventArgs e)
         {
+            ValidateForm();
             if (string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text))
             {
-                Label12X.Text = "กรุณากรอกรหัสประชาชนและรหัสผ่าน";
+                LabelBottom.Text = "กรุณากรอกรหัสประชาชนและรหัสผ่าน";
                 return;
             }
             int count = DatabaseManager.ExecuteInt("SELECT count(*) FROM UOC_STAFF WHERE CITIZEN_ID = '" + tbUsername.Text + "'");
             if (count == 0)
             {
-                Label12X.Text = "ไม่พบผู้ใช้งาน!";
+                LabelBottom.Text = "ไม่พบผู้ใช้งาน!";
                 return;
             }
 
@@ -48,37 +126,40 @@ namespace Personnel
                     {
                         while (reader.Read())
                         {
-                            if (reader.GetInt32(0) == First)
+                            if (!reader.IsDBNull(0))
                             {
-                                if (DatabaseManager.ValidatePasswordFirst(tbUsername.Text, tbPassword.Text))
+                                if (reader.GetInt32(0) == First)
                                 {
-                                    PersonnelSystem ps = new PersonnelSystem();
-                                    ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
-                                    Session["PersonnelSystem"] = ps;
-                                    Response.Redirect("ChangePassword.aspx");
+                                    if (DatabaseManager.ValidatePasswordFirst(tbUsername.Text, tbPassword.Text))
+                                    {
+                                        PersonnelSystem ps = new PersonnelSystem();
+                                        ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                                        Session["PersonnelSystem"] = ps;
+                                        Response.Redirect("ChangePassword.aspx");
+                                    }
+                                    else
+                                    {
+                                        LabelBottom.Text = "รหัสผ่านไม่ถูกต้อง!";
+                                        return;
+                                    }
+                                    Response.Redirect("Default.aspx");
                                 }
-                                else
-                                {
-                                    Label12X.Text = "รหัสผ่านไม่ถูกต้อง!";
-                                    return;                         
-                                }
-                                Response.Redirect("Default.aspx");
-                            }
 
-                            if (reader.GetInt32(0) == NotFirst)
-                            {
-                                if (DatabaseManager.ValidatePasswordNotFirst(tbUsername.Text, tbPassword.Text))
+                                if (reader.GetInt32(0) == NotFirst)
                                 {
-                                    PersonnelSystem ps = new PersonnelSystem();
-                                    ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
-                                    Session["PersonnelSystem"] = ps;
+                                    if (DatabaseManager.ValidatePasswordNotFirst(tbUsername.Text, tbPassword.Text))
+                                    {
+                                        PersonnelSystem ps = new PersonnelSystem();
+                                        ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                                        Session["PersonnelSystem"] = ps;
+                                    }
+                                    else
+                                    {
+                                        LabelBottom.Text = "รหัสผ่านไม่ถูกต้อง!";
+                                        return;
+                                    }
+                                    Response.Redirect("Default.aspx");
                                 }
-                                else
-                                {
-                                    Label12X.Text = "รหัสผ่านไม่ถูกต้อง!";
-                                    return;
-                                }
-                                Response.Redirect("Default.aspx");
                             }
                         }
                     }
@@ -86,36 +167,6 @@ namespace Personnel
             }      
         }
 
-        protected void tbUsername_TextChanged(object sender, EventArgs e)
-        {
-            OracleConnection.ClearAllPools();
-            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
-            {
-                con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int Login = reader.GetInt32(0);
-
-                            if (tbUsername.Text.Length == 13)
-                            {
-                                if (Login == 0)
-                                {
-                                    Label12X.Text = "รหัสบัตรประชาชนดังกล่าวเป็นการล็อคอินครั้งแรก โปรดยืนยันตัวตน ด้วยการใส่รหัสผ่านเป็นวันเกิด รูปแบบ(01/01/0000)";
-                                }
-                                if (Login == 1)
-                                {
-                                    Label12X.Text = "";
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-        }
+        
     }
 }
