@@ -13,13 +13,13 @@ namespace Personnel {
     public partial class edituser_admin {
         
         /// <summary>
-        /// cbAdminPersonAdd control.
+        /// ScriptManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAdminPersonAdd;
+        protected global::System.Web.UI.ScriptManager ScriptManager1;
         
         /// <summary>
         /// notification control.
@@ -29,42 +29,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl notification;
-        
-        /// <summary>
-        /// Dp1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Dp1;
-        
-        /// <summary>
-        /// divTitle control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTitle;
-        
-        /// <summary>
-        /// divLoad control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoad;
-        
-        /// <summary>
-        /// myRepeater control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater myRepeater;
         
         /// <summary>
         /// MultiView1 control.

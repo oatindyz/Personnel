@@ -22,6 +22,15 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoad1;
         
         /// <summary>
+        /// divTab2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTab2;
+        
+        /// <summary>
         /// lbCitizenID control.
         /// </summary>
         /// <remarks>
@@ -29,24 +38,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbCitizenID;
-        
-        /// <summary>
-        /// lbStaffType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbStaffType;
-        
-        /// <summary>
-        /// lbDeform control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDeform;
         
         /// <summary>
         /// lbUniv control.
@@ -58,24 +49,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbUniv;
         
         /// <summary>
-        /// lbTimeContact control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTimeContact;
-        
-        /// <summary>
-        /// lbSitNo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSitNo;
-        
-        /// <summary>
         /// lbPrefixName control.
         /// </summary>
         /// <remarks>
@@ -83,24 +56,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbPrefixName;
-        
-        /// <summary>
-        /// lbBudget control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbBudget;
-        
-        /// <summary>
-        /// lbSalary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSalary;
         
         /// <summary>
         /// lbName control.
@@ -112,24 +67,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
-        /// lbSubStafftype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSubStafftype;
-        
-        /// <summary>
-        /// lbPositionSalary control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPositionSalary;
-        
-        /// <summary>
         /// lbLastName control.
         /// </summary>
         /// <remarks>
@@ -137,24 +74,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbLastName;
-        
-        /// <summary>
-        /// lbAdminPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbAdminPosition;
-        
-        /// <summary>
-        /// lbReligion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbReligion;
         
         /// <summary>
         /// lbGender control.
@@ -166,24 +85,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbGender;
         
         /// <summary>
-        /// lbPosition control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPosition;
-        
-        /// <summary>
-        /// lbMovementType control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovementType;
-        
-        /// <summary>
         /// lbBirthday control.
         /// </summary>
         /// <remarks>
@@ -191,24 +92,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbBirthday;
-        
-        /// <summary>
-        /// lbPositionWork control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPositionWork;
-        
-        /// <summary>
-        /// lbMovementDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbMovementDate;
         
         /// <summary>
         /// lbHomeAdd control.
@@ -220,24 +103,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbHomeAdd;
         
         /// <summary>
-        /// lbDepartment control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDepartment;
-        
-        /// <summary>
-        /// lbDecoration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDecoration;
-        
-        /// <summary>
         /// lbMoo control.
         /// </summary>
         /// <remarks>
@@ -245,24 +110,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbMoo;
-        
-        /// <summary>
-        /// lbDateInwork control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDateInwork;
-        
-        /// <summary>
-        /// lbResult1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbResult1;
         
         /// <summary>
         /// lbStreet control.
@@ -274,24 +121,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbStreet;
         
         /// <summary>
-        /// lbDateStartThisU control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbDateStartThisU;
-        
-        /// <summary>
-        /// lbPercentSalary1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPercentSalary1;
-        
-        /// <summary>
         /// lbProvince control.
         /// </summary>
         /// <remarks>
@@ -299,24 +128,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbProvince;
-        
-        /// <summary>
-        /// lbSpecialName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbSpecialName;
-        
-        /// <summary>
-        /// lbResult2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbResult2;
         
         /// <summary>
         /// lbDistrict control.
@@ -328,24 +139,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbDistrict;
         
         /// <summary>
-        /// lbTeachISCED control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbTeachISCED;
-        
-        /// <summary>
-        /// lbPercentSalary2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbPercentSalary2;
-        
-        /// <summary>
         /// lbSubDistrict control.
         /// </summary>
         /// <remarks>
@@ -353,15 +146,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbSubDistrict;
-        
-        /// <summary>
-        /// lbGradLev control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGradLev;
         
         /// <summary>
         /// lbTelephone control.
@@ -373,15 +157,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbTelephone;
         
         /// <summary>
-        /// lbGradCURR control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGradCURR;
-        
-        /// <summary>
         /// lbZipcode control.
         /// </summary>
         /// <remarks>
@@ -391,15 +166,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbZipcode;
         
         /// <summary>
-        /// lbGradISCED control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbGradISCED;
-        
-        /// <summary>
         /// lbNation control.
         /// </summary>
         /// <remarks>
@@ -407,6 +173,141 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbNation;
+        
+        /// <summary>
+        /// lbStaffType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbStaffType;
+        
+        /// <summary>
+        /// lbTimeContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTimeContact;
+        
+        /// <summary>
+        /// lbBudget control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbBudget;
+        
+        /// <summary>
+        /// lbSubStafftype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSubStafftype;
+        
+        /// <summary>
+        /// lbAdminPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbAdminPosition;
+        
+        /// <summary>
+        /// lbPosition control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPosition;
+        
+        /// <summary>
+        /// lbPositionWork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPositionWork;
+        
+        /// <summary>
+        /// lbDepartment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDepartment;
+        
+        /// <summary>
+        /// lbDateInwork control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDateInwork;
+        
+        /// <summary>
+        /// lbDateStartThisU control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDateStartThisU;
+        
+        /// <summary>
+        /// lbSpecialName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSpecialName;
+        
+        /// <summary>
+        /// lbTeachISCED control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbTeachISCED;
+        
+        /// <summary>
+        /// lbGradLev control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGradLev;
+        
+        /// <summary>
+        /// lbGradCURR control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGradCURR;
+        
+        /// <summary>
+        /// lbGradISCED control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbGradISCED;
         
         /// <summary>
         /// lbGradProg control.
@@ -434,5 +335,113 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbGradCountry;
+        
+        /// <summary>
+        /// lbDeform control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDeform;
+        
+        /// <summary>
+        /// lbSitNo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSitNo;
+        
+        /// <summary>
+        /// lbSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbSalary;
+        
+        /// <summary>
+        /// lbPositionSalary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPositionSalary;
+        
+        /// <summary>
+        /// lbReligion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbReligion;
+        
+        /// <summary>
+        /// lbMovementType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMovementType;
+        
+        /// <summary>
+        /// lbMovementDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbMovementDate;
+        
+        /// <summary>
+        /// lbDecoration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbDecoration;
+        
+        /// <summary>
+        /// lbResult1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbResult1;
+        
+        /// <summary>
+        /// lbPercentSalary1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPercentSalary1;
+        
+        /// <summary>
+        /// lbResult2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbResult2;
+        
+        /// <summary>
+        /// lbPercentSalary2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbPercentSalary2;
     }
 }

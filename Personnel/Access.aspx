@@ -9,7 +9,49 @@
     <title>ระบบบุคลากร - มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก</title>
     <link rel="stylesheet" type="text/css" href="CSS/Master.css" />
     <link href="CSS/Access.css" rel="stylesheet" />
-    <link href="Content/bootstrap.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker-bs3.css" />
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="plugins/iCheck/all.css" />
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="plugins/colorpicker/bootstrap-colorpicker.min.css" />
+    <!-- Bootstrap time Picker -->
+    <link rel="stylesheet" href="plugins/timepicker/bootstrap-timepicker.min.css" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="plugins/select2/select2.min.css" />
+
+    <script src="plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <!-- Bootstrap 3.3.5 -->
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Select2 -->
+    <script src="plugins/select2/select2.full.min.js"></script>
+    <!-- InputMask -->
+    <script src="plugins/input-mask/jquery.inputmask.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+    <script src="plugins/input-mask/jquery.inputmask.extensions.js"></script>
+    <!-- date-range-picker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+    <!-- bootstrap time picker -->
+    <script src="plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- iCheck 1.0.1 -->
+    <script src="plugins/iCheck/icheck.min.js"></script>
+    <!-- FastClick -->
+    <script src="plugins/fastclick/fastclick.min.js"></script>
+    
+    <!-- Page script -->
+    <script src="jquery.datetimepicker.js"></script>
+    <!-- -->
 
     <script type="text/javascript">
         function ShowHidePassword() {
@@ -39,7 +81,8 @@
 
     <script type="text/javascript">
         function RefreshUpdatePanel() {
-            if (this.value.length == 13) __doPostBack('<%= tbUsername.ClientID %>', '');
+            if (this.value.length != 13) return false;
+            if (this.value.length == 13) __doPostBack('<%= tbUsername.ClientID %>', ''); return true;
         };
     </script>
 </head>

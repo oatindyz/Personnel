@@ -77,6 +77,34 @@ namespace Personnel
         {
             notification.Attributes["class"] = null;
             notification.InnerHtml = "";
+
+            tbCitizenID.CssClass = "form-control input-sm";
+            tbName.CssClass = "form-control input-sm";
+            tbLastName.CssClass = "form-control input-sm";
+            tbBirthday.CssClass = "form-control input-sm";
+            ddlProvince.CssClass = "form-control input-sm select2";
+            ddlDistrict.CssClass = "form-control input-sm select2";
+            ddlSubDistrict.CssClass = "form-control input-sm select2";
+            tbZipcode.CssClass = "form-control input-sm";
+            ddlNation.CssClass = "form-control input-sm select2";
+
+            ddlStafftype.CssClass = "form-control input-sm select2";
+            ddlTimeContact.CssClass = "form-control input-sm select2";
+            ddlBudget.CssClass = "form-control input-sm select2";
+            ddlSubStafftype.CssClass = "form-control input-sm select2";
+            ddlAdminPosition.CssClass = "form-control input-sm select2";
+            ddlPosition.CssClass = "form-control input-sm select2";
+            ddlDepartment.CssClass = "form-control input-sm select2";
+            tbDateInwork.CssClass = "form-control input-sm";
+            tbDateStartThisU.CssClass = "form-control input-sm";
+            ddlGradLev.CssClass = "form-control input-sm select2";
+            tbGradCURR.CssClass = "form-control input-sm";
+            ddlGradISCED.CssClass = "form-control input-sm select2";
+            ddlGradProg.CssClass = "form-control input-sm select2";
+            tbGradUniv.CssClass = "form-control input-sm";
+            ddlGradCountry.CssClass = "form-control input-sm select2";
+
+            ddlDeform.CssClass = "form-control input-sm select2";
         }
 
         private void AddNotification(string text)
@@ -162,47 +190,47 @@ namespace Personnel
             }
         }
 
-        protected bool ValidateForm()
-        {
-            bool isvalidate = true;
-
-            string citizenID = this.tbCitizenID.Text;
-            string name = this.tbName.Text;
-
-            if (string.IsNullOrEmpty(citizenID))
-            {
-                MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbCitizenID);
-                isvalidate = false;
-            }
-            else if (string.IsNullOrEmpty(name))
-            {
-                MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbName);
-                isvalidate = false;
-            }
-            return isvalidate;
-        }
-
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
+            ClearNotification();
             MultiView1.ActiveViewIndex = 0;
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
+            ClearNotification();
             MultiView1.ActiveViewIndex = 1;
         }
 
         protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
+            ClearNotification();
             MultiView1.ActiveViewIndex = 2;
         }
 
         protected void lbuAddPerson_Click(object sender, EventArgs e)
         {
-            ValidateForm();
-            return;
+            /*if (string.IsNullOrEmpty(tbCitizenID.Text))
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbCitizenID);
+                tbCitizenID.CssClass = "form-control input-sm red";
+                return;
+            }
+            else if (string.IsNullOrEmpty(tbName.Text))
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbName);
+                tbName.CssClass = "form-control input-sm red";
+                return;
+            }
+            else if (string.IsNullOrEmpty(tbLastName.Text))
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbLastName);
+                tbLastName.CssClass = "form-control input-sm red";
+                return;
+            }*/
 
             string CheckCitizen = DatabaseManager.ExecuteString("SELECT CITIZEN_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + tbCitizenID.Text + "'");
             if (tbCitizenID.Text == CheckCitizen)

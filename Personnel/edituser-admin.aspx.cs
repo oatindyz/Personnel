@@ -20,22 +20,10 @@ namespace Personnel
             {
                 if(Request.QueryString["id"] != null)
                 {
-                    divTitle.Visible = false;
                     int.TryParse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()), out id);
-
-                }else{divTitle.Visible = true;}
-                
-                OracleConnection con = new OracleConnection("DATA SOURCE=ORCL_RMUTTO;PERSIST SECURITY INFO=True;USER ID=PERSONNEL;PASSWORD=Zxcvbnm");
-                OracleDataAdapter sda = new OracleDataAdapter("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME,(SELECT STAFFTYPE_NAME FROM REF_STAFFTYPE WHERE UOC_STAFF.STAFFTYPE_ID = REF_STAFFTYPE.STAFFTYPE_ID) STAFF_NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME FROM UOC_STAFF", con);
-                DataTable dt = new DataTable();
-                sda.Fill(dt);
-                myRepeater.DataSource = dt;
-                myRepeater.DataBind();
-                BindDDL();
-                ReadSelectID();
-                
-                MultiView1.ActiveViewIndex = 0;  
-
+                    BindDDL();
+                    ReadSelectID();
+                }else { Response.Redirect("listuser-admin.aspx"); }
             }
         }
 
