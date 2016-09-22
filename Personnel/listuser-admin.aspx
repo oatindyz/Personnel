@@ -47,9 +47,9 @@
                                     <td><%# DataBinder.Eval(Container.DataItem, "STAFF_NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
                                     <td><a href="previewuser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
-                                        <img src="Image/Small/next.png" class="icon_left" />เลือก</a></td>
+                                        <img src="Image/Small/next.png" class="icon_left" />ดู</a></td>
                                     <td><a href="edituser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
-                                        <img src="Image/Small/next.png" class="icon_left" />เลือก</a></td>
+                                        <img src="Image/Small/next.png" class="icon_left" />แก้ไข</a></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

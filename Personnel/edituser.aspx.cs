@@ -21,6 +21,16 @@ namespace Personnel
 
             if (!IsPostBack)
             {
+                if (loginPerson.SUBSTAFFTYPE_ID == "2")
+                {
+                    lbTeachISCED.Visible = true;
+                    ddlTeachISCED.Visible = false;
+                }
+                else
+                {
+                    ddlTeachISCED.Visible = true;
+                    lbTeachISCED.Visible = false;
+                }
                 BindDDL();
                 ReadSelectID();
                 BindLabel();
@@ -33,6 +43,52 @@ namespace Personnel
             ddlDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก อำเภอ--", "0"));
             ddlSubDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", "0"));
             DatabaseManager.BindDropDown(ddlNation, "SELECT * FROM REF_NATION ORDER BY NATION_NAME_ENG", "NATION_NAME_ENG", "NATION_ID", "--กรุณาเลือก--");
+            DatabaseManager.BindDropDown(ddlTeachISCED, "SELECT * FROM REF_ISCED  ORDER BY ISCED_ID", "ISCED_NAME", "ISCED_ID", "--กรุณาเลือก--");
+        }
+
+        public void ChangeNotification(string type)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+        }
+
+        public void ChangeNotification(string type, string text)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+            notification.InnerHtml = text;
+        }
+
+        private void ClearNotification()
+        {
+            notification.Attributes["class"] = null;
+            notification.InnerHtml = "";
+
+            ddlProvince.CssClass = "form-control input-sm select2";
+            ddlDistrict.CssClass = "form-control input-sm select2";
+            ddlSubDistrict.CssClass = "form-control input-sm select2";
+            tbZipcode.CssClass = "form-control input-sm";
+            ddlNation.CssClass = "form-control input-sm select2";
+
+            tbSpecialName.CssClass = "form-control input-sm";
+            ddlTeachISCED.CssClass = "form-control input-sm select2";
+        }
+
+        private void AddNotification(string text)
+        {
+            notification.InnerHtml += text;
         }
 
         protected void BindLabel()
@@ -54,7 +110,6 @@ namespace Personnel
             lbDepartment.Text = loginPerson.DEPARTMENT_NAME;
             lbDateInwork.Text = loginPerson.DATE_INWORK;
             lbDateStartThisU.Text = loginPerson.DATE_START_THIS_U;
-            lbSpecialName.Text = loginPerson.SPECIAL_NAME;
             lbTeachISCED.Text = loginPerson.TEACH_ISCED_NAME;
             lbGradLev.Text = loginPerson.GRAD_LEV_NAME;
             lbGradCURR.Text = loginPerson.GRAD_CURR;
@@ -62,7 +117,7 @@ namespace Personnel
             lbGradProg.Text = loginPerson.GRAD_PROG;
             lbGradUniv.Text = loginPerson.GRAD_UNIV;
             lbGradCountry.Text = loginPerson.GRAD_COUNTRY_NAME;
-            lbDeform.Text = loginPerson.DEFORM_ID;
+            lbDeform.Text = loginPerson.DEFORM_NAME;
             lbSitNo.Text = loginPerson.SIT_NO;
             lbSalary.Text = loginPerson.SALARY;
             lbPositionSalary.Text = loginPerson.POSITION_SALARY;
@@ -143,7 +198,7 @@ namespace Personnel
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT HOMEADD,MOO,STREET,PROVINCE_ID,DISTRICT_ID,SUB_DISTRICT_ID,TELEPHONE,ZIPCODE,NATION_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT HOMEADD,MOO,STREET,PROVINCE_ID,DISTRICT_ID,SUB_DISTRICT_ID,TELEPHONE,ZIPCODE,NATION_ID,SPECIAL_NAME,TEACH_ISCED_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -170,6 +225,9 @@ namespace Personnel
                             tbTelephone.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbZipcode.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlNation.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
+
+                            tbSpecialName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            ddlTeachISCED.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                         }
                     }
                 }
@@ -178,21 +236,32 @@ namespace Personnel
 
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
+            ClearNotification();
             MultiView1.ActiveViewIndex = 0;
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
+            ClearNotification();
             MultiView1.ActiveViewIndex = 1;
         }
 
         protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
+            ClearNotification();
             MultiView1.ActiveViewIndex = 2;
         }
 
         protected void lbuUpdatePerson_Click(object sender, EventArgs e)
         {
+            if (tbZipcode.Text.Length != 5)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbZipcode);
+                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์ให้ครบ 5 หลัก");
+                return;
+            }
+
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
             PS_PERSON person = new PS_PERSON();
@@ -206,16 +275,28 @@ namespace Personnel
             person.TELEPHONE = tbTelephone.Text;
             person.ZIPCODE = tbZipcode.Text;
             person.NATION_ID = ddlNation.SelectedValue;
+
+            person.SPECIAL_NAME = tbSpecialName.Text;
+            
+            if(loginPerson.SUBSTAFFTYPE_ID == "2")
+            {
+                person.TEACH_ISCED_ID = "(null)";
+            }
+            else
+            {
+                person.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
+            }
+
             person.UOC_ID = loginPerson.UOC_ID;
 
             person.UPDATE_PERSON_USER();
 
             MultiView1.ActiveViewIndex = 3;
 
-            lbuSelectView0.Visible = false;
-            lbuSelectView1.Visible = false;
-            lbuSelectView2.Visible = false;
-            lbuUpdatePerson.Visible = false;
+            btnSelectView0.Visible = false;
+            btnSelectView1.Visible = false;
+            btnSelectView2.Visible = false;
+            btnUpdatePerson.Visible = false;
 
         }
 

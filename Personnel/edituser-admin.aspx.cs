@@ -55,6 +55,69 @@ namespace Personnel
             DatabaseManager.BindDropDown(ddlMovementType, "SELECT * FROM REF_MOVEMENT_TYPE ORDER BY MOVEMENT_TYPE_ID", "MOVEMENT_TYPE_NAME", "MOVEMENT_TYPE_ID", "--กรุณาเลือก--");
         }
 
+        public void ChangeNotification(string type)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+        }
+
+        public void ChangeNotification(string type, string text)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+            notification.InnerHtml = text;
+        }
+
+        private void ClearNotification()
+        {
+            notification.Attributes["class"] = null;
+            notification.InnerHtml = "";
+
+            tbName.CssClass = "form-control input-sm";
+            tbLastName.CssClass = "form-control input-sm";
+            tbBirthday.CssClass = "form-control input-sm";
+            ddlProvince.CssClass = "form-control input-sm select2";
+            ddlDistrict.CssClass = "form-control input-sm select2";
+            ddlSubDistrict.CssClass = "form-control input-sm select2";
+            tbZipcode.CssClass = "form-control input-sm";
+            ddlNation.CssClass = "form-control input-sm select2";
+
+            ddlStafftype.CssClass = "form-control input-sm select2";
+            ddlTimeContact.CssClass = "form-control input-sm select2";
+            ddlBudget.CssClass = "form-control input-sm select2";
+            ddlSubStafftype.CssClass = "form-control input-sm select2";
+            ddlAdminPosition.CssClass = "form-control input-sm select2";
+            ddlPosition.CssClass = "form-control input-sm select2";
+            ddlDepartment.CssClass = "form-control input-sm select2";
+            tbDateInwork.CssClass = "form-control input-sm";
+            tbDateStartThisU.CssClass = "form-control input-sm";
+            ddlGradLev.CssClass = "form-control input-sm select2";
+            tbGradCURR.CssClass = "form-control input-sm";
+            ddlGradISCED.CssClass = "form-control input-sm select2";
+            ddlGradProg.CssClass = "form-control input-sm select2";
+            tbGradUniv.CssClass = "form-control input-sm";
+            ddlGradCountry.CssClass = "form-control input-sm select2";
+
+            ddlDeform.CssClass = "form-control input-sm select2";
+        }
+
+        private void AddNotification(string text)
+        {
+            notification.InnerHtml += text;
+        }
+
         protected void ddlProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -195,26 +258,44 @@ namespace Personnel
 
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
-            
+            ClearNotification();
             MultiView1.ActiveViewIndex = 0;
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
-            
+            ClearNotification();
             MultiView1.ActiveViewIndex = 1;
         }
 
         protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
-            
+            ClearNotification();
             MultiView1.ActiveViewIndex = 2;
         }
 
         protected void lbuUpdatePerson_Click(object sender, EventArgs e)
         {
-            PS_PERSON person = new PS_PERSON();
+            DateTime birthday = DateTime.Parse(tbBirthday.Text);
+            DateTime today1 = DateTime.Now;
 
+            if (birthday > today1)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
+                ChangeNotification("danger", "วันเกิด ต้องไม่มากกว่า วันปัจจุบัน");
+                return;
+            }
+
+            if (tbZipcode.Text.Length != 5)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbZipcode);
+                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์ให้ครบ 5 หลัก");
+                return;
+            }
+
+            PS_PERSON person = new PS_PERSON();
             person.UNIV_ID = ddlUniv.SelectedValue;
             person.CITIZEN_ID = lbCitizenID.Text;
             person.PREFIX_NAME = ddlPrefixName.SelectedValue;
@@ -264,14 +345,13 @@ namespace Personnel
             person.CITIZEN_ID = lbCitizenID.Text;
 
             person.UPDATE_PERSON();
-
             
             MultiView1.ActiveViewIndex = 3;
 
-            lbuSelectView0.Visible = false;
-            lbuSelectView1.Visible = false;
-            lbuSelectView2.Visible = false;
-            lbuUpdatePerson.Visible = false;
+            btnSelectView0.Visible = false;
+            btnSelectView1.Visible = false;
+            btnSelectView2.Visible = false;
+            btnUpdatePerson.Visible = false;
         }
 
 

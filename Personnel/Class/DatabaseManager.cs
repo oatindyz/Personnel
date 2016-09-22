@@ -122,7 +122,7 @@ namespace Personnel.Class
             ddl.DataTextField = text;
             ddl.DataValueField = value;
             ddl.DataBind();
-            ddl.Items.Insert(0, new ListItem(first, "0"));
+            ddl.Items.Insert(0, new ListItem(first, ""));
         }
         public static void BindGridView(GridView gv, string sql)
         {

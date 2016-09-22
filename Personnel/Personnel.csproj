@@ -1286,6 +1286,74 @@
     <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.css" />
     <Content Include="jQueryCalendarThai\jquery-ui-1.10.3.custom.js" />
     <Content Include="jQueryCalendarThai\SpecialDateSheet.css" />
+    <Content Include="Jquery\dist\css\formValidation.css" />
+    <Content Include="Jquery\dist\css\formValidation.min.css" />
+    <Content Include="Jquery\dist\js\formValidation.js" />
+    <Content Include="Jquery\dist\js\formValidation.min.js" />
+    <Content Include="Jquery\dist\js\framework\bootstrap.js" />
+    <Content Include="Jquery\dist\js\framework\bootstrap.min.js" />
+    <Content Include="Jquery\dist\js\framework\foundation.js" />
+    <Content Include="Jquery\dist\js\framework\foundation.min.js" />
+    <Content Include="Jquery\dist\js\framework\pure.js" />
+    <Content Include="Jquery\dist\js\framework\pure.min.js" />
+    <Content Include="Jquery\dist\js\framework\semantic.js" />
+    <Content Include="Jquery\dist\js\framework\semantic.min.js" />
+    <Content Include="Jquery\dist\js\framework\uikit.js" />
+    <Content Include="Jquery\dist\js\framework\uikit.min.js" />
+    <Content Include="Jquery\dist\js\language\ar_MA.js" />
+    <Content Include="Jquery\dist\js\language\be_FR.js" />
+    <Content Include="Jquery\dist\js\language\be_NL.js" />
+    <Content Include="Jquery\dist\js\language\bg_BG.js" />
+    <Content Include="Jquery\dist\js\language\ca_ES.js" />
+    <Content Include="Jquery\dist\js\language\cs_CZ.js" />
+    <Content Include="Jquery\dist\js\language\da_DK.js" />
+    <Content Include="Jquery\dist\js\language\de_DE.js" />
+    <Content Include="Jquery\dist\js\language\en_US.js" />
+    <Content Include="Jquery\dist\js\language\es_CL.js" />
+    <Content Include="Jquery\dist\js\language\es_ES.js" />
+    <Content Include="Jquery\dist\js\language\eu_ES.js" />
+    <Content Include="Jquery\dist\js\language\fa_IR.js" />
+    <Content Include="Jquery\dist\js\language\fi_FI.js" />
+    <Content Include="Jquery\dist\js\language\fr_FR.js" />
+    <Content Include="Jquery\dist\js\language\gr_EL.js" />
+    <Content Include="Jquery\dist\js\language\he_IL.js" />
+    <Content Include="Jquery\dist\js\language\hi_IN.js" />
+    <Content Include="Jquery\dist\js\language\hu_HU.js" />
+    <Content Include="Jquery\dist\js\language\id_ID.js" />
+    <Content Include="Jquery\dist\js\language\it_IT.js" />
+    <Content Include="Jquery\dist\js\language\ja_JP.js" />
+    <Content Include="Jquery\dist\js\language\nl_NL.js" />
+    <Content Include="Jquery\dist\js\language\no_NO.js" />
+    <Content Include="Jquery\dist\js\language\pl_PL.js" />
+    <Content Include="Jquery\dist\js\language\pt_BR.js" />
+    <Content Include="Jquery\dist\js\language\pt_PT.js" />
+    <Content Include="Jquery\dist\js\language\ro_RO.js" />
+    <Content Include="Jquery\dist\js\language\ru_RU.js" />
+    <Content Include="Jquery\dist\js\language\sk_SK.js" />
+    <Content Include="Jquery\dist\js\language\sq_AL.js" />
+    <Content Include="Jquery\dist\js\language\sr_RS.js" />
+    <Content Include="Jquery\dist\js\language\sv_SE.js" />
+    <Content Include="Jquery\dist\js\language\th_TH.js" />
+    <Content Include="Jquery\dist\js\language\tr_TR.js" />
+    <Content Include="Jquery\dist\js\language\ua_UA.js" />
+    <Content Include="Jquery\dist\js\language\vi_VN.js" />
+    <Content Include="Jquery\dist\js\language\zh_CN.js" />
+    <Content Include="Jquery\dist\js\language\zh_TW.js" />
+    <Content Include="Jquery\vendor\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Jquery\vendor\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Jquery\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Jquery\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Jquery\vendor\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Jquery\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Jquery\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Jquery\vendor\bootstrap\js\npm.js" />
+    <Content Include="Jquery\vendor\jasmine\boot.js" />
+    <Content Include="Jquery\vendor\jasmine\console.js" />
+    <Content Include="Jquery\vendor\jasmine\jasmine-html.js" />
+    <Content Include="Jquery\vendor\jasmine\jasmine.css" />
+    <Content Include="Jquery\vendor\jasmine\jasmine.js" />
+    <Content Include="Jquery\vendor\jasmine\jasmine_favicon.png" />
+    <Content Include="Jquery\vendor\jquery\jquery.min.js" />
     <Content Include="js\flot-data.js" />
     <Content Include="js\JsValidate.js" />
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -1613,6 +1681,11 @@
     <Content Include="plugins\datatables\extensions\TableTools\Readme.md" />
     <Content Include="plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="plugins\input-mask\phone-codes\phone-codes.json" />
+    <Content Include="Jquery\vendor\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Jquery\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Jquery\vendor\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Jquery\vendor\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Jquery\vendor\bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <None Include="Properties\PublishProfiles\Web.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Image\Bar\header_bar.png" />
@@ -3245,6 +3318,7 @@
     <Content Include="Script\jquery-ui-1.8.20.min.js" />
     <Content Include="Script\JSFunction.js" />
     <Content Include="testpage.aspx" />
+    <Content Include="testpage1.aspx" />
     <Content Include="Upload\PersonImage\fmiiwnji26a2epv1l9a1ju31.jpg" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
@@ -3377,6 +3451,13 @@
     </Compile>
     <Compile Include="testpage.aspx.designer.cs">
       <DependentUpon>testpage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testpage1.aspx.cs">
+      <DependentUpon>testpage1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testpage1.aspx.designer.cs">
+      <DependentUpon>testpage1.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

@@ -147,11 +147,15 @@
         });
     </script>
 
-    <style>
-        .red {
-            border-color: red;
+    <script>
+        function SelectNoTeach(selectElement) {
+            var selectedOption = selectElement.selectedIndex;
+            if (selectedOption == 2)
+                document.getElementById('<%=ddlTeachISCED.ClientID%>').disabled = true;
+            else
+                document.getElementById('<%=ddlTeachISCED.ClientID%>').disabled = false;
         }
-    </style>
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -160,7 +164,6 @@
             <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร
         </div>
         <div id="notification" runat="server"></div>
-        <div id="validationSummary" style="display: none; float: left"></div>
 
         <div class="panel panel-default">
             <div class="panel-body">
@@ -171,7 +174,7 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbCitizenID" runat="server" CssClass="form-control input-sm" MaxLength="13" onkeypress="return isNumberKey(event)" onkeyup="keyup(this,event)"></asp:TextBox>
+                                        <asp:TextBox ID="tbCitizenID" runat="server" CssClass="form-control input-sm" MaxLength="13" onkeypress="return isNumberKey(event)" onkeyup="keyup(this,event)" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -189,13 +192,13 @@
                                 <tr>
                                     <td class="col1">ชื่อ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbName" runat="server" CssClass="form-control input-sm" onkeyup="Check_txt(this,event)"></asp:TextBox>
+                                        <asp:TextBox ID="tbName" runat="server" CssClass="form-control input-sm" onkeyup="Check_txt(this,event)" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">นามสกุล<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbLastName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbLastName" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -207,7 +210,7 @@
                                 <tr>
                                     <td class="col1">วันเกิด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbBirthday" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbBirthday" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -231,19 +234,19 @@
                                 <tr>
                                     <td class="col1">จังหวัด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlProvince" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlProvince" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">อำเภอ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ตำบล<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlSubDistrict" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSubDistrict" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -255,13 +258,13 @@
                                 <tr>
                                     <td class="col1">รหัสไปรษณีย์<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">สัญชาติ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlNation" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlNation" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
@@ -273,37 +276,37 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">ประเภทบุคลากร<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlStafftype" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlStafftype" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ระยะเวลาจ้าง<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlTimeContact" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlTimeContact" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเภทเงินจ้าง<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlBudget" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlBudget" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเภทตำแหน่ง<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlSubStafftype_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" onchange="SelectNoTeach(this)" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ตำแหน่งบริหาร<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ระดับตำแหน่ง<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -315,19 +318,19 @@
                                 <tr>
                                     <td class="col1">คณะ/หน่วยงานที่สังกัด หรือเทียบเท่า<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">วันที่เข้าทำงานครั้งแรก<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbDateInwork" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbDateInwork" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbDateStartThisU" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbDateStartThisU" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -345,37 +348,37 @@
                                 <tr>
                                     <td class="col1">ระดับการศึกษาที่จบสูงสุด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">หลักสูตรที่จบการศึกษาสูงสุด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbGradCURR" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbGradCURR" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradISCED" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlGradISCED" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">สาขาวิชาที่จบสูงสุด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradProg" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlGradProg" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ชื่อสถาบันที่จบการศึกษาสูงสุด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbGradUniv" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:TextBox ID="tbGradUniv" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ประเทศที่จบการศึกษาสูงสุด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradCountry" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlGradCountry" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
@@ -387,7 +390,7 @@
                                 <tr>
                                     <td class="col1" style="width: 400px;">ความพิการ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDeform" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDeform" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -399,13 +402,13 @@
                                 <tr>
                                     <td class="col1">เงินเดือนปัจจุบัน</td>
                                     <td class="col2 input-group date">
-                                        <asp:TextBox ID="tbSalary" runat="server" CssClass="form-control input-sm"></asp:TextBox><span class="input-group-addon">.00</span>
+                                        <asp:TextBox ID="tbSalary" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)"></asp:TextBox><span class="input-group-addon">.00</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">เงินประจำตำแหน่งที่ได้รับ</td>
                                     <td class="col2 input-group date">
-                                        <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="form-control input-sm"></asp:TextBox><span class="input-group-addon">.00</span>
+                                        <asp:TextBox ID="tbPositionSalary" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)"></asp:TextBox><span class="input-group-addon">.00</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -476,9 +479,9 @@
         </div>
     </div>
     <div style="text-align: center;">
-        <asp:LinkButton ID="lbuSelectView0" runat="server" CssClass="ps-button" OnClick="lbuSelectView0_Click">หน้าที่ 1 <span class="glyphicon glyphicon-arrow-right" /></asp:LinkButton>
-        <asp:LinkButton ID="lbuSelectView1" runat="server" CssClass="ps-button" OnClick="lbuSelectView1_Click"><span class="glyphicon glyphicon-arrow-left" /> หน้าที่ 2 <span class="glyphicon glyphicon-arrow-right" /></asp:LinkButton>
-        <asp:LinkButton ID="lbuSelectView2" runat="server" CssClass="ps-button" OnClick="lbuSelectView2_Click"><span class="glyphicon glyphicon-arrow-left" /> หน้าที่ 3</asp:LinkButton>
-        <asp:LinkButton ID="lbuAddPerson" runat="server" CssClass="ps-button" OnClick="lbuAddPerson_Click"><img src="Image/Small/save.png" class="icon_left"/>เพิ่มข้อมูลบุคลากร</asp:LinkButton>
+        <asp:Button ID="btnSelectView0" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView0_Click" Text="หน้าที่ 1"></asp:Button>
+        <asp:Button ID="btnSelectView1" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView1_Click" Text="หน้าที่ 2"></asp:Button>
+        <asp:Button ID="btnSelectView2" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView2_Click" Text="หน้าที่ 3"></asp:Button>
+        <asp:Button ID="btnAddPerson" runat="server" CssClass="btn btn-primary" OnClick="lbuAddPerson_Click" Text="เพิ่มข้อมูลบุคลากร"></asp:Button>
     </div>
 </asp:Content>

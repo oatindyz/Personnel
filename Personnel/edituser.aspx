@@ -1,12 +1,76 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="edituser.aspx.cs" Inherits="Personnel.edituser" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+  <script>
+        $(function () {
+            //Initialize Select2 Elements
+            $(".select2").select2();
+
+            //Datemask dd/mm/yyyy
+            $("#datemask").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
+            //Datemask2 mm/dd/yyyy
+            $("#datemask2").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
+            //Money Euro
+            $("[data-mask]").inputmask();
+
+            //Date range picker
+            $('#reservation').daterangepicker();
+            //Date range picker with time picker
+            $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
+            //Date range as a button
+            $('#daterange-btn').daterangepicker(
+                {
+                    ranges: {
+                        'Today': [moment(), moment()],
+                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                        'This Month': [moment().startOf('month'), moment().endOf('month')],
+                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                    },
+                    startDate: moment().subtract(29, 'days'),
+                    endDate: moment()
+                },
+            function (start, end) {
+                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            }
+            );
+
+            //iCheck for checkbox and radio inputs
+            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
+                checkboxClass: 'icheckbox_minimal-blue',
+                radioClass: 'iradio_minimal-blue'
+            });
+            //Red color scheme for iCheck
+            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
+                checkboxClass: 'icheckbox_minimal-red',
+                radioClass: 'iradio_minimal-red'
+            });
+            //Flat red color scheme for iCheck
+            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
+                checkboxClass: 'icheckbox_flat-green',
+                radioClass: 'iradio_flat-green'
+            });
+
+            //Colorpicker
+            $(".my-colorpicker1").colorpicker();
+            //color picker with addon
+            $(".my-colorpicker2").colorpicker();
+
+            //Timepicker
+            $(".timepicker").timepicker({
+                showInputs: false
+            });
+        });
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="ps-header">
             <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร
         </div>
+        <div id="notification" runat="server"></div>
+
         <div class="panel panel-default">
             <div class="panel-body">
                 <asp:MultiView ID="MultiView1" runat="server" ActiveViewIndex="0">
@@ -56,57 +120,57 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">บ้านเลขที่</td>
+                                    <td class="col1">บ้านเลขที่<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:TextBox ID="tbHomeAdd" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">หมู่</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbMoo" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:TextBox ID="tbMoo" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">ถนน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbStreet" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:TextBox ID="tbStreet" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">จังหวัด</td>
+                                    <td class="col1">จังหวัด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlProvince" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlProvince" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">อำเภอ</td>
+                                    <td class="col1">อำเภอ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="ps-dropdown" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ตำบล</td>
+                                    <td class="col1">ตำบล<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlSubDistrict" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSubDistrict" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">หมายเลขโทรศัพท์ที่ทำงาน</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbTelephone" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:TextBox ID="tbTelephone" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">รหัสไปรษณีย์</td>
+                                    <td class="col1">รหัสไปรษณีย์<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="ps-textbox"></asp:TextBox>
+                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">สัญชาติ</td>
+                                    <td class="col1">สัญชาติ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlNation" runat="server" CssClass="ps-dropdown"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlNation" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
@@ -178,12 +242,13 @@
                                 <tr>
                                     <td class="col1">สาขางานที่เชี่ยวชาญ</td>
                                     <td class="col2">
-                                        <asp:Label ID="lbSpecialName" runat="server"></asp:Label>
+                                        <asp:TextBox ID="tbSpecialName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)</td>
                                     <td class="col2">
+                                        <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                         <asp:Label ID="lbTeachISCED" runat="server"></asp:Label>
                                     </td>
                                 </tr>
@@ -320,9 +385,9 @@
             </div>
         </div>
     <div style="text-align: center;">
-        <asp:LinkButton ID="lbuSelectView0" runat="server" CssClass="ps-button" OnClick="lbuSelectView0_Click">หน้าที่ 1<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
-        <asp:LinkButton ID="lbuSelectView1" runat="server" CssClass="ps-button" OnClick="lbuSelectView1_Click"><img src="Image/Small/back.png" class="icon_left"/>หน้าที่ 2<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
-        <asp:LinkButton ID="lbuSelectView2" runat="server" CssClass="ps-button" OnClick="lbuSelectView2_Click"><img src="Image/Small/back.png" class="icon_left"/>หน้าที่ 3</asp:LinkButton>
-        <asp:LinkButton ID="lbuUpdatePerson" runat="server" CssClass="ps-button" OnClick="lbuUpdatePerson_Click"><img src="Image/Small/save.png" class="icon_left"/>แก้ไขข้อมูลบุคลากร</asp:LinkButton>
+        <asp:Button ID="btnSelectView0" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView0_Click" Text="หน้าที่ 1"></asp:Button>
+        <asp:Button ID="btnSelectView1" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView1_Click" Text="หน้าที่ 2"></asp:Button>
+        <asp:Button ID="btnSelectView2" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView2_Click" Text="หน้าที่ 3"></asp:Button>
+        <asp:Button ID="btnUpdatePerson" runat="server" CssClass="btn btn-primary" OnClick="lbuUpdatePerson_Click" Text="แก้ไขข้อมูลบุคลากร"></asp:Button>
     </div>
 </asp:Content>

@@ -48,7 +48,7 @@ namespace Personnel
             DatabaseManager.BindDropDown(ddlMovementType, "SELECT * FROM REF_MOVEMENT_TYPE ORDER BY MOVEMENT_TYPE_ID", "MOVEMENT_TYPE_NAME", "MOVEMENT_TYPE_ID", "--กรุณาเลือก--");
         }
 
-        private void ChangeNotification(string type)
+        public void ChangeNotification(string type)
         {
             switch (type)
             {
@@ -60,7 +60,7 @@ namespace Personnel
             }
         }
 
-        private void ChangeNotification(string type, string text)
+        public void ChangeNotification(string type, string text)
         {
             switch (type)
             {
@@ -171,25 +171,6 @@ namespace Personnel
             catch { }
         }
 
-        protected void ValidationViewOne()
-        {
-            if (string.IsNullOrEmpty(ddlStafftype.SelectedValue))
-            {
-                ChangeNotification("danger", "กรุณาเลือกจังหวัด");
-                return;
-            }
-            if (string.IsNullOrEmpty(ddlDistrict.SelectedValue))
-            {
-                ChangeNotification("danger", "กรุณาเลือกอำเภอ");
-                return;
-            }
-            if (string.IsNullOrEmpty(ddlSubDistrict.SelectedValue))
-            {
-                ChangeNotification("danger", "กรุณาเลือกตำบล");
-                return;
-            }
-        }
-
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
             ClearNotification();
@@ -210,41 +191,73 @@ namespace Personnel
 
         protected void lbuAddPerson_Click(object sender, EventArgs e)
         {
-            /*if (string.IsNullOrEmpty(tbCitizenID.Text))
+            if (tbCitizenID.Text.Length != 13)
             {
                 MultiView1.ActiveViewIndex = 0;
                 ScriptManager.GetCurrent(this.Page).SetFocus(this.tbCitizenID);
-                tbCitizenID.CssClass = "form-control input-sm red";
+                ChangeNotification("danger", "กรุณากรอกรหัสประชาชนให้ครบ 13 หลัก");
                 return;
             }
-            else if (string.IsNullOrEmpty(tbName.Text))
-            {
-                MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbName);
-                tbName.CssClass = "form-control input-sm red";
-                return;
-            }
-            else if (string.IsNullOrEmpty(tbLastName.Text))
-            {
-                MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbLastName);
-                tbLastName.CssClass = "form-control input-sm red";
-                return;
-            }*/
-
+            
             string CheckCitizen = DatabaseManager.ExecuteString("SELECT CITIZEN_ID FROM UOC_STAFF WHERE CITIZEN_ID = '" + tbCitizenID.Text + "'");
             if (tbCitizenID.Text == CheckCitizen)
             {
-                notification.Attributes["class"] = "alert alert-danger";
-                notification.InnerHtml += "<div><strong>รหัสบัตรประชาชนซ้ำ</strong></div>";
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbCitizenID);
+                ChangeNotification("danger", "รหัสบัตรประชาชนซ้ำ");
                 return;
             }
 
-            if (string.IsNullOrEmpty(tbCitizenID.Text))
+            DateTime birthday = DateTime.Parse(tbBirthday.Text);
+            DateTime today1 = DateTime.Now;
+
+            if (birthday > today1)
             {
-                notification.InnerHtml = "Require";
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
+                ChangeNotification("danger", "วันเกิด ต้องไม่มากกว่า วันปัจจุบัน");
                 return;
             }
+
+            if (tbZipcode.Text.Length != 5)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbZipcode);
+                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์ให้ครบ 5 หลัก");
+                return;
+            }
+
+            /*DateTime dateinwork = DateTime.Parse(tbDateInwork.Text);
+            DateTime datestartthisu = DateTime.Parse(tbDateStartThisU.Text);
+            DateTime today2 = DateTime.Now;
+            DateTime twentyOne = birthday.AddYears(21);
+
+            int totalDateInwork = (int)(dateinwork - today2).TotalDays +0;
+
+
+            if (dateinwork < 7685)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่มากกว่า วันปัจจุบันได้");
+                return;
+            }
+
+            if (totalDateInwork < 7685)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรก ต้องมากกว่า วันเกิด21ปี");
+                return;
+            }
+
+            if ()
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่น้อยกว่า วันที่เข้าทำงานครั้งแรก");
+                return;
+            }*/
 
             PS_PERSON person = new PS_PERSON();
             int LastID = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT UOC_ID +1 UOC_ID FROM UOC_STAFF ORDER BY UOC_ID DESC) WHERE ROWNUM = 1");
@@ -301,22 +314,12 @@ namespace Personnel
             person.INSERT_PERSON();
             MultiView1.ActiveViewIndex = 3;
 
-            lbuSelectView0.Visible = false;
-            lbuSelectView1.Visible = false;
-            lbuSelectView2.Visible = false;
-            lbuAddPerson.Visible = false;
+            btnSelectView0.Visible = false;
+            btnSelectView1.Visible = false;
+            btnSelectView2.Visible = false;
+            btnAddPerson.Visible = false;
 
         }
 
-        protected void ddlSubStafftype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(ddlSubStafftype.SelectedIndex == 2)
-            {
-                ddlTeachISCED.Enabled = false;
-            }else
-            {
-                ddlTeachISCED.Enabled = true;
-            }
-        }
     }
 }

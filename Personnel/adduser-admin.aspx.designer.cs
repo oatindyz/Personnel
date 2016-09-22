@@ -490,39 +490,39 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.View View3;
         
         /// <summary>
-        /// lbuSelectView0 control.
+        /// btnSelectView0 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSelectView0;
+        protected global::System.Web.UI.WebControls.Button btnSelectView0;
         
         /// <summary>
-        /// lbuSelectView1 control.
+        /// btnSelectView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSelectView1;
+        protected global::System.Web.UI.WebControls.Button btnSelectView1;
         
         /// <summary>
-        /// lbuSelectView2 control.
+        /// btnSelectView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSelectView2;
+        protected global::System.Web.UI.WebControls.Button btnSelectView2;
         
         /// <summary>
-        /// lbuAddPerson control.
+        /// btnAddPerson control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuAddPerson;
+        protected global::System.Web.UI.WebControls.Button btnAddPerson;
     }
 }
