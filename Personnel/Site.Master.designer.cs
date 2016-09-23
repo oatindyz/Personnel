@@ -139,67 +139,58 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbDepartment;
         
         /// <summary>
-        /// MenuAdminRolePerson control.
+        /// MenuRoleID99 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuAdminRolePerson;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID99;
         
         /// <summary>
-        /// cbAdminPersonAdd control.
+        /// MenuRoleID1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAdminPersonAdd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID1;
         
         /// <summary>
-        /// MenuAdminRoleManage control.
+        /// MenuRoleID2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuAdminRoleManage;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID2;
         
         /// <summary>
-        /// cbAdminManage1 control.
+        /// MenuRoleID3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAdminManage1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID3;
         
         /// <summary>
-        /// cbAdminManage2 control.
+        /// MenuRoleID4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbAdminManage2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID4;
         
         /// <summary>
-        /// MenuUserRolePerson control.
+        /// MenuRoleID5 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuUserRolePerson;
-        
-        /// <summary>
-        /// cbUserPersonAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor cbUserPersonAdd;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID5;
         
         /// <summary>
         /// noti_ins_none control.

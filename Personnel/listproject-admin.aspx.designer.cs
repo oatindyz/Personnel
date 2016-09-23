@@ -10,7 +10,7 @@
 namespace Personnel {
     
     
-    public partial class listuser_admin {
+    public partial class listproject_admin {
         
         /// <summary>
         /// notification control.

@@ -64,7 +64,7 @@
     <script src="plugins/iCheck/icheck.min.js"></script>
     <!-- FastClick -->
     <script src="plugins/fastclick/fastclick.min.js"></script>
-    
+
     <!-- Page script -->
     <script src="bootstrap/datetime/jquery.datetimepicker.js"></script>
     <!-- -->
@@ -103,23 +103,22 @@
 
 </head>
 <body>
-
     <form id="form1" runat="server">
-
         <div class="ps-ms-wrapper">
-
             <div class="ps-ms-main">
                 <div class="ps-ms-main-hd-wrapper">
                     <div class="ps-ms-main-hd">
                         <div class="ps-ms-main-hd-left">
                             <div id="menu1" runat="server" class="ps-ms-main-hd-button">
-                                <img src="Image/x32/menu.png" /></div>
+                                <img src="Image/x32/menu.png" />
+                            </div>
                             <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
 
                         </div>
                         <div class="ps-ms-main-hd-right">
                             <div id="menu2" class="ps-ms-main-hd-button">
-                                <img src="Image/x32/notification.png" /></div>
+                                <img src="Image/x32/notification.png" />
+                            </div>
                             <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
                             <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
                                 <span class="ps-ms-profile-div">
@@ -127,7 +126,7 @@
                                 <span id="profile_name" runat="server"></span>
                             </asp:LinkButton>
                             <a href="Access.aspx" class="ps-ms-logout">ออกจากระบบ</a>
-                          <!--  <div class="ps-ms-main-hd-button">
+                            <!--  <div class="ps-ms-main-hd-button">
                                 <div class="dropdown">
                                     <button class="btn btn-default dropdown-toggle" type="button" id="menu11" data-toggle="dropdown">
                                         <span class="caret"></span>
@@ -146,25 +145,27 @@
                                 </div>
                             </div> -->
                         </div>
-                    
-                        </div>
 
-                    
+                    </div>
+
+
                     <div class="ps-ms-main-drop" id="menu1-ct">
-                       <div class="ps-ms-main-drop-hd">
-                            <img src="Image/x32/menu.png"/>เมนู
+                        <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/menu.png" />เมนู
                         </div>
                         <div class="ps-box-il-ms">
-                             <div class="ps-box-i0">
+                            <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <img src="Image/rmutto-ms-drop.png" class="rmutto"/>
+                                    <img src="Image/rmutto-ms-drop.png" class="rmutto" />
                                     <br />
-                                    <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />Personnel System</span>
+                                    <span class="ps-ms-rmutto"><span style="font-size: 23px;">ระบบบุคลากร</span><br />
+                                        Personnel System</span>
                                 </div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="Default.aspx"><img src="Image/Small/home3.png" />หน้าหลัก</a>
+                                    <a href="Default.aspx">
+                                        <img src="Image/Small/home3.png" />หน้าหลัก</a>
                                 </div>
                             </div>
                             <div class="ps-box-i0">
@@ -177,10 +178,13 @@
 
                         <div class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen"><img src="Image/Small/person2.png" />ข้อมูลผู้ใช้</div>
+                                <div class="ps-box-hd10-cen">
+                                    <img src="Image/Small/person2.png" />ข้อมูลผู้ใช้
+                                </div>
                             </div>
                             <div class="ps-box-i0" style="text-align: center;">
-                                <span class="ps-ms-profile-div"><img src="Image/no_image.png" class="ps-ms-main-drop-profile-pic" id="profile_pic2" runat="server"/></span>
+                                <span class="ps-ms-profile-div">
+                                    <img src="Image/no_image.png" class="ps-ms-main-drop-profile-pic" id="profile_pic2" runat="server" /></span>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -212,110 +216,146 @@
                                         </tr>
                                     </table>
                                 </div>
-
-
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10" style="text-align: center;">
-                                    <a href="profile.aspx"><img src="Image/Small/search.png" class="icon_left"/>ดูประวัติส่วนตัว</a>
+                                    <a href="profile.aspx">
+                                        <img src="Image/Small/search.png" class="icon_left" />ดูประวัติส่วนตัว</a>
+                                </div>
+                            </div>
+                        </div>    
+
+                        <div id="MenuRoleID99" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/wrench.png" />จัดการข้อมูล
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="DataManager.aspx">
+                                        <img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
+                                    <a href="managerole-admin.aspx">
+                                        <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="MenuAdminRolePerson" runat="server" class="ps-box-il-ms">
-                    <div class="ps-box-i0">
-                        <div class="ps-box-hd10">
-                            <img src="Image/Small/person2.png" />บุคลากร</div>
-                    </div>
-                    <div class="ps-box-i0">
-                        <div class="ps-box-ct10">
-                            <a href="listuser-admin.aspx" id="cbAdminPersonAdd" runat="server">
-                                <img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร</a>
+                        <div id="MenuRoleID1" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/person2.png" />บุคลากร
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="edituser.aspx"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div id="MenuAdminRoleManage" runat="server" class="ps-box-il-ms">
-                    <div class="ps-box-i0">
-                        <div class="ps-box-hd10">
-                            <img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
-                    </div>
-                    <div class="ps-box-i0">
-                        <div class="ps-box-ct10">
-                            <a href="DataManager.aspx" id="cbAdminManage1" runat="server">
-                                <img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
-                            <a href="Permission.aspx" id="cbAdminManage2" runat="server">
-                                <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
+                        <div id="MenuRoleID2" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
 
-                <div id="MenuUserRolePerson" runat="server" class="ps-box-il-ms">
-                    <div class="ps-box-i0">
-                        <div class="ps-box-hd10">
-                            <img src="Image/Small/person2.png" />บุคลากร</div>
-                    </div>
-                    <div class="ps-box-i0">
-                        <div class="ps-box-ct10">
-                            <a href="edituser.aspx" id="cbUserPersonAdd" runat="server">
-                                <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                        <div id="MenuRoleID3" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/person2.png" />บุคลากร
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลก.พ.7</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
+
+                        <div id="MenuRoleID4" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/person2.png" />บุคลากร
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="listuser-admin.aspx"><img src="Image/Small/medal.png" />จัดการข้อมูลเครื่องราชฯ</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="MenuRoleID5" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/person2.png" />บุคลากร
+                                </div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="#"><img src="Image/book_edit.png" />จัดการพัฒนาความรู้และทักษะวิชาชีพ</a>
+                                </div>
+                            </div>
+                        </div>
 
 
                     </div>
 
                     <div class="ps-ms-main-drop" id="menu2-ct">
                         <div class="ps-ms-main-drop-hd">
-                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
+                            <img src="Image/x32/notification.png" />การแจ้งเตือน
                         </div>
                         <div class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                                <div class="ps-box-hd10-cen">
+                                    <img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์
+                                </div>
                             </div>
                             <div class="ps-box-i0" id="noti_ins_none" runat="server">
                                 <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
                             </div>
                             <div class="ps-box-i0" id="noti_ins" runat="server">
                                 <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
+                                    <div>
+                                        <img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ
+                                    </div>
+                                    <br />
                                     <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
                                 </div>
                             </div>
                             <div class="ps-box-i0" id="noti_get_ins" runat="server">
                                 <div class="ps-box-ct10-cen">
-                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
+                                    <div>
+                                        <img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ
+                                    </div>
+                                    <br />
                                     <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
-                
-
 
                 <div class="ps-ms-main-ct">
-                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-                </asp:ContentPlaceHolder>
-                    </div>
+                    <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                    </asp:ContentPlaceHolder>
+                </div>
 
                 <div class="ps-ms-main-ft-wrapper">
                     <div class="ps-ms-main-ft">
                         Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
                     </div>
                 </div>
-                
 
             </div>
-
-
-
         </div>
-        
-
     </form>
 </body>
 </html>

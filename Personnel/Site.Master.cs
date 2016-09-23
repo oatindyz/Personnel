@@ -45,29 +45,60 @@ namespace Personnel
                 {
                     menu1.Visible = false;
                 }
-
-                if (loginPerson.PERSON_ROLE_ID == 1)
+                //
+                if (loginPerson.PERSON_ROLE_ID == 99)
                 {
-                    MenuAdminRolePerson.Visible = false;
-                    MenuAdminRoleManage.Visible = false;
-                    MenuUserRolePerson.Visible = true;
+                    MenuRoleID99.Visible = true;
+                    MenuRoleID1.Visible = false;
+                    MenuRoleID2.Visible = false;
+                    MenuRoleID3.Visible = false;
+                    MenuRoleID4.Visible = false;
+                    MenuRoleID5.Visible = false;
+                }
+                else if (loginPerson.PERSON_ROLE_ID == 1)
+                {
+                    MenuRoleID99.Visible = false;
+                    MenuRoleID1.Visible = true;
+                    MenuRoleID2.Visible = false;
+                    MenuRoleID3.Visible = false;
+                    MenuRoleID4.Visible = false;
+                    MenuRoleID5.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 2)
                 {
-                    MenuAdminRolePerson.Visible = true;
-                    MenuUserRolePerson.Visible = false;
+                    MenuRoleID99.Visible = false;
+                    MenuRoleID1.Visible = false;
+                    MenuRoleID2.Visible = true;
+                    MenuRoleID3.Visible = false;
+                    MenuRoleID4.Visible = false;
+                    MenuRoleID5.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 3)
                 {
-
+                    MenuRoleID99.Visible = false;
+                    MenuRoleID1.Visible = false;
+                    MenuRoleID2.Visible = false;
+                    MenuRoleID3.Visible = true;
+                    MenuRoleID4.Visible = false;
+                    MenuRoleID5.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 4)
                 {
-
+                    MenuRoleID99.Visible = false;
+                    MenuRoleID1.Visible = false;
+                    MenuRoleID2.Visible = false;
+                    MenuRoleID3.Visible = false;
+                    MenuRoleID4.Visible = true;
+                    MenuRoleID5.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 5)
                 {
-
+                    MenuRoleID99.Visible = false;
+                    MenuRoleID1.Visible = false;
+                    MenuRoleID2.Visible = false;
+                    MenuRoleID3.Visible = false;
+                    MenuRoleID4.Visible = false;
+                    MenuRoleID5.Visible = true;
                 }
             }
 

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="listuser-admin.aspx.cs" Inherits="Personnel.listuser_admin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="managerole-admin.aspx.cs" Inherits="Personnel.managerole_admin" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- for Menu List -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -18,12 +19,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
-        <img src="Image/book_edit.png" />บุคลากรภายในมหาวิทยาลัย
-        <span style="text-align:right; float:right;"><a href="adduser-admin.aspx">
-        <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a></span>
+        <img src="Image/book_edit.png" />จัดการสิทธิใช้งานระบบ
     </div>
     <div id="notification" runat="server"></div>
-
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_PERSON_ROLE&quot;"></asp:SqlDataSource>
     <div id="Dp1" runat="server" class="panel panel-default">
         <div class="panel-body">
             <div class="panel-body">
@@ -33,23 +32,21 @@
                             <tr>
                                 <th>ลำดับที่</th>
                                 <th>ชื่อ-สกุล</th>
-                                <th>ประเภทบุครากร</th>
                                 <th>คณะ/หน่วยงาน</th>
-                                <th><img src="Image/Small/list.png" class="icon_left" />ดูข้อมูล</th>
-                                <th><img src="Image/Small/document-edit.png" class="icon_left" />แก้ไขข้อมูล</th>
+                                <th>สิทธิการใช้งานระบบ</th>
+                                <th>
+                                    <img src="Image/Small/save.png" class="icon_left" />แก้ไข</th>
                             </tr>
                         </thead>
                         <asp:Repeater ID="myRepeater" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# DataBinder.Eval(Container.DataItem, "UOC_ID") %></td>
+                                    <td><asp:Label ID="lbID" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UOC_ID") %>'></asp:Label></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
-                                    <td><%# DataBinder.Eval(Container.DataItem, "STAFF_NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
-                                    <td style="text-align:center;"><a href="previewuser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
-                                        <img src="Image/Small/next.png" class="icon_left" />ดู</a></td>
-                                    <td style="text-align:center;"><a href="edituser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
-                                        แก้ไข<img src="Image/Small/back.png" class="icon_right" /></a></td>
+                                    <td>
+                                        <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control input-sm select2" DataSourceID="SqlDataSource1" DataValueField="PERSON_ROLE_ID" DataTextField="PERSON_ROLE_NAME" SelectedValue='<%# DataBinder.Eval(Container.DataItem, "PERSON_ROLE_ID") %>' ></asp:DropDownList></td>
+                                    <td style="text-align:center;"><asp:Button ID="btn1" runat="server" CssClass="btn btn-primary" Text="บันทึก" OnClick="btn1_Click"/></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -58,4 +55,6 @@
             </div>
         </div>
     </div>
+    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
 </asp:Content>

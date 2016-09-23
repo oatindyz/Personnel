@@ -298,9 +298,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ตำแหน่งบริหาร<span class="ps-lb-red" />*</td>
+                                    <td class="col1">ตำแหน่งบริหาร</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -370,15 +370,15 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ชื่อสถาบันที่จบการศึกษาสูงสุด<span class="ps-lb-red" />*</td>
+                                    <td class="col1">ชื่อสถาบันที่จบการศึกษาสูงสุด</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbGradUniv" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
+                                        <asp:TextBox ID="tbGradUniv" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ประเทศที่จบการศึกษาสูงสุด<span class="ps-lb-red" />*</td>
+                                    <td class="col1">ประเทศที่จบการศึกษาสูงสุด</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradCountry" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlGradCountry" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                     </td>
                                 </tr>
                             </table>
@@ -388,9 +388,9 @@
                         <div class="panel panel-default">
                             <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                                 <tr>
-                                    <td class="col1" style="width: 400px;">ความพิการ<span class="ps-lb-red" />*</td>
+                                    <td class="col1" style="width: 400px;">ความพิการ</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlDeform" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlDeform" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>

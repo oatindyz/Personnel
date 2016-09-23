@@ -1642,7 +1642,9 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="listproject-admin.aspx" />
     <Content Include="listuser-admin.aspx" />
+    <Content Include="managerole-admin.aspx" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
     <Content Include="plugins\ckeditor\ckeditor.pack" />
     <Content Include="plugins\ckeditor\ckeditor.php" />
@@ -3406,12 +3408,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="listproject-admin.aspx.cs">
+      <DependentUpon>listproject-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listproject-admin.aspx.designer.cs">
+      <DependentUpon>listproject-admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listuser-admin.aspx.cs">
       <DependentUpon>listuser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="listuser-admin.aspx.designer.cs">
       <DependentUpon>listuser-admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="managerole-admin.aspx.cs">
+      <DependentUpon>managerole-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="managerole-admin.aspx.designer.cs">
+      <DependentUpon>managerole-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageTimecontact-admin.aspx.cs">
       <DependentUpon>ManageTimecontact-admin.aspx</DependentUpon>
