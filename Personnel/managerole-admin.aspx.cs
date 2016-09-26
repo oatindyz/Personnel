@@ -22,8 +22,8 @@ namespace Personnel
 
         protected void BindData()
         {
-            OracleConnection con = new OracleConnection("DATA SOURCE=ORCL_RMUTTO;PERSIST SECURITY INFO=True;USER ID=PERSONNEL;PASSWORD=Zxcvbnm");
-            OracleDataAdapter sda = new OracleDataAdapter("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME, PERSON_ROLE_ID FROM UOC_STAFF", con);
+            OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
+            OracleDataAdapter sda = new OracleDataAdapter("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME, PERSON_ROLE_ID FROM UOC_STAFF ORDER BY UOC_ID DESC", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             myRepeater.DataSource = dt;
@@ -39,8 +39,6 @@ namespace Personnel
 
             string uocID = id.Text;
             string value = ddl.SelectedValue;
-            TextBox1.Text = value;
-            TextBox2.Text = uocID;
 
             if (uocID != null && value != null)
             {

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="listuser-admin.aspx.cs" Inherits="Personnel.listuser_admin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="listuser-admin.aspx.cs" Inherits="Personnel.listuser_admin" MaintainScrollPositionOnPostback="true"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- for Menu List -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -18,13 +18,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
-        <img src="Image/book_edit.png" />บุคลากรภายในมหาวิทยาลัย
+        <img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร
         <span style="text-align:right; float:right;"><a href="adduser-admin.aspx">
         <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร</a></span>
     </div>
     <div id="notification" runat="server"></div>
 
     <div id="Dp1" runat="server" class="panel panel-default">
+        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย</div>
         <div class="panel-body">
             <div class="panel-body">
                 <div id="divLoad" runat="server" class="dataTable_wrapper">
@@ -42,14 +43,12 @@
                         <asp:Repeater ID="myRepeater" runat="server">
                             <ItemTemplate>
                                 <tr>
-                                    <td><%# DataBinder.Eval(Container.DataItem, "UOC_ID") %></td>
+                                    <td><%# Container.ItemIndex +1 %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "STAFF_NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
-                                    <td style="text-align:center;"><a href="previewuser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
-                                        <img src="Image/Small/next.png" class="icon_left" />ดู</a></td>
-                                    <td style="text-align:center;"><a href="edituser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>">
-                                        แก้ไข<img src="Image/Small/back.png" class="icon_right" /></a></td>
+                                    <td style="text-align:center;"><a href="previewuser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>" class="btn btn-primary">ดู</a></td>
+                                    <td style="text-align:center;"><a href="edituser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>" class="btn btn-warning">แก้ไข</a></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

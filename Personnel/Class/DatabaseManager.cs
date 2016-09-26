@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Web.UI.HtmlControls;
 using System.Data.OracleClient;
+using System.Text;
+using System.Security.Cryptography;
 
 namespace Personnel.Class
 {
@@ -89,7 +91,7 @@ namespace Personnel.Class
             }
             return seq;
         }
-        public static void ExeDDL2string(DropDownList ddl ,string sql)
+        public static void ExeDDL2String(DropDownList ddl ,string sql)
         {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
@@ -102,6 +104,42 @@ namespace Personnel.Class
                         while (reader.Read())
                         {
                             ddl.Items.Add(new ListItem(reader.GetString(0) + " | " + reader.GetString(1), reader.GetString(0) + ""));
+                        }
+                    }
+                }
+            }
+        }
+        public static void ExeDDL2Int(DropDownList ddl, string sql)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand(sql, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ddl.Items.Add(new ListItem(reader.GetInt32(0) + " | " + reader.GetString(1), reader.GetInt32(0) + ""));
+                        }
+                    }
+                }
+            }
+        }
+        public static void ExeDDLselectNameAndLast(DropDownList ddl, string sql)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand(sql, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ddl.Items.Add(new ListItem(reader.GetString(1), reader.GetInt32(0) + ""));
                         }
                     }
                 }
@@ -259,7 +297,8 @@ namespace Personnel.Class
                    "RESULT2," +
                    "PERCENT_SALARY2," +
                    "PASSWORD," +
-                   "LOGIN_FIRST," +
+                   "ST_LOGIN_ID," +
+                   "(SELECT ST_LOGIN_NAME FROM TB_STATUS_LOGIN WHERE TB_STATUS_LOGIN.ST_LOGIN_ID = UOC_STAFF.ST_LOGIN_ID) ST_LOGIN_NAME," +
                    "CAMPUS_ID," +
                    "(SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = UOC_STAFF.CAMPUS_ID) CAMPUS_NAME," +
                    "FACULTY_ID," +
@@ -349,7 +388,8 @@ namespace Personnel.Class
                             uoc_staff.RESULT2 = reader.GetValue(i++).ToString();
                             uoc_staff.PERCENT_SALARY2 = reader.GetValue(i++).ToString();
                             uoc_staff.PASSWORD = reader.GetValue(i++).ToString();
-                            uoc_staff.LOGIN_FIRST = reader.GetInt32(i++);
+                            uoc_staff.ST_LOGIN_ID = reader.GetInt32(i++);
+                            uoc_staff.ST_LOGIN_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.CAMPUS_ID = reader.IsDBNull(i++) ? 0 : reader.GetInt32(i++);
                             uoc_staff.CAMPUS_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.FACULTY_ID = reader.IsDBNull(i++) ? 0 : reader.GetInt32(i++);
@@ -408,6 +448,16 @@ namespace Personnel.Class
                 }
             }
             return fileNameList.ToArray();
+        }
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
 
     }

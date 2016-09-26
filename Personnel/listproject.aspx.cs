@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.OracleClient;
 using System.Data;
+using System.Data.OracleClient;
 using Personnel.Class;
 
 namespace Personnel
 {
-    public partial class listproject_admin : System.Web.UI.Page
+    public partial class listproject : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,7 +25,7 @@ namespace Personnel
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
             OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
-            OracleDataAdapter sda = new OracleDataAdapter("SELECT (SELECT STF_FNAME || ' ' || STF_LNAME FROM UOC_STAFF WHERE UOC_STAFF.UOC_ID = TB_PROJECT.UOC_ID) NAME, (SELECT CATEGORY_NAME FROM TB_PROJECT_CATEGORY WHERE TB_PROJECT_CATEGORY.CATEGORY_ID = TB_PROJECT.CATEGORY_ID) CATEGORY_ID, PROJECT_NAME, ADDRESS_PROJECT, PRO_ID, (SELECT ST_APPROVE_NAME FROM TB_STATUS_APPROVE WHERE TB_STATUS_APPROVE.ST_APPROVE_ID = TB_PROJECT.ST_APPROVE_ID) ST_APPROVE_NAME FROM TB_PROJECT WHERE ST_APPROVE_ID = 0 ORDER BY PRO_ID ASC", con);
+            OracleDataAdapter sda = new OracleDataAdapter("SELECT (SELECT STF_FNAME || ' ' || STF_LNAME FROM UOC_STAFF WHERE UOC_STAFF.UOC_ID = TB_PROJECT.UOC_ID) NAME, (SELECT CATEGORY_NAME FROM TB_PROJECT_CATEGORY WHERE TB_PROJECT_CATEGORY.CATEGORY_ID = TB_PROJECT.CATEGORY_ID) CATEGORY_ID, PROJECT_NAME, ADDRESS_PROJECT, PRO_ID, (SELECT ST_APPROVE_NAME FROM TB_STATUS_APPROVE WHERE TB_STATUS_APPROVE.ST_APPROVE_ID = TB_PROJECT.ST_APPROVE_ID) ST_APPROVE_NAME FROM TB_PROJECT WHERE UOC_ID = '" + loginPerson.UOC_ID + "' ORDER BY PRO_ID ASC", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             myRepeater.DataSource = dt;
@@ -47,18 +47,18 @@ namespace Personnel
         }
 
         protected void myRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
-        {
+        {   
             if (e.CommandName == "Preview" && e.CommandArgument.ToString() != "")
             {
                 LinkButton lbu = (LinkButton)e.Item.FindControl("lbuPreview");
                 string value = lbu.CommandArgument;
-                Response.Redirect("previewproject-admin.aspx?id=" + value);
+                Response.Redirect("previewproject.aspx?id=" + value);
             }
             if (e.CommandName == "Edit" && e.CommandArgument.ToString() != "")
             {
                 LinkButton lbu = (LinkButton)e.Item.FindControl("lbuEdit");
                 string value = lbu.CommandArgument;
-                Response.Redirect("editproject-admin.aspx?id=" + value);
+                Response.Redirect("editproject.aspx?id=" + value);
             }
             if (e.CommandName == "Delete" && e.CommandArgument.ToString() != "")
             {

@@ -113,6 +113,7 @@ namespace Personnel
             lbProvince.Text = LoginPerson.PROVINCE_NAME;
             lbDistrict.Text = LoginPerson.DISTRICT_NAME;
             lbSubDistrict.Text = LoginPerson.SUB_DISTRICT_NAME;
+            lbZipcode.Text = LoginPerson.ZIPCODE;
 
         }
 

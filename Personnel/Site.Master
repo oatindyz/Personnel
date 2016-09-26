@@ -85,6 +85,35 @@
     </script>
 
     <script type="text/javascript">
+        function ValidateDate(sender, args) {
+            var dateString = document.getElementById(sender.controltovalidate).value;
+            var regex = /(((0|1)[1-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
+            if (regex.test(dateString)) {
+                var parts = dateString.split("/");
+                var dt = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
+                args.IsValid = (dt.getDate() == parts[0] && dt.getMonth() + 1 == parts[1] && dt.getFullYear() == parts[2]);
+            } else {
+                args.IsValid = false;
+            }
+        }
+    </script>
+
+    <script>
+        function Comma(Num) { //function to add commas to textboxes
+            Num += '';
+            Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+            Num = Num.replace(',', ''); Num = Num.replace(',', ''); Num = Num.replace(',', '');
+            x = Num.split('.');
+            x1 = x[0];
+            x2 = x.length > 1 ? '.' + x[1] : '';
+            var rgx = /(\d+)(\d{3})/;
+            while (rgx.test(x1))
+                x1 = x1.replace(rgx, '$1' + ',' + '$2');
+            return x1 + x2;
+        }
+    </script>
+
+    <script type="text/javascript">
         function isNumberKey(evt) {
             var charCode = (evt.which) ? evt.which : event.keyCode;
             if (charCode != 46 && charCode > 31
@@ -219,8 +248,8 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10" style="text-align: center;">
-                                    <a href="profile.aspx">
-                                        <img src="Image/Small/search.png" class="icon_left" />ดูประวัติส่วนตัว</a>
+                                    <a href="profile.aspx"><img src="Image/Small/search.png" class="icon_left" />ดูประวัติส่วนตัว</a>
+                                    <a href="profile.aspx"><img src="Image/lock-icon.png" class="icon_left" />เปลี่ยนรหัสผ่าน</a>
                                 </div>
                             </div>
                         </div>    
@@ -250,6 +279,7 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="edituser.aspx"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
@@ -262,6 +292,7 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร</a>
+                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
@@ -275,6 +306,7 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลก.พ.7</a>
+                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
@@ -288,6 +320,7 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="listuser-admin.aspx"><img src="Image/Small/medal.png" />จัดการข้อมูลเครื่องราชฯ</a>
+                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
@@ -300,7 +333,8 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="#"><img src="Image/book_edit.png" />จัดการพัฒนาความรู้และทักษะวิชาชีพ</a>
+                                    <a href="listproject-admin"><img src="Image/book_edit.png" />จัดการพัฒนาความรู้และทักษะวิชาชีพ</a>
+                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>

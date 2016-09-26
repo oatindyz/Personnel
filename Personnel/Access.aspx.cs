@@ -51,7 +51,7 @@ namespace Personnel
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT ST_LOGIN_ID FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -120,7 +120,7 @@ namespace Personnel
                 con.Open();
                 int First = 0;
                 int NotFirst = 1;
-                using (OracleCommand com = new OracleCommand("SELECT LOGIN_FIRST FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'" ,con))
+                using (OracleCommand com = new OracleCommand("SELECT ST_LOGIN_ID FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'" ,con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {

@@ -1360,3 +1360,9 @@ input[type=radio] + label {
 .textred {
     color: red;
 }
+.ekknidLeft{
+    margin-left:10px
+}
+.ekknidRight{
+    margin-right:10px
+}

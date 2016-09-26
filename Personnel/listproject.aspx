@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="listproject-admin.aspx.cs" Inherits="Personnel.listproject_admin" MaintainScrollPositionOnPostback="true"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="listproject.aspx.cs" Inherits="Personnel.listproject" MaintainScrollPositionOnPostback="true"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- for Menu List -->
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -15,29 +15,17 @@
             });
         });
     </script>
-
-    <script>
-        function deleteItem() {
-            if (confirm("Are you sure?")) {
-                // your deletion code
-            }
-            return false;
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
-        <img src="Image/book_edit.png" />จัดการข้อมูลพัฒนาความรู้และทักษะวิชาชีพ
-        <span style="text-align:right; float:right;"><a href="addproject-admin.aspx">
-        <img src="Image/Small/add.png" />เพิ่มข้อมูลการพัฒนาความรู้และทักษะวิชาชีพ</a></span>
+        <img src="Image/book_edit.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน
+        <span style="text-align:right; float:right;"><a href="addproject.aspx">
+        <img src="Image/Small/add.png" />เพิ่มข้อมูลอบรม/สัมมนา/ดูงาน</a></span>
     </div>
     <div id="notification" runat="server"></div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STATUS_APPROVE&quot;"></asp:SqlDataSource>
+  
     <div id="Dp1" runat="server" class="panel panel-default">
-        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย
-            <span style="text-align:right; float:right;"><a href="#">
-            <img src="Image/Small/next.png" class="icon_left" />ดูสถานะที่อนุมัติแล้ว</a></span>
-        </div>
+        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย</div>
         <div class="panel-body">
             <div class="panel-body">
                 <div id="divLoad" runat="server" class="dataTable_wrapper">
@@ -53,7 +41,7 @@
                                 <th>สถานะ</th>
                             </tr>
                         </thead>
-                        <asp:Repeater ID="myRepeater" runat="server" OnItemCommand="myRepeater_ItemCommand">
+                        <asp:Repeater ID="myRepeater" runat="server" OnItemDataBound="myRepeater_ItemDataBound" OnItemCommand="myRepeater_ItemCommand">
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Container.ItemIndex + 1 %><asp:HiddenField ID="HF1" runat="server" Value='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>'/></td>

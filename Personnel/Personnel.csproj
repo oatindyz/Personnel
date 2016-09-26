@@ -185,6 +185,8 @@
   <ItemGroup>
     <Content Include="404.aspx" />
     <Content Include="Access.aspx" />
+    <Content Include="addproject-admin.aspx" />
+    <Content Include="addproject.aspx" />
     <Content Include="adduser-admin.aspx" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl_res_cs.cab" />
@@ -1194,6 +1196,8 @@
     <Content Include="dist\css\sb-admin-2.css" />
     <Content Include="dist\css\timeline.css" />
     <Content Include="dist\js\sb-admin-2.js" />
+    <Content Include="editproject-admin.aspx" />
+    <Content Include="editproject.aspx" />
     <Content Include="edituser-admin.aspx" />
     <Content Include="edituser.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
@@ -1211,6 +1215,7 @@
     <Content Include="Image\dcicon1.png" />
     <Content Include="Image\Doc16.png" />
     <Content Include="Image\document-16.png" />
+    <Content Include="Image\githubdotcom.jpg" />
     <Content Include="Image\lock-icon.png" />
     <Content Include="Image\logout.png" />
     <Content Include="Image\plus-gray.png" />
@@ -1643,6 +1648,7 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="listproject-admin.aspx" />
+    <Content Include="listproject.aspx" />
     <Content Include="listuser-admin.aspx" />
     <Content Include="managerole-admin.aspx" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
@@ -3282,6 +3288,7 @@
     <Content Include="plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="previewproject-admin.aspx" />
     <Content Include="previewuser-admin.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
@@ -3321,7 +3328,9 @@
     <Content Include="Script\JSFunction.js" />
     <Content Include="testpage.aspx" />
     <Content Include="testpage1.aspx" />
-    <Content Include="Upload\PersonImage\fmiiwnji26a2epv1l9a1ju31.jpg" />
+    <Content Include="Upload\PersonImage\fmiiwnji26a2epv1l9a1ju31.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -3353,6 +3362,20 @@
     <Compile Include="Access.aspx.designer.cs">
       <DependentUpon>Access.aspx</DependentUpon>
     </Compile>
+    <Compile Include="addproject-admin.aspx.cs">
+      <DependentUpon>addproject-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addproject-admin.aspx.designer.cs">
+      <DependentUpon>addproject-admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addproject.aspx.cs">
+      <DependentUpon>addproject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addproject.aspx.designer.cs">
+      <DependentUpon>addproject.aspx</DependentUpon>
+    </Compile>
     <Compile Include="adduser-admin.aspx.cs">
       <DependentUpon>adduser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3375,6 +3398,7 @@
     <Compile Include="Class\Manage.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
+    <Compile Include="Class\Project.cs" />
     <Compile Include="Class\UOC_STAFF.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
     <Compile Include="DataManager.aspx.cs">
@@ -3390,6 +3414,20 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editproject-admin.aspx.cs">
+      <DependentUpon>editproject-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editproject-admin.aspx.designer.cs">
+      <DependentUpon>editproject-admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="editproject.aspx.cs">
+      <DependentUpon>editproject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="editproject.aspx.designer.cs">
+      <DependentUpon>editproject.aspx</DependentUpon>
     </Compile>
     <Compile Include="edituser-admin.aspx.cs">
       <DependentUpon>edituser-admin.aspx</DependentUpon>
@@ -3415,6 +3453,13 @@
     <Compile Include="listproject-admin.aspx.designer.cs">
       <DependentUpon>listproject-admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listproject.aspx.cs">
+      <DependentUpon>listproject.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listproject.aspx.designer.cs">
+      <DependentUpon>listproject.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listuser-admin.aspx.cs">
       <DependentUpon>listuser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3438,6 +3483,13 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="MyCrypto.cs" />
+    <Compile Include="previewproject-admin.aspx.cs">
+      <DependentUpon>previewproject-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="previewproject-admin.aspx.designer.cs">
+      <DependentUpon>previewproject-admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="previewuser-admin.aspx.cs">
       <DependentUpon>previewuser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

@@ -376,8 +376,7 @@
                                 ระบบได้ทำการบันทึกข้อมูลบุคลากรเรียบร้อยแล้ว
                             </div>
                             <div style="text-align: center; margin-top: 10px;">
-                                <a href="Default.aspx" class="ps-button">
-                                    <img src="Image/Small/home3.png" class="icon_left" />กลับหน้าหลัก</a>
+                                <a href="Default.aspx" class="ps-button btn btn-primary"><img src="Image/Small/home3.png" class="icon_left" />กลับหน้าหลัก</a>
                             </div>
                         </div>
                     </asp:View>
@@ -388,6 +387,6 @@
         <asp:Button ID="btnSelectView0" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView0_Click" Text="หน้าที่ 1"></asp:Button>
         <asp:Button ID="btnSelectView1" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView1_Click" Text="หน้าที่ 2"></asp:Button>
         <asp:Button ID="btnSelectView2" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView2_Click" Text="หน้าที่ 3"></asp:Button>
-        <asp:Button ID="btnUpdatePerson" runat="server" CssClass="btn btn-primary" OnClick="lbuUpdatePerson_Click" Text="แก้ไขข้อมูลบุคลากร"></asp:Button>
+        <asp:Button ID="btnUpdatePerson" runat="server" CssClass="btn btn-success" OnClick="lbuUpdatePerson_Click" Text="บันทึก"></asp:Button>
     </div>
 </asp:Content>

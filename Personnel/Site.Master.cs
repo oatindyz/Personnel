@@ -38,10 +38,10 @@ namespace Personnel
                 lbPositionRank.Text = loginPerson.ADMIN_POSITION_NAME;
                 lbDepartment.Text = loginPerson.DEPARTMENT_NAME;
 
-                string name = loginPerson.FirstNameAndLastName;
+                string name = loginPerson.FullName;
                 profile_name.InnerText = name;
 
-                if (loginPerson.LOGIN_FIRST == 0)
+                if (loginPerson.ST_LOGIN_ID == 0)
                 {
                     menu1.Visible = false;
                 }

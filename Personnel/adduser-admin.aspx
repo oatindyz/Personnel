@@ -105,20 +105,6 @@
     </script>
 
     <script type="text/javascript">
-        function ValidateDate(sender, args) {
-            var dateString = document.getElementById(sender.controltovalidate).value;
-            var regex = /(((0|1)[1-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$/;
-            if (regex.test(dateString)) {
-                var parts = dateString.split("/");
-                var dt = new Date(parts[1] + "/" + parts[0] + "/" + parts[2]);
-                args.IsValid = (dt.getDate() == parts[0] && dt.getMonth() + 1 == parts[1] && dt.getFullYear() == parts[2]);
-            } else {
-                args.IsValid = false;
-            }
-        }
-    </script>
-
-    <script type="text/javascript">
         $(function () {
             var thaiYear = function (ct) {
                 var leap = 3;
@@ -150,12 +136,16 @@
     <script>
         function SelectNoTeach(selectElement) {
             var selectedOption = selectElement.selectedIndex;
+            var JgetOBJ = $('#<%=ddlTeachISCED.ClientID%>');
             if (selectedOption == 2)
-                document.getElementById('<%=ddlTeachISCED.ClientID%>').disabled = true;
+                JgetOBJ.val("").trigger("change");
+            if (selectedOption == 2)
+                JgetOBJ.select2("enable", false)
             else
-                document.getElementById('<%=ddlTeachISCED.ClientID%>').disabled = false;
+                JgetOBJ.select2("enable", true)       
         }
     </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -241,6 +231,7 @@
                                     <td class="col1">อำเภอ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
                                         <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -469,8 +460,7 @@
                                 ระบบได้ทำการบันทึกข้อมูลบุคลากรเรียบร้อยแล้ว
                             </div>
                             <div style="text-align: center; margin-top: 10px;">
-                                <a href="Default.aspx" class="ps-button">
-                                    <img src="Image/Small/home3.png" class="icon_left" />กลับหน้าหลัก</a>
+                                <a href="Default.aspx" class="ps-button btn btn-primary"><img src="Image/Small/home3.png" class="icon_left" />กลับหน้าหลัก</a>
                             </div>
                         </div>
                     </asp:View>
@@ -482,6 +472,6 @@
         <asp:Button ID="btnSelectView0" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView0_Click" Text="หน้าที่ 1"></asp:Button>
         <asp:Button ID="btnSelectView1" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView1_Click" Text="หน้าที่ 2"></asp:Button>
         <asp:Button ID="btnSelectView2" runat="server" CssClass="btn btn-primary" OnClick="lbuSelectView2_Click" Text="หน้าที่ 3"></asp:Button>
-        <asp:Button ID="btnAddPerson" runat="server" CssClass="btn btn-primary" OnClick="lbuAddPerson_Click" Text="เพิ่มข้อมูลบุคลากร"></asp:Button>
+        <asp:Button ID="btnAddPerson" runat="server" CssClass="btn btn-success" OnClick="lbuAddPerson_Click" Text="บันทึก"></asp:Button>
     </div>
 </asp:Content>

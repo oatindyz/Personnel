@@ -79,7 +79,8 @@ namespace Personnel.Class
         public string RESULT2;
         public string PERCENT_SALARY2;
         public string PASSWORD;
-        public int LOGIN_FIRST;
+        public int ST_LOGIN_ID;
+        public string ST_LOGIN_NAME;
         public int CAMPUS_ID;
         public string CAMPUS_NAME;
         public int FACULTY_ID;
@@ -102,11 +103,11 @@ namespace Personnel.Class
 
         public bool IsLoginFirst()
         {
-            return LOGIN_FIRST == 0;
+            return ST_LOGIN_ID == 0;
         }
         public bool IsLoginSecond()
         {
-            return LOGIN_FIRST == 1;
+            return ST_LOGIN_ID == 1;
         }
 
 

@@ -74,7 +74,7 @@ namespace Personnel
                     return;
                 }
 
-                DatabaseManager.ExecuteNonQuery("UPDATE UOC_STAFF SET PASSWORD = '" + tbPasswordNew.Text + "', LOGIN_FIRST = 1 WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'");
+                DatabaseManager.ExecuteNonQuery("UPDATE UOC_STAFF SET PASSWORD = '" + tbPasswordNew.Text + "', ST_LOGIN_ID = 1 WHERE CITIZEN_ID = '" + loginPerson.CITIZEN_ID + "'");
                 Label12X.Text = "ตั้งรหัสผ่านสำเร็จ";
                 Label12X.ForeColor = System.Drawing.Color.Green;
             }

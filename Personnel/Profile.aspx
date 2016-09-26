@@ -7,17 +7,20 @@
             min-height: 200px;
             padding: 5px;
         }
-        .c1 a {
-            border: 1px solid transparent;
-            display: inline-block;
-            margin: 2px;
-        }
-        .c1 a:hover {
-            border: 1px solid #ffffff;
-        }
-        .c1 img {
-            max-height: 190px;
-        }
+
+            .c1 a {
+                border: 1px solid transparent;
+                display: inline-block;
+                margin: 2px;
+            }
+
+                .c1 a:hover {
+                    border: 1px solid #ffffff;
+                }
+
+            .c1 img {
+                max-height: 190px;
+            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -104,10 +107,16 @@
                     <div class="ps-box-hd10">
                         <img src="Image/Small/image.png" />รูปภาพ
                     </div>
-                    <div class="ps-box-ct10">
-                        <div style="background-color: #f0f0f0; color: #000000; padding: 5px 10px;" id="id1" runat="server">
-                            <asp:FileUpload ID="FileUpload1" runat="server" />
-                            <asp:LinkButton ID="lbuUploadPicture" runat="server" OnClick="lbuUploadPicture_Click" CssClass="ps-button"><img src="Image/Small/upload.png" class="icon_left"/>อัพโหลด</asp:LinkButton>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <div style="background-color: #f0f0f0; color: #000000; padding: 5px 10px;" id="id1" runat="server">
+                                    <div class="">
+                                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-success" />
+                                        <asp:LinkButton ID="lbuUploadPicture" runat="server" OnClick="lbuUploadPicture_Click" CssClass="btn btn-info"><img src="Image/Small/upload.png" class="icon_left"/>อัพโหลด</asp:LinkButton>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="c1" id="profile_images" runat="server">
                         </div>

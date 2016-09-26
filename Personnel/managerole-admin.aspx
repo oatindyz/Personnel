@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="managerole-admin.aspx.cs" Inherits="Personnel.managerole_admin" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="managerole-admin.aspx.cs" Inherits="Personnel.managerole_admin" MaintainScrollPositionOnPostback="true"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- for Menu List -->
@@ -24,6 +24,7 @@
     <div id="notification" runat="server"></div>
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_PERSON_ROLE&quot;"></asp:SqlDataSource>
     <div id="Dp1" runat="server" class="panel panel-default">
+        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย</div>
         <div class="panel-body">
             <div class="panel-body">
                 <div id="divLoad" runat="server" class="dataTable_wrapper">
@@ -44,9 +45,8 @@
                                     <td><asp:Label ID="lbID" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UOC_ID") %>'></asp:Label></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
-                                    <td>
-                                        <asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control input-sm select2" DataSourceID="SqlDataSource1" DataValueField="PERSON_ROLE_ID" DataTextField="PERSON_ROLE_NAME" SelectedValue='<%# DataBinder.Eval(Container.DataItem, "PERSON_ROLE_ID") %>' ></asp:DropDownList></td>
-                                    <td style="text-align:center;"><asp:Button ID="btn1" runat="server" CssClass="btn btn-primary" Text="บันทึก" OnClick="btn1_Click"/></td>
+                                    <td><asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control input-sm select2" DataSourceID="SqlDataSource1" DataValueField="PERSON_ROLE_ID" DataTextField="PERSON_ROLE_NAME" SelectedValue='<%# DataBinder.Eval(Container.DataItem, "PERSON_ROLE_ID") %>' ></asp:DropDownList></td>
+                                    <td style="text-align:center;"><asp:Button ID="btn1" runat="server" CssClass="btn btn-success" Text="บันทึก" OnClick="btn1_Click"/></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>
@@ -55,6 +55,4 @@
             </div>
         </div>
     </div>
-    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
 </asp:Content>
