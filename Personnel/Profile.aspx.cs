@@ -125,7 +125,7 @@ namespace Personnel
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
 
-        protected void lbuUploadPicture_Click(object sender, EventArgs e)
+        protected void btn1_Click(object sender, EventArgs e)
         {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF LoginPerson = ps.LoginPerson;
@@ -149,8 +149,6 @@ namespace Personnel
                 }
             }
             Page.Response.Redirect(Page.Request.Url.ToString(), true);
-        
         }
-
     }
 }

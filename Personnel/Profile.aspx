@@ -108,22 +108,19 @@
                         <img src="Image/Small/image.png" />รูปภาพ
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="input-group">
-                                <div style="background-color: #f0f0f0; color: #000000; padding: 5px 10px;" id="id1" runat="server">
-                                    <div class="">
-                                        <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-success" />
-                                        <asp:LinkButton ID="lbuUploadPicture" runat="server" OnClick="lbuUploadPicture_Click" CssClass="btn btn-info"><img src="Image/Small/upload.png" class="icon_left"/>อัพโหลด</asp:LinkButton>
-                                    </div>
+                        <div class="input-group">
+                            <div style="background-color: #f0f0f0; color: #000000; padding: 5px 10px;" id="id1" runat="server">
+                                <div class="">
+                                    <asp:FileUpload ID="FileUpload1" runat="server" CssClass="btn btn-warning" required="required" />
+                                    <asp:Button ID="btn1" runat="server" OnClick="btn1_Click" CssClass="btn btn-success" Text="อัพโหลด" />
                                 </div>
                             </div>
                         </div>
-                        <div class="c1" id="profile_images" runat="server">
-                        </div>
                     </div>
+                </div>
+                <div class="c1" id="profile_images" runat="server">
                 </div>
             </div>
         </div>
     </div>
-
 </asp:Content>

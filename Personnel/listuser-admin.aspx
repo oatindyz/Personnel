@@ -36,19 +36,20 @@
                                 <th>ชื่อ-สกุล</th>
                                 <th>ประเภทบุครากร</th>
                                 <th>คณะ/หน่วยงาน</th>
-                                <th><img src="Image/Small/list.png" class="icon_left" />ดูข้อมูล</th>
-                                <th><img src="Image/Small/document-edit.png" class="icon_left" />แก้ไขข้อมูล</th>
+                                <th><img src="Image/Small/document-edit.png" class="icon_left" />จัดการข้อมูล</th>
                             </tr>
                         </thead>
-                        <asp:Repeater ID="myRepeater" runat="server">
+                        <asp:Repeater ID="myRepeater" runat="server" OnItemCommand="myRepeater_ItemCommand">
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Container.ItemIndex +1 %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "STAFF_NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
-                                    <td style="text-align:center;"><a href="previewuser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>" class="btn btn-primary">ดู</a></td>
-                                    <td style="text-align:center;"><a href="edituser-admin.aspx?id=<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>" class="btn btn-warning">แก้ไข</a></td>
+                                    <td>
+                                        <a><asp:LinkButton ID="lbuPreview" CommandName="Preview" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>' class="btn btn-info ekknidRight">ดู</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuEdit" CommandName="Edit" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>' class="btn btn-warning">แก้ไข</asp:LinkButton></a>
+                                    </td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

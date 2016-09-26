@@ -31,6 +31,21 @@ namespace Personnel
             myRepeater.DataBind();
         }
 
+        protected void myRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "Preview" && e.CommandArgument.ToString() != "")
+            {
+                LinkButton lbu = (LinkButton)e.Item.FindControl("lbuPreview");
+                string value = lbu.CommandArgument;
+                Response.Redirect("previewuser-admin.aspx?id=" + value);
+            }
+            if (e.CommandName == "Edit" && e.CommandArgument.ToString() != "")
+            {
+                LinkButton lbu = (LinkButton)e.Item.FindControl("lbuEdit");
+                string value = lbu.CommandArgument;
+                Response.Redirect("edituser-admin.aspx?id=" + value);
+            }
+        }
 
     }
 }

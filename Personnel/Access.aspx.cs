@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+using System.Text;
 using Personnel.Class;
 using System.Data.OracleClient;
+using System.Security.Cryptography;
 
 namespace Personnel
 {
@@ -22,27 +19,31 @@ namespace Personnel
 
         }
 
-        private bool ValidateForm()
+        static string GetMd5Hash(MD5 md5Hash, string input)
         {
-            bool isvalidate = true;
-
-            string username = this.tbUsername.Text;
-            string password = this.tbPassword.Text;
-
-            if (string.IsNullOrEmpty(username))
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
             {
-                this.LabelBottom.Text = "กรุณากรอกรหัสบัตรประชาชน";
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbUsername);
-                isvalidate = false;
+                sBuilder.Append(data[i].ToString("x2"));
             }
-            else if (string.IsNullOrEmpty(password))
-            {
-                this.LabelBottom.Text = "กรุณากรอกรหัสผ่าน";
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbPassword);
-                isvalidate = false;
-            }
+            return sBuilder.ToString();
+        }
 
-            return isvalidate;
+        static bool VerifyMd5Hash(MD5 md5Hash, string input, string hash)
+        {
+            string hashOfInput = GetMd5Hash(md5Hash, input);
+
+            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+
+            if (0 == comparer.Compare(hashOfInput, hash))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         protected void tbUsername_TextChanged(object sender, EventArgs e)
@@ -88,7 +89,8 @@ namespace Personnel
                             {
                                 LabelBottom.Text = "ไม่พบผู้ใช้งาน!";
                                 return;
-                            }else
+                            }
+                            else
                             {
                                 LabelBottom.Text = "";
                             }
@@ -99,9 +101,8 @@ namespace Personnel
 
         }
 
-        protected void lbuLogin_Click(object sender, EventArgs e)
+        protected void btnLogin_Click(object sender, EventArgs e)
         {
-            ValidateForm();
             if (string.IsNullOrEmpty(tbUsername.Text) || string.IsNullOrEmpty(tbPassword.Text))
             {
                 LabelBottom.Text = "กรุณากรอกรหัสประชาชนและรหัสผ่าน";
@@ -120,53 +121,58 @@ namespace Personnel
                 con.Open();
                 int First = 0;
                 int NotFirst = 1;
-                using (OracleCommand com = new OracleCommand("SELECT ST_LOGIN_ID FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'" ,con))
+                using (OracleCommand com = new OracleCommand("SELECT ST_LOGIN_ID,PASSWORD FROM UOC_STAFF WHERE CITIZEN_ID ='" + tbUsername.Text + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-                            if (!reader.IsDBNull(0))
+                            string source = tbPassword.Text;
+                            using (MD5 md5Hash = MD5.Create())
                             {
-                                if (reader.GetInt32(0) == First)
-                                {
-                                    if (DatabaseManager.ValidatePasswordFirst(tbUsername.Text, tbPassword.Text))
-                                    {
-                                        PersonnelSystem ps = new PersonnelSystem();
-                                        ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
-                                        Session["PersonnelSystem"] = ps;
-                                        Response.Redirect("ChangePassword.aspx");
-                                    }
-                                    else
-                                    {
-                                        LabelBottom.Text = "รหัสผ่านไม่ถูกต้อง!";
-                                        return;
-                                    }
-                                    Response.Redirect("Default.aspx");
-                                }
+                                string hash = GetMd5Hash(md5Hash, source);
 
-                                if (reader.GetInt32(0) == NotFirst)
+                                if (!reader.IsDBNull(0))
                                 {
-                                    if (DatabaseManager.ValidatePasswordNotFirst(tbUsername.Text, tbPassword.Text))
+                                    if (reader.GetInt32(0) == First)
                                     {
-                                        PersonnelSystem ps = new PersonnelSystem();
-                                        ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
-                                        Session["PersonnelSystem"] = ps;
+                                        if (DatabaseManager.ValidatePasswordFirst(tbUsername.Text, tbPassword.Text))
+                                        {
+                                            PersonnelSystem ps = new PersonnelSystem();
+                                            ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                                            Session["PersonnelSystem"] = ps;
+                                            Response.Redirect("ChangePassword.aspx");
+                                            Response.Redirect("Default.aspx");
+                                        }
+                                        else
+                                        {
+                                            LabelBottom.Text = "รหัสผ่านไม่ถูกต้อง!";
+                                            return;
+                                        }
                                     }
-                                    else
+
+                                    if (reader.GetInt32(0) == NotFirst)
                                     {
-                                        LabelBottom.Text = "รหัสผ่านไม่ถูกต้อง!";
-                                        return;
+                                        if (reader.GetString(1) == hash.ToString())
+                                        {
+                                            PersonnelSystem ps = new PersonnelSystem();
+                                            ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+                                            Session["PersonnelSystem"] = ps;
+                                            Response.Redirect("Default.aspx");
+                                        }
+                                        else
+                                        {
+                                            LabelBottom.Text = "รหัสผ่านไม่ถูกต้อง!";
+                                            return;
+                                        }
                                     }
-                                    Response.Redirect("Default.aspx");
+
                                 }
                             }
                         }
                     }
                 }
-            }      
+            }
         }
-
-        
     }
 }

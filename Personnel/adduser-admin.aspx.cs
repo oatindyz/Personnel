@@ -261,8 +261,11 @@ namespace Personnel
 
             PS_PERSON person = new PS_PERSON();
             int LastID = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT UOC_ID +1 UOC_ID FROM UOC_STAFF ORDER BY UOC_ID DESC) WHERE ROWNUM = 1");
+
+            DateTime CurrentBudda = DateTime.Now.AddYears(0);
+
             person.UOC_ID = LastID;
-            person.YEAR = DateTime.Now.Year.ToString();
+            person.YEAR = CurrentBudda.ToString("yyyy");
             person.UNIV_ID = ddlUniv.SelectedValue;
             person.CITIZEN_ID = tbCitizenID.Text;
             person.PREFIX_NAME = ddlPrefixName.SelectedValue;
@@ -310,8 +313,10 @@ namespace Personnel
             person.RESULT2 = tbResult2.Text;
             person.PERCENT_SALARY2 = tbPercentSalary2.Text;
             person.ST_LOGIN_ID = 0;
+            person.PERSON_ROLE_ID = 1;
 
             person.INSERT_PERSON();
+            ClearNotification();
             MultiView1.ActiveViewIndex = 3;
 
             btnSelectView0.Visible = false;

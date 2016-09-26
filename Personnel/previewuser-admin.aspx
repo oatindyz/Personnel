@@ -8,6 +8,8 @@
 
         <div class="ps-header">
             <img src="Image/Small/person2.png" />ข้อมูลบุคลากร
+            <span style="text-align:right; float:right;"><a href="listuser-admin.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
 
         <div class="panel panel-default">

@@ -70,27 +70,5 @@ namespace Personnel
             }
         }
 
-        protected void myRepeater_ItemDataBound(object sender, RepeaterItemEventArgs e)
-        {
-            if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
-            {
-                Label activeLabel = (Label)e.Item.FindControl("lbStatusApprove");
-                LinkButton lbuedit = (LinkButton)e.Item.FindControl("lbuEdit");
-                LinkButton lbudelete = (LinkButton)e.Item.FindControl("lbuDelete");
-
-                string s = activeLabel.Text;
-
-                if (s != "ยังไม่อนุมัติ")
-                {
-                    lbuedit.Visible = false;
-                    lbudelete.Visible = false;
-                }
-                else
-                {
-                    lbuedit.Visible = true;
-                    lbudelete.Visible = true;
-                }
-            }
-        }
     }
 }

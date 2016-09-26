@@ -102,9 +102,9 @@
                         </div>
                         <div class="ps-box-i0">
                             <div class="ps-box-ct10-cen">
-                                <asp:Panel ID="Panel1" runat="server" DefaultButton="lbuLogin">
+                                <asp:Panel ID="Panel1" runat="server" DefaultButton="btnLogin">
                                     <div class="well input-group date">
-                                        <asp:TextBox ID="tbUsername" runat="server" CssClass="form-control" MaxLength="13" placeHolder="รหัสประชาชน" onkeyup="RefreshUpdatePanel();" onkeypress="return isNumberKey(event)" AutoPostBack="true" OnTextChanged="tbUsername_TextChanged"></asp:TextBox>
+                                        <asp:TextBox ID="tbUsername" runat="server" CssClass="form-control" MaxLength="13" placeHolder="รหัสประชาชน" onkeyup="RefreshUpdatePanel();" onkeypress="return isNumberKey(event)" AutoPostBack="true" OnTextChanged="tbUsername_TextChanged" required="required" TabIndex="1"></asp:TextBox>
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
                                     </div>
                                     <div>
@@ -117,7 +117,7 @@
                                     <div class="well input-group date" data-provide="datepicker" data-date-format="mm/dd/yyyy">
                                         <asp:UpdatePanel ID="UpdatetbPassword" runat="server">
                                             <ContentTemplate>
-                                                <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="25"></asp:TextBox>
+                                                <asp:TextBox ID="tbPassword" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่าน" MaxLength="25" required="required" TabIndex="1"></asp:TextBox>
                                             </ContentTemplate>
                                             <Triggers>
                                                 <asp:AsyncPostBackTrigger ControlID="tbPassword" />
@@ -126,7 +126,7 @@
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                                     </div>
                                     <div>
-                                        <asp:LinkButton ID="lbuLogin" runat="server" OnClick="lbuLogin_Click" CssClass="ps-button" Style="font-size: 16px; margin-top: 2px;"><img src="Image/Small/key.png" class="icon_left"/>เข้าสู่ระบบ</asp:LinkButton>
+                                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-info" OnClick="btnLogin_Click" Text="เข้าสู่ระบบ" />
                                     </div>
                                     <div>
                                         <asp:UpdatePanel ID="UpdateLabel12X" runat="server">

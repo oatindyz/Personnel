@@ -177,7 +177,6 @@
 
                     </div>
 
-
                     <div class="ps-ms-main-drop" id="menu1-ct">
                         <div class="ps-ms-main-drop-hd">
                             <img src="Image/x32/menu.png" />เมนู
@@ -249,16 +248,14 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10" style="text-align: center;">
                                     <a href="profile.aspx"><img src="Image/Small/search.png" class="icon_left" />ดูประวัติส่วนตัว</a>
-                                    <a href="profile.aspx"><img src="Image/lock-icon.png" class="icon_left" />เปลี่ยนรหัสผ่าน</a>
+                                    <a href="ChangePassword.aspx"><img src="Image/lock-icon.png" class="icon_left" />เปลี่ยนรหัสผ่าน</a>
                                 </div>
                             </div>
                         </div>    
 
                         <div id="MenuRoleID99" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10">
-                                    <img src="Image/Small/wrench.png" />จัดการข้อมูล
-                                </div>
+                                <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -270,11 +267,9 @@
                             </div>
                         </div>
 
-                        <div id="MenuRoleID1" runat="server" class="ps-box-il-ms">
+                        <div id="MenuPublic" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10">
-                                    <img src="Image/Small/person2.png" />บุคลากร
-                                </div>
+                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -284,57 +279,45 @@
                             </div>
                         </div>
 
-                        <div id="MenuRoleID2" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร
-                                </div>
+                        <div id="MenuRoleID2Duty" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0"><div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร</a>
-                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="MenuRoleID3" runat="server" class="ps-box-il-ms">
+                        <div id="MenuRoleID3Duty" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10">
-                                    <img src="Image/Small/person2.png" />บุคลากร
-                                </div>
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลก.พ.7</a>
-                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
+                                    <a href="#"><img src="Image/book_edit.png" />จัดการข้อมูลก.พ.7</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="MenuRoleID4" runat="server" class="ps-box-il-ms">
+                        <div id="MenuRoleID4Duty" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10">
-                                    <img src="Image/Small/person2.png" />บุคลากร
-                                </div>
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="listuser-admin.aspx"><img src="Image/Small/medal.png" />จัดการข้อมูลเครื่องราชฯ</a>
-                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
+                                    <a href="#"><img src="Image/Small/medal.png" />จัดการข้อมูลเครื่องราชฯ</a>
                                 </div>
                             </div>
                         </div>
 
-                        <div id="MenuRoleID5" runat="server" class="ps-box-il-ms">
+                        <div id="MenuRoleID5Duty" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10">
-                                    <img src="Image/Small/person2.png" />บุคลากร
-                                </div>
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="listproject-admin"><img src="Image/book_edit.png" />จัดการพัฒนาความรู้และทักษะวิชาชีพ</a>
-                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>

@@ -49,7 +49,7 @@
                                 <th>ประเภทโครงการ</th>
                                 <th>ชื่อโครงการ</th>
                                 <th>สถานที่จัดโครงการ</th>
-                                <th><img src="Image/Small/document-edit.png" class="icon_left" />สถานที่จัดโครงการ</th>
+                                <th><img src="Image/Small/document-edit.png" class="icon_left" />จัดการข้อมูล</th>
                                 <th>สถานะ</th>
                             </tr>
                         </thead>

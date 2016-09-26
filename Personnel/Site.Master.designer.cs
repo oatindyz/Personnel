@@ -148,49 +148,49 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID99;
         
         /// <summary>
-        /// MenuRoleID1 control.
+        /// MenuPublic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuPublic;
         
         /// <summary>
-        /// MenuRoleID2 control.
+        /// MenuRoleID2Duty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID2;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID2Duty;
         
         /// <summary>
-        /// MenuRoleID3 control.
+        /// MenuRoleID3Duty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID3;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID3Duty;
         
         /// <summary>
-        /// MenuRoleID4 control.
+        /// MenuRoleID4Duty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID4;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID4Duty;
         
         /// <summary>
-        /// MenuRoleID5 control.
+        /// MenuRoleID5Duty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID5;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID5Duty;
         
         /// <summary>
         /// noti_ins_none control.
