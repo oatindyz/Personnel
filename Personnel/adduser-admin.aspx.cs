@@ -207,57 +207,198 @@ namespace Personnel
                 ChangeNotification("danger", "รหัสบัตรประชาชนซ้ำ");
                 return;
             }
+            ///
 
-            DateTime birthday = DateTime.Parse(tbBirthday.Text);
-            DateTime today1 = DateTime.Now;
-
-            if (birthday > today1)
+            if (tbCitizenID.Text == "")
             {
                 MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
-                ChangeNotification("danger", "วันเกิด ต้องไม่มากกว่า วันปัจจุบัน");
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbCitizenID);
                 return;
             }
-
-            if (tbZipcode.Text.Length != 5)
+            if (tbName.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbName);
+                return;
+            }
+            if (tbLastName.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbLastName);
+                return;
+            }
+            if (ddlProvince.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlProvince);
+                return;
+            }
+            if (ddlDistrict.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlDistrict);
+                return;
+            }
+            if (ddlSubDistrict.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlSubDistrict);
+                return;
+            }
+            if (tbZipcode.Text == "")
             {
                 MultiView1.ActiveViewIndex = 0;
                 ScriptManager.GetCurrent(this.Page).SetFocus(this.tbZipcode);
-                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์ให้ครบ 5 หลัก");
+                return;
+            }
+            if (ddlNation.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlNation);
                 return;
             }
 
-            /*DateTime dateinwork = DateTime.Parse(tbDateInwork.Text);
-            DateTime datestartthisu = DateTime.Parse(tbDateStartThisU.Text);
-            DateTime today2 = DateTime.Now;
-            DateTime twentyOne = birthday.AddYears(21);
-
-            int totalDateInwork = (int)(dateinwork - today2).TotalDays +0;
-
-
-            if (dateinwork < 7685)
+            if (ddlStafftype.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlStafftype);
+                return;
+            }
+            if (ddlTimeContact.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlTimeContact);
+                return;
+            }
+            if (ddlBudget.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlBudget);
+                return;
+            }
+            if (ddlSubStafftype.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlSubStafftype);
+                return;
+            }
+            if (ddlPosition.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlPosition);
+                return;
+            }
+            if (ddlDepartment.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlDepartment);
+                return;
+            }
+            if (tbDateInwork.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
+                return;
+            }
+            if (tbDateStartThisU.Text == "")
             {
                 MultiView1.ActiveViewIndex = 1;
                 ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
-                ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่มากกว่า วันปัจจุบันได้");
+                return;
+            }
+            if (ddlGradLev.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlGradLev);
+                return;
+            }
+            if (tbGradCURR.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbGradCURR);
+                return;
+            }
+            if (ddlGradISCED.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlGradISCED);
+                return;
+            }
+            if (ddlGradProg.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlGradProg);
                 return;
             }
 
-            if (totalDateInwork < 7685)
+            ///
+            if (tbBirthday.Text != "")
             {
-                MultiView1.ActiveViewIndex = 1;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
-                ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรก ต้องมากกว่า วันเกิด21ปี");
-                return;
+                DateTime birthday = DateTime.Parse(tbBirthday.Text);
+                DateTime today1 = DateTime.Now;
+                if (birthday > today1)
+                {
+                    MultiView1.ActiveViewIndex = 0;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
+                    ChangeNotification("danger", "อายุต้องไม่มากกว่าวันปัจจุบัน");
+                    return;
+                }
+
+                DateTime BirthYear = DateTime.Parse(tbBirthday.Text);
+                DateTime YearNow = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
+                int totalDays2 = (int)(YearNow - BirthYear).TotalDays + 0;
+                if (totalDays2 < 8030)
+                {
+                    MultiView1.ActiveViewIndex = 0;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
+                    ChangeNotification("danger", "อายุต้องไม่ต่ำกว่า22ปี");
+                    return;
+                }
             }
 
-            if ()
+            if (tbBirthday.Text != "" && tbDateInwork.Text != "")
             {
-                MultiView1.ActiveViewIndex = 1;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
-                ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่น้อยกว่า วันที่เข้าทำงานครั้งแรก");
-                return;
-            }*/
+                DateTime birthday = DateTime.Parse(tbBirthday.Text);
+                DateTime DateInwork = DateTime.Parse(tbDateInwork.Text);
+                int totalDays3 = (int)(DateInwork - birthday).TotalDays + 0;
+
+                if (totalDays3 < 0)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
+                    ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรกต้องไม่น้อยกว่าวันเกิด");
+                    return;
+                }
+            }
+
+            if (tbBirthday.Text != "" && tbDateStartThisU.Text != "")
+            {
+                DateTime birthday = DateTime.Parse(tbBirthday.Text);
+                DateTime DateStartThisU = DateTime.Parse(tbDateStartThisU.Text);
+                int totalDays3 = (int)(DateStartThisU - birthday).TotalDays + 0;
+
+                if (totalDays3 < 0)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบันต้องไม่น้อยกว่าวันเกิด");
+                    return;
+                }
+            }
+            if (tbDateInwork.Text != "" && tbDateStartThisU.Text != "")
+            {
+                DateTime DateInwork = DateTime.Parse(tbDateInwork.Text);
+                DateTime DateStartThisU = DateTime.Parse(tbDateStartThisU.Text);
+                int totalDays3 = (int)(DateStartThisU - DateInwork).TotalDays + 0;
+
+                if (totalDays3 > 0)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบันต้องไม่มากกว่าวันที่เข้าทำงานครั้งแรก");
+                    return;
+                }
+            }
 
             PS_PERSON person = new PS_PERSON();
             int LastID = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT UOC_ID +1 UOC_ID FROM UOC_STAFF ORDER BY UOC_ID DESC) WHERE ROWNUM = 1");

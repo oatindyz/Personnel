@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Personnel.Class;
+using System.IO;
 using System.Data.OracleClient;
+using System.Data;
 
 namespace Personnel
 {
@@ -25,10 +27,59 @@ namespace Personnel
         protected void BindDDL()
         {
             DatabaseManager.BindDropDown(ddlCategory, "SELECT * FROM TB_PROJECT_CATEGORY ORDER BY CATEGORY_ID", "CATEGORY_NAME", "CATEGORY_ID", "--กรุณาเลือก--");
+            DatabaseManager.BindDropDown(ddlCountry, "SELECT * FROM TB_PROJECT_COUNTRY ORDER BY COUNTRY_ID", "COUNTRY_NAME", "COUNTRY_ID", "--กรุณาเลือก--");
+            DatabaseManager.BindDropDown(ddlSubCountry, "SELECT * FROM TB_PROJECT_COUNTRY_SUB ORDER BY SUB_COUNTRY_ID", "SUB_COUNTRY_NAME", "SUB_COUNTRY_ID", "--กรุณาเลือก--");
+        }
+
+        public void ChangeNotification(string type)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+        }
+
+        public void ChangeNotification(string type, string text)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+            notification.InnerHtml = text;
         }
 
         protected void btnAddProject_Click(object sender, EventArgs e)
         {
+            string[] validFileTypes = { "pdf" };
+            string ext = System.IO.Path.GetExtension(FUdocument.PostedFile.FileName);
+            bool isValidFile = false;
+            for (int i = 0; i < validFileTypes.Length; i++)
+            {
+                if (ext == "." + validFileTypes[i])
+                {
+                    isValidFile = true;
+                    break;
+                }
+            }
+            if (!isValidFile)
+            {
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.FUdocument);
+                ChangeNotification("danger", "กรุณาแนบไฟล์นามสกุล " + string.Join(",", validFileTypes) + " เท่านั้น");
+                return;
+            }
+            else
+            {
+                ChangeNotification("", "");
+            }
+
             if (tbStartDate.Text != "" && tbEndDate.Text != "")
             {
                 DateTime dtEndDate = DateTime.Parse(tbEndDate.Text);
@@ -51,7 +102,6 @@ namespace Personnel
             }
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
-
             PROJECT p = new PROJECT();
 
             p.UOC_ID = loginPerson.UOC_ID;
@@ -71,8 +121,16 @@ namespace Personnel
             p.RESULT_RESEARCHING = tbResultResearching.Text;
             p.RESULT_OTHER = tbResultOther.Text;
             p.COUNSEL = tbCounsel.Text;
-            p.ST_APPROVE_ID = 0;
-
+            p.COUNTRY_ID = Convert.ToInt32(ddlCountry.SelectedValue);
+            p.SUB_COUNTRY_ID = Convert.ToInt32(ddlSubCountry.SelectedValue);
+            if (FUdocument.HasFile)
+            {
+                string CountBase = DatabaseManager.ExecuteString("select count(*) from tb_project where uoc_id = '" + loginPerson.UOC_ID + "'");
+                FileInfo fi = new FileInfo(FUdocument.FileName);
+                string imgFile = "UID="+ loginPerson.UOC_ID + "&count=" + CountBase + fi.Extension;
+                FUdocument.SaveAs(Server.MapPath("Upload/Project/PDF/" + imgFile));
+                p.IMG_FILE = imgFile;
+            }
             p.INSERT_PROJECT();
 
             Notsuccess.Visible = false;

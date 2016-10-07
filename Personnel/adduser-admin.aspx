@@ -249,7 +249,7 @@
                                 <tr>
                                     <td class="col1">รหัสไปรษณีย์<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
+                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" MaxLength="5" onkeypress="return isNumberKey(event)" required="required" tabindex="1"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>

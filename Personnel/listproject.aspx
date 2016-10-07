@@ -38,10 +38,9 @@
                                 <th>ชื่อโครงการ</th>
                                 <th>สถานที่จัดโครงการ</th>
                                 <th><img src="Image/Small/document-edit.png" class="icon_left" />จัดการข้อมูล</th>
-                                <th>สถานะ</th>
                             </tr>
                         </thead>
-                        <asp:Repeater ID="myRepeater" runat="server" OnItemDataBound="myRepeater_ItemDataBound" OnItemCommand="myRepeater_ItemCommand">
+                        <asp:Repeater ID="myRepeater" runat="server" OnItemCommand="myRepeater_ItemCommand">
                             <ItemTemplate>
                                 <tr>
                                     <td><%# Container.ItemIndex + 1 %><asp:HiddenField ID="HF1" runat="server" Value='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>'/></td>
@@ -52,9 +51,9 @@
                                     <td>
                                         <a><asp:LinkButton ID="lbuPreview" CommandName="Preview" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()) %>' class="btn btn-info ekknidRight">ดู</asp:LinkButton></a>
                                         <a><asp:LinkButton ID="lbuEdit" CommandName="Edit" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()) %>' class="btn btn-warning ekknidRight">แก้ไข</asp:LinkButton></a>
-                                        <a><asp:LinkButton ID="lbuDelete" CommandName="Delete" OnClientClick="javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>' runat="server" class="btn btn-danger">ลบ</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuDelete" CommandName="Delete" OnClientClick="javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>' runat="server" class="btn btn-danger ekknidRight">ลบ</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuReport" CommandName="Report" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString())%>' runat="server" class="btn btn-primary">ออกรายงาน</asp:LinkButton></a>
                                     </td>
-                                    <td><asp:Label ID="lbStatusApprove" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ST_APPROVE_NAME") %>'></asp:Label></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

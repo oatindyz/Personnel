@@ -220,31 +220,13 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbCOUNSEL;
         
         /// <summary>
-        /// lbNameapprove control.
+        /// file_pdf control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbNameapprove;
-        
-        /// <summary>
-        /// ddlApprove control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlApprove;
-        
-        /// <summary>
-        /// btnUpdateProject control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnUpdateProject;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl file_pdf;
         
         /// <summary>
         /// lbuEdit control.

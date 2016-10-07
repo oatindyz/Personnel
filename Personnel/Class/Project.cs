@@ -4,18 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Data;
 using System.Data.OracleClient;
+using Personnel.Class;
 
 namespace Personnel.Class
 {
     public class PROJECT
     {
+        public bool HasData = true;
+        public string uoc_id;
+        public UOC_STAFF uoc_staff;
+        public string category_name;
+
         public int PRO_ID { get; set; }
         public int UOC_ID { get; set; }
         public int CATEGORY_ID { get; set; }
         public string PROJECT_NAME { get; set; }
         public string ADDRESS_PROJECT { get; set; }
-        public DateTime START_DATE { get; set; }
-        public DateTime END_DATE { get; set; }
+        public DateTime? START_DATE { get; set; }
+        public DateTime? END_DATE { get; set; }
         public int EXPENSES { get; set; }
         public string FUNDING { get; set; }
         public string CERTIFICATE { get; set; }
@@ -27,7 +33,9 @@ namespace Personnel.Class
         public string RESULT_RESEARCHING { get; set; }
         public string RESULT_OTHER { get; set; }
         public string COUNSEL { get; set; }
-        public int ST_APPROVE_ID { get; set; }
+        public string IMG_FILE { get; set; }
+        public int COUNTRY_ID { get; set; }
+        public int SUB_COUNTRY_ID { get; set; }
 
         public PROJECT() { }
         public PROJECT(
@@ -36,8 +44,8 @@ namespace Personnel.Class
             int CATEGORY_ID,
             string PROJECT_NAME,
             string ADDRESS_PROJECT,
-            DateTime START_DATE,
-            DateTime END_DATE,
+            DateTime? START_DATE,
+            DateTime? END_DATE,
             int EXPENSES,
             string FUNDING,
             string CERTIFICATE,
@@ -49,7 +57,9 @@ namespace Personnel.Class
             string RESULT_RESEARCHING,
             string RESULT_OTHER,
             string COUNSEL,
-            int ST_APPROVE_ID
+            string IMG_FILE,
+            int COUNTRY_ID,
+            int SUB_COUNTRY_ID
             )
         {
             this.PRO_ID = UOC_ID;
@@ -70,7 +80,55 @@ namespace Personnel.Class
             this.RESULT_RESEARCHING = RESULT_RESEARCHING;
             this.RESULT_OTHER = RESULT_OTHER;
             this.COUNSEL = COUNSEL;
-            this.ST_APPROVE_ID = ST_APPROVE_ID;
+            this.IMG_FILE = IMG_FILE;
+            this.COUNTRY_ID = COUNTRY_ID;
+            this.SUB_COUNTRY_ID = SUB_COUNTRY_ID;
+        }
+
+        public void Load(int ID)
+        {
+            HasData = false;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT TB_PROJECT.*, (SELECT CATEGORY_NAME FROM TB_PROJECT_CATEGORY WHERE TB_PROJECT_CATEGORY.CATEGORY_ID = TB_PROJECT.CATEGORY_ID) CATEGORY_NAME FROM TB_PROJECT WHERE PRO_ID = " + ID, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            HasData = true;
+                            int i = 1;
+                            PRO_ID = ID;
+                            UOC_ID = reader.GetInt32(i++);
+                            CATEGORY_ID = reader.GetInt32(i++);
+                            PROJECT_NAME = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            ADDRESS_PROJECT = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            if (reader.IsDBNull(i)){START_DATE = null;}else{START_DATE = reader.GetDateTime(i);}++i;
+                            if (reader.IsDBNull(i)){END_DATE = null;}else{END_DATE = reader.GetDateTime(i);}++i;
+                            EXPENSES = reader.GetInt32(i++);
+                            FUNDING = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            CERTIFICATE = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            SUMMARIZE_PROJECT = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            RESULT_TEACHING = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            RESULT_ACADEMIC = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            DIFFICULTY_PROJECT = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            RESULT_PROJECT = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            RESULT_RESEARCHING = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            RESULT_OTHER = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            COUNSEL = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            IMG_FILE = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            COUNTRY_ID = reader.GetInt32(i++);
+                            SUB_COUNTRY_ID = reader.GetInt32(i++);
+                            category_name = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                        }
+                    }
+                }
+
+                uoc_staff = DatabaseManager.GetOUC_STAFF(uoc_id);
+
+            }
         }
 
         public DataTable GetDataProject(string PRO_ID)
@@ -113,7 +171,7 @@ namespace Personnel.Class
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO TB_PROJECT (UOC_ID,CATEGORY_ID,PROJECT_NAME,ADDRESS_PROJECT,START_DATE,END_DATE,EXPENSES,FUNDING,CERTIFICATE,SUMMARIZE_PROJECT,RESULT_TEACHING,RESULT_ACADEMIC,DIFFICULTY_PROJECT,RESULT_PROJECT,RESULT_RESEARCHING,RESULT_OTHER,COUNSEL,ST_APPROVE_ID) VALUES (:UOC_ID,:CATEGORY_ID,:PROJECT_NAME,:ADDRESS_PROJECT,:START_DATE,:END_DATE,:EXPENSES,:FUNDING,:CERTIFICATE,:SUMMARIZE_PROJECT,:RESULT_TEACHING,:RESULT_ACADEMIC,:DIFFICULTY_PROJECT,:RESULT_PROJECT,:RESULT_RESEARCHING,:RESULT_OTHER,:COUNSEL,:ST_APPROVE_ID)", con))
+                using (OracleCommand com = new OracleCommand("INSERT INTO TB_PROJECT (UOC_ID,CATEGORY_ID,PROJECT_NAME,ADDRESS_PROJECT,START_DATE,END_DATE,EXPENSES,FUNDING,CERTIFICATE,SUMMARIZE_PROJECT,RESULT_TEACHING,RESULT_ACADEMIC,DIFFICULTY_PROJECT,RESULT_PROJECT,RESULT_RESEARCHING,RESULT_OTHER,COUNSEL,IMG_FILE,COUNTRY_ID,SUB_COUNTRY_ID) VALUES (:UOC_ID,:CATEGORY_ID,:PROJECT_NAME,:ADDRESS_PROJECT,:START_DATE,:END_DATE,:EXPENSES,:FUNDING,:CERTIFICATE,:SUMMARIZE_PROJECT,:RESULT_TEACHING,:RESULT_ACADEMIC,:DIFFICULTY_PROJECT,:RESULT_PROJECT,:RESULT_RESEARCHING,:RESULT_OTHER,:COUNSEL,:IMG_FILE,:COUNTRY_ID,:SUB_COUNTRY_ID)", con))
                 {
                     com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
                     com.Parameters.Add(new OracleParameter("CATEGORY_ID", CATEGORY_ID));
@@ -132,7 +190,9 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("RESULT_RESEARCHING", RESULT_RESEARCHING));
                     com.Parameters.Add(new OracleParameter("RESULT_OTHER", RESULT_OTHER));
                     com.Parameters.Add(new OracleParameter("COUNSEL", COUNSEL));
-                    com.Parameters.Add(new OracleParameter("ST_APPROVE_ID", ST_APPROVE_ID));
+                    com.Parameters.Add(new OracleParameter("IMG_FILE", IMG_FILE));
+                    com.Parameters.Add(new OracleParameter("COUNTRY_ID", COUNTRY_ID));
+                    com.Parameters.Add(new OracleParameter("SUB_COUNTRY_ID", SUB_COUNTRY_ID));
                     id = com.ExecuteNonQuery();
                 }
             }
@@ -162,7 +222,10 @@ namespace Personnel.Class
                 query += " RESULT_PROJECT = :RESULT_PROJECT ,";
                 query += " RESULT_RESEARCHING = :RESULT_RESEARCHING ,";
                 query += " RESULT_OTHER = :RESULT_OTHER ,";
-                query += " COUNSEL = :COUNSEL ";
+                query += " COUNSEL = :COUNSEL ,";
+                query += " IMG_FILE = :IMG_FILE ,";
+                query += " COUNTRY_ID = :COUNTRY_ID ,";
+                query += " SUB_COUNTRY_ID = :SUB_COUNTRY_ID ";
                 query += " where PRO_ID = :PRO_ID ";
 
                 using (OracleCommand com = new OracleCommand(query, con))
@@ -183,6 +246,9 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("RESULT_RESEARCHING", RESULT_RESEARCHING));
                     com.Parameters.Add(new OracleParameter("RESULT_OTHER", RESULT_OTHER));
                     com.Parameters.Add(new OracleParameter("COUNSEL", COUNSEL));
+                    com.Parameters.Add(new OracleParameter("IMG_FILE", IMG_FILE));
+                    com.Parameters.Add(new OracleParameter("COUNTRY_ID", COUNTRY_ID));
+                    com.Parameters.Add(new OracleParameter("SUB_COUNTRY_ID", SUB_COUNTRY_ID));
                     com.Parameters.Add(new OracleParameter("PRO_ID", PRO_ID));
 
                     if (com.ExecuteNonQuery() > 0)

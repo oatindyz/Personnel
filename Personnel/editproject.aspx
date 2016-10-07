@@ -103,9 +103,51 @@
         <div id="Notsuccess" runat="server" class="panel panel-default">
             <div class="panel-body">
                 <div class="form-group">
-                    <asp:Label ID="lbCategoryID" runat="server">ประเภทโครงการ<span class="ps-lb-red" />*</asp:Label>
-                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
+                    <table class="table table-striped table-bordered table-hover ps-table-1">
+                        <tr>
+                            <td class="col1">ชื่อ - สกุล:</td>
+                            <td class="col2" style="margin-right: 10px">
+                                <asp:Label ID="lbName" runat="server" CssClass="ekknidRight"></asp:Label></td>
+                            <td class="col1">ตำแหน่ง :</td>
+                            <td class="col2" style="margin-right: 10px">
+                                <asp:Label ID="lbPosition" runat="server" CssClass="ekknidRight"></asp:Label></td>
+                            <td class="col1">สังกัด :</td>
+                            <td class="col2" style="margin-right: 10px">
+                                <asp:Label ID="lbDepartment" runat="server"></asp:Label></td>
+                        </tr>
+                    </table>
                 </div>
+                <table style="width: 97%;">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server">ประเภทโครงการ<span class="ps-lb-red" />*</asp:Label>
+                                <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control input-sm select2 ekknidRight" required="required" TabIndex="1"></asp:DropDownList>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbCountry" runat="server">ประเภทการอบรม<span class="ps-lb-red" />*</asp:Label>
+                                <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control input-sm select2 ekknidRight" required="required" TabIndex="1"></asp:DropDownList>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbTypeProject" runat="server">รูปแบบประเภทการอบรม<span class="ps-lb-red" />*</asp:Label>
+                                <asp:DropDownList ID="ddlSubCountry" runat="server" CssClass="form-control input-sm select2 ekknidRight" required="required" TabIndex="1"></asp:DropDownList>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbFile" runat="server">แนบไฟล์ .pdf (รูปภาพ,เอกสาร ประกอบการอบรม)</asp:Label>
+                                <asp:FileUpload ID="FUdocument" runat="server" Width="250px"/>
+                            </div>   
+                        </td>
+                        <td>
+                            <div class="c1" id="file_pdf" runat="server"></div>
+                        </td>
+                    </tr>
+                </table>
                 <div class="form-group">
                     <asp:Label ID="lbProjectName" runat="server">ชื่อโครงการ<span class="ps-lb-red" />*</asp:Label>
                     <asp:TextBox ID="tbProjectName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
@@ -122,9 +164,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label ID="lbExpenses" runat="server">ค่าใช้จ่ายตลอดโครงการ</asp:Label>
+                    <asp:Label ID="lbExpenses" runat="server">ค่าใช้จ่ายตลอดโครงการ<span class="ps-lb-red" />*</asp:Label>
                     <div class="form-group input-group date">
-                        <asp:TextBox ID="tbExpenses" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)"></asp:TextBox><span class="input-group-addon">.00</span>
+                        <asp:TextBox ID="tbExpenses" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)" required="required" TabIndex="1"></asp:TextBox><span class="input-group-addon">.00</span>
                     </div>
                 </div>
                 <div class="form-group">

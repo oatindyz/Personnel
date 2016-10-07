@@ -274,7 +274,7 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="edituser.aspx"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
-                                    <a href="listproject.aspx"><img src="Image/Small/add.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
+                                    <a href="listproject.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
@@ -284,7 +284,9 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="listuser-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลบุคลากร</a>
+                                    <a href="listuser-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลบุคลากร</a>
+                                    <a href="listproject-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
+                                    <a href="reportproject-fliter-admin.aspx"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>
@@ -307,17 +309,6 @@
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
                                     <a href="#"><img src="Image/Small/medal.png" />จัดการข้อมูลเครื่องราชฯ</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="MenuRoleID5Duty" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="listproject-admin"><img src="Image/book_edit.png" />จัดการพัฒนาความรู้และทักษะวิชาชีพ</a>
                                 </div>
                             </div>
                         </div>

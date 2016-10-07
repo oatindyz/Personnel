@@ -27,17 +27,13 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
-        <img src="Image/book_edit.png" />จัดการข้อมูลพัฒนาความรู้และทักษะวิชาชีพ
-        <span style="text-align:right; float:right;"><a href="addproject-admin.aspx">
-        <img src="Image/Small/add.png" />เพิ่มข้อมูลการพัฒนาความรู้และทักษะวิชาชีพ</a></span>
+        <img src="Image/book_edit.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน (เจ้าหน้าที่)
     </div>
     <div id="notification" runat="server"></div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STATUS_APPROVE&quot;"></asp:SqlDataSource>
+
     <div id="Dp1" runat="server" class="panel panel-default">
-        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย
-            <span style="text-align:right; float:right;"><a href="#">
-            <img src="Image/Small/next.png" class="icon_left" />ดูสถานะที่อนุมัติแล้ว</a></span>
-        </div>
+        <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย</div>
+
         <div class="panel-body">
             <div class="panel-body">
                 <div id="divLoad" runat="server" class="dataTable_wrapper">
@@ -50,7 +46,6 @@
                                 <th>ชื่อโครงการ</th>
                                 <th>สถานที่จัดโครงการ</th>
                                 <th><img src="Image/Small/document-edit.png" class="icon_left" />จัดการข้อมูล</th>
-                                <th>สถานะ</th>
                             </tr>
                         </thead>
                         <asp:Repeater ID="myRepeater" runat="server" OnItemCommand="myRepeater_ItemCommand">
@@ -64,9 +59,9 @@
                                     <td>
                                         <a><asp:LinkButton ID="lbuPreview" CommandName="Preview" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()) %>' class="btn btn-info ekknidRight">ดู</asp:LinkButton></a>
                                         <a><asp:LinkButton ID="lbuEdit" CommandName="Edit" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()) %>' class="btn btn-warning ekknidRight">แก้ไข</asp:LinkButton></a>
-                                        <a><asp:LinkButton ID="lbuDelete" CommandName="Delete" OnClientClick="javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>' runat="server" class="btn btn-danger">ลบ</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuDelete" CommandName="Delete" OnClientClick="javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>' runat="server" class="btn btn-danger ekknidRight">ลบ</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuReport" CommandName="Report" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString())%>' runat="server" class="btn btn-primary">ออกรายงาน</asp:LinkButton></a>
                                     </td>
-                                    <td><asp:Label ID="lbStatusApprove" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "ST_APPROVE_NAME") %>'></asp:Label></td>
                                 </tr>
                             </ItemTemplate>
                         </asp:Repeater>

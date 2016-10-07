@@ -447,6 +447,31 @@ namespace Personnel.Class
             }
             return fileNameList.ToArray();
         }
+        public static string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        public static string RandomFileName()
+        {
+            const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+            return new string(Enumerable.Repeat(chars, 24)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
+        public static bool StringEqual(string source, string[] target)
+        {
+            for (int i = 0; i < target.Length; ++i)
+            {
+                if (source == target[i])
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
     }
 }

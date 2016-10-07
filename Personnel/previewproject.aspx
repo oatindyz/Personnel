@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="previewproject-admin.aspx.cs" Inherits="Personnel.previewproject_admin" MaintainScrollPositionOnPostback="true" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="previewproject.aspx.cs" Inherits="Personnel.previewproject" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         $(function () {
@@ -207,7 +207,7 @@
             </div>
 
             <div style="text-align: center; margin-top: 20px; margin-bottom: 20px">
-                <a href="listproject-admin.aspx" class="btn btn-info ekknidRight">ย้อนกลับ</a>
+                <a href="listproject.aspx" class="btn btn-info ekknidRight">ย้อนกลับ</a>
                 <asp:LinkButton ID="lbuEdit" runat="server" class="btn btn-warning ekknidRight" OnClick="lbuEdit_Click">แก้ไข</asp:LinkButton>
                 <asp:LinkButton ID="lbuDelete" runat="server" class="btn btn-danger" OnClientClick="javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;" OnClick="lbuDelete_Click">ลบ</asp:LinkButton>
             </div>
@@ -222,7 +222,7 @@
                     ระบบได้ทำการบันทึกข้อมูลอบรม/สัมมนา/ดูงานเรียบร้อยแล้ว
                 </div>
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="listproject-admin.aspx" class="ps-button btn btn-primary">ย้อนกลับ</a>
+                    <a href="listproject.aspx" class="ps-button btn btn-primary">ย้อนกลับ</a>
                 </div>
             </div>
         </div>
@@ -236,7 +236,7 @@
                     ระบบได้ทำการลบข้อมูลอบรม/สัมมนา/ดูงานเรียบร้อยแล้ว
                 </div>
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="listproject-admin.aspx" class="ps-button btn btn-primary">ย้อนกลับ</a>
+                    <a href="listproject.aspx" class="ps-button btn btn-primary">ย้อนกลับ</a>
                 </div>
             </div>
         </div>

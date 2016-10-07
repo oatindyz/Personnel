@@ -25,7 +25,7 @@ namespace Personnel
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
             OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
-            OracleDataAdapter sda = new OracleDataAdapter("SELECT (SELECT STF_FNAME || ' ' || STF_LNAME FROM UOC_STAFF WHERE UOC_STAFF.UOC_ID = TB_PROJECT.UOC_ID) NAME, (SELECT CATEGORY_NAME FROM TB_PROJECT_CATEGORY WHERE TB_PROJECT_CATEGORY.CATEGORY_ID = TB_PROJECT.CATEGORY_ID) CATEGORY_ID, PROJECT_NAME, ADDRESS_PROJECT, PRO_ID, (SELECT ST_APPROVE_NAME FROM TB_STATUS_APPROVE WHERE TB_STATUS_APPROVE.ST_APPROVE_ID = TB_PROJECT.ST_APPROVE_ID) ST_APPROVE_NAME FROM TB_PROJECT WHERE ST_APPROVE_ID = 0 ORDER BY PRO_ID ASC", con);
+            OracleDataAdapter sda = new OracleDataAdapter("SELECT (SELECT STF_FNAME || ' ' || STF_LNAME FROM UOC_STAFF WHERE UOC_STAFF.UOC_ID = TB_PROJECT.UOC_ID) NAME, (SELECT CATEGORY_NAME FROM TB_PROJECT_CATEGORY WHERE TB_PROJECT_CATEGORY.CATEGORY_ID = TB_PROJECT.CATEGORY_ID) CATEGORY_ID, PROJECT_NAME, ADDRESS_PROJECT, PRO_ID FROM TB_PROJECT ORDER BY UOC_ID ASC", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             myRepeater.DataSource = dt;
@@ -63,12 +63,56 @@ namespace Personnel
             if (e.CommandName == "Delete" && e.CommandArgument.ToString() != "")
             {
                 LinkButton lbu = (LinkButton)e.Item.FindControl("lbuDelete");
+                HiddenField hidden = (HiddenField)e.Item.FindControl("HF1");
                 string value = lbu.CommandArgument;
-                DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + value + "'");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
-                myRepeater.DataBind();
+                string proID = hidden.Value;
+
+                List<int> pro_id = new List<int>();
+                List<string> img_file = new List<string>();
+
+                using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+                {
+                    con.Open();
+                    using (OracleCommand com = new OracleCommand("SELECT PRO_ID, IMG_FILE FROM TB_PROJECT WHERE PRO_ID = " + proID, con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (!reader.IsDBNull(1))
+                                {
+                                    pro_id.Add(reader.GetInt32(0));
+                                    img_file.Add(reader.GetString(1));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                for (int i = 0; i < pro_id.Count; i++)
+                {
+                    string path = "Upload/Project/PDF/" + img_file[i];
+                    int PRO_ID = pro_id[i];
+                    string IMG_FILE = img_file[i];
+
+                    string pathVS = Server.MapPath("Upload/Project/PDF/" + IMG_FILE);
+                    if ((System.IO.File.Exists(pathVS)))
+                    {
+                        System.IO.File.Delete(pathVS);
+                    }
+
+                    DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + value + "'");
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
+                    BindData();
+                }
+
+            }
+            if (e.CommandName == "Report" && e.CommandArgument.ToString() != "")
+            {
+                LinkButton lbu = (LinkButton)e.Item.FindControl("lbuReport");
+                string value = lbu.CommandArgument;
+                Response.Redirect("reportproject-admin.aspx?id=" + value);
             }
         }
-
     }
 }

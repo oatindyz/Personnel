@@ -126,7 +126,7 @@
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></div>
                                     </div>
                                     <div>
-                                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-info" OnClick="btnLogin_Click" Text="เข้าสู่ระบบ" />
+                                        <asp:Button ID="btnLogin" runat="server" CssClass="btn btn-success" OnClick="btnLogin_Click" Text="เข้าสู่ระบบ" />
                                     </div>
                                     <div>
                                         <asp:UpdatePanel ID="UpdateLabel12X" runat="server">

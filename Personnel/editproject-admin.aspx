@@ -92,6 +92,10 @@
             });
         });
     </script>
+    <script>
+        var fu1 = document.getElementById('<%= FUdocument.ClientID %>');
+        alert("You selected " + fu1.value);
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
@@ -118,10 +122,37 @@
                         </tr>
                     </table>
                 </div>
-                <div class="form-group">
-                    <asp:Label ID="lbCategoryID" runat="server">ประเภทโครงการ<span class="ps-lb-red" />*</asp:Label>
-                    <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
-                </div>
+                <table style="width: 97%;">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbCategoryID" runat="server">ประเภทโครงการ<span class="ps-lb-red" />*</asp:Label>
+                                <asp:DropDownList ID="ddlCategory" runat="server" CssClass="form-control input-sm select2 ekknidRight" required="required" TabIndex="1"></asp:DropDownList>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbCountry" runat="server">ประเภทการอบรม<span class="ps-lb-red" />*</asp:Label>
+                                <asp:DropDownList ID="ddlCountry" runat="server" CssClass="form-control input-sm select2 ekknidRight" required="required" TabIndex="1"></asp:DropDownList>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbTypeProject" runat="server">รูปแบบประเภทการอบรม<span class="ps-lb-red" />*</asp:Label>
+                                <asp:DropDownList ID="ddlSubCountry" runat="server" CssClass="form-control input-sm select2 ekknidRight" required="required" TabIndex="1"></asp:DropDownList>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <asp:Label ID="lbFile" runat="server">แนบไฟล์ .pdf (รูปภาพ,เอกสาร ประกอบการอบรม)</asp:Label>
+                                <asp:FileUpload ID="FUdocument" runat="server" Width="250px"/>
+                            </div>               
+                        </td>
+                        <td>
+                            <div class="c1" id="file_pdf" runat="server"></div>
+                        </td>
+                    </tr>
+                </table>
                 <div class="form-group">
                     <asp:Label ID="lbProjectName" runat="server">ชื่อโครงการ<span class="ps-lb-red" />*</asp:Label>
                     <asp:TextBox ID="tbProjectName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
@@ -138,9 +169,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label ID="lbExpenses" runat="server">ค่าใช้จ่ายตลอดโครงการ</asp:Label>
+                    <asp:Label ID="lbExpenses" runat="server">ค่าใช้จ่ายตลอดโครงการ<span class="ps-lb-red" />*</asp:Label>
                     <div class="form-group input-group date">
-                        <asp:TextBox ID="tbExpenses" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)"></asp:TextBox><span class="input-group-addon">.00</span>
+                        <asp:TextBox ID="tbExpenses" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)" required="required" TabIndex="1"></asp:TextBox><span class="input-group-addon">.00</span>
                     </div>
                 </div>
                 <div class="form-group">

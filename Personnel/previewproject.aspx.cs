@@ -9,7 +9,7 @@ using Personnel.Class;
 
 namespace Personnel
 {
-    public partial class previewproject_admin : System.Web.UI.Page
+    public partial class previewproject : System.Web.UI.Page
     {
         int id = 0;
         protected void Page_Load(object sender, EventArgs e)
@@ -24,7 +24,7 @@ namespace Personnel
                     int.TryParse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()), out id);
                     ReadSelectID();
                 }
-                else { Response.Redirect("listproject-admin.aspx"); }
+                else { Response.Redirect("listproject.aspx"); }
             }
             ReadFile();
         }
@@ -114,7 +114,7 @@ namespace Personnel
         {
             string link = MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString());
             string encrypt = MyCrypto.GetEncryptedQueryString(link);
-            Response.Redirect("editproject-admin.aspx?id=" + encrypt);
+            Response.Redirect("editproject.aspx?id=" + encrypt);
         }
 
         protected void lbuDelete_Click(object sender, EventArgs e)
@@ -156,7 +156,7 @@ namespace Personnel
                 DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
             }
-            
+
             string link = MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString());
             DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + link + "'");
             Notsuccess.Visible = false;
