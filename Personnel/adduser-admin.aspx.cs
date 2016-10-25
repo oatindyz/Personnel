@@ -44,7 +44,7 @@ namespace Personnel
             DatabaseManager.BindDropDown(ddlGradCountry, "SELECT * FROM REF_NATION ORDER BY NATION_ID", "NATION_NAME_ENG", "NATION_ID", "--กรุณาเลือก--");
 
             DatabaseManager.BindDropDown(ddlDeform, "SELECT * FROM REF_DEFORM ORDER BY DEFORM_ID", "DEFORM_NAME", "DEFORM_ID", "--กรุณาเลือก--");
-            DatabaseManager.BindDropDown(ddlReligion, "SELECT * FROM REF_RELIGION ORDER BY RELIGION_ID", "RELIGION_NAME", "RELIGION_ID", "--กรุณาเลือก--");
+            DatabaseManager.BindDropDown(ddlReligion, "SELECT * FROM REF_RELIGION ORDER BY RELIGION_ID", "RELIGION_NAME_TH", "RELIGION_ID", "--กรุณาเลือก--");
             DatabaseManager.BindDropDown(ddlMovementType, "SELECT * FROM REF_MOVEMENT_TYPE ORDER BY MOVEMENT_TYPE_ID", "MOVEMENT_TYPE_NAME", "MOVEMENT_TYPE_ID", "--กรุณาเลือก--");
         }
 
@@ -401,11 +401,8 @@ namespace Personnel
             }
 
             PS_PERSON person = new PS_PERSON();
-            int LastID = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT UOC_ID +1 UOC_ID FROM UOC_STAFF ORDER BY UOC_ID DESC) WHERE ROWNUM = 1");
-
             DateTime CurrentBudda = DateTime.Now.AddYears(0);
 
-            person.UOC_ID = LastID;
             person.YEAR = CurrentBudda.ToString("yyyy");
             person.UNIV_ID = ddlUniv.SelectedValue;
             person.CITIZEN_ID = tbCitizenID.Text;

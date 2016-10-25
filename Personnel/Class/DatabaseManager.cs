@@ -285,7 +285,7 @@ namespace Personnel.Class
                    "SALARY," +
                    "POSITION_SALARY," +
                    "RELIGION_ID," +
-                   "(SELECT RELIGION_NAME FROM REF_RELIGION WHERE REF_RELIGION.RELIGION_ID = UOC_STAFF.RELIGION_ID) RELIGION_NAME," +
+                   "(SELECT RELIGION_NAME_TH FROM REF_RELIGION WHERE REF_RELIGION.RELIGION_ID = UOC_STAFF.RELIGION_ID) RELIGION_NAME_TH," +
                    "MOVEMENT_TYPE_ID," +
                    "(SELECT MOVEMENT_TYPE_NAME FROM REF_MOVEMENT_TYPE WHERE REF_MOVEMENT_TYPE.MOVEMENT_TYPE_ID = UOC_STAFF.MOVEMENT_TYPE_ID) MOVEMENT_TYPE_NAME," +
                    "MOVEMENT_DATE," +
@@ -297,14 +297,6 @@ namespace Personnel.Class
                    "PASSWORD," +
                    "ST_LOGIN_ID," +
                    "(SELECT ST_LOGIN_NAME FROM TB_STATUS_LOGIN WHERE TB_STATUS_LOGIN.ST_LOGIN_ID = UOC_STAFF.ST_LOGIN_ID) ST_LOGIN_NAME," +
-                   "CAMPUS_ID," +
-                   "(SELECT CAMPUS_NAME FROM TB_CAMPUS WHERE TB_CAMPUS.CAMPUS_ID = UOC_STAFF.CAMPUS_ID) CAMPUS_NAME," +
-                   "FACULTY_ID," +
-                   "(SELECT FACULTY_NAME FROM TB_FACULTY WHERE TB_FACULTY.FACULTY_ID = UOC_STAFF.FACULTY_ID) FACULTY_NAME," +
-                   "DIVISION_ID," +
-                   "(SELECT DIVISION_NAME FROM TB_DIVISION WHERE TB_DIVISION.DIVISION_ID = UOC_STAFF.DIVISION_ID) DIVISION_NAME," +
-                   "WORK_DIVISION_ID," +
-                   "(SELECT WORK_NAME FROM TB_WORK_DIVISION WHERE TB_WORK_DIVISION.WORK_ID = UOC_STAFF.WORK_DIVISION_ID) WORK_NAME," +
                    "PERSON_ROLE_ID," +
                    "(SELECT PERSON_ROLE_NAME FROM TB_PERSON_ROLE WHERE TB_PERSON_ROLE.PERSON_ROLE_ID = UOC_STAFF.PERSON_ROLE_ID) PERSON_ROLE_NAME" +
                    " FROM UOC_STAFF WHERE CITIZEN_ID = '" + CITIZEN_ID + "'", con))
@@ -388,14 +380,6 @@ namespace Personnel.Class
                             uoc_staff.PASSWORD = reader.GetValue(i++).ToString();
                             uoc_staff.ST_LOGIN_ID = reader.GetInt32(i++);
                             uoc_staff.ST_LOGIN_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.CAMPUS_ID = reader.IsDBNull(i++) ? 0 : reader.GetInt32(i++);
-                            uoc_staff.CAMPUS_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.FACULTY_ID = reader.IsDBNull(i++) ? 0 : reader.GetInt32(i++);
-                            uoc_staff.FACULTY_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.DIVISION_ID = reader.IsDBNull(i++) ? 0 : reader.GetInt32(i++);
-                            uoc_staff.DIVISION_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.WORK_DIVISION_ID = reader.IsDBNull(i++) ? 0 : reader.GetInt32(i++);
-                            uoc_staff.WORK_DIVISION_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.PERSON_ROLE_ID = reader.GetInt32(i++);
                             uoc_staff.PERSON_ROLE_NAME = reader.GetValue(i++).ToString();
 

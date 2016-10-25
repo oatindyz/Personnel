@@ -81,14 +81,6 @@ namespace Personnel.Class
         public string PASSWORD;
         public int ST_LOGIN_ID;
         public string ST_LOGIN_NAME;
-        public int CAMPUS_ID;
-        public string CAMPUS_NAME;
-        public int FACULTY_ID;
-        public string FACULTY_NAME;
-        public int DIVISION_ID;
-        public string DIVISION_NAME;
-        public int WORK_DIVISION_ID;
-        public string WORK_DIVISION_NAME;
         public int PERSON_ROLE_ID;
         public string PERSON_ROLE_NAME;
 

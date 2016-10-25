@@ -302,18 +302,6 @@
                             </div>
                         </div>
 
-                        <div id="MenuRoleID4Duty" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="#"><img src="Image/Small/medal.png" />จัดการข้อมูลเครื่องราชฯ</a>
-                                </div>
-                            </div>
-                        </div>
-
-
                     </div>
 
                     <div class="ps-ms-main-drop" id="menu2-ct">

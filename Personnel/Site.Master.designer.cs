@@ -175,15 +175,6 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID3Duty;
         
         /// <summary>
-        /// MenuRoleID4Duty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID4Duty;
-        
-        /// <summary>
         /// noti_ins_none control.
         /// </summary>
         /// <remarks>

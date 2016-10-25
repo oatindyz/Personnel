@@ -52,7 +52,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 1)
                 {
@@ -60,7 +59,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 2)
                 {
@@ -68,7 +66,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = true;
                     MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = false;
                 }
                 else if (loginPerson.PERSON_ROLE_ID == 3)
                 {
@@ -76,15 +73,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = true;
-                    MenuRoleID4Duty.Visible = false;
-                }
-                else if (loginPerson.PERSON_ROLE_ID == 4)
-                {
-                    MenuRoleID99.Visible = false;
-                    MenuPublic.Visible = true;
-                    MenuRoleID2Duty.Visible = false;
-                    MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = true;
                 }
 
             }

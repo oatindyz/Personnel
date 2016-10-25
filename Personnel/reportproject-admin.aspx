@@ -21,7 +21,7 @@
                 <table id="tb" runat="server" style="width: 100%">
                     <tr>
                         <td colspan="4" class="fontTHsarabun" style="width: 100px; text-align: center;">
-                            <img src="http://localhost:8712/Image/RMUTTO.png" width="100" height="160" class="centered" style="text-align: center; margin: auto" /></td>
+                            <img src="http://personnel.rmutto.ac.th/Image/RMUTTO.png" width="100" height="160" class="centered" style="text-align: center; margin: auto" /></td>
                     </tr>
                     <tr>
                         <td colspan="4" class="fontTHsarabun" style="width: 100px; text-align: center;"><strong>แบบรายงานการฝึกอบรม/สัมมนา/ดูงาน</strong></td>
