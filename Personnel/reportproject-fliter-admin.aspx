@@ -163,7 +163,7 @@
                         <asp:LinkButton ID="lbuSearch" runat="server" OnClick="lbuSearch_Click" CssClass="ps-button ekknidRight ekknidTop"><img src="Image/Small/search.png" class="icon_left"/>แสดงผล</asp:LinkButton>
                         <asp:LinkButton ID="lbuExport" runat="server" CssClass="ps-button" OnClick="lbuExport_Click"><img src="Image/Small/excel.png" class="icon_left"/>ออกรายงาน Excel</asp:LinkButton>
                     </div>
-                    <div style="margin-top: 10px; overflow-x:auto; width:2000px;">
+                    <div style="margin-top: 10px; overflow-x:auto;">
                         <asp:Panel ID="Panel1" runat="server" CssClass="ppp"></asp:Panel>
                     </div>
                 </div>

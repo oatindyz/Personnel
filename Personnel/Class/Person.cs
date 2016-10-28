@@ -60,6 +60,12 @@ namespace Personnel.Class
         public string PASSWORD { get; set; }
         public int ST_LOGIN_ID { get; set; }
         public int PERSON_ROLE_ID { get; set; }
+        public string FATHER_NAME { get; set; }
+        public string FATHER_LNAME { get; set; }
+        public string MOTHER_NAME { get; set; }
+        public string MOTHER_LNAME { get; set; }
+        public string COUPLE_NAME { get; set; }
+        public string COUPLE_LNAME { get; set; }
 
         public PS_PERSON() { }
         public PS_PERSON(
@@ -113,7 +119,13 @@ namespace Personnel.Class
             string PERCENT_SALARY2,
             string PASSWORD,
             int ST_LOGIN_ID,
-            int PERSON_ROLE_ID
+            int PERSON_ROLE_ID,
+            string FATHER_NAME,
+            string FATHER_LNAME,
+            string MOTHER_NAME,
+            string MOTHER_LNAME,
+            string COUPLE_NAME,
+            string COUPLE_LNAME
             )
         {
             this.UOC_ID = UOC_ID;
@@ -167,6 +179,12 @@ namespace Personnel.Class
             this.PASSWORD = PASSWORD;
             this.ST_LOGIN_ID = ST_LOGIN_ID;
             this.PERSON_ROLE_ID = PERSON_ROLE_ID;
+            this.FATHER_NAME = FATHER_NAME;
+            this.FATHER_LNAME = FATHER_LNAME;
+            this.MOTHER_NAME = MOTHER_NAME;
+            this.MOTHER_LNAME = MOTHER_LNAME;
+            this.COUPLE_NAME = COUPLE_NAME;
+            this.COUPLE_LNAME = COUPLE_LNAME;
         }
 
         public DataTable GetDataUOC(string UOC_ID)
@@ -259,6 +277,29 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("PERCENT_SALARY2", PERCENT_SALARY2));
                     com.Parameters.Add(new OracleParameter("ST_LOGIN_ID", ST_LOGIN_ID));
                     com.Parameters.Add(new OracleParameter("PERSON_ROLE_ID", PERSON_ROLE_ID));
+                    id = com.ExecuteNonQuery();
+
+                }
+            }
+            return id;
+        }
+
+        public int INSERT_GP7()
+        {
+            int id = 0;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO UOC_STAFF (FATHER_NAME,FATHER_LNAME,MOTHER_NAME,MOTHER_LNAME,COUPLE_NAME,COUPLE_LNAME) VALUES (:FATHER_NAME,:FATHER_LNAME,:MOTHER_NAME,:MOTHER_LNAME,:COUPLE_NAME,:COUPLE_LNAME) WHERE UOC_ID = :UOC_ID", con))
+                {
+                    com.Parameters.Add(new OracleParameter("FATHER_NAME", FATHER_NAME));
+                    com.Parameters.Add(new OracleParameter("FATHER_LNAME", FATHER_LNAME));
+                    com.Parameters.Add(new OracleParameter("MOTHER_NAME", MOTHER_NAME));
+                    com.Parameters.Add(new OracleParameter("MOTHER_LNAME", MOTHER_LNAME));
+                    com.Parameters.Add(new OracleParameter("COUPLE_NAME", COUPLE_NAME));
+                    com.Parameters.Add(new OracleParameter("COUPLE_LNAME", COUPLE_LNAME));
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
                     id = com.ExecuteNonQuery();
 
                 }
@@ -428,4 +469,881 @@ namespace Personnel.Class
             }
         }
     }
+
+    public class PS_STUDY
+    {
+        public int STUDY_ID { get; set; }
+        public int UOC_ID { get; set; }
+        public string UNIV_NAME { get; set; }
+        public DateTime START_DATE { get; set; }
+        public DateTime END_DATE { get; set; }
+        public string QUALIFICATION { get; set; }
+
+        public PS_STUDY() { }
+        public PS_STUDY(int STUDY_ID, int UOC_ID, string UNIV_NAME, DateTime START_DATE, DateTime END_DATE, string QUALIFICATION)
+        {
+            this.STUDY_ID = STUDY_ID;
+            this.UOC_ID = UOC_ID;
+            this.UNIV_NAME = UNIV_NAME;
+            this.START_DATE = START_DATE;
+            this.END_DATE = END_DATE;
+            this.QUALIFICATION = QUALIFICATION;
+        }
+
+        public DataTable SELECT_PS_STUDY(string STUDY_ID, string UOC_ID, string UNIV_NAME, string START_DATE, string END_DATE, string QUALIFICATION)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string query = "SELECT * FROM PS_STUDY ";
+                if (!string.IsNullOrEmpty(STUDY_ID) || !string.IsNullOrEmpty(UOC_ID) || !string.IsNullOrEmpty(UNIV_NAME) || !string.IsNullOrEmpty(START_DATE) || !string.IsNullOrEmpty(END_DATE) || !string.IsNullOrEmpty(QUALIFICATION))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(STUDY_ID))
+                    {
+                        query += " and STUDY_ID like :STUDY_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID like :UOC_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(UNIV_NAME))
+                    {
+                        query += " and UNIV_NAME like :UNIV_NAME ";
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        query += " and START_DATE like :START_DATE ";
+                    }
+                    if (!string.IsNullOrEmpty(END_DATE))
+                    {
+                        query += " and END_DATE like :END_DATE ";
+                    }
+                    if (!string.IsNullOrEmpty(QUALIFICATION))
+                    {
+                        query += " and QUALIFICATION like :QUALIFICATION ";
+                    }
+                }
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(STUDY_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("STUDY_ID", STUDY_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UNIV_NAME))
+                    {
+                        com.Parameters.Add(new OracleParameter("UNIV_NAME", UNIV_NAME));
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    }
+                    if (!string.IsNullOrEmpty(END_DATE))
+                    {
+                        com.Parameters.Add(new OracleParameter("END_DATE", END_DATE));
+                    }
+                    if (!string.IsNullOrEmpty(QUALIFICATION))
+                    {
+                        com.Parameters.Add(new OracleParameter("QUALIFICATION", QUALIFICATION));
+                    }
+                    using (OracleDataAdapter da = new OracleDataAdapter(com))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+            }
+
+            return dt;
+        }
+
+        public int INSERT_PS_STUDY()
+        {
+            int id = 0;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO PS_STUDY (UOC_ID,UNIV_NAME,START_DATE,END_DATE,QUALIFICATION) VALUES (:UOC_ID,:UNIV_NAME,:START_DATE,:END_DATE,:QUALIFICATION)", con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("UNIV_NAME", UNIV_NAME));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("END_DATE", END_DATE));
+                    com.Parameters.Add(new OracleParameter("QUALIFICATION", QUALIFICATION));
+                    id = com.ExecuteNonQuery();
+
+                }
+            }
+            return id;
+        }
+
+        public bool UPDATE_PS_STUDY()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update PS_STUDY Set";
+                query += " UOC_ID = :UOC_ID ,";
+                query += " UNIV_NAME = :UNIV_NAME ,";
+                query += " START_DATE = :START_DATE ,";
+                query += " END_DATE = :END_DATE ,";
+                query += " QUALIFICATION = :QUALIFICATION ";
+                query += " where STUDY_ID = :STUDY_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("UNIV_NAME", UNIV_NAME));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("END_DATE", END_DATE));
+                    com.Parameters.Add(new OracleParameter("QUALIFICATION", QUALIFICATION));
+                    com.Parameters.Add(new OracleParameter("STUDY_ID", STUDY_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public bool DELETE_PS_STUDY()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("DELETE PS_STUDY WHERE STUDY_ID = :STUDY_ID", con))
+                {
+                    com.Parameters.Add(new OracleParameter("STUDY_ID", STUDY_ID));
+                    if (com.ExecuteNonQuery() >= 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+    public class PS_PRO_LICENSE
+    {
+        public int PRO_ID { get; set; }
+        public int UOC_ID { get; set; }
+        public string LICENSE_NAME { get; set; }
+        public string DEPARTMENT { get; set; }
+        public string LICENSE_NUMBER { get; set; }
+        public DateTime START_DATE { get; set; }
+
+        public PS_PRO_LICENSE() { }
+        public PS_PRO_LICENSE(int PRO_ID, int UOC_ID, string LICENSE_NAME, string DEPARTMENT, string LICENSE_NUMBER, DateTime START_DATE)
+        {
+            this.PRO_ID = PRO_ID;
+            this.UOC_ID = UOC_ID;
+            this.LICENSE_NAME = LICENSE_NAME;
+            this.DEPARTMENT = DEPARTMENT;
+            this.LICENSE_NUMBER = LICENSE_NUMBER;
+            this.START_DATE = START_DATE;
+        }
+
+        public DataTable SELECT_PS_PRO_LICENSE(string PRO_ID, string UOC_ID, string LICENSE_NAME, string DEPARTMENT, string LICENSE_NUMBER, string START_DATE)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string query = "SELECT * FROM PS_PRO_LICENSE ";
+                if (!string.IsNullOrEmpty(PRO_ID) || !string.IsNullOrEmpty(UOC_ID) || !string.IsNullOrEmpty(LICENSE_NAME) || !string.IsNullOrEmpty(DEPARTMENT) || !string.IsNullOrEmpty(LICENSE_NUMBER) || !string.IsNullOrEmpty(START_DATE))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(PRO_ID))
+                    {
+                        query += " and PRO_ID like :PRO_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID like :UOC_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(LICENSE_NAME))
+                    {
+                        query += " and LICENSE_NAME like :LICENSE_NAME ";
+                    }
+                    if (!string.IsNullOrEmpty(DEPARTMENT))
+                    {
+                        query += " and DEPARTMENT like :DEPARTMENT ";
+                    }
+                    if (!string.IsNullOrEmpty(LICENSE_NUMBER))
+                    {
+                        query += " and LICENSE_NUMBER like :LICENSE_NUMBER ";
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        query += " and START_DATE like :START_DATE ";
+                    }
+                }
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(PRO_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("PRO_ID", PRO_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
+                    if (!string.IsNullOrEmpty(LICENSE_NAME))
+                    {
+                        com.Parameters.Add(new OracleParameter("LICENSE_NAME", LICENSE_NAME));
+                    }
+                    if (!string.IsNullOrEmpty(DEPARTMENT))
+                    {
+                        com.Parameters.Add(new OracleParameter("DEPARTMENT", DEPARTMENT));
+                    }
+                    if (!string.IsNullOrEmpty(LICENSE_NUMBER))
+                    {
+                        com.Parameters.Add(new OracleParameter("LICENSE_NUMBER", LICENSE_NUMBER));
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    }
+                    using (OracleDataAdapter da = new OracleDataAdapter(com))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+            }
+
+            return dt;
+        }
+
+        public int INSERT_PS_PRO_LICENSE()
+        {
+            int id = 0;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO PS_PRO_LICENSE (UOC_ID,LICENSE_NAME,DEPARTMENT,LICENSE_NUMBER,START_DATE) VALUES (:UOC_ID,:LICENSE_NAME,:DEPARTMENT,:LICENSE_NUMBER,:START_DATE)", con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("LICENSE_NAME", LICENSE_NAME));
+                    com.Parameters.Add(new OracleParameter("DEPARTMENT", DEPARTMENT));
+                    com.Parameters.Add(new OracleParameter("LICENSE_NUMBER", LICENSE_NUMBER));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    id = com.ExecuteNonQuery();
+
+                }
+            }
+            return id;
+        }
+
+        public bool UPDATE_PS_PRO_LICENSE()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update PS_PRO_LICENSE Set";
+                query += " UOC_ID = :UOC_ID ,";
+                query += " LICENSE_NAME = :LICENSE_NAME ,";
+                query += " DEPARTMENT = :DEPARTMENT ,";
+                query += " LICENSE_NUMBER = :LICENSE_NUMBER ,";
+                query += " START_DATE = :START_DATE ";
+                query += " where PRO_ID = :PRO_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("LICENSE_NAME", LICENSE_NAME));
+                    com.Parameters.Add(new OracleParameter("DEPARTMENT", DEPARTMENT));
+                    com.Parameters.Add(new OracleParameter("LICENSE_NUMBER", LICENSE_NUMBER));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("PRO_ID", PRO_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public bool DELETE_PS_PRO_LICENSE()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("DELETE PS_PRO_LICENSE WHERE PRO_ID = :PRO_ID", con))
+                {
+                    com.Parameters.Add(new OracleParameter("PRO_ID", PRO_ID));
+                    if (com.ExecuteNonQuery() >= 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+    public class PS_TRAINING
+    {
+        public int TRAINING_ID { get; set; }
+        public int UOC_ID { get; set; }
+        public string TRAINING_NAME { get; set; }
+        public DateTime START_DATE { get; set; }
+        public DateTime END_DATE { get; set; }
+        public string DEPARTMENT { get; set; }
+
+        public PS_TRAINING() { }
+        public PS_TRAINING(int TRAINING_ID, int UOC_ID, string TRAINING_NAME, DateTime START_DATE, DateTime END_DATE, string DEPARTMENT)
+        {
+            this.TRAINING_ID = TRAINING_ID;
+            this.UOC_ID = UOC_ID;
+            this.TRAINING_NAME = TRAINING_NAME;
+            this.START_DATE = START_DATE;
+            this.END_DATE = END_DATE;
+            this.DEPARTMENT = DEPARTMENT;
+        }
+
+        public DataTable SELECT_PS_TRAINING(string TRAINING_ID, string UOC_ID, string TRAINING_NAME, string START_DATE, string END_DATE, string DEPARTMENT)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string query = "SELECT * FROM PS_TRAINING ";
+                if (!string.IsNullOrEmpty(TRAINING_ID) || !string.IsNullOrEmpty(UOC_ID) || !string.IsNullOrEmpty(TRAINING_NAME) || !string.IsNullOrEmpty(START_DATE) || !string.IsNullOrEmpty(END_DATE) || !string.IsNullOrEmpty(DEPARTMENT))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(TRAINING_ID))
+                    {
+                        query += " and TRAINING_ID like :TRAINING_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID like :UOC_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(TRAINING_NAME))
+                    {
+                        query += " and TRAINING_NAME like :TRAINING_NAME ";
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        query += " and START_DATE like :START_DATE ";
+                    }
+                    if (!string.IsNullOrEmpty(END_DATE))
+                    {
+                        query += " and END_DATE like :END_DATE ";
+                    }
+                    if (!string.IsNullOrEmpty(DEPARTMENT))
+                    {
+                        query += " and DEPARTMENT like :DEPARTMENT ";
+                    }
+                }
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(TRAINING_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("TRAINING_ID", TRAINING_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
+                    if (!string.IsNullOrEmpty(TRAINING_NAME))
+                    {
+                        com.Parameters.Add(new OracleParameter("TRAINING_NAME", TRAINING_NAME));
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    }
+                    if (!string.IsNullOrEmpty(END_DATE))
+                    {
+                        com.Parameters.Add(new OracleParameter("END_DATE", END_DATE));
+                    }
+                    if (!string.IsNullOrEmpty(DEPARTMENT))
+                    {
+                        com.Parameters.Add(new OracleParameter("DEPARTMENT", DEPARTMENT));
+                    }
+                    using (OracleDataAdapter da = new OracleDataAdapter(com))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+            }
+
+            return dt;
+        }
+
+        public int INSERT_PS_TRAINING()
+        {
+            int id = 0;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO PS_TRAINING (UOC_ID,TRAINING_NAME,START_DATE,END_DATE,DEPARTMENT) VALUES (:UOC_ID,:TRAINING_NAME,:START_DATE,:END_DATE,:DEPARTMENT)", con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("TRAINING_NAME", TRAINING_NAME));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("END_DATE", END_DATE));
+                    com.Parameters.Add(new OracleParameter("DEPARTMENT", DEPARTMENT));
+                    id = com.ExecuteNonQuery();
+
+                }
+            }
+            return id;
+        }
+
+        public bool UPDATE_PS_TRAINING()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update PS_TRAINING Set";
+                query += " UOC_ID = :UOC_ID ,";
+                query += " TRAINING_NAME = :TRAINING_NAME ,";
+                query += " START_DATE = :START_DATE ,";
+                query += " END_DATE = :END_DATE ,";
+                query += " DEPARTMENT = :DEPARTMENT ";
+                query += " where TRAINING_ID = :TRAINING_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("TRAINING_NAME", TRAINING_NAME));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("END_DATE", END_DATE));
+                    com.Parameters.Add(new OracleParameter("DEPARTMENT", DEPARTMENT));
+                    com.Parameters.Add(new OracleParameter("TRAINING_ID", TRAINING_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public bool DELETE_PS_TRAINING()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("DELETE PS_TRAINING WHERE TRAINING_ID = :TRAINING_ID", con))
+                {
+                    com.Parameters.Add(new OracleParameter("TRAINING_ID", TRAINING_ID));
+                    if (com.ExecuteNonQuery() >= 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+    public class PS_PUNISHMENT
+    {
+        public int PUNISH_ID { get; set; }
+        public int UOC_ID { get; set; }
+        public string YEAR { get; set; }
+        public string PUNISH_NAME { get; set; }
+        public string END_DATE { get; set; }
+        public string REF_DOC { get; set; }
+
+        public PS_PUNISHMENT() { }
+        public PS_PUNISHMENT(int PUNISH_ID, int UOC_ID, string YEAR, string PUNISH_NAME, string REF_DOC)
+        {
+            this.PUNISH_ID = PUNISH_ID;
+            this.UOC_ID = UOC_ID;
+            this.YEAR = YEAR;
+            this.PUNISH_NAME = PUNISH_NAME;
+            this.END_DATE = END_DATE;
+            this.REF_DOC = REF_DOC;
+        }
+
+        public DataTable SELECT_PS_PUNISHMENT(string PUNISH_ID, string UOC_ID, string YEAR, string PUNISH_NAME, string REF_DOC)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string query = "SELECT * FROM PS_PUNISHMENT ";
+                if (!string.IsNullOrEmpty(PUNISH_ID) || !string.IsNullOrEmpty(UOC_ID) || !string.IsNullOrEmpty(YEAR) || !string.IsNullOrEmpty(PUNISH_NAME) || !string.IsNullOrEmpty(REF_DOC))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(PUNISH_ID))
+                    {
+                        query += " and PUNISH_ID like :PUNISH_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID like :UOC_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(YEAR))
+                    {
+                        query += " and YEAR like :YEAR ";
+                    }
+                    if (!string.IsNullOrEmpty(PUNISH_NAME))
+                    {
+                        query += " and PUNISH_NAME like :PUNISH_NAME ";
+                    }
+                    if (!string.IsNullOrEmpty(REF_DOC))
+                    {
+                        query += " and REF_DOC like :REF_DOC ";
+                    }
+                }
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(PUNISH_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("PUNISH_ID", PUNISH_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
+                    if (!string.IsNullOrEmpty(YEAR))
+                    {
+                        com.Parameters.Add(new OracleParameter("YEAR", YEAR));
+                    }
+                    if (!string.IsNullOrEmpty(PUNISH_NAME))
+                    {
+                        com.Parameters.Add(new OracleParameter("PUNISH_NAME", PUNISH_NAME));
+                    }
+                    if (!string.IsNullOrEmpty(REF_DOC))
+                    {
+                        com.Parameters.Add(new OracleParameter("REF_DOC", REF_DOC));
+                    }
+                    using (OracleDataAdapter da = new OracleDataAdapter(com))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+            }
+
+            return dt;
+        }
+
+        public int INSERT_PS_PUNISHMENT()
+        {
+            int id = 0;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO PS_PUNISHMENT (UOC_ID,YEAR,PUNISH_NAME,REF_DOC) VALUES (:UOC_ID,:YEAR,:PUNISH_NAME,:REF_DOC)", con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("YEAR", YEAR));
+                    com.Parameters.Add(new OracleParameter("PUNISH_NAME", PUNISH_NAME));
+                    com.Parameters.Add(new OracleParameter("REF_DOC", REF_DOC));
+                    id = com.ExecuteNonQuery();
+
+                }
+            }
+            return id;
+        }
+
+        public bool UPDATE_PS_PUNISHMENT()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update PS_PUNISHMENT Set";
+                query += " UOC_ID = :UOC_ID ,";
+                query += " YEAR = :YEAR ,";
+                query += " PUNISH_NAME = :PUNISH_NAME ,";
+                query += " REF_DOC = :REF_DOC ";
+                query += " where PUNISH_ID = :PUNISH_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("YEAR", YEAR));
+                    com.Parameters.Add(new OracleParameter("PUNISH_NAME", PUNISH_NAME));
+                    com.Parameters.Add(new OracleParameter("REF_DOC", REF_DOC));
+                    com.Parameters.Add(new OracleParameter("PUNISH_ID", PUNISH_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public bool DELETE_PS_PUNISHMENT()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("DELETE PS_PUNISHMENT WHERE PUNISH_ID = :PUNISH_ID", con))
+                {
+                    com.Parameters.Add(new OracleParameter("PUNISH_ID", PUNISH_ID));
+                    if (com.ExecuteNonQuery() >= 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
+    public class PS_POSI_AND_SALARY
+    {
+        public int PAS_ID { get; set; }
+        public int UOC_ID { get; set; }
+        public DateTime START_DATE { get; set; }
+        public string PAS_NAME { get; set; }
+        public string NO_POSITION { get; set; }
+        public string POSITION_TYPE { get; set; }
+        public string POSITION_DEGREE { get; set; }
+        public int SALARY { get; set; }
+        public int POSITION_SALARY { get; set; }
+        public string REF_DOC { get; set; }
+
+        public PS_POSI_AND_SALARY() { }
+        public PS_POSI_AND_SALARY(int PAS_ID, int UOC_ID, DateTime START_DATE, string PAS_NAME, string NO_POSITION, string POSITION_TYPE, string POSITION_DEGREE, int SALARY, int POSITION_SALARY, string REF_DOC)
+        {
+            this.PAS_ID = PAS_ID;
+            this.UOC_ID = UOC_ID;
+            this.START_DATE = START_DATE;
+            this.PAS_NAME = PAS_NAME;
+            this.NO_POSITION = NO_POSITION;
+            this.POSITION_TYPE = POSITION_TYPE;
+            this.POSITION_DEGREE = POSITION_DEGREE;
+            this.SALARY = SALARY;
+            this.POSITION_SALARY = POSITION_SALARY;
+            this.REF_DOC = REF_DOC;
+        }
+
+        public DataTable SELECT_PS_POSI_AND_SALARY(string PAS_ID, string UOC_ID, string START_DATE, string PAS_NAME, string NO_POSITION, string POSITION_TYPE, string POSITION_DEGREE, string SALARY, string POSITION_SALARY, string REF_DOC)
+        {
+            DataTable dt = new DataTable();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                string query = "SELECT * FROM PS_POSI_AND_SALARY ";
+                if (!string.IsNullOrEmpty(PAS_ID) || !string.IsNullOrEmpty(UOC_ID) || !string.IsNullOrEmpty(START_DATE) || !string.IsNullOrEmpty(PAS_NAME) || !string.IsNullOrEmpty(NO_POSITION) || !string.IsNullOrEmpty(POSITION_TYPE) || !string.IsNullOrEmpty(POSITION_DEGREE) || !string.IsNullOrEmpty(SALARY) || !string.IsNullOrEmpty(POSITION_SALARY) || !string.IsNullOrEmpty(REF_DOC))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(PAS_ID))
+                    {
+                        query += " and PAS_ID like :PAS_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID like :UOC_ID ";
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        query += " and START_DATE like :START_DATE ";
+                    }
+                    if (!string.IsNullOrEmpty(PAS_NAME))
+                    {
+                        query += " and PAS_NAME like :PAS_NAME ";
+                    }
+                    if (!string.IsNullOrEmpty(NO_POSITION))
+                    {
+                        query += " and NO_POSITION like :NO_POSITION ";
+                    }
+                    if (!string.IsNullOrEmpty(POSITION_TYPE))
+                    {
+                        query += " and POSITION_TYPE like :POSITION_TYPE ";
+                    }
+                    if (!string.IsNullOrEmpty(POSITION_DEGREE))
+                    {
+                        query += " and POSITION_DEGREE like :POSITION_DEGREE ";
+                    }
+                    if (!string.IsNullOrEmpty(SALARY))
+                    {
+                        query += " and SALARY like :SALARY ";
+                    }
+                    if (!string.IsNullOrEmpty(POSITION_SALARY))
+                    {
+                        query += " and POSITION_SALARY like :POSITION_SALARY ";
+                    }
+                    if (!string.IsNullOrEmpty(REF_DOC))
+                    {
+                        query += " and REF_DOC like :REF_DOC ";
+                    }
+                }
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    if (!string.IsNullOrEmpty(PAS_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("PAS_ID", PAS_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
+                    if (!string.IsNullOrEmpty(START_DATE))
+                    {
+                        com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    }
+                    if (!string.IsNullOrEmpty(PAS_NAME))
+                    {
+                        com.Parameters.Add(new OracleParameter("PAS_NAME", PAS_NAME));
+                    }
+                    if (!string.IsNullOrEmpty(NO_POSITION))
+                    {
+                        com.Parameters.Add(new OracleParameter("NO_POSITION", NO_POSITION));
+                    }
+                    if (!string.IsNullOrEmpty(POSITION_TYPE))
+                    {
+                        com.Parameters.Add(new OracleParameter("POSITION_TYPE", POSITION_TYPE));
+                    }
+                    if (!string.IsNullOrEmpty(POSITION_DEGREE))
+                    {
+                        com.Parameters.Add(new OracleParameter("POSITION_DEGREE", POSITION_DEGREE));
+                    }
+                    if (!string.IsNullOrEmpty(SALARY))
+                    {
+                        com.Parameters.Add(new OracleParameter("SALARY", SALARY));
+                    }
+                    if (!string.IsNullOrEmpty(POSITION_SALARY))
+                    {
+                        com.Parameters.Add(new OracleParameter("POSITION_SALARY", POSITION_SALARY));
+                    }
+                    if (!string.IsNullOrEmpty(REF_DOC))
+                    {
+                        com.Parameters.Add(new OracleParameter("REF_DOC", REF_DOC));
+                    }
+                    using (OracleDataAdapter da = new OracleDataAdapter(com))
+                    {
+                        da.Fill(dt);
+                    }
+                }
+
+            }
+
+            return dt;
+        }
+
+        public int INSERT_PS_POSI_AND_SALARY()
+        {
+            int id = 0;
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("INSERT INTO PS_POSI_AND_SALARY (UOC_ID,START_DATE,PAS_NAME,NO_POSITION,POSITION_TYPE,POSITION_DEGREE,SALARY,POSITION_SALARY,REF_DOC) VALUES (:UOC_ID,:START_DATE,:PAS_NAME,:NO_POSITION,:POSITION_TYPE,:POSITION_DEGREE,:SALARY,:POSITION_SALARY,:REF_DOC)", con))
+                {
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("PAS_NAME", PAS_NAME));
+                    com.Parameters.Add(new OracleParameter("NO_POSITION", NO_POSITION));
+                    com.Parameters.Add(new OracleParameter("POSITION_TYPE", POSITION_TYPE));
+                    com.Parameters.Add(new OracleParameter("POSITION_DEGREE", POSITION_DEGREE));
+                    com.Parameters.Add(new OracleParameter("SALARY", SALARY));
+                    com.Parameters.Add(new OracleParameter("POSITION_SALARY", POSITION_SALARY));
+                    com.Parameters.Add(new OracleParameter("REF_DOC", REF_DOC));
+                    id = com.ExecuteNonQuery();
+
+                }
+            }
+            return id;
+        }
+
+        public bool UPDATE_PS_POSI_AND_SALARY()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update PS_POSI_AND_SALARY Set";
+                query += " UOC_ID = :UOC_ID ,";
+                query += " START_DATE = :START_DATE ,";
+                query += " PAS_NAME = :PAS_NAME ,";
+                query += " NO_POSITION = :NO_POSITION ,";
+                query += " POSITION_TYPE = :POSITION_TYPE ,";
+                query += " POSITION_DEGREE = :POSITION_DEGREE ,";
+                query += " SALARY = :SALARY ,";
+                query += " POSITION_SALARY = :POSITION_SALARY ,";
+                query += " REF_DOC = :REF_DOC ";
+                query += " where PAS_ID = :PAS_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {                
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    com.Parameters.Add(new OracleParameter("START_DATE", START_DATE));
+                    com.Parameters.Add(new OracleParameter("PAS_NAME", PAS_NAME));
+                    com.Parameters.Add(new OracleParameter("NO_POSITION", NO_POSITION));
+                    com.Parameters.Add(new OracleParameter("POSITION_TYPE", POSITION_TYPE));
+                    com.Parameters.Add(new OracleParameter("POSITION_DEGREE", POSITION_DEGREE));
+                    com.Parameters.Add(new OracleParameter("SALARY", SALARY));
+                    com.Parameters.Add(new OracleParameter("POSITION_SALARY", POSITION_SALARY));
+                    com.Parameters.Add(new OracleParameter("REF_DOC", REF_DOC));
+                    com.Parameters.Add(new OracleParameter("PAS_ID", PAS_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public bool DELETE_PS_POSI_AND_SALARY()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("DELETE PS_POSI_AND_SALARY WHERE PAS_ID = :PAS_ID", con))
+                {
+                    com.Parameters.Add(new OracleParameter("PAS_ID", PAS_ID));
+                    if (com.ExecuteNonQuery() >= 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+    }
+
 } 

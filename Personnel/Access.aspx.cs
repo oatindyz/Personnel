@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 using System.Text;
 using Personnel.Class;
 using System.Data.OracleClient;
@@ -66,11 +68,13 @@ namespace Personnel
                                 {
                                     if (Login == 0)
                                     {
-                                        LabelTop.Text = "รหัสบัตรประชาชนดังกล่าวเป็นการล็อคอินครั้งแรก โปรดยืนยันตัวตน ด้วยการใส่รหัสผ่านเป็นวันเกิด รูปแบบ(01/01/0101)";
+                                        LabelTop.Text = "รหัสบัตรประชาชนดังกล่าวเป็นการล็อคอินครั้งแรก โปรดยืนยันตัวตน ด้วยการใส่รหัสผ่านเป็นวันเกิด รูปแบบ(01/01/2500)";
+                                        ScriptManager.GetCurrent(this.Page).SetFocus(this.tbPassword);
                                     }
                                     if (Login == 1)
                                     {
                                         LabelTop.Text = "";
+                                        ScriptManager.GetCurrent(this.Page).SetFocus(this.tbPassword);
                                     }
                                 }
 
@@ -88,11 +92,13 @@ namespace Personnel
                             if (reader2.GetInt32(0) == 0)
                             {
                                 LabelBottom.Text = "ไม่พบผู้ใช้งาน!";
+                                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbUsername);
                                 return;
                             }
                             else
                             {
                                 LabelBottom.Text = "";
+                                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbPassword);
                             }
                         }
                     }

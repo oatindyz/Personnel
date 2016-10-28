@@ -253,20 +253,6 @@
                             </div>
                         </div>    
 
-                        <div id="MenuRoleID99" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="DataManager.aspx">
-                                        <img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
-                                    <a href="managerole-admin.aspx">
-                                        <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
-                                </div>
-                            </div>
-                        </div>
-
                         <div id="MenuPublic" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
                                 <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
@@ -297,7 +283,21 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="#"><img src="Image/book_edit.png" />จัดการข้อมูลก.พ.7</a>
+                                    <a href="listGP7-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูล ก.พ.7</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="MenuRoleID99" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="DataManager.aspx">
+                                        <img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
+                                    <a href="managerole-admin.aspx">
+                                        <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
                                 </div>
                             </div>
                         </div>

@@ -15,15 +15,6 @@
             });
         });
     </script>
-
-    <script>
-        function deleteItem() {
-            if (confirm("Are you sure?")) {
-                // your deletion code
-            }
-            return false;
-        }
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">

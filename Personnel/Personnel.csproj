@@ -188,6 +188,7 @@
   <ItemGroup>
     <Content Include="404.aspx" />
     <Content Include="Access.aspx" />
+    <Content Include="addGP7-admin.aspx" />
     <Content Include="addproject.aspx" />
     <Content Include="adduser-admin.aspx" />
     <Content Include="aspnet_client\system_web\4_0_30319\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
@@ -1640,6 +1641,7 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="listGP7-admin.aspx" />
     <Content Include="listproject-admin.aspx" />
     <Content Include="listproject.aspx" />
     <Content Include="listuser-admin.aspx" />
@@ -3338,8 +3340,6 @@
     <Content Include="Script\jquery-1.7.1.min.js" />
     <Content Include="Script\jquery-ui-1.8.20.min.js" />
     <Content Include="Script\JSFunction.js" />
-    <Content Include="testpage.aspx" />
-    <Content Include="testpage1.aspx" />
     <Content Include="Upload\PersonImage\fmiiwnji26a2epv1l9a1ju31.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3352,6 +3352,9 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Site.Master" />
+    <Content Include="Upload\Project\PDF\UID=1&amp;count=0.pdf" />
+    <Content Include="Upload\Project\PDF\UID=894&amp;count=0.pdf" />
+    <Content Include="Upload\Project\PDF\UID=894&amp;count=1.pdf" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3373,6 +3376,13 @@
     </Compile>
     <Compile Include="Access.aspx.designer.cs">
       <DependentUpon>Access.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="addGP7-admin.aspx.cs">
+      <DependentUpon>addGP7-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="addGP7-admin.aspx.designer.cs">
+      <DependentUpon>addGP7-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="addproject.aspx.cs">
       <DependentUpon>addproject.aspx</DependentUpon>
@@ -3450,6 +3460,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="listGP7-admin.aspx.cs">
+      <DependentUpon>listGP7-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listGP7-admin.aspx.designer.cs">
+      <DependentUpon>listGP7-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="listproject-admin.aspx.cs">
       <DependentUpon>listproject-admin.aspx</DependentUpon>
@@ -3557,20 +3574,6 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="testpage.aspx.cs">
-      <DependentUpon>testpage.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="testpage.aspx.designer.cs">
-      <DependentUpon>testpage.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="testpage1.aspx.cs">
-      <DependentUpon>testpage1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="testpage1.aspx.designer.cs">
-      <DependentUpon>testpage1.aspx</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3581,7 +3584,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Upload\Project\PDF\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

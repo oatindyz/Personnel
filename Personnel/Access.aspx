@@ -82,7 +82,9 @@
     <script type="text/javascript">
         function RefreshUpdatePanel() {
             if (this.value.length != 13) return false;
-            if (this.value.length == 13) __doPostBack('<%= tbUsername.ClientID %>', ''); return true;
+            if (this.value.length == 13) __doPostBack('<%= tbUsername.ClientID %>', '');
+            document.getElementById('<%= tbPassword.ClientID %>').focus();
+            return true;
         };
     </script>
 </head>
