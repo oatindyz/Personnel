@@ -28,6 +28,26 @@ namespace Personnel
                     ReadSelectID();
                 }
                 else { Response.Redirect("listproject-admin.aspx"); }
+
+                string CheckIsNull = DatabaseManager.ExecuteString("SELECT COUNT(IMG_FILE) FROM TB_PROJECT WHERE PRO_ID = " + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "");
+                if (CheckIsNull == "0")
+                {
+                    lbFile.Visible = true;
+                    FUdocument.Visible = true;
+                    spFile.InnerText = "*";
+                    spFile.Attributes.Add("class", "ps-lb-red");
+                    spFile.Attributes["style"] = "color:red;";
+                    FUdocument.Attributes.Add("required", "true");
+                }
+                else
+                {
+                    lbFile.Visible = false;
+                    FUdocument.Visible = false;
+                    spFile.InnerText = "";
+                    spFile.Attributes.Add("class", "");
+                    spFile.Attributes["style"] = "";
+                    FUdocument.Attributes.Add("required", "false");
+                }
             }
             ReadFile();
         }
@@ -82,6 +102,7 @@ namespace Personnel
                 lbDelete.Text = "<img src='Image/Small/delete.png' class='icon_left' />ลบ";
                 lbDelete.Click += (e1, e2) =>
                 {
+                    lbDelete.Attributes.Add("onclick", "javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;");
                     FileInfo FileIn = new FileInfo(Server.MapPath("Upload/Project/PDF/" + IMG_FILE));
                     if (FileIn.Exists)
                     {
@@ -135,10 +156,86 @@ namespace Personnel
             }
         }
 
+        public void ChangeNotification(string type)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+        }
+
+        public void ChangeNotification(string type, string text)
+        {
+            switch (type)
+            {
+                case "info": notification.Attributes["class"] = "alert alert_info"; break;
+                case "success": notification.Attributes["class"] = "alert alert_success"; break;
+                case "warning": notification.Attributes["class"] = "alert alert_warning"; break;
+                case "danger": notification.Attributes["class"] = "alert alert_danger"; break;
+                default: notification.Attributes["class"] = null; break;
+            }
+            notification.InnerHtml = text;
+        }
+
         protected void btnUpdateProject_Click(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
             {
+                string[] validFileTypes = { "pdf" };
+                string ext = System.IO.Path.GetExtension(FUdocument.PostedFile.FileName);
+                bool isValidFile = false;
+
+                for (int i = 0; i < validFileTypes.Length; i++)
+                {
+                    if (ext == "." + validFileTypes[i])
+                    {
+                        isValidFile = true;
+                        break;
+                    }
+                }
+                if (!isValidFile)
+                {
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.FUdocument);
+                    ChangeNotification("danger", "กรุณาแนบไฟล์นามสกุล " + string.Join(",", validFileTypes) + " เท่านั้น");
+                    return;
+                }
+
+                else if (FUdocument.PostedFile.ContentLength > 26214400)
+                {
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.FUdocument);
+                    ChangeNotification("danger", "กรุณาแนบไฟล์ไม่เกิน 25 MB");
+                    return;
+                }
+                else
+                {
+                    ChangeNotification("", "");
+                }
+
+                if (tbStartDate.Text != "" && tbEndDate.Text != "")
+                {
+                    DateTime dtEndDate = DateTime.Parse(tbEndDate.Text);
+                    DateTime dtStartDate = DateTime.Parse(tbStartDate.Text);
+                    int totalDay = (int)(dtEndDate - dtStartDate).TotalDays + 1;
+
+                    if (totalDay <= 0)
+                    {
+                        notification.Attributes["class"] = "alert alert_danger";
+                        notification.InnerHtml = "";
+                        notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> วันที่เริ่มโครงการ - วันที่สิ้นสุดโครงการ : วันที่ไม่ถูกต้อง !</div>";
+                        ScriptManager.GetCurrent(this.Page).SetFocus(this.tbStartDate);
+                        return;
+                    }
+                    else
+                    {
+                        notification.Attributes["class"] = "none";
+                        notification.InnerHtml = "";
+                    }
+                }
+
                 PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
                 UOC_STAFF loginPerson = ps.LoginPerson;
                 PROJECT p = new PROJECT();
@@ -176,7 +273,6 @@ namespace Personnel
                 Notsuccess.Visible = false;
                 success.Visible = true;
             }
-
         }
     }
 }

@@ -227,11 +227,9 @@ namespace Personnel
                         {
                             using (OracleDataReader reader = com.ExecuteReader())
                             {
-                                int a = 1;
                                 while (reader.Read())
                                 {
                                     cell.Text = reader.GetInt32(0).ToString();
-                                    //cell.Text = a.ToString(); a++;
                                 }
                             }
                         }

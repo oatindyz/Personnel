@@ -92,12 +92,21 @@
             });
         });
     </script>
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnAddProject.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div class="default_page_style">
         <div class="ps-header">
             <img src="Image/Small/add.png" />เพิ่มข้อมูลอบรม/สัมมนา/ดูงาน
+            <span style="text-align:right; float:right;"><a href="listproject.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
         <div id="notification" runat="server"></div>
 
@@ -204,7 +213,6 @@
                 </table>
 
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="listproject.aspx" class="btn btn-info">ย้อนกลับ</a>
                     <asp:Button ID="btnAddProject" runat="server" CssClass="btn btn-success" OnClick="btnAddProject_Click" Text="บันทึก"></asp:Button>
                 </div>
 

@@ -272,7 +272,6 @@
                                 <div class="ps-box-ct10">
                                     <a href="listuser-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลบุคลากร</a>
                                     <a href="listproject-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน</a>
-                                    <a href="reportproject-fliter-admin.aspx"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลอบรม/สัมมนา/ดูงาน</a>
                                 </div>
                             </div>
                         </div>

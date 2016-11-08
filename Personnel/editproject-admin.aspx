@@ -96,12 +96,20 @@
         var fu1 = document.getElementById('<%= FUdocument.ClientID %>');
         alert("You selected " + fu1.value);
     </script>
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnUpdateProject.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div class="default_page_style">
         <div class="ps-header">
             <img src="Image/Small/document-edit.png" />แก้ไขข้อมูลอบรม/สัมมนา/ดูงาน
+            <span style="text-align:right; float:right;"><a href="listproject-admin.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
         <div id="notification" runat="server"></div>
 
@@ -144,7 +152,7 @@
                         </td>
                         <td>
                             <div class="form-group">
-                                <asp:Label ID="lbFile" runat="server">แนบไฟล์ .pdf (รูปภาพ,เอกสาร ประกอบการอบรม)</asp:Label>
+                                <asp:Label ID="lbFile" runat="server">แนบไฟล์ .pdf (รูปภาพ,เอกสาร ประกอบการอบรม)<span id="spFile" runat="server"></span></asp:Label>
                                 <asp:FileUpload ID="FUdocument" runat="server" Width="250px"/>
                             </div>               
                         </td>
@@ -225,7 +233,6 @@
                 </table>
 
                 <div style="text-align: center; margin-top: 10px;">
-                    <a href="listproject-admin.aspx" class="btn btn-info">ย้อนกลับ</a>
                     <asp:Button ID="btnUpdateProject" runat="server" CssClass="btn btn-success" OnClick="btnUpdateProject_Click" Text="บันทึก"></asp:Button>
                 </div>
 

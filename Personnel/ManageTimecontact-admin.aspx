@@ -9,6 +9,12 @@
             display: inline-block;
         }
     </style>
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=lbuSubmit.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Panel ID="Panel1" runat="server" CssClass="divpan" DefaultButton="lbuSearch">

@@ -32,20 +32,6 @@ namespace Personnel
             myRepeater.DataBind();
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            var btn = (Button)sender;
-            var item = (RepeaterItem)btn.NamingContainer;
-            var hidden = (HiddenField)item.FindControl("HF1");
-
-            string proID = hidden.Value;
-            if (hidden != null)
-            {
-                DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + proID + "'");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
-            }
-        }
-
         protected void myRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "Preview" && e.CommandArgument.ToString() != "")
@@ -105,14 +91,32 @@ namespace Personnel
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
                     BindData();
                 }
-
             }
-            if (e.CommandName == "Report" && e.CommandArgument.ToString() != "")
+            if (e.CommandName == "ReportWord" && e.CommandArgument.ToString() != "")
             {
-                LinkButton lbu = (LinkButton)e.Item.FindControl("lbuReport");
-                string value = lbu.CommandArgument;
+                LinkButton lbuWord = (LinkButton)e.Item.FindControl("lbuReportWord");
+                string value = lbuWord.CommandArgument;
                 Response.Redirect("reportproject-admin.aspx?id=" + value);
             }
+
+            LinkButton lbuExcel = (LinkButton)e.Item.FindControl("lbuReportExcel");
+            string value1 = lbuExcel.CommandName;
+            Response.Redirect("reportproject-fliter-admin.aspx");
         }
+
+        /*protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            var btn = (Button)sender;
+            var item = (RepeaterItem)btn.NamingContainer;
+            var hidden = (HiddenField)item.FindControl("HF1");
+
+            string proID = hidden.Value;
+            if (hidden != null)
+            {
+                DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + proID + "'");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
+            }
+        }*/
+
     }
 }

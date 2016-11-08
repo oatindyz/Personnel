@@ -175,6 +175,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbTelephone;
         
         /// <summary>
+        /// spZip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spZip;
+        
+        /// <summary>
         /// tbZipcode control.
         /// </summary>
         /// <remarks>

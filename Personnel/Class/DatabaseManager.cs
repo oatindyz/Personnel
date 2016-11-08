@@ -215,7 +215,7 @@ namespace Personnel.Class
             }
             return false;
         }   
-        //...
+
         public static UOC_STAFF GetOUC_STAFF(string CITIZEN_ID)
         {
             OracleConnection.ClearAllPools();
@@ -298,7 +298,15 @@ namespace Personnel.Class
                    "ST_LOGIN_ID," +
                    "(SELECT ST_LOGIN_NAME FROM TB_STATUS_LOGIN WHERE TB_STATUS_LOGIN.ST_LOGIN_ID = UOC_STAFF.ST_LOGIN_ID) ST_LOGIN_NAME," +
                    "PERSON_ROLE_ID," +
-                   "(SELECT PERSON_ROLE_NAME FROM TB_PERSON_ROLE WHERE TB_PERSON_ROLE.PERSON_ROLE_ID = UOC_STAFF.PERSON_ROLE_ID) PERSON_ROLE_NAME" +
+                   "(SELECT PERSON_ROLE_NAME FROM TB_PERSON_ROLE WHERE TB_PERSON_ROLE.PERSON_ROLE_ID = UOC_STAFF.PERSON_ROLE_ID) PERSON_ROLE_NAME," +
+                   "FATHER_NAME," +
+                   "FATHER_LNAME," +
+                   "MOTHER_NAME," +
+                   "MOTHER_LNAME," +
+                   "MOTHER_ONAME," +
+                   "COUPLE_NAME," +
+                   "COUPLE_LNAME," +
+                   "COUPLE_ONAME" +
                    " FROM UOC_STAFF WHERE CITIZEN_ID = '" + CITIZEN_ID + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
@@ -382,6 +390,14 @@ namespace Personnel.Class
                             uoc_staff.ST_LOGIN_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.PERSON_ROLE_ID = reader.GetInt32(i++);
                             uoc_staff.PERSON_ROLE_NAME = reader.GetValue(i++).ToString();
+                            uoc_staff.FATHER_NAME = reader.GetValue(i++).ToString();
+                            uoc_staff.FATHER_LNAME = reader.GetValue(i++).ToString();
+                            uoc_staff.MOTHER_NAME = reader.GetValue(i++).ToString();
+                            uoc_staff.MOTHER_LNAME = reader.GetValue(i++).ToString();
+                            uoc_staff.MOTHER_ONAME = reader.GetValue(i++).ToString();
+                            uoc_staff.COUPLE_NAME = reader.GetValue(i++).ToString();
+                            uoc_staff.COUPLE_LNAME = reader.GetValue(i++).ToString();
+                            uoc_staff.COUPLE_ONAME = reader.GetValue(i++).ToString();
 
                             return uoc_staff;
                         }

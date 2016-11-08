@@ -175,6 +175,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbTelephone;
         
         /// <summary>
+        /// spZip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spZip;
+        
+        /// <summary>
         /// tbZipcode control.
         /// </summary>
         /// <remarks>
@@ -301,6 +310,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbSpecialName;
         
         /// <summary>
+        /// spTeachISCED control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spTeachISCED;
+        
+        /// <summary>
         /// ddlTeachISCED control.
         /// </summary>
         /// <remarks>
@@ -328,6 +346,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.TextBox tbGradCURR;
         
         /// <summary>
+        /// spGradISCED control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spGradISCED;
+        
+        /// <summary>
         /// ddlGradISCED control.
         /// </summary>
         /// <remarks>
@@ -335,6 +362,15 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlGradISCED;
+        
+        /// <summary>
+        /// spGradProg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl spGradProg;
         
         /// <summary>
         /// ddlGradProg control.

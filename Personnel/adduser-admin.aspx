@@ -146,12 +146,37 @@
         }
     </script>
 
+    <script>
+        function SelectNoTwoOption(selectElement) {
+            var selectedOption = selectElement.selectedIndex;
+            var Obj1 = $('#<%=ddlGradISCED.ClientID%>');
+            var Obj2 = $('#<%=ddlGradProg.ClientID%>');
+            if (selectedOption == 1)
+                Obj1.select2("enable", false)
+            else
+                Obj1.select2("enable", true)
+            if (selectedOption == 1)
+                Obj2.select2("enable", false)
+            else
+                Obj2.select2("enable", true)
+        }
+    </script>
+
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnAddPerson.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div class="default_page_style">
         <div class="ps-header">
             <img src="Image/Small/add.png" />เพิ่มข้อมูลบุคลากร
+            <span style="text-align:right; float:right;"><a href="listuser-admin.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
         <div id="notification" runat="server"></div>
 
@@ -247,9 +272,9 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">รหัสไปรษณีย์<span class="ps-lb-red" />*</td>
+                                    <td class="col1">รหัสไปรษณีย์<span id="spZip" runat="server"></span></td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" MaxLength="5" onkeypress="return isNumberKey(event)" required="required" tabindex="1"></asp:TextBox>
+                                        <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" MaxLength="5" onkeypress="return isNumberKey(event)"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
@@ -285,7 +310,7 @@
                                 <tr>
                                     <td class="col1">ประเภทตำแหน่ง<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" onchange="SelectNoTeach(this)" required="required" tabindex="1"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlSubStafftype_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -331,7 +356,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)</td>
+                                    <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)<span id="spTeachISCED" runat="server" /></td>
                                     <td class="col2">
                                         <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                     </td>
@@ -339,7 +364,7 @@
                                 <tr>
                                     <td class="col1">ระดับการศึกษาที่จบสูงสุด<span class="ps-lb-red" />*</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlGradLev_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
@@ -349,13 +374,13 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)<span class="ps-lb-red" />*</td>
+                                    <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)<span id="spGradISCED" runat="server" /></td>
                                     <td class="col2">
                                         <asp:DropDownList ID="ddlGradISCED" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">สาขาวิชาที่จบสูงสุด<span class="ps-lb-red" />*</td>
+                                    <td class="col1">สาขาวิชาที่จบสูงสุด<span id="spGradProg" runat="server" /></td>
                                     <td class="col2">
                                         <asp:DropDownList ID="ddlGradProg" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>

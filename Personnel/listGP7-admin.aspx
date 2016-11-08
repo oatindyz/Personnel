@@ -32,7 +32,7 @@
                             <tr>
                                 <th>ลำดับที่</th>
                                 <th>ชื่อ-สกุล</th>
-                                <th>ประเภทบุครากร</th>
+                                <th>ประเภทบุคลากร</th>
                                 <th>คณะ/หน่วยงาน</th>
                                 <th><img src="Image/Small/document-edit.png" class="icon_left" />จัดการข้อมูล</th>
                             </tr>

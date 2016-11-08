@@ -52,13 +52,13 @@ namespace Personnel
             {
                 LinkButton lbu = (LinkButton)e.Item.FindControl("lbuPreview");
                 string value = lbu.CommandArgument;
-                Response.Redirect("previewproject-admin.aspx?id=" + value);
+                Response.Redirect("previewproject.aspx?id=" + value);
             }
             if (e.CommandName == "Edit" && e.CommandArgument.ToString() != "")
             {
                 LinkButton lbu = (LinkButton)e.Item.FindControl("lbuEdit");
                 string value = lbu.CommandArgument;
-                Response.Redirect("editproject-admin.aspx?id=" + value);
+                Response.Redirect("editproject.aspx?id=" + value);
             }
             if (e.CommandName == "Delete" && e.CommandArgument.ToString() != "")
             {

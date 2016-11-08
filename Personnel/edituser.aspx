@@ -63,11 +63,20 @@
             });
         });
     </script>
+
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnUpdatePerson.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
         <div class="ps-header">
             <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร
+            <span style="text-align:right; float:right;"><a href="default.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
         <div id="notification" runat="server"></div>
 
@@ -162,7 +171,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">รหัสไปรษณีย์<span class="ps-lb-red" />*</td>
+                                    <td class="col1">รหัสไปรษณีย์<span id="spZip" runat="server"/></td>
                                     <td class="col2">
                                         <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"></asp:TextBox>
                                     </td>

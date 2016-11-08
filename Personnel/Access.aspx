@@ -87,6 +87,13 @@
             return true;
         };
     </script>
+
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnLogin.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">

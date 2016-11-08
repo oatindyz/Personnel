@@ -22,8 +22,9 @@ namespace Personnel
                 if (Request.QueryString["id"] != null)
                 {
                     int.TryParse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()), out id);
-                }
+                } else { Response.Redirect("listGP7-admin.aspx"); }
                 BindData();
+                BindDataBase();
             }
 
             if (HF1.Value != "")
@@ -39,7 +40,6 @@ namespace Personnel
                     return;
                 }
             }
-            
         }
 
         public bool CreateSelectPersonPageLoad(Page page, string pageURL)
@@ -50,7 +50,6 @@ namespace Personnel
                 HF1.Value = p;
                 return true;
             }
-
             return false;
         }
 
@@ -128,6 +127,32 @@ namespace Personnel
         }
 
         #endregion
+
+        protected void BindDataBase()
+        {
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT FATHER_NAME, FATHER_LNAME, MOTHER_NAME, MOTHER_LNAME, MOTHER_ONAME, COUPLE_NAME, COUPLE_LNAME, COUPLE_ONAME FROM UOC_STAFF WHERE UOC_ID = '" + MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()) + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int i = 0;
+                            tbFatherName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbFatherLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbMotherName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbMotherLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbMotherOldLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbCoupleName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbCoupleLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbCoupleOldLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                        }
+                    }
+                }
+            }
+        }
 
         void BindData()
         {
@@ -549,12 +574,15 @@ namespace Personnel
             Pson.FATHER_LNAME = tbFatherLastName.Text;
             Pson.MOTHER_NAME = tbMotherName.Text;
             Pson.MOTHER_LNAME = tbMotherLastName.Text;
+            Pson.MOTHER_ONAME = tbMotherOldLastName.Text;
             Pson.COUPLE_NAME = tbCoupleName.Text;
             Pson.COUPLE_LNAME = tbCoupleLastName.Text;
-            Pson.INSERT_GP7();
+            Pson.COUPLE_ONAME = tbCoupleOldLastName.Text;
+            Pson.UPDATE_GP7();
 
             ClearGP7();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
+            BindDataBase();
         }
 
         protected void btnSave2_Click(object sender, EventArgs e)

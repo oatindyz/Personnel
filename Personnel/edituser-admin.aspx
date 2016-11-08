@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="edituser-admin.aspx.cs" Inherits="Personnel.edituser_admin" MaintainScrollPositionOnPostback="true"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="edituser-admin.aspx.cs" Inherits="Personnel.edituser_admin" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -8,16 +8,16 @@
             $(".select2").select2();
 
             //Datemask dd/mm/yyyy
-            $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+            $("#datemask").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
             //Datemask2 mm/dd/yyyy
-            $("#datemask2").inputmask("mm/dd/yyyy", {"placeholder": "mm/dd/yyyy"});
+            $("#datemask2").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
             //Money Euro
             $("[data-mask]").inputmask();
 
             //Date range picker
             $('#reservation').daterangepicker();
             //Date range picker with time picker
-            $('#reservationtime').daterangepicker({timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A'});
+            $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
             //Date range as a button
             $('#daterange-btn').daterangepicker(
                 {
@@ -66,34 +66,34 @@
     </script>
 
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             var thaiYear = function (ct) {
-                var leap=3;  
-                var dayWeek=["พฤ.", "ศ.", "ส.", "อา.","จ.", "อ.", "พ."];  
-                if(ct){  
-                    var yearL=new Date(ct).getFullYear()-543;  
-                    leap=(((yearL % 4 == 0) && (yearL % 100 != 0)) || (yearL % 400 == 0))?2:3;  
-                    if(leap==2){  
-                        dayWeek=["ศ.", "ส.", "อา.", "จ.","อ.", "พ.", "พฤ."];  
-                    }  
-                }              
-                this.setOptions({  
-                    i18n:{ th:{dayOfWeek:dayWeek}},dayOfWeekStart:leap,  
-                })                
-            };    
-    
+                var leap = 3;
+                var dayWeek = ["พฤ.", "ศ.", "ส.", "อา.", "จ.", "อ.", "พ."];
+                if (ct) {
+                    var yearL = new Date(ct).getFullYear() - 543;
+                    leap = (((yearL % 4 == 0) && (yearL % 100 != 0)) || (yearL % 400 == 0)) ? 2 : 3;
+                    if (leap == 2) {
+                        dayWeek = ["ศ.", "ส.", "อา.", "จ.", "อ.", "พ.", "พฤ."];
+                    }
+                }
+                this.setOptions({
+                    i18n: { th: { dayOfWeek: dayWeek } }, dayOfWeekStart: leap,
+                })
+            };
+
             $('#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateStartThisU').datetimepicker({
-                timepicker:false,
-                format:'d/m/Y',		
-                lang:'th',
-                onChangeMonth:thaiYear,          
-                onShow:thaiYear,                  
-                yearOffset:543,
-                closeOnDateSelect:true,
-            });           
+                timepicker: false,
+                format: 'd/m/Y',
+                lang: 'th',
+                onChangeMonth: thaiYear,
+                onShow: thaiYear,
+                yearOffset: 543,
+                closeOnDateSelect: true,
+            });
         });
     </script>
-    
+
     <script>
         function SelectNoTeach(selectElement) {
             var selectedOption = selectElement.selectedIndex;
@@ -103,8 +103,15 @@
             if (selectedOption == 2)
                 JgetOBJ.select2("enable", false)
             else
-                JgetOBJ.select2("enable", true)       
+                JgetOBJ.select2("enable", true)
         }
+    </script>
+
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnUpdatePerson.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
     </script>
 
 </asp:Content>
@@ -112,6 +119,8 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server" />
     <div class="ps-header">
         <img src="Image/book_edit.png" />แก้ไขข้อมูลบุคลากร
+        <span style="text-align:right; float:right;"><a href="listuser-admin.aspx">
+        <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
     </div>
     <div id="notification" runat="server"></div>
 
@@ -122,7 +131,7 @@
                     <div class="panel panel-default">
                         <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                             <tr>
-                                <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน</td>
+                                <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน<span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:Label ID="lbCitizenID" runat="server"></asp:Label>
                                 </td>
@@ -142,7 +151,7 @@
                             <tr>
                                 <td class="col1">ชื่อ<span class="ps-lb-red" />*</td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
+                                    <asp:TextBox ID="tbName" runat="server" CssClass="form-control input-sm" onkeyup="Check_txt(this,event)" required="required" TabIndex="1"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -154,7 +163,7 @@
                             <tr>
                                 <td class="col1">เพศ</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
@@ -191,6 +200,7 @@
                                 <td class="col1">อำเภอ<span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
+
                                 </td>
                             </tr>
                             <tr>
@@ -206,9 +216,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">รหัสไปรษณีย์<span class="ps-lb-red" />*</td>
+                                <td class="col1">รหัสไปรษณีย์<span id="spZip" runat="server"></span></td>
                                 <td class="col2">
-                                    <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
+                                    <asp:TextBox ID="tbZipcode" runat="server" CssClass="form-control input-sm" MaxLength="5" onkeypress="return isNumberKey(event)"></asp:TextBox>
                                 </td>
                             </tr>
                             <tr>
@@ -244,7 +254,7 @@
                             <tr>
                                 <td class="col1">ประเภทตำแหน่ง<span class="ps-lb-red" />*</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" onchange="SelectNoTeach(this)" required="required" TabIndex="1"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlSubStafftype_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
@@ -290,7 +300,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)</td>
+                                <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)<span id="spTeachISCED" runat="server" /></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
@@ -298,7 +308,7 @@
                             <tr>
                                 <td class="col1">ระดับการศึกษาที่จบสูงสุด<span class="ps-lb-red" />*</td>
                                 <td class="col2">
-                                    <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
+                                    <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlGradLev_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
@@ -308,13 +318,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)<span class="ps-lb-red" />*</td>
+                                <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)<span id="spGradISCED" runat="server" /></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGradISCED" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">สาขาวิชาที่จบสูงสุด<span class="ps-lb-red" />*</td>
+                                <td class="col1">สาขาวิชาที่จบสูงสุด<span id="spGradProg" runat="server" /></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGradProg" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -419,7 +429,8 @@
                             ระบบได้ทำการบันทึกข้อมูลบุคลากรเรียบร้อยแล้ว
                         </div>
                         <div style="text-align: center; margin-top: 10px;">
-                            <a href="Default.aspx" class="ps-button btn btn-primary"><img src="Image/Small/home3.png" class="icon_left" />กลับหน้าหลัก</a>
+                            <a href="Default.aspx" class="ps-button btn btn-primary">
+                                <img src="Image/Small/home3.png" class="icon_left" />กลับหน้าหลัก</a>
                         </div>
                     </div>
                 </asp:View>

@@ -159,6 +159,27 @@ namespace Personnel
                 }
             }
             catch { }
+
+            if (ddlProvince.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+                ddlNation.SelectedIndex = 0;
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
         }
 
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -188,6 +209,25 @@ namespace Personnel
                 }
             }
             catch { }
+
+            if (ddlProvince.SelectedIndex == 1 && ddlDistrict.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
         }
 
         private void ReadSelectID()
@@ -237,6 +277,35 @@ namespace Personnel
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
             ClearNotification();
+            if (ddlProvince.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+            }
+            else if (ddlProvince.SelectedIndex == 1 && ddlDistrict.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
             MultiView1.ActiveViewIndex = 0;
         }
 

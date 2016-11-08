@@ -18,7 +18,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
-        <img src="Image/book_edit.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน (เจ้าหน้าที่)
+        <img src="Image/book_edit.png" />จัดการข้อมูลอบรม/สัมมนา/ดูงาน
+        <span style="text-align:right; float:right;"><a href="reportproject-fliter-admin.aspx">
+        <img src="Image/Small/report.png" />ออกรายงาน Excel</a></span>
     </div>
     <div id="notification" runat="server"></div>
 
@@ -51,7 +53,7 @@
                                         <a><asp:LinkButton ID="lbuPreview" CommandName="Preview" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()) %>' class="btn btn-info ekknidRight">ดู</asp:LinkButton></a>
                                         <a><asp:LinkButton ID="lbuEdit" CommandName="Edit" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()) %>' class="btn btn-warning ekknidRight">แก้ไข</asp:LinkButton></a>
                                         <a><asp:LinkButton ID="lbuDelete" CommandName="Delete" OnClientClick="javascript:if(!confirm('คุณต้องการที่จะลบใช่หรือไม่'))return false;" CommandArgument='<%#DataBinder.Eval(Container.DataItem, "PRO_ID").ToString()%>' runat="server" class="btn btn-danger ekknidRight">ลบ</asp:LinkButton></a>
-                                        <a><asp:LinkButton ID="lbuReport" CommandName="Report" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString())%>' runat="server" class="btn btn-primary">ออกรายงาน</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuReportWord" CommandName="ReportWord" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "PRO_ID").ToString())%>' runat="server" class="btn btn-primary">ออกรายงาน Word</asp:LinkButton></a>
                                     </td>
                                 </tr>
                             </ItemTemplate>

@@ -83,6 +83,14 @@ namespace Personnel.Class
         public string ST_LOGIN_NAME;
         public int PERSON_ROLE_ID;
         public string PERSON_ROLE_NAME;
+        public string FATHER_NAME;
+        public string FATHER_LNAME;
+        public string MOTHER_NAME;
+        public string MOTHER_LNAME;
+        public string MOTHER_ONAME;
+        public string COUPLE_NAME;
+        public string COUPLE_LNAME;
+        public string COUPLE_ONAME;
 
         public string FullName
         {

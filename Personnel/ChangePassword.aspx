@@ -23,6 +23,12 @@
             }
         }
     </script>
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnChangePassword.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="ps-header">
@@ -44,7 +50,7 @@
                     <div class="form-group">
                         <asp:TextBox ID="tbPasswordNewAgain" TextMode="Password" runat="server" CssClass="form-control" placeHolder="รหัสผ่านใหม่อีกครั้ง" MaxLength="25" required="required" TabIndex="1"></asp:TextBox>
                     </div>
-                    <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click" CssClass="btn btn-primary" Text="เปลี่ยนรหัสผ่าน" />
+                    <asp:Button ID="btnChangePassword" runat="server" OnClick="btnChangePassword_Click"  CssClass="btn btn-primary" Text="เปลี่ยนรหัสผ่าน" />
                     <div style="margin-top: 20px; margin-left: 20px">
                         <asp:Label ID="Label12X" runat="server" CssClass="cerror"></asp:Label>
                     </div>

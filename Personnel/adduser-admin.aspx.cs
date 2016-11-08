@@ -140,6 +140,27 @@ namespace Personnel
                 }
             }
             catch { }
+
+            if (ddlProvince.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+                ddlNation.SelectedIndex = 0;
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
         }
 
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -169,17 +190,89 @@ namespace Personnel
                 }
             }
             catch { }
+
+            if (ddlProvince.SelectedIndex == 1 && ddlDistrict.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
         }
 
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
             ClearNotification();
+            if (ddlProvince.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+            }
+            else if (ddlProvince.SelectedIndex == 1 && ddlDistrict.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
             MultiView1.ActiveViewIndex = 0;
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
             ClearNotification();
+            if (ddlGradLev.SelectedIndex == 1)
+            {
+                ddlGradISCED.Enabled = false;
+                spGradISCED.InnerText = "";
+                spGradISCED.Attributes.Add("class", "ps-lb-red");
+                spGradISCED.Attributes["style"] = "";
+
+                ddlGradProg.Enabled = false;
+                spGradProg.InnerText = "";
+                spGradProg.Attributes.Add("class", "ps-lb-red");
+                spGradProg.Attributes["style"] = "";
+            }
+            else
+            {
+                ddlGradISCED.Enabled = true;
+                spGradISCED.InnerText = "*";
+                spGradISCED.Attributes.Add("class", "");
+                spGradISCED.Attributes["style"] = "color:red;";
+
+                ddlGradProg.Enabled = true;
+                spGradProg.InnerText = "*";
+                spGradProg.Attributes.Add("class", "");
+                spGradProg.Attributes["style"] = "color:red;";
+            }
             MultiView1.ActiveViewIndex = 1;
         }
 
@@ -207,7 +300,7 @@ namespace Personnel
                 ChangeNotification("danger", "รหัสบัตรประชาชนซ้ำ");
                 return;
             }
-            ///
+            //
 
             if (tbCitizenID.Text == "")
             {
@@ -243,12 +336,6 @@ namespace Personnel
             {
                 MultiView1.ActiveViewIndex = 0;
                 ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlSubDistrict);
-                return;
-            }
-            if (tbZipcode.Text == "")
-            {
-                MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbZipcode);
                 return;
             }
             if (ddlNation.SelectedIndex == 0)
@@ -318,40 +405,29 @@ namespace Personnel
                 ScriptManager.GetCurrent(this.Page).SetFocus(this.tbGradCURR);
                 return;
             }
-            if (ddlGradISCED.SelectedIndex == 0)
-            {
-                MultiView1.ActiveViewIndex = 1;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlGradISCED);
-                return;
-            }
-            if (ddlGradProg.SelectedIndex == 0)
-            {
-                MultiView1.ActiveViewIndex = 1;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlGradProg);
-                return;
-            }
 
-            ///
+            //
             if (tbBirthday.Text != "")
             {
                 DateTime birthday = DateTime.Parse(tbBirthday.Text);
                 DateTime today1 = DateTime.Now;
+
                 if (birthday > today1)
                 {
                     MultiView1.ActiveViewIndex = 0;
                     ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
-                    ChangeNotification("danger", "อายุต้องไม่มากกว่าวันปัจจุบัน");
+                    ChangeNotification("danger", "วันเกิดต้องไม่มากกว่าวันปัจจุบัน");
                     return;
                 }
 
                 DateTime BirthYear = DateTime.Parse(tbBirthday.Text);
-                DateTime YearNow = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
-                int totalDays2 = (int)(YearNow - BirthYear).TotalDays + 0;
-                if (totalDays2 < 8030)
+                DateTime CurrDateNow = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
+                int totalDays2 = (int)(CurrDateNow - BirthYear).TotalDays + 0;
+                if (totalDays2 < 6570)
                 {
                     MultiView1.ActiveViewIndex = 0;
                     ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
-                    ChangeNotification("danger", "อายุต้องไม่ต่ำกว่า22ปี");
+                    ChangeNotification("danger", "อายุต้องไม่ต่ำกว่า 18 ปี");
                     return;
                 }
             }
@@ -360,13 +436,21 @@ namespace Personnel
             {
                 DateTime birthday = DateTime.Parse(tbBirthday.Text);
                 DateTime DateInwork = DateTime.Parse(tbDateInwork.Text);
-                int totalDays3 = (int)(DateInwork - birthday).TotalDays + 0;
+                int totalDays3 = (int)(birthday - DateInwork).TotalDays + 0;
+                int totalDays4 = (int)(DateInwork - birthday).TotalDays + 0;
 
-                if (totalDays3 < 0)
+                if (totalDays3 > 0)
                 {
                     MultiView1.ActiveViewIndex = 1;
                     ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
-                    ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรกต้องไม่น้อยกว่าวันเกิด");
+                    ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรก ต้องไม่ต่ำกว่าวันเกิด");
+                    return;
+                }
+                else if (totalDays4 <= 6574)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
+                    ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรก ต้องไม่ต่ำกว่าวันเกิด 18 ปี");
                     return;
                 }
             }
@@ -375,27 +459,36 @@ namespace Personnel
             {
                 DateTime birthday = DateTime.Parse(tbBirthday.Text);
                 DateTime DateStartThisU = DateTime.Parse(tbDateStartThisU.Text);
-                int totalDays3 = (int)(DateStartThisU - birthday).TotalDays + 0;
+                int totalDays3 = (int)(birthday - DateStartThisU).TotalDays + 0;
+                int totalDays4 = (int)(DateStartThisU - birthday).TotalDays + 0;
 
-                if (totalDays3 < 0)
+                if (totalDays3 > 0)
                 {
                     MultiView1.ActiveViewIndex = 1;
                     ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
-                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบันต้องไม่น้อยกว่าวันเกิด");
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่ต่ำกว่าวันเกิด");
+                    return;
+                }
+                else if (totalDays4 <= 6574)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่ต่ำกว่าวันเกิด 18 ปี");
                     return;
                 }
             }
+
             if (tbDateInwork.Text != "" && tbDateStartThisU.Text != "")
             {
                 DateTime DateInwork = DateTime.Parse(tbDateInwork.Text);
                 DateTime DateStartThisU = DateTime.Parse(tbDateStartThisU.Text);
                 int totalDays3 = (int)(DateStartThisU - DateInwork).TotalDays + 0;
 
-                if (totalDays3 > 0)
+                if (totalDays3 < 0)
                 {
                     MultiView1.ActiveViewIndex = 1;
                     ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
-                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบันต้องไม่มากกว่าวันที่เข้าทำงานครั้งแรก");
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่น้อยกว่าวันที่เข้าทำงานครั้งแรก");
                     return;
                 }
             }
@@ -462,6 +555,48 @@ namespace Personnel
             btnSelectView2.Visible = false;
             btnAddPerson.Visible = false;
 
+        }
+
+        protected void ddlSubStafftype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSubStafftype.SelectedIndex == 2)
+            {
+                ddlTeachISCED.Enabled = false;
+                spTeachISCED.InnerText = "";
+                spTeachISCED.Attributes.Add("class","ps-lb-red");
+                spTeachISCED.Attributes["style"] = "";
+            } else {
+                ddlTeachISCED.Enabled = true;
+                spTeachISCED.InnerText = "*";
+                spTeachISCED.Attributes.Add("class", "");
+                spTeachISCED.Attributes["style"] = "color:red;";
+            }
+        }
+
+        protected void ddlGradLev_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlGradLev.SelectedIndex == 1)
+            {
+                ddlGradISCED.Enabled = false;
+                spGradISCED.InnerText = "";
+                spGradISCED.Attributes.Add("class", "ps-lb-red");
+                spGradISCED.Attributes["style"] = "";
+
+                ddlGradProg.Enabled = false;
+                spGradProg.InnerText = "";
+                spGradProg.Attributes.Add("class", "ps-lb-red");
+                spGradProg.Attributes["style"] = "";
+            } else {
+                ddlGradISCED.Enabled = true;
+                spGradISCED.InnerText = "*";
+                spGradISCED.Attributes.Add("class", "");
+                spGradISCED.Attributes["style"] = "color:red;";
+
+                ddlGradProg.Enabled = true;
+                spGradProg.InnerText = "*";
+                spGradProg.Attributes.Add("class", "");
+                spGradProg.Attributes["style"] = "color:red;";
+            }
         }
 
     }

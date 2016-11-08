@@ -14,9 +14,5 @@ namespace Personnel
 
         }
 
-        protected void lbSubmit_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

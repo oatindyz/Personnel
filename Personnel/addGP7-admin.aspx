@@ -180,6 +180,17 @@
             });
         });
     </script>
+    <script type = "text/javascript">
+    function DisableButton() {
+        document.getElementById("<%=btnSave1.ClientID %>").disabled = true;
+        document.getElementById("<%=btnSave2.ClientID %>").disabled = true;
+        document.getElementById("<%=btnSave3.ClientID %>").disabled = true;
+        document.getElementById("<%=btnSave4.ClientID %>").disabled = true;
+        document.getElementById("<%=btnSave5.ClientID %>").disabled = true;
+        document.getElementById("<%=btnSave6.ClientID %>").disabled = true;
+    }
+    window.onbeforeunload = DisableButton;
+    </script>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -188,6 +199,8 @@
     <div class="default_page_style">
         <div class="ps-header">
             <img src="Image/Small/add.png" />เพิ่มข้อมูล ก.พ.7
+            <span style="text-align:right; float:right;"><a href="listGP7-admin.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
         <div id="notification" runat="server"></div>
 
@@ -228,27 +241,27 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">นามสกุลมารดาเดิม<span class="ps-lb-red" />*</td>
+                        <td class="col1">นามสกุลมารดาเดิม</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbMotherOldLastName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
+                            <asp:TextBox ID="tbMotherOldLastName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">ชื่อคู่สมรส<span class="ps-lb-red" />*</td>
+                        <td class="col1">ชื่อคู่สมรส</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbCoupleName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
+                            <asp:TextBox ID="tbCoupleName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">นามสกุลคู่สมรส<span class="ps-lb-red" />*</td>
+                        <td class="col1">นามสกุลคู่สมรส</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbCoupleLastName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
+                            <asp:TextBox ID="tbCoupleLastName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">นามสกุลเดิมคู่สมรสเดิม<span class="ps-lb-red" />*</td>
+                        <td class="col1">นามสกุลเดิมคู่สมรสเดิม</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbCoupleOldLastName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
+                            <asp:TextBox ID="tbCoupleOldLastName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -262,24 +275,24 @@
             <div class="panel-body">
                 <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                     <tr>
-                        <td class="col1" style="width: 400px;">ระดับการศึกษา</td>
+                        <td class="col1" style="width: 400px;">สถานศึกษา<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbUnivName10" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbUnivName10" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">ตั้งแต่ - ถึง (เดือน ปี)</td>
+                        <td class="col1">ตั้งแต่ - ถึง (เดือน ปี)<span class="ps-lb-red" />*</td>
                         <td class="col2">
 
                             <div class="input-daterange input-group">
-                                <asp:TextBox ID="tbStartDate10" runat="server" CssClass="input-sm form-control"></asp:TextBox>
+                                <asp:TextBox ID="tbStartDate10" runat="server" CssClass="input-sm form-control" required="required" TabIndex="1"></asp:TextBox>
                                 <span class="input-group-addon">ถึง</span>
-                                <asp:TextBox ID="tbEndDate10" runat="server" CssClass="input-sm form-control"></asp:TextBox>
+                                <asp:TextBox ID="tbEndDate10" runat="server" CssClass="input-sm form-control" required="required" TabIndex="1"></asp:TextBox>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">วุฒิ (สาขาวิชาเอก)</td>
+                        <td class="col1">วุฒิ (สาขาวิชาเอก)<span class="ps-lb-red" />*</td>
                         <td class="col2">
                             <asp:TextBox ID="tbCertificate10" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
@@ -359,27 +372,27 @@
             <div class="panel-body">
                 <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                     <tr>
-                        <td class="col1" style="width: 400px;">ชื่อใบอนุญาต</td>
+                        <td class="col1" style="width: 400px;">ชื่อใบอนุญาต<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbLicenseName11" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbLicenseName11" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">หน่วยงาน</td>
+                        <td class="col1">หน่วยงาน<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbDepartment11" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbDepartment11" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">เลขที่ใบอนุญาต</td>
+                        <td class="col1">เลขที่ใบอนุญาต<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbLicenseNumber11" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbLicenseNumber11" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">วันที่มีผลบังคับใช้ (วัน เดือน ปี)</td>
+                        <td class="col1">วันที่มีผลบังคับใช้ (วัน เดือน ปี)<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbStartDate11" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbStartDate11" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -457,26 +470,26 @@
             <div class="panel-body">
                 <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                     <tr>
-                        <td class="col1" style="width: 400px;">หลักสูตรฝึกอบรม</td>
+                        <td class="col1" style="width: 400px;">หลักสูตรฝึกอบรม<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbCourse12" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbCourse12" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">ตั้งแต่ - ถึง (วัน เดือน ปี)</td>
+                        <td class="col1">ตั้งแต่ - ถึง (วัน เดือน ปี)<span class="ps-lb-red" />*</td>
                         <td class="col2">
 
                             <div class="input-daterange input-group">
-                                <asp:TextBox ID="tbStartDate12" runat="server" CssClass="input-sm form-control"></asp:TextBox>
+                                <asp:TextBox ID="tbStartDate12" runat="server" CssClass="input-sm form-control" required="required" TabIndex="1"></asp:TextBox>
                                 <span class="input-group-addon">ถึง</span>
-                                <asp:TextBox ID="tbEndDate12" runat="server" CssClass="input-sm form-control"></asp:TextBox>
+                                <asp:TextBox ID="tbEndDate12" runat="server" CssClass="input-sm form-control" required="required" TabIndex="1"></asp:TextBox>
                             </div>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">หน่วยงานที่จัดฝึกอบรม</td>
+                        <td class="col1">หน่วยงานที่จัดฝึกอบรม<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbDepartment12" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbDepartment12" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -554,22 +567,21 @@
             <div class="panel-body">
                 <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                     <tr>
-                        <td class="col1" style="width: 400px;">พ.ศ.</td>
+                        <td class="col1" style="width: 400px;">พ.ศ.<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbYear13" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbYear13" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">รายการ</td>
+                        <td class="col1">รายการ<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbPunishName13" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbPunishName13" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">เอกสารอ้างอิง
-                        </td>
+                        <td class="col1">เอกสารอ้างอิง<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbRefDoc13" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbRefDoc13" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                 </table>
@@ -639,9 +651,9 @@
             <div class="panel-body">
                 <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                     <tr>
-                        <td class="col1" style="width: 400px;">วัน เดือน ปี</td>
+                        <td class="col1" style="width: 400px;">วัน เดือน ปี<span class="ps-lb-red" />*</td>
                         <td class="col2">
-                            <asp:TextBox ID="tbStartDate14" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                            <asp:TextBox ID="tbStartDate14" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

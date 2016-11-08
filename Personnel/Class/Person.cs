@@ -64,8 +64,10 @@ namespace Personnel.Class
         public string FATHER_LNAME { get; set; }
         public string MOTHER_NAME { get; set; }
         public string MOTHER_LNAME { get; set; }
+        public string MOTHER_ONAME { get; set; }
         public string COUPLE_NAME { get; set; }
         public string COUPLE_LNAME { get; set; }
+        public string COUPLE_ONAME { get; set; }
 
         public PS_PERSON() { }
         public PS_PERSON(
@@ -124,8 +126,10 @@ namespace Personnel.Class
             string FATHER_LNAME,
             string MOTHER_NAME,
             string MOTHER_LNAME,
+            string MOTHER_ONAME,
             string COUPLE_NAME,
-            string COUPLE_LNAME
+            string COUPLE_LNAME,
+            string COUPLE_ONAME
             )
         {
             this.UOC_ID = UOC_ID;
@@ -183,8 +187,10 @@ namespace Personnel.Class
             this.FATHER_LNAME = FATHER_LNAME;
             this.MOTHER_NAME = MOTHER_NAME;
             this.MOTHER_LNAME = MOTHER_LNAME;
+            this.MOTHER_ONAME = MOTHER_ONAME;
             this.COUPLE_NAME = COUPLE_NAME;
             this.COUPLE_LNAME = COUPLE_LNAME;
+            this.COUPLE_ONAME = COUPLE_ONAME;
         }
 
         public DataTable GetDataUOC(string UOC_ID)
@@ -284,27 +290,44 @@ namespace Personnel.Class
             return id;
         }
 
-        public int INSERT_GP7()
+        public bool UPDATE_GP7()
         {
-            int id = 0;
-            OracleConnection.ClearAllPools();
+            bool result = false;
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO UOC_STAFF (FATHER_NAME,FATHER_LNAME,MOTHER_NAME,MOTHER_LNAME,COUPLE_NAME,COUPLE_LNAME) VALUES (:FATHER_NAME,:FATHER_LNAME,:MOTHER_NAME,:MOTHER_LNAME,:COUPLE_NAME,:COUPLE_LNAME) WHERE UOC_ID = :UOC_ID", con))
+
+                string query = "Update UOC_STAFF Set";
+                query += " FATHER_NAME = :FATHER_NAME ,";
+                query += " FATHER_LNAME = :FATHER_LNAME ,";
+                query += " MOTHER_NAME = :MOTHER_NAME ,";
+                query += " MOTHER_LNAME = :MOTHER_LNAME ,";
+                query += " MOTHER_ONAME = :MOTHER_ONAME ,";
+                query += " COUPLE_NAME = :COUPLE_NAME ,";
+                query += " COUPLE_LNAME = :COUPLE_LNAME ,";
+                query += " COUPLE_ONAME = :COUPLE_ONAME ";
+                query += " where UOC_ID = :UOC_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
                 {
                     com.Parameters.Add(new OracleParameter("FATHER_NAME", FATHER_NAME));
                     com.Parameters.Add(new OracleParameter("FATHER_LNAME", FATHER_LNAME));
                     com.Parameters.Add(new OracleParameter("MOTHER_NAME", MOTHER_NAME));
                     com.Parameters.Add(new OracleParameter("MOTHER_LNAME", MOTHER_LNAME));
+                    com.Parameters.Add(new OracleParameter("MOTHER_ONAME", MOTHER_ONAME));
                     com.Parameters.Add(new OracleParameter("COUPLE_NAME", COUPLE_NAME));
                     com.Parameters.Add(new OracleParameter("COUPLE_LNAME", COUPLE_LNAME));
+                    com.Parameters.Add(new OracleParameter("COUPLE_ONAME", COUPLE_ONAME));
                     com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
-                    id = com.ExecuteNonQuery();
 
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
                 }
+
+                return result;
             }
-            return id;
         }
 
         public bool UPDATE_PERSON()

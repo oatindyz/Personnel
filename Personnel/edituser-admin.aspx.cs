@@ -146,6 +146,27 @@ namespace Personnel
                 }
             }
             catch { }
+
+            if (ddlProvince.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+                ddlNation.SelectedIndex = 0;
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
         }
 
         protected void ddlDistrict_SelectedIndexChanged(object sender, EventArgs e)
@@ -175,6 +196,25 @@ namespace Personnel
                 }
             }
             catch { }
+
+            if (ddlProvince.SelectedIndex == 1 && ddlDistrict.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
         }
 
         private void ReadSelectID()
@@ -259,12 +299,65 @@ namespace Personnel
         protected void lbuSelectView0_Click(object sender, EventArgs e)
         {
             ClearNotification();
+            if (ddlProvince.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+            }
+            else if (ddlProvince.SelectedIndex == 1 && ddlDistrict.SelectedIndex == 1)
+            {
+                tbZipcode.Enabled = false;
+                spZip.InnerText = "";
+                spZip.Attributes.Add("class", "ps-lb-red");
+                spZip.Attributes["style"] = "";
+                tbZipcode.Attributes.Add("required", "true");
+                ddlNation.Items[211].Attributes["disabled"] = "disabled";
+                tbZipcode.Text = "";
+            }
+            else
+            {
+                tbZipcode.Enabled = true;
+                spZip.InnerText = "*";
+                spZip.Attributes.Add("class", "");
+                spZip.Attributes["style"] = "color:red;";
+                tbZipcode.Attributes.Add("required", "false");
+                ddlNation.Items[211].Attributes["enabled"] = "enabled";
+            }
             MultiView1.ActiveViewIndex = 0;
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
             ClearNotification();
+            if (ddlGradLev.SelectedIndex == 1)
+            {
+                ddlGradISCED.Enabled = false;
+                spGradISCED.InnerText = "";
+                spGradISCED.Attributes.Add("class", "ps-lb-red");
+                spGradISCED.Attributes["style"] = "";
+
+                ddlGradProg.Enabled = false;
+                spGradProg.InnerText = "";
+                spGradProg.Attributes.Add("class", "ps-lb-red");
+                spGradProg.Attributes["style"] = "";
+            }
+            else
+            {
+                ddlGradISCED.Enabled = true;
+                spGradISCED.InnerText = "*";
+                spGradISCED.Attributes.Add("class", "");
+                spGradISCED.Attributes["style"] = "color:red;";
+
+                ddlGradProg.Enabled = true;
+                spGradProg.InnerText = "*";
+                spGradProg.Attributes.Add("class", "");
+                spGradProg.Attributes["style"] = "color:red;";
+            }
             MultiView1.ActiveViewIndex = 1;
         }
 
@@ -276,23 +369,189 @@ namespace Personnel
 
         protected void lbuUpdatePerson_Click(object sender, EventArgs e)
         {
-            DateTime birthday = DateTime.Parse(tbBirthday.Text);
-            DateTime today1 = DateTime.Now;
-
-            if (birthday > today1)
+            if (tbName.Text == "")
             {
                 MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
-                ChangeNotification("danger", "วันเกิด ต้องไม่มากกว่า วันปัจจุบัน");
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbName);
+                return;
+            }
+            if (tbLastName.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbLastName);
+                return;
+            }
+            if (ddlProvince.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlProvince);
+                return;
+            }
+            if (ddlDistrict.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlDistrict);
+                return;
+            }
+            if (ddlSubDistrict.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlSubDistrict);
+                return;
+            }
+            if (ddlNation.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 0;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlNation);
                 return;
             }
 
-            if (tbZipcode.Text.Length != 5)
+            if (ddlStafftype.SelectedIndex == 0)
             {
-                MultiView1.ActiveViewIndex = 0;
-                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbZipcode);
-                ChangeNotification("danger", "กรุณากรอกรหัสไปรษณีย์ให้ครบ 5 หลัก");
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlStafftype);
                 return;
+            }
+            if (ddlTimeContact.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlTimeContact);
+                return;
+            }
+            if (ddlBudget.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlBudget);
+                return;
+            }
+            if (ddlSubStafftype.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlSubStafftype);
+                return;
+            }
+            if (ddlPosition.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlPosition);
+                return;
+            }
+            if (ddlDepartment.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlDepartment);
+                return;
+            }
+            if (tbDateInwork.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
+                return;
+            }
+            if (tbDateStartThisU.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                return;
+            }
+            if (ddlGradLev.SelectedIndex == 0)
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.ddlGradLev);
+                return;
+            }
+            if (tbGradCURR.Text == "")
+            {
+                MultiView1.ActiveViewIndex = 1;
+                ScriptManager.GetCurrent(this.Page).SetFocus(this.tbGradCURR);
+                return;
+            }
+
+            //
+            if (tbBirthday.Text != "")
+            {
+                DateTime birthday = DateTime.Parse(tbBirthday.Text);
+                DateTime today1 = DateTime.Now;
+
+                if (birthday > today1)
+                {
+                    MultiView1.ActiveViewIndex = 0;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
+                    ChangeNotification("danger", "วันเกิดต้องไม่มากกว่าวันปัจจุบัน");
+                    return;
+                }
+
+                DateTime BirthYear = DateTime.Parse(tbBirthday.Text);
+                DateTime CurrDateNow = DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy"));
+                int totalDays2 = (int)(CurrDateNow - BirthYear).TotalDays + 0;
+                if (totalDays2 < 6570)
+                {
+                    MultiView1.ActiveViewIndex = 0;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbBirthday);
+                    ChangeNotification("danger", "อายุต้องไม่ต่ำกว่า 18 ปี");
+                    return;
+                }
+            }
+
+            if (tbBirthday.Text != "" && tbDateInwork.Text != "")
+            {
+                DateTime birthday = DateTime.Parse(tbBirthday.Text);
+                DateTime DateInwork = DateTime.Parse(tbDateInwork.Text);
+                int totalDays3 = (int)(birthday - DateInwork).TotalDays + 0;
+                int totalDays4 = (int)(DateInwork - birthday).TotalDays + 0;
+
+                if (totalDays3 > 0)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
+                    ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรก ต้องไม่ต่ำกว่าวันเกิด");
+                    return;
+                }
+                else if (totalDays4 <= 6574)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateInwork);
+                    ChangeNotification("danger", "วันที่เข้าทำงานครั้งแรก ต้องไม่ต่ำกว่าวันเกิด 18 ปี");
+                    return;
+                }
+            }
+
+            if (tbBirthday.Text != "" && tbDateStartThisU.Text != "")
+            {
+                DateTime birthday = DateTime.Parse(tbBirthday.Text);
+                DateTime DateStartThisU = DateTime.Parse(tbDateStartThisU.Text);
+                int totalDays3 = (int)(birthday - DateStartThisU).TotalDays + 0;
+                int totalDays4 = (int)(DateStartThisU - birthday).TotalDays + 0;
+
+                if (totalDays3 > 0)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่ต่ำกว่าวันเกิด");
+                    return;
+                }
+                else if (totalDays4 <= 6574)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่ต่ำกว่าวันเกิด 18 ปี");
+                    return;
+                }
+            }
+
+            if (tbDateInwork.Text != "" && tbDateStartThisU.Text != "")
+            {
+                DateTime DateInwork = DateTime.Parse(tbDateInwork.Text);
+                DateTime DateStartThisU = DateTime.Parse(tbDateStartThisU.Text);
+                int totalDays3 = (int)(DateStartThisU - DateInwork).TotalDays + 0;
+
+                if (totalDays3 < 0)
+                {
+                    MultiView1.ActiveViewIndex = 1;
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbDateStartThisU);
+                    ChangeNotification("danger", "วันที่เข้าทำงาน ณ สถานที่ปัจจุบัน ต้องไม่น้อยกว่าวันที่เข้าทำงานครั้งแรก");
+                    return;
+                }
             }
 
             PS_PERSON person = new PS_PERSON();
@@ -352,6 +611,52 @@ namespace Personnel
             btnSelectView1.Visible = false;
             btnSelectView2.Visible = false;
             btnUpdatePerson.Visible = false;
+        }
+
+        protected void ddlSubStafftype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlSubStafftype.SelectedIndex == 2)
+            {
+                ddlTeachISCED.Enabled = false;
+                spTeachISCED.InnerText = "";
+                spTeachISCED.Attributes.Add("class", "ps-lb-red");
+                spTeachISCED.Attributes["style"] = "";
+            }
+            else
+            {
+                ddlTeachISCED.Enabled = true;
+                spTeachISCED.InnerText = "*";
+                spTeachISCED.Attributes.Add("class", "");
+                spTeachISCED.Attributes["style"] = "color:red;";
+            }
+        }
+
+        protected void ddlGradLev_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ddlGradLev.SelectedIndex == 1)
+            {
+                ddlGradISCED.Enabled = false;
+                spGradISCED.InnerText = "";
+                spGradISCED.Attributes.Add("class", "ps-lb-red");
+                spGradISCED.Attributes["style"] = "";
+
+                ddlGradProg.Enabled = false;
+                spGradProg.InnerText = "";
+                spGradProg.Attributes.Add("class", "ps-lb-red");
+                spGradProg.Attributes["style"] = "";
+            }
+            else
+            {
+                ddlGradISCED.Enabled = true;
+                spGradISCED.InnerText = "*";
+                spGradISCED.Attributes.Add("class", "");
+                spGradISCED.Attributes["style"] = "color:red;";
+
+                ddlGradProg.Enabled = true;
+                spGradProg.InnerText = "*";
+                spGradProg.Attributes.Add("class", "");
+                spGradProg.Attributes["style"] = "color:red;";
+            }
         }
 
 
