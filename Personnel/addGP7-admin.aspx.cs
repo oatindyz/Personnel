@@ -216,7 +216,38 @@ namespace Personnel
             TextBox txtSTART_DATE10 = (TextBox)GridViewStudy.Rows[e.RowIndex].FindControl("txtSTART_DATE10");
             TextBox txtEND_DATE10 = (TextBox)GridViewStudy.Rows[e.RowIndex].FindControl("txtEND_DATE10");
             TextBox txtQUALIFICATION10 = (TextBox)GridViewStudy.Rows[e.RowIndex].FindControl("txtQUALIFICATION10");
-            
+
+            if (txtUNIV_NAME10.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก สถานศึกษา !</div>";
+                return;
+            }
+            else if (txtSTART_DATE10.Text == "" && txtEND_DATE10.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก ตั้งแต่ - ถึง (เดือน ปี) !</div>";
+                return;
+            }
+            else if (txtQUALIFICATION10.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก วุฒิ (สาขาวิชาเอก) !</div>";
+                return;
+            }
+            else if (txtSTART_DATE10.Text != "" && txtEND_DATE10.Text != "")
+            {
+                DateTime dtEndDate10 = DateTime.Parse(txtEND_DATE10.Text);
+                DateTime dtStartDate10 = DateTime.Parse(txtSTART_DATE10.Text);
+                int totalDay = (int)(dtEndDate10 - dtStartDate10).TotalDays + 1;
+
+                if (totalDay <= 0)
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> ตั้งแต่ - ถึง (เดือน ปี) : เดือนไม่ถูกต้อง !</div>";
+                    return;
+                }
+                else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
+            }
+            else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
 
             PS_STUDY PStudy = new PS_STUDY(Convert.ToInt32(lblStudyID10.Text)
                 , Convert.ToInt32(lblStudyUOC_ID10.Text)
@@ -250,7 +281,6 @@ namespace Personnel
         {
             GridViewLicense.EditIndex = e.NewEditIndex;
             BindData();
-
         }
         protected void modCancelCommand2(Object sender, GridViewCancelEditEventArgs e)
         {
@@ -277,6 +307,27 @@ namespace Personnel
             TextBox txtLICENSE_NUMBER11 = (TextBox)GridViewLicense.Rows[e.RowIndex].FindControl("txtLICENSE_NUMBER11");
             TextBox txtSTART_DATE11 = (TextBox)GridViewLicense.Rows[e.RowIndex].FindControl("txtSTART_DATE11");
 
+            if (txtLICENSE_NAME11.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก ชื่อใบอนุญาต !</div>";
+                return;
+            }
+            else if (txtDEPARTMENT11.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก หน่วยงาน !</div>";
+                return;
+            }
+            else if (txtLICENSE_NUMBER11.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก เลขที่ใบอนุญาต !</div>";
+                return;
+            }
+            else if (txtSTART_DATE11.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก วันที่มีผลบังคับใช้ (วัน เดือน ปี) !</div>";
+                return;
+            }
+            else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
 
             PS_PRO_LICENSE PStudy = new PS_PRO_LICENSE(Convert.ToInt32(lblProID11.Text)
                 , Convert.ToInt32(lblProUOC_ID11.Text)
@@ -336,6 +387,37 @@ namespace Personnel
             TextBox txtEND_DATE12 = (TextBox)GridViewTraining.Rows[e.RowIndex].FindControl("txtEND_DATE12");
             TextBox txtDEPARTMENT12 = (TextBox)GridViewTraining.Rows[e.RowIndex].FindControl("txtDEPARTMENT12");
 
+            if (txtTRAINING_NAME12.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก หลักสูตรฝึกอบรม !</div>";
+                return;
+            }
+            else if (txtSTART_DATE12.Text == "" && txtEND_DATE12.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก ตั้งแต่ - ถึง (วัน เดือน ปี) !</div>";
+                return;
+            }
+            else if (txtDEPARTMENT12.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก หน่วยงานที่จัดฝึกอบรม !</div>";
+                return;
+            }
+            else if (txtSTART_DATE12.Text != "" && txtEND_DATE12.Text != "")
+            {
+                DateTime dtEndDate12 = DateTime.Parse(txtEND_DATE12.Text);
+                DateTime dtStartDate12 = DateTime.Parse(txtSTART_DATE12.Text);
+                int totalDay = (int)(dtEndDate12 - dtStartDate12).TotalDays + 1;
+
+                if (totalDay <= 0)
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> ตั้งแต่ - ถึง (วัน เดือน ปี) : วันที่ไม่ถูกต้อง !</div>";
+                    return;
+                }
+                else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
+            }
+            else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
 
             PS_TRAINING PStudy = new PS_TRAINING(Convert.ToInt32(lblTrainingID12.Text)
                 , Convert.ToInt32(lblTrainingUOC_ID12.Text)
@@ -394,6 +476,22 @@ namespace Personnel
             TextBox txtPUNISH_NAME13 = (TextBox)GridViewPunish.Rows[e.RowIndex].FindControl("txtPUNISH_NAME13");
             TextBox txtREF_DOC13 = (TextBox)GridViewPunish.Rows[e.RowIndex].FindControl("txtREF_DOC13");
 
+            if (txtYEAR13.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก พ.ศ. !</div>";
+                return;
+            }
+            else if (txtPUNISH_NAME13.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก รายการ !</div>";
+                return;
+            }
+            else if (txtREF_DOC13.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก เอกสารอ้างอิง !</div>";
+                return;
+            }
+            else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
 
             PS_PUNISHMENT PStudy = new PS_PUNISHMENT(Convert.ToInt32(lblPUNISH_ID13.Text)
                 , Convert.ToInt32(lblPunishUOC_ID13.Text)
@@ -438,6 +536,16 @@ namespace Personnel
             PS_POSI_AND_SALARY PStudy = new PS_POSI_AND_SALARY();
             PStudy.PAS_ID = id;
             PStudy.DELETE_PS_POSI_AND_SALARY();
+
+            PS_PERSON P0 = new PS_PERSON();
+            int salary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT salary FROM PS_POSI_AND_SALARY ORDER BY START_DATE DESC) WHERE ROWNUM = 1");
+            int posisalary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT position_salary FROM PS_POSI_AND_SALARY ORDER BY START_DATE DESC) WHERE ROWNUM = 1");
+
+            P0.SALARY = salary.ToString();
+            P0.POSITION_SALARY = posisalary.ToString();
+            P0.UOC_ID = Int32.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()));
+            P0.UPDATE_CURRENT_SALARY_PERSON();
+
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
 
             GridViewPosiSalary.EditIndex = -1;
@@ -456,6 +564,47 @@ namespace Personnel
             TextBox txtPOSITION_SALARY14 = (TextBox)GridViewPosiSalary.Rows[e.RowIndex].FindControl("txtPOSITION_SALARY14");
             TextBox txtREF_DOC14 = (TextBox)GridViewPosiSalary.Rows[e.RowIndex].FindControl("txtREF_DOC14");
 
+            if (txtSTART_DATE14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก วัน เดือน ปี !</div>";
+                return;
+            }
+            /*else if (txtPAS_NAME14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก ตำแหน่ง !</div>";
+                return;
+            }
+            else if (txtNO_POSITION14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก เลขที่ตำแหน่ง !</div>";
+                return;
+            }
+            else if (txtPOSITION_TYPE14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก ตำแหน่งประเภท !</div>";
+                return;
+            }
+            else if (txtPOSITION_DEGREE14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก ระดับ !</div>";
+                return;
+            }*/
+            else if (txtSALARY14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก เงินเดือน !</div>";
+                return;
+            }
+            else if (txtPOSITION_SALARY14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก เงินประจำตำแหน่ง !</div>";
+                return;
+            }
+            /*else if (txtREF_DOC14.Text == "")
+            {
+                notification.Attributes["class"] = "alert alert_danger"; notification.InnerHtml = ""; notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> กรุณากรอก เอกสารอ้างอิง !</div>";
+                return;
+            }*/
+            else { notification.Attributes["class"] = "none"; notification.InnerHtml = ""; }
 
             PS_POSI_AND_SALARY PStudy = new PS_POSI_AND_SALARY(Convert.ToInt32(lblPAS_ID14.Text)
                 , Convert.ToInt32(lblPosiSalaryUOC_ID14.Text)
@@ -587,6 +736,27 @@ namespace Personnel
 
         protected void btnSave2_Click(object sender, EventArgs e)
         {
+            if (tbStartDate10.Text != "" && tbEndDate10.Text != "")
+            {
+                DateTime dtEndDate10 = DateTime.Parse(tbEndDate10.Text);
+                DateTime dtStartDate10 = DateTime.Parse(tbStartDate10.Text);
+                int totalDay = (int)(dtEndDate10 - dtStartDate10).TotalDays + 1;
+
+                if (totalDay <= 0)
+                {
+                    notification.Attributes["class"] = "alert alert_danger";
+                    notification.InnerHtml = "";
+                    notification.InnerHtml += "<div> <img src='Image/Small/red_alert.png' /> วันที่เริ่มโครงการ - วันที่สิ้นสุดโครงการ : เดือนไม่ถูกต้อง !</div>";
+                    ScriptManager.GetCurrent(this.Page).SetFocus(this.tbStartDate10);
+                    return;
+                }
+                else
+                {
+                    notification.Attributes["class"] = "none";
+                    notification.InnerHtml = "";
+                }
+            }
+
             PS_STUDY PStudy = new PS_STUDY();
             PStudy.UOC_ID = Int32.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()));
             PStudy.UNIV_NAME = tbUnivName10.Text;
@@ -646,6 +816,7 @@ namespace Personnel
 
         protected void btnSave6_Click(object sender, EventArgs e)
         {
+            
             PS_POSI_AND_SALARY PosiSalary = new PS_POSI_AND_SALARY();
             PosiSalary.UOC_ID = Int32.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()));
             PosiSalary.START_DATE = DateTime.Parse(tbStartDate14.Text);
@@ -657,6 +828,15 @@ namespace Personnel
             PosiSalary.POSITION_SALARY = Convert.ToInt32(tbPosiSalary14.Text);
             PosiSalary.REF_DOC = tbRefDoc14.Text;
             PosiSalary.INSERT_PS_POSI_AND_SALARY();
+
+            PS_PERSON P0 = new PS_PERSON();
+            int salary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT salary FROM PS_POSI_AND_SALARY ORDER BY START_DATE DESC) WHERE ROWNUM = 1");
+            int posisalary = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT position_salary FROM PS_POSI_AND_SALARY ORDER BY START_DATE DESC) WHERE ROWNUM = 1");
+
+            P0.SALARY = salary.ToString();
+            P0.POSITION_SALARY = posisalary.ToString();
+            P0.UOC_ID = Int32.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()));
+            P0.UPDATE_CURRENT_SALARY_PERSON();
 
             ClearPositionAndSalary();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);

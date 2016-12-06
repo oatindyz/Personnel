@@ -39,6 +39,12 @@ namespace Personnel
                 string value = lbu.CommandArgument;
                 Response.Redirect("addGP7-admin.aspx?id=" + value);
             }
+            if (e.CommandName == "Report" && e.CommandArgument.ToString() != "")
+            {
+                LinkButton lbu = (LinkButton)e.Item.FindControl("lbuReport");
+                string value = lbu.CommandArgument;
+                Response.Redirect("reportGP7-admin.aspx?id=" + value);
+            }
         }
 
     }

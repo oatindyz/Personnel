@@ -34,18 +34,20 @@
                                 <th>ลำดับที่</th>
                                 <th>ชื่อ-สกุล</th>
                                 <th>คณะ/หน่วยงาน</th>
+                                <th>ID</th>
                                 <th>สิทธิการใช้งานระบบ</th>
                                 <th>
                                     <img src="Image/Small/save.png" class="icon_left" />แก้ไข</th>
                             </tr>
                         </thead>
-                        <asp:Repeater ID="myRepeater" runat="server">
+                        <asp:Repeater ID="myRepeater" OnItemDataBound="myRepeater_ItemDataBound" runat="server">
                             <ItemTemplate>
                                 <tr>
                                     <td><asp:Label ID="lbID" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UOC_ID") %>'></asp:Label></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
-                                    <td><asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control input-sm select2" DataSourceID="SqlDataSource1" DataValueField="PERSON_ROLE_ID" DataTextField="PERSON_ROLE_NAME" SelectedValue='<%# DataBinder.Eval(Container.DataItem, "PERSON_ROLE_ID") %>' ></asp:DropDownList></td>
+                                    <td><asp:DropDownList ID="ddltest" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList></td>
+                                    <td><asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList></td>
                                     <td style="text-align:center;"><asp:Button ID="btn1" runat="server" CssClass="btn btn-success" Text="บันทึก" OnClick="btn1_Click"/></td>
                                 </tr>
                             </ItemTemplate>

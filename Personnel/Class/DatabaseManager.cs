@@ -327,7 +327,7 @@ namespace Personnel.Class
                             uoc_staff.STF_LNAME = reader.GetValue(i++).ToString();
                             uoc_staff.GENDER_ID = reader.GetValue(i++).ToString();
                             uoc_staff.GENDER_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.BIRTHDAY = reader.GetValue(i++).ToString();
+                            uoc_staff.BIRTHDAY = reader.GetDateTime(i++).ToString("dd/MM/yyyy");
                             uoc_staff.HOMEADD = reader.GetValue(i++).ToString();
                             uoc_staff.MOO = reader.GetValue(i++).ToString();
                             uoc_staff.STREET = reader.GetValue(i++).ToString();
@@ -356,8 +356,8 @@ namespace Personnel.Class
                             uoc_staff.POSITION_WORK = reader.GetValue(i++).ToString();
                             uoc_staff.DEPARTMENT_ID = reader.GetValue(i++).ToString();
                             uoc_staff.DEPARTMENT_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.DATE_INWORK = reader.GetValue(i++).ToString();
-                            uoc_staff.DATE_START_THIS_U = reader.GetValue(i++).ToString();
+                            uoc_staff.DATE_INWORK = reader.GetDateTime(i++).ToString("dd/MM/yyyy");
+                            uoc_staff.DATE_START_THIS_U = reader.GetDateTime(i++).ToString("dd/MM/yyyy");
                             uoc_staff.SPECIAL_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.TEACH_ISCED_ID = reader.GetValue(i++).ToString();
                             uoc_staff.TEACH_ISCED_NAME = reader.GetValue(i++).ToString();
@@ -379,7 +379,7 @@ namespace Personnel.Class
                             uoc_staff.RELIGION_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.MOVEMENT_TYPE_ID = reader.GetValue(i++).ToString();
                             uoc_staff.MOVEMENT_TYPE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOVEMENT_DATE = reader.GetValue(i++).ToString();
+                            uoc_staff.MOVEMENT_DATE = reader.IsDBNull(i++) ? "" : reader.GetDateTime(i++).ToString("dd/MM/yyyy");
                             uoc_staff.DECORATION = reader.GetValue(i++).ToString();
                             uoc_staff.RESULT1 = reader.GetValue(i++).ToString();
                             uoc_staff.PERCENT_SALARY1 = reader.GetValue(i++).ToString();

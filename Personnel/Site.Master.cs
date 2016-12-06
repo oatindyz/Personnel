@@ -14,21 +14,26 @@ namespace Personnel
 {
     public partial class Site : System.Web.UI.MasterPage
     {
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            if (PersonnelSystem.GetPersonnelSystem(this) == null)
-            {
+        protected void Page_Init(object sender, EventArgs e) {
+            if (PersonnelSystem.GetPersonnelSystem(this) == null) {
                 Response.Redirect("Access.aspx");
                 return;
             }
-            Session.Timeout = 300;
-            OracleConnection.ClearAllPools();
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            SessionTimeOut.Text = Session.Timeout.ToString() + " Minutes";
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
+            PersonnelSystem ps99 = PersonnelSystem.GetRoleAdmin(this);
+            PersonnelSystem ps1 = PersonnelSystem.GetRoleFree(this);
+            PersonnelSystem ps2 = PersonnelSystem.GetRolePersonnel(this);
+            PersonnelSystem ps3 = PersonnelSystem.GetRoleGP7(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
+            UOC_STAFF loginPerson99 = ps99.LoginPerson;
+            UOC_STAFF loginPerson1 = ps1.LoginPerson;
+            UOC_STAFF loginPerson2 = ps2.LoginPerson;
+            UOC_STAFF loginPerson3 = ps3.LoginPerson;
 
             if (!IsPostBack)
             {
@@ -41,38 +46,59 @@ namespace Personnel
                 string name = loginPerson.FullName;
                 profile_name.InnerText = name;
 
+
                 if (loginPerson.ST_LOGIN_ID == 0)
                 {
                     menu1.Visible = false;
                 }
-                //
-                if (loginPerson.PERSON_ROLE_ID == 99)
+
+                if (loginPerson99.PERSON_ROLE_ID == 99)
                 {
                     MenuRoleID99.Visible = true;
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = false;
+                    MenuRoleID4Duty.Visible = false;
                 }
-                else if (loginPerson.PERSON_ROLE_ID == 1)
+                else if (loginPerson1.PERSON_ROLE_ID == 1)
                 {
                     MenuRoleID99.Visible = false;
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = false;
+                    MenuRoleID4Duty.Visible = false;
                 }
-                else if (loginPerson.PERSON_ROLE_ID == 2)
+                else if (loginPerson2.PERSON_ROLE_ID == 2)
                 {
                     MenuRoleID99.Visible = false;
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = true;
                     MenuRoleID3Duty.Visible = false;
+                    MenuRoleID4Duty.Visible = false;
                 }
-                else if (loginPerson.PERSON_ROLE_ID == 3)
+                else if (loginPerson3.PERSON_ROLE_ID == 3)
                 {
                     MenuRoleID99.Visible = false;
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = true;
+                    MenuRoleID4Duty.Visible = false;
+                }
+                else if (loginPerson3.PERSON_ROLE_ID == 4)
+                {
+                    MenuRoleID99.Visible = false;
+                    MenuPublic.Visible = true;
+                    MenuRoleID2Duty.Visible = false;
+                    MenuRoleID3Duty.Visible = false;
+                    MenuRoleID4Duty.Visible = true;
+                }
+                else
+                {
+                    MenuRoleID99.Visible = true;
+                    MenuPublic.Visible = true;
+                    MenuRoleID2Duty.Visible = true;
+                    MenuRoleID3Duty.Visible = true;
+                    MenuRoleID4Duty.Visible = true;
                 }
 
             }
@@ -105,12 +131,6 @@ namespace Personnel
                 }
             }
 
-        }
-
-        protected void lbuLogout_Click(object sender, EventArgs e)
-        {
-            Session.Remove("PersonnelSystem");
-            Response.Redirect("Access.aspx");
         }
 
         protected void lbuUser_Click(object sender, EventArgs e)

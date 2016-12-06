@@ -18,7 +18,14 @@ namespace Personnel
         {            
             if (!IsPostBack)
             {
-                if(Request.QueryString["id"] != null)
+                if (MultiView1.ActiveViewIndex == 0)
+                {
+                    btnSelectView0.CssClass = "btn btn-info";
+                    btnSelectView1.CssClass = "btn btn-primary";
+                    btnSelectView2.CssClass = "btn btn-primary";
+                }
+
+                if (Request.QueryString["id"] != null)
                 {
                     int.TryParse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()), out id);
                     BindDDL();
@@ -235,7 +242,7 @@ namespace Personnel
                             tbName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlGender.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            tbBirthday.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbBirthday.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             tbHomeAdd.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbMoo.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbStreet.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
@@ -263,8 +270,8 @@ namespace Personnel
                             ddlPosition.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             tbPositionWork.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlDepartment.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            tbDateInwork.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            tbDateStartThisU.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbDateInwork.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
+                            tbDateStartThisU.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             tbSpecialName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlTeachISCED.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             ddlGradLev.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
@@ -283,7 +290,7 @@ namespace Personnel
                             tbPositionSalary.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlReligion.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             ddlMovementType.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
-                            tbMovementDate.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbMovementDate.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             tbDecoration.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbResult1.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             tbPercentSalary1.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
@@ -329,6 +336,12 @@ namespace Personnel
                 ddlNation.Items[211].Attributes["enabled"] = "enabled";
             }
             MultiView1.ActiveViewIndex = 0;
+            if (MultiView1.ActiveViewIndex == 0)
+            {
+                btnSelectView0.CssClass = "btn btn-info";
+                btnSelectView1.CssClass = "btn btn-primary";
+                btnSelectView2.CssClass = "btn btn-primary";
+            }
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
@@ -359,12 +372,24 @@ namespace Personnel
                 spGradProg.Attributes["style"] = "color:red;";
             }
             MultiView1.ActiveViewIndex = 1;
+            if (MultiView1.ActiveViewIndex == 1)
+            {
+                btnSelectView0.CssClass = "btn btn-primary";
+                btnSelectView1.CssClass = "btn btn-info";
+                btnSelectView2.CssClass = "btn btn-primary";
+            }
         }
 
         protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
             ClearNotification();
             MultiView1.ActiveViewIndex = 2;
+            if (MultiView1.ActiveViewIndex == 2)
+            {
+                btnSelectView0.CssClass = "btn btn-primary";
+                btnSelectView1.CssClass = "btn btn-primary";
+                btnSelectView2.CssClass = "btn btn-info";
+            }
         }
 
         protected void lbuUpdatePerson_Click(object sender, EventArgs e)
@@ -554,56 +579,7 @@ namespace Personnel
                 }
             }
 
-            PS_PERSON person = new PS_PERSON();
-            person.UNIV_ID = ddlUniv.SelectedValue;
-            person.CITIZEN_ID = lbCitizenID.Text;
-            person.PREFIX_NAME = ddlPrefixName.SelectedValue;
-            person.STF_FNAME = tbName.Text;
-            person.STF_LNAME = tbLastName.Text;
-            person.GENDER_ID = ddlGender.SelectedValue;
-            person.BIRTHDAY = tbBirthday.Text;
-            person.HOMEADD = tbHomeAdd.Text;
-            person.MOO = tbMoo.Text;
-            person.STREET = tbStreet.Text;
-            person.SUB_DISTRICT_ID = ddlSubDistrict.SelectedValue;
-            person.DISTRICT_ID = ddlDistrict.SelectedValue;
-            person.PROVINCE_ID = ddlProvince.SelectedValue;
-            person.TELEPHONE = tbTelephone.Text;
-            person.ZIPCODE = tbZipcode.Text;
-            person.NATION_ID = ddlNation.SelectedValue;
-            person.STAFFTYPE_ID = ddlStafftype.SelectedValue;
-            person.TIME_CONTACT_ID = ddlTimeContact.SelectedValue;
-            person.BUDGET_ID = ddlBudget.SelectedValue;
-            person.SUBSTAFFTYPE_ID = ddlSubStafftype.SelectedValue;
-            person.ADMIN_POSITION_ID = ddlAdminPosition.SelectedValue;
-            person.POSITION_ID = ddlPosition.SelectedValue;
-            person.POSITION_WORK = tbPositionWork.Text;
-            person.DEPARTMENT_ID = ddlDepartment.SelectedValue;
-            person.DATE_INWORK = tbDateInwork.Text;
-            person.DATE_START_THIS_U = tbDateStartThisU.Text;
-            person.SPECIAL_NAME = tbSpecialName.Text;
-            person.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
-            person.GRAD_LEV_ID = ddlGradLev.SelectedValue;
-            person.GRAD_CURR = tbGradCURR.Text;
-            person.GRAD_ISCED_ID = ddlGradISCED.SelectedValue;
-            person.GRAD_PROG = ddlGradProg.SelectedValue;
-            person.GRAD_UNIV = tbGradUniv.Text;
-            person.GRAD_COUNTRY_ID = ddlGradCountry.SelectedValue;
-            person.DEFORM_ID = ddlDeform.SelectedValue;
-            person.SIT_NO = tbSitNo.Text;
-            person.SALARY = tbSalary.Text;
-            person.POSITION_SALARY = tbPositionSalary.Text;
-            person.RELIGION_ID = ddlReligion.SelectedValue;
-            person.MOVEMENT_TYPE_ID = ddlMovementType.SelectedValue;
-            person.MOVEMENT_DATE = tbMovementDate.Text;
-            person.DECORATION = tbDecoration.Text;
-            person.RESULT1 = tbResult1.Text;
-            person.PERCENT_SALARY1 = tbPercentSalary1.Text;
-            person.RESULT2 = tbResult2.Text;
-            person.PERCENT_SALARY2 = tbPercentSalary2.Text;
-            person.UOC_ID = int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()));
-
-            person.UPDATE_PERSON();
+            UPDATE_PERSON();
             
             MultiView1.ActiveViewIndex = 3;
 
@@ -617,6 +593,7 @@ namespace Personnel
         {
             if (ddlSubStafftype.SelectedIndex == 2)
             {
+                ddlTeachISCED.SelectedIndex = 0;
                 ddlTeachISCED.Enabled = false;
                 spTeachISCED.InnerText = "";
                 spTeachISCED.Attributes.Add("class", "ps-lb-red");
@@ -635,6 +612,7 @@ namespace Personnel
         {
             if (ddlGradLev.SelectedIndex == 1)
             {
+                ddlGradISCED.SelectedIndex = 0;
                 ddlGradISCED.Enabled = false;
                 spGradISCED.InnerText = "";
                 spGradISCED.Attributes.Add("class", "ps-lb-red");
@@ -647,6 +625,7 @@ namespace Personnel
             }
             else
             {
+                ddlGradProg.SelectedIndex = 0;
                 ddlGradISCED.Enabled = true;
                 spGradISCED.InnerText = "*";
                 spGradISCED.Attributes.Add("class", "");
@@ -656,6 +635,123 @@ namespace Personnel
                 spGradProg.InnerText = "*";
                 spGradProg.Attributes.Add("class", "");
                 spGradProg.Attributes["style"] = "color:red;";
+            }
+        }
+
+        public bool UPDATE_PERSON()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update UOC_STAFF Set";
+                query += " UNIV_ID = :UNIV_ID ,";
+                query += " CITIZEN_ID = :CITIZEN_ID ,";
+                query += " PREFIX_NAME = :PREFIX_NAME ,";
+                query += " STF_FNAME = :STF_FNAME ,";
+                query += " STF_LNAME = :STF_LNAME ,";
+                query += " GENDER_ID = :GENDER_ID ,";
+                query += " BIRTHDAY = :BIRTHDAY ,";
+                query += " HOMEADD = :HOMEADD ,";
+                query += " MOO = :MOO ,";
+                query += " STREET = :STREET ,";
+                query += " PROVINCE_ID = :PROVINCE_ID ,";
+                query += " DISTRICT_ID = :DISTRICT_ID ,";
+                query += " SUB_DISTRICT_ID = :SUB_DISTRICT_ID ,";
+                query += " TELEPHONE = :TELEPHONE ,";
+                query += " ZIPCODE = :ZIPCODE ,";
+                query += " NATION_ID = :NATION_ID ,";
+                query += " STAFFTYPE_ID = :STAFFTYPE_ID ,";
+                query += " TIME_CONTACT_ID = :TIME_CONTACT_ID ,";
+                query += " BUDGET_ID = :BUDGET_ID ,";
+                query += " SUBSTAFFTYPE_ID = :SUBSTAFFTYPE_ID ,";
+                query += " ADMIN_POSITION_ID = :ADMIN_POSITION_ID ,";
+                query += " POSITION_ID = :POSITION_ID ,";
+                query += " POSITION_WORK = :POSITION_WORK ,";
+                query += " DEPARTMENT_ID = :DEPARTMENT_ID ,";
+                query += " DATE_INWORK = :DATE_INWORK ,";
+                query += " DATE_START_THIS_U = :DATE_START_THIS_U ,";
+                query += " SPECIAL_NAME = :SPECIAL_NAME ,";
+                query += " TEACH_ISCED_ID = :TEACH_ISCED_ID ,";
+                query += " GRAD_LEV_ID = :GRAD_LEV_ID ,";
+                query += " GRAD_CURR = :GRAD_CURR ,";
+                query += " GRAD_ISCED_ID = :GRAD_ISCED_ID ,";
+                query += " GRAD_PROG = :GRAD_PROG ,";
+                query += " GRAD_UNIV = :GRAD_UNIV ,";
+                query += " GRAD_COUNTRY_ID = :GRAD_COUNTRY_ID ,";
+                query += " DEFORM_ID = :DEFORM_ID ,";
+                query += " SIT_NO = :SIT_NO ,";
+                query += " SALARY = :SALARY ,";
+                query += " POSITION_SALARY = :POSITION_SALARY ,";
+                query += " RELIGION_ID = :RELIGION_ID ,";
+                query += " MOVEMENT_TYPE_ID = :MOVEMENT_TYPE_ID ,";
+                query += " MOVEMENT_DATE = :MOVEMENT_DATE ,";
+                query += " DECORATION = :DECORATION ,";
+                query += " RESULT1 = :RESULT1 ,";
+                query += " PERCENT_SALARY1 = :PERCENT_SALARY1 ,";
+                query += " RESULT2 = :RESULT2 ,";
+                query += " PERCENT_SALARY2 = :PERCENT_SALARY2 ";
+                query += " where UOC_ID = :UOC_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("UNIV_ID", ddlUniv.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("CITIZEN_ID", lbCitizenID.Text));
+                    com.Parameters.Add(new OracleParameter("PREFIX_NAME", ddlPrefixName.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("STF_FNAME", tbName.Text));
+                    com.Parameters.Add(new OracleParameter("STF_LNAME", tbLastName.Text));
+                    com.Parameters.Add(new OracleParameter("GENDER_ID", ddlGender.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("BIRTHDAY", DateTime.Parse(tbBirthday.Text)));
+                    com.Parameters.Add(new OracleParameter("HOMEADD", tbHomeAdd.Text));
+                    com.Parameters.Add(new OracleParameter("MOO", tbMoo.Text));
+                    com.Parameters.Add(new OracleParameter("STREET", tbStreet.Text));
+                    com.Parameters.Add(new OracleParameter("PROVINCE_ID", ddlProvince.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("DISTRICT_ID", ddlDistrict.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("SUB_DISTRICT_ID", ddlSubDistrict.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("TELEPHONE", tbTelephone.Text));
+                    com.Parameters.Add(new OracleParameter("ZIPCODE", tbZipcode.Text));
+                    com.Parameters.Add(new OracleParameter("NATION_ID", ddlNation.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("STAFFTYPE_ID", ddlStafftype.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("TIME_CONTACT_ID", ddlTimeContact.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("BUDGET_ID", ddlBudget.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("SUBSTAFFTYPE_ID", ddlSubStafftype.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("ADMIN_POSITION_ID", ddlAdminPosition.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("POSITION_ID", ddlPosition.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("POSITION_WORK", tbPositionWork.Text));
+                    com.Parameters.Add(new OracleParameter("DEPARTMENT_ID", ddlDepartment.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("DATE_INWORK", DateTime.Parse(tbDateInwork.Text)));
+                    com.Parameters.Add(new OracleParameter("DATE_START_THIS_U", DateTime.Parse(tbDateStartThisU.Text)));
+                    com.Parameters.Add(new OracleParameter("SPECIAL_NAME", tbSpecialName.Text));
+                    com.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", ddlTeachISCED.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("GRAD_LEV_ID", ddlGradLev.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("GRAD_CURR", tbGradCURR.Text));
+                    com.Parameters.Add(new OracleParameter("GRAD_ISCED_ID", ddlGradISCED.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("GRAD_PROG", ddlGradProg.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("GRAD_UNIV", tbGradUniv.Text));
+                    com.Parameters.Add(new OracleParameter("GRAD_COUNTRY_ID", ddlGradCountry.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("DEFORM_ID", ddlDeform.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("SIT_NO", tbSitNo.Text));
+                    com.Parameters.Add(new OracleParameter("SALARY", tbSalary.Text));
+                    com.Parameters.Add(new OracleParameter("POSITION_SALARY", tbPositionSalary.Text));
+                    com.Parameters.Add(new OracleParameter("RELIGION_ID", ddlReligion.SelectedValue));
+                    com.Parameters.Add(new OracleParameter("MOVEMENT_TYPE_ID", ddlMovementType.SelectedValue));
+                    if (tbMovementDate.Text == "") { com.Parameters.Add(new OracleParameter("MOVEMENT_DATE", DBNull.Value)); }
+                    else { com.Parameters.Add(new OracleParameter("MOVEMENT_DATE", DateTime.Parse(tbMovementDate.Text))); }
+                    com.Parameters.Add(new OracleParameter("DECORATION", tbDecoration.Text));
+                    com.Parameters.Add(new OracleParameter("RESULT1", tbResult1.Text));
+                    com.Parameters.Add(new OracleParameter("PERCENT_SALARY1", tbPercentSalary1.Text));
+                    com.Parameters.Add(new OracleParameter("RESULT2", tbResult2.Text));
+                    com.Parameters.Add(new OracleParameter("PERCENT_SALARY2", tbPercentSalary2.Text));
+                    com.Parameters.Add(new OracleParameter("UOC_ID", int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()))));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
             }
         }
 

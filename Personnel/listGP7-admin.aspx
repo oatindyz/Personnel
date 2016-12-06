@@ -46,6 +46,7 @@
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
                                     <td>
                                         <a><asp:LinkButton ID="lbuEdit" CommandName="Edit" runat="server" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString()) %>' class="btn btn-warning">จัดการข้อมูล</asp:LinkButton></a>
+                                        <a><asp:LinkButton ID="lbuReport" CommandName="Report" CommandArgument='<%#Personnel.MyCrypto.GetEncryptedQueryString(DataBinder.Eval(Container.DataItem, "UOC_ID").ToString())%>' runat="server" class="btn btn-primary">ออกรายงาน</asp:LinkButton></a>
                                     </td>
                                 </tr>
                             </ItemTemplate>

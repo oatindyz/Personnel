@@ -21,6 +21,13 @@ namespace Personnel
 
             if (!IsPostBack)
             {
+                if (MultiView1.ActiveViewIndex == 0)
+                {
+                    btnSelectView0.CssClass = "btn btn-info";
+                    btnSelectView1.CssClass = "btn btn-primary";
+                    btnSelectView2.CssClass = "btn btn-primary";
+                }
+
                 if (loginPerson.SUBSTAFFTYPE_ID == "2")
                 {
                     lbTeachISCED.Visible = true;
@@ -307,18 +314,36 @@ namespace Personnel
                 ddlNation.Items[211].Attributes["enabled"] = "enabled";
             }
             MultiView1.ActiveViewIndex = 0;
+            if (MultiView1.ActiveViewIndex == 0)
+            {
+                btnSelectView0.CssClass = "btn btn-info";
+                btnSelectView1.CssClass = "btn btn-primary";
+                btnSelectView2.CssClass = "btn btn-primary";
+            }
         }
 
         protected void lbuSelectView1_Click(object sender, EventArgs e)
         {
             ClearNotification();
             MultiView1.ActiveViewIndex = 1;
+            if (MultiView1.ActiveViewIndex == 1)
+            {
+                btnSelectView0.CssClass = "btn btn-primary";
+                btnSelectView1.CssClass = "btn btn-info";
+                btnSelectView2.CssClass = "btn btn-primary";
+            }
         }
 
         protected void lbuSelectView2_Click(object sender, EventArgs e)
         {
             ClearNotification();
             MultiView1.ActiveViewIndex = 2;
+            if (MultiView1.ActiveViewIndex == 2)
+            {
+                btnSelectView0.CssClass = "btn btn-primary";
+                btnSelectView1.CssClass = "btn btn-primary";
+                btnSelectView2.CssClass = "btn btn-info";
+            }
         }
 
         protected void lbuUpdatePerson_Click(object sender, EventArgs e)

@@ -44,7 +44,7 @@ namespace Personnel
                             lbName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbLastName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbGender.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbBirthday.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lbBirthday.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             lbHomeAdd.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbMoo.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbStreet.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
@@ -63,8 +63,8 @@ namespace Personnel
                             lbPosition.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbPositionWork.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbDepartment.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbDateInwork.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbDateStartThisU.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lbDateInwork.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
+                            lbDateStartThisU.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             lbSpecialName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbTeachISCED.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbGradLev.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
@@ -80,7 +80,7 @@ namespace Personnel
                             lbPositionSalary.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbReligion.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbMovementType.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbMovementDate.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lbMovementDate.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             lbDecoration.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbResult1.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             lbPercentSalary1.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;

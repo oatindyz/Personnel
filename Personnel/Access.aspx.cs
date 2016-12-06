@@ -5,6 +5,7 @@ using System.Text;
 using Personnel.Class;
 using System.Data.OracleClient;
 using System.Security.Cryptography;
+using System.Collections.Generic;
 
 namespace Personnel
 {
@@ -18,7 +19,7 @@ namespace Personnel
                 ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                 Session["PersonnelSystem"] = ps;
             }
-
+            Session.Clear();
         }
 
         static string GetMd5Hash(MD5 md5Hash, string input)
@@ -147,6 +148,10 @@ namespace Personnel
                                             PersonnelSystem ps = new PersonnelSystem();
                                             ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                                             Session["PersonnelSystem"] = ps;
+                                            Session["ROLE-ADMIN"] = ps;
+                                            Session["ROLE-FREE"] = ps;
+                                            Session["ROLE-PERSONNEL"] = ps;
+                                            Session["ROLE-GP7"] = ps;
                                             Response.Redirect("ChangePassword.aspx");
                                             Response.Redirect("Default.aspx");
                                         }
@@ -164,6 +169,10 @@ namespace Personnel
                                             PersonnelSystem ps = new PersonnelSystem();
                                             ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                                             Session["PersonnelSystem"] = ps;
+                                            Session["ROLE-ADMIN"] = ps;
+                                            Session["ROLE-FREE"] = ps;
+                                            Session["ROLE-PERSONNEL"] = ps;
+                                            Session["ROLE-GP7"] = ps;
                                             Response.Redirect("Default.aspx");
                                         }
                                         else

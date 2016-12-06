@@ -180,16 +180,16 @@
             });
         });
     </script>
-    <script type = "text/javascript">
-    function DisableButton() {
-        document.getElementById("<%=btnSave1.ClientID %>").disabled = true;
-        document.getElementById("<%=btnSave2.ClientID %>").disabled = true;
-        document.getElementById("<%=btnSave3.ClientID %>").disabled = true;
-        document.getElementById("<%=btnSave4.ClientID %>").disabled = true;
-        document.getElementById("<%=btnSave5.ClientID %>").disabled = true;
-        document.getElementById("<%=btnSave6.ClientID %>").disabled = true;
-    }
-    window.onbeforeunload = DisableButton;
+
+    <script type="text/javascript">
+        var submit = 0;
+        function CheckIsRepeat() {
+            if (++submit > 1) {
+                alert('just click 1 time');
+                return false;
+                return true;
+            }
+        }
     </script>
 
 </asp:Content>
@@ -266,7 +266,7 @@
                     </tr>
                 </table>
                 <div style="text-align: center; margin-top: 10px;">
-                    <asp:Button ID="btnSave1" runat="server" OnClick="btnSave1_Click" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
+                    <asp:Button ID="btnSave1" runat="server" OnClick="btnSave1_Click" OnClientClick="return CheckIsRepeat();" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
                 </div>
             </div>
         </div>
@@ -299,7 +299,7 @@
                     </tr>
                 </table>
                 <div style="text-align: center; margin-top: 10px;">
-                    <asp:Button ID="btnSave2" runat="server" OnClick="btnSave2_Click" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
+                    <asp:Button ID="btnSave2" runat="server" OnClick="btnSave2_Click" OnClientClick="return CheckIsRepeat();" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
                 </div>
                 <div style="margin-top: 10px; overflow-x: auto; width: 100%;">
                     <asp:GridView ID="GridViewStudy" runat="server" Style="margin-left: auto; margin-right: auto;"
@@ -331,7 +331,7 @@
                                     <asp:TextBox ID="txtUNIV_NAME10" runat="server" CssClass="form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.UNIV_NAME") %>'></asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="ตั้งแต่">
+                            <asp:TemplateField HeaderText="ตั้งแต่ (เดือน ปี)">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSTART_DATE10" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.START_DATE", "{0:MMM - yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
@@ -339,7 +339,7 @@
                                     <asp:TextBox ID="txtSTART_DATE10" runat="server" CssClass="date2 form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.START_DATE", "{0:MM/yyyy}") %>'></asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="ถึง">
+                            <asp:TemplateField HeaderText="ถึง (เดือน ปี)">
                                 <ItemTemplate>
                                     <asp:Label ID="lblEND_DATE10" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.END_DATE", "{0:MMM - yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
@@ -347,7 +347,7 @@
                                     <asp:TextBox ID="txtEND_DATE10" runat="server" CssClass="date2 form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.END_DATE", "{0:MM/yyyy}") %>'></asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="วุฒิ">
+                            <asp:TemplateField HeaderText="วุฒิ (สาขาวิชาเอก)">
                                 <ItemTemplate>
                                     <asp:Label ID="lblQUALIFICATION10" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.QUALIFICATION") %>'></asp:Label>
                                 </ItemTemplate>
@@ -397,7 +397,7 @@
                     </tr>
                 </table>
                 <div style="text-align: center; margin-top: 10px;">
-                    <asp:Button ID="btnSave3" runat="server" OnClick="btnSave3_Click" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
+                    <asp:Button ID="btnSave3" runat="server" OnClick="btnSave3_Click" OnClientClick="return CheckIsRepeat();" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
                 </div>
                 <div style="margin-top: 10px; overflow-x: auto; width: 100%;">
                     <asp:GridView ID="GridViewLicense" runat="server" Style="margin-left: auto; margin-right: auto;"
@@ -494,7 +494,7 @@
                     </tr>
                 </table>
                 <div style="text-align: center; margin-top: 10px;">
-                    <asp:Button ID="btnSave4" runat="server" OnClick="btnSave4_Click" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
+                    <asp:Button ID="btnSave4" runat="server" OnClick="btnSave4_Click" OnClientClick="return CheckIsRepeat();" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
                 </div>
                 <div style="margin-top: 10px; overflow-x: auto; width: 100%;">
                     <asp:GridView ID="GridViewTraining" runat="server" Style="margin-left: auto; margin-right: auto;"
@@ -526,7 +526,7 @@
                                     <asp:TextBox ID="txtTRAINING_NAME12" runat="server" CssClass="form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.TRAINING_NAME") %>'></asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="ตั้งแต่">
+                            <asp:TemplateField HeaderText="ตั้งแต่ (วัน เดือน ปี)">
                                 <ItemTemplate>
                                     <asp:Label ID="lblSTART_DATE12" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.START_DATE", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
@@ -534,7 +534,7 @@
                                     <asp:TextBox ID="txtSTART_DATE12" runat="server" CssClass="date1 form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.START_DATE", "{0:dd/MM/yyyy}") %>'></asp:TextBox>
                                 </EditItemTemplate>
                             </asp:TemplateField>
-                            <asp:TemplateField HeaderText="ถึง">
+                            <asp:TemplateField HeaderText="ถึง (วัน เดือน ปี)">
                                 <ItemTemplate>
                                     <asp:Label ID="lblEND_DATE12" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.END_DATE", "{0:dd/MM/yyyy}") %>'></asp:Label>
                                 </ItemTemplate>
@@ -586,7 +586,7 @@
                     </tr>
                 </table>
                 <div style="text-align: center; margin-top: 10px;">
-                    <asp:Button ID="btnSave5" runat="server" OnClick="btnSave5_Click" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
+                    <asp:Button ID="btnSave5" runat="server" OnClick="btnSave5_Click" OnClientClick="return CheckIsRepeat();" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
                 </div>
                 <div style="margin-top: 10px; overflow-x: auto; width: 100%;">
                     <asp:GridView ID="GridViewPunish" runat="server" Style="margin-left: auto; margin-right: auto;"
@@ -681,15 +681,15 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">เงินเดือน</td>
+                        <td class="col1">เงินเดือน<span class="ps-lb-red" />*</td>
                         <td class="col2 input-group date">
-                            <asp:TextBox ID="tbSalary14" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)"></asp:TextBox><span class="input-group-addon">.00</span>
+                            <asp:TextBox ID="tbSalary14" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)" required="required" TabIndex="1"></asp:TextBox><span class="input-group-addon">.00</span>
                         </td>
                     </tr>
                     <tr>
-                        <td class="col1">เงินประจำตำแหน่ง</td>
+                        <td class="col1">เงินประจำตำแหน่ง<span class="ps-lb-red" />*</td>
                         <td class="col2 input-group date">
-                            <asp:TextBox ID="tbPosiSalary14" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)"></asp:TextBox><span class="input-group-addon">.00</span>
+                            <asp:TextBox ID="tbPosiSalary14" runat="server" CssClass="form-control input-sm" onkeypress="return isNumberKey(event)" required="required" TabIndex="1"></asp:TextBox><span class="input-group-addon">.00</span>
                         </td>
                     </tr>
                     <tr>
@@ -700,7 +700,7 @@
                     </tr>
                 </table>
                 <div style="text-align: center; margin-top: 10px;">
-                    <asp:Button ID="btnSave6" runat="server" OnClick="btnSave6_Click" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
+                    <asp:Button ID="btnSave6" runat="server" OnClick="btnSave6_Click" OnClientClick="return CheckIsRepeat();" CssClass="btn btn-success" Text="บันทึก"></asp:Button>
                 </div>
                 <div style="margin-top: 10px; overflow-x: auto; width: 100%;">
                     <asp:GridView ID="GridViewPosiSalary" runat="server" Style="margin-left: auto; margin-right: auto;"
@@ -758,7 +758,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="ระดับ">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPOSITION_DEGREE14" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.NO_POSITION") %>'></asp:Label>
+                                    <asp:Label ID="lblPOSITION_DEGREE14" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSITION_DEGREE") %>'></asp:Label>
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtPOSITION_DEGREE14" runat="server" CssClass="form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.POSITION_DEGREE") %>'></asp:TextBox>
@@ -766,7 +766,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="เงินเดือน">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblSALARY14" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SALARY") %>'></asp:Label>
+                                    <asp:Label ID="lblSALARY14" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.SALARY", "{0:n2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtSALARY14" runat="server" CssClass="form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.SALARY") %>'></asp:TextBox>
@@ -774,7 +774,7 @@
                             </asp:TemplateField>
                             <asp:TemplateField HeaderText="เงินประจำตำแหน่ง">
                                 <ItemTemplate>
-                                    <asp:Label ID="lblPOSITION_SALARY14" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSITION_SALARY") %>'></asp:Label>
+                                    <asp:Label ID="lblPOSITION_SALARY14" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.POSITION_SALARY", "{0:n2}") %>'></asp:Label>
                                 </ItemTemplate>
                                 <EditItemTemplate>
                                     <asp:TextBox ID="txtPOSITION_SALARY14" runat="server" CssClass="form-control input-sm" Text='<%# DataBinder.Eval(Container, "DataItem.POSITION_SALARY") %>'></asp:TextBox>

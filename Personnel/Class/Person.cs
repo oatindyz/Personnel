@@ -17,7 +17,7 @@ namespace Personnel.Class
         public string STF_FNAME { get; set; }
         public string STF_LNAME { get; set; }
         public string GENDER_ID { get; set; }
-        public string BIRTHDAY { get; set; }
+        public DateTime? BIRTHDAY { get; set; }
         public string HOMEADD { get; set; }
         public string MOO { get; set; }
         public string STREET { get; set; }
@@ -35,8 +35,8 @@ namespace Personnel.Class
         public string POSITION_ID { get; set; }
         public string POSITION_WORK { get; set; }
         public string DEPARTMENT_ID { get; set; }
-        public string DATE_INWORK { get; set; }
-        public string DATE_START_THIS_U { get; set; }
+        public DateTime? DATE_INWORK { get; set; }
+        public DateTime? DATE_START_THIS_U { get; set; }
         public string SPECIAL_NAME { get; set; }
         public string TEACH_ISCED_ID { get; set; }
         public string GRAD_LEV_ID { get; set; }
@@ -51,7 +51,7 @@ namespace Personnel.Class
         public string POSITION_SALARY { get; set; }
         public string RELIGION_ID { get; set; }
         public string MOVEMENT_TYPE_ID { get; set; }
-        public string MOVEMENT_DATE { get; set; }
+        public DateTime? MOVEMENT_DATE { get; set; }
         public string DECORATION { get; set; }
         public string RESULT1 { get; set; }
         public string PERCENT_SALARY1 { get; set; }
@@ -68,7 +68,7 @@ namespace Personnel.Class
         public string COUPLE_NAME { get; set; }
         public string COUPLE_LNAME { get; set; }
         public string COUPLE_ONAME { get; set; }
-
+        
         public PS_PERSON() { }
         public PS_PERSON(
             int UOC_ID,
@@ -79,7 +79,7 @@ namespace Personnel.Class
             string STF_FNAME,
             string STF_LNAME,
             string GENDER_ID,
-            string BIRTHDAY,
+            DateTime? BIRTHDAY,
             string HOMEADD,
             string MOO,
             string STREET,
@@ -97,8 +97,8 @@ namespace Personnel.Class
             string POSITION_ID,
             string POSITION_WORK,
             string DEPARTMENT_ID,
-            string DATE_INWORK,
-            string DATE_START_THIS_U,
+            DateTime? DATE_INWORK,
+            DateTime? DATE_START_THIS_U,
             string SPECIAL_NAME,
             string TEACH_ISCED_ID,
             string GRAD_LEV_ID,
@@ -113,7 +113,7 @@ namespace Personnel.Class
             string POSITION_SALARY,
             string RELIGION_ID,
             string MOVEMENT_TYPE_ID,
-            string MOVEMENT_DATE,
+            DateTime? MOVEMENT_DATE,
             string DECORATION,
             string RESULT1,
             string PERCENT_SALARY1,
@@ -480,6 +480,34 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID));
                     com.Parameters.Add(new OracleParameter("SPECIAL_NAME", SPECIAL_NAME));
                     com.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", TEACH_ISCED_ID));
+                    com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+
+                    if (com.ExecuteNonQuery() > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+                return result;
+            }
+        }
+
+        public bool UPDATE_CURRENT_SALARY_PERSON()
+        {
+            bool result = false;
+            using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
+            {
+                con.Open();
+
+                string query = "Update UOC_STAFF Set";
+                query += " SALARY = :SALARY ,";
+                query += " POSITION_SALARY = :POSITION_SALARY ";
+                query += " where UOC_ID = :UOC_ID ";
+
+                using (OracleCommand com = new OracleCommand(query, con))
+                {
+                    com.Parameters.Add(new OracleParameter("SALARY", SALARY));
+                    com.Parameters.Add(new OracleParameter("POSITION_SALARY", POSITION_SALARY));
                     com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
 
                     if (com.ExecuteNonQuery() > 0)

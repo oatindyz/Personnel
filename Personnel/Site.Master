@@ -125,6 +125,16 @@
         }
     </script>
 
+    <script type="text/javascript">
+    var myVar = setInterval(myTimer, 60000);
+    var d = '<%= Session.Timeout %>';
+    function myTimer() {
+        d = d - 1;        
+        document.getElementById("<%= SessionTimeOut.ClientID %>").innerHTML = d.toString() + ' Minutes';
+    }
+
+    </script>
+
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -155,24 +165,7 @@
                                 <span id="profile_name" runat="server"></span>
                             </asp:LinkButton>
                             <a href="Access.aspx" class="ps-ms-logout">ออกจากระบบ</a>
-                            <!--  <div class="ps-ms-main-hd-button">
-                                <div class="dropdown">
-                                    <button class="btn btn-default dropdown-toggle" type="button" id="menu11" data-toggle="dropdown">
-                                        <span class="caret"></span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-                                        <li><a href="Profile.aspx" />
-                                            <img src='Image/Doc16.png' class='icon_left' />ดูประวัติส่วนตัว</li>
-                                        <li class="divider"></li>
-                                        <li><a href="ChangePassword.aspx" />
-                                            <img src='Image/lock-icon.png' class='icon_left' />เปลี่ยนรหัสผ่าน</li>
-                                        <li class="divider"></li>
-                                        <li><a href="Access.aspx" />
-                                            <img src='Image/logout.png' class='icon_left' />ออกจากระบบ</li>
-                                        <li class="divider"></li>
-                                    </ul>
-                                </div>
-                            </div> -->
+                            <asp:Label ID="SessionTimeOut" runat="server"></asp:Label>
                         </div>
 
                     </div>
@@ -266,7 +259,7 @@
                         </div>
 
                         <div id="MenuRoleID2Duty" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0"><div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
+                            <div class="ps-box-i0"><div class="ps-box-hd10"><img src="Image/Small/document.png" />การเพิ่มข้อมูลบุคลากร</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -278,7 +271,7 @@
 
                         <div id="MenuRoleID3Duty" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />ส่วนงานที่รับผิดชอบ</div>
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />การเพิ่มข้อมูล ก.พ.7</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -287,9 +280,20 @@
                             </div>
                         </div>
 
+                        <div id="MenuRoleID4Duty" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />การเพิ่มข้อมูล เครื่องราชฯ</div>
+                            </div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-ct10">
+                                    <a href="insig-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูล เครื่องราชฯ</a>
+                                </div>
+                            </div>
+                        </div>
+
                         <div id="MenuRoleID99" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />จัดการข้อมูล</div>
+                                <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />การจัดการสิทธิ์โดย Admin</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">

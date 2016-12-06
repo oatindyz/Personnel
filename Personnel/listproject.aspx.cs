@@ -32,20 +32,6 @@ namespace Personnel
             myRepeater.DataBind();
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            var btn = (Button)sender;
-            var item = (RepeaterItem)btn.NamingContainer;
-            var hidden = (HiddenField)item.FindControl("HF1");
-
-            string proID = hidden.Value;
-            if (hidden != null)
-            {
-                DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + proID + "'");
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
-            }
-        }
-
         protected void myRepeater_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName == "Preview" && e.CommandArgument.ToString() != "")
@@ -69,6 +55,7 @@ namespace Personnel
 
                 List<int> pro_id = new List<int>();
                 List<string> img_file = new List<string>();
+                string checkIMG = "";
 
                 using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
                 {
@@ -83,29 +70,38 @@ namespace Personnel
                                 {
                                     pro_id.Add(reader.GetInt32(0));
                                     img_file.Add(reader.GetString(1));
+                                    checkIMG = reader.GetString(1);
                                 }
                             }
                         }
                     }
                 }
 
-                for (int i = 0; i < pro_id.Count; i++)
+                if (checkIMG == "")
                 {
-                    string path = "Upload/Project/PDF/" + img_file[i];
-                    int PRO_ID = pro_id[i];
-                    string IMG_FILE = img_file[i];
-
-                    string pathVS = Server.MapPath("Upload/Project/PDF/" + IMG_FILE);
-                    if ((System.IO.File.Exists(pathVS)))
-                    {
-                        System.IO.File.Delete(pathVS);
-                    }
-
                     DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + value + "'");
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
                     BindData();
                 }
+                else
+                {
+                    for (int i = 0; i < pro_id.Count; i++)
+                    {
+                        string path = "Upload/Project/PDF/" + img_file[i];
+                        int PRO_ID = pro_id[i];
+                        string IMG_FILE = img_file[i];
 
+                        string pathVS = Server.MapPath("Upload/Project/PDF/" + IMG_FILE);
+                        if ((System.IO.File.Exists(pathVS)))
+                        {
+                            System.IO.File.Delete(pathVS);
+                        }
+
+                        DatabaseManager.ExecuteNonQuery("DELETE TB_PROJECT WHERE PRO_ID = '" + value + "'");
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
+                        BindData();
+                    }
+                }
             }
             if (e.CommandName == "Report" && e.CommandArgument.ToString() != "")
             {

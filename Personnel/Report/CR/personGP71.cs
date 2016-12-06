@@ -16,14 +16,14 @@ namespace Personnel.Report.CR {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class project : ReportClass {
+    public class personGP7 : ReportClass {
         
-        public project() {
+        public personGP7() {
         }
         
         public override string ResourceName {
             get {
-                return "project.rpt";
+                return "personGP7.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Personnel.Report.CR {
         
         public override string FullResourceName {
             get {
-                return "Personnel.Report.CR.project.rpt";
+                return "Personnel.Report.CR.personGP7.rpt";
             }
             set {
                 // Do nothing
@@ -74,7 +74,7 @@ namespace Personnel.Report.CR {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
+        public CrystalDecisions.CrystalReports.Engine.Section DetailSection1 {
             get {
                 return this.ReportDefinition.Sections[3];
             }
@@ -82,17 +82,25 @@ namespace Personnel.Report.CR {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+        public CrystalDecisions.CrystalReports.Engine.Section Section4 {
             get {
                 return this.ReportDefinition.Sections[4];
+            }
+        }
+        
+        [Browsable(false)]
+        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
+        public CrystalDecisions.CrystalReports.Engine.Section Section5 {
+            get {
+                return this.ReportDefinition.Sections[5];
             }
         }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class Cachedproject : Component, ICachedReport {
+    public class CachedpersonGP7 : Component, ICachedReport {
         
-        public Cachedproject() {
+        public CachedpersonGP7() {
         }
         
         [Browsable(false)]
@@ -129,7 +137,7 @@ namespace Personnel.Report.CR {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            project rpt = new project();
+            personGP7 rpt = new personGP7();
             rpt.Site = this.Site;
             return rpt;
         }

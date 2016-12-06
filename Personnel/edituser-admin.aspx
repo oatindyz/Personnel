@@ -82,7 +82,7 @@
                 })
             };
 
-            $('#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateStartThisU').datetimepicker({
+            $('#ContentPlaceHolder1_tbBirthday,#ContentPlaceHolder1_tbDateInwork,#ContentPlaceHolder1_tbDateStartThisU,#ContentPlaceHolder1_tbMovementDate').datetimepicker({
                 timepicker: false,
                 format: 'd/m/Y',
                 lang: 'th',
