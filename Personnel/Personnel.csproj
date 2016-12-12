@@ -1193,7 +1193,6 @@
     <Content Include="CSS\agency.min.css" />
     <Content Include="CSS\Master.css" />
     <Content Include="CSS\Print.css" />
-    <Content Include="DataManager.aspx" />
     <Content Include="datetimepicker\jquery.datetimepicker.full.js" />
     <Content Include="datetimepicker\jquery.datetimepicker.full.min.js" />
     <Content Include="datetimepicker\jquery.datetimepicker.min.css" />
@@ -1252,7 +1251,6 @@
     <Content Include="img\team\1.JPG" />
     <Content Include="img\team\2.JPG" />
     <Content Include="img\team\3.JPG" />
-    <Content Include="insig-admin.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="jQueryCalendarThai\images\add.gif" />
@@ -1681,6 +1679,7 @@
     <Content Include="listproject-admin.aspx" />
     <Content Include="listproject.aspx" />
     <Content Include="listuser-admin.aspx" />
+    <Content Include="Manage-Droplist.aspx" />
     <Content Include="managerole-admin.aspx" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
     <Content Include="plugins\ckeditor\ckeditor.pack" />
@@ -3504,13 +3503,6 @@
     <Compile Include="Class\Project.cs" />
     <Compile Include="Class\UOC_STAFF.cs" />
     <Compile Include="Connection\ConnectionDB.cs" />
-    <Compile Include="DataManager.aspx.cs">
-      <DependentUpon>DataManager.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DataManager.aspx.designer.cs">
-      <DependentUpon>DataManager.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3549,13 +3541,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="insig-admin.aspx.cs">
-      <DependentUpon>insig-admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="insig-admin.aspx.designer.cs">
-      <DependentUpon>insig-admin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="listGP7-admin.aspx.cs">
       <DependentUpon>listGP7-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3583,6 +3568,13 @@
     </Compile>
     <Compile Include="listuser-admin.aspx.designer.cs">
       <DependentUpon>listuser-admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Manage-Droplist.aspx.cs">
+      <DependentUpon>Manage-Droplist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Manage-Droplist.aspx.designer.cs">
+      <DependentUpon>Manage-Droplist.aspx</DependentUpon>
     </Compile>
     <Compile Include="managerole-admin.aspx.cs">
       <DependentUpon>managerole-admin.aspx</DependentUpon>
@@ -3700,7 +3692,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />

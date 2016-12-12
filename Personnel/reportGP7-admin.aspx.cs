@@ -35,7 +35,8 @@ namespace Personnel
             DataSet dsMain = new DataSet();
             DataTable dtMain = null;
             StringBuilder strSQLMain = new StringBuilder();
-            strConnString = "DATA SOURCE=ORCL_RMUTTO;PASSWORD=Zxcvbnm;PERSIST SECURITY INFO=True;USER ID=Personnel";
+            //strConnString = "DATA SOURCE=ORCL_RMUTTO;PASSWORD=Zxcvbnm;PERSIST SECURITY INFO=True;USER ID=Personnel";
+            strConnString = "DATA SOURCE=ORCL;PASSWORD=Zxcvbnm;PERSIST SECURITY INFO=True;USER ID=Personnel";
             strSQLMain.Append("SELECT CITIZEN_ID,");
             strSQLMain.Append("(SELECT FULLNAME FROM REF_PREFIX_NAME WHERE UOC_STAFF.PREFIX_NAME = REF_PREFIX_NAME.PREFIX_NAME_ID) PREFIX_NAME,");
             strSQLMain.Append("STF_FNAME,");

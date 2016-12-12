@@ -22,7 +22,7 @@
         <img src="Image/book_edit.png" />จัดการสิทธิใช้งานระบบ
     </div>
     <div id="notification" runat="server"></div>
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL_RMUTTO %>" ProviderName="<%$ ConnectionStrings:ORCL_RMUTTO.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_PERSON_ROLE&quot;"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL %>" ProviderName="<%$ ConnectionStrings:ORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_PERSON_ROLE&quot;"></asp:SqlDataSource>
     <div id="Dp1" runat="server" class="panel panel-default">
         <div class="panel-heading">บุคลากรภายในมหาวิทยาลัย</div>
         <div class="panel-body">
@@ -34,7 +34,6 @@
                                 <th>ลำดับที่</th>
                                 <th>ชื่อ-สกุล</th>
                                 <th>คณะ/หน่วยงาน</th>
-                                <th>ID</th>
                                 <th>สิทธิการใช้งานระบบ</th>
                                 <th>
                                     <img src="Image/Small/save.png" class="icon_left" />แก้ไข</th>
@@ -46,7 +45,6 @@
                                     <td><asp:Label ID="lbID" runat="server" Text='<%# DataBinder.Eval(Container.DataItem, "UOC_ID") %>'></asp:Label></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "NAME") %></td>
                                     <td><%# DataBinder.Eval(Container.DataItem, "FAC_NAME") %></td>
-                                    <td><asp:DropDownList ID="ddltest" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList></td>
                                     <td><asp:DropDownList ID="ddlRole" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList></td>
                                     <td style="text-align:center;"><asp:Button ID="btn1" runat="server" CssClass="btn btn-success" Text="บันทึก" OnClick="btn1_Click"/></td>
                                 </tr>

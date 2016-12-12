@@ -130,7 +130,7 @@
     var d = '<%= Session.Timeout %>';
     function myTimer() {
         d = d - 1;        
-        document.getElementById("<%= SessionTimeOut.ClientID %>").innerHTML = d.toString() + ' Minutes';
+        document.getElementById("<%= SessionTimeOut.ClientID %>").innerHTML = d.toString() + ' นาที';
     }
 
     </script>
@@ -155,17 +155,13 @@
 
                         </div>
                         <div class="ps-ms-main-hd-right">
-                            <div id="menu2" class="ps-ms-main-hd-button">
-                                <img src="Image/x32/notification.png" />
-                            </div>
-                            <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
                             <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
                                 <span class="ps-ms-profile-div">
                                     <img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server" /></span>
                                 <span id="profile_name" runat="server"></span>
                             </asp:LinkButton>
                             <a href="Access.aspx" class="ps-ms-logout">ออกจากระบบ</a>
-                            <asp:Label ID="SessionTimeOut" runat="server"></asp:Label>
+                            <asp:Label ID="SessionTimeOut" runat="server" class="ps-ms-main-hd-name2"></asp:Label>
                         </div>
 
                     </div>
@@ -280,24 +276,13 @@
                             </div>
                         </div>
 
-                        <div id="MenuRoleID4Duty" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />การเพิ่มข้อมูล เครื่องราชฯ</div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="insig-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูล เครื่องราชฯ</a>
-                                </div>
-                            </div>
-                        </div>
-
                         <div id="MenuRoleID99" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
                                 <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />การจัดการสิทธิ์โดย Admin</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="DataManager.aspx">
+                                    <a href="Manage-Droplist.aspx">
                                         <img src="Image/Small/wrench.png" />แก้ไขข้อมูลตัวเลือก (Dropdown List)</a>
                                     <a href="managerole-admin.aspx">
                                         <img src="Image/Small/wrench.png" />จัดการสิทธิใช้งานระบบ</a>
@@ -305,40 +290,6 @@
                             </div>
                         </div>
 
-                    </div>
-
-                    <div class="ps-ms-main-drop" id="menu2-ct">
-                        <div class="ps-ms-main-drop-hd">
-                            <img src="Image/x32/notification.png" />การแจ้งเตือน
-                        </div>
-                        <div class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10-cen">
-                                    <img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
-                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_ins" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div>
-                                        <img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ
-                                    </div>
-                                    <br />
-                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
-                                <div class="ps-box-ct10-cen">
-                                    <div>
-                                        <img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ
-                                    </div>
-                                    <br />
-                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

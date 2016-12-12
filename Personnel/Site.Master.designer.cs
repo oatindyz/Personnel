@@ -40,15 +40,6 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu1;
         
         /// <summary>
-        /// noti_alert control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_alert;
-        
-        /// <summary>
         /// lbuUser control.
         /// </summary>
         /// <remarks>
@@ -175,15 +166,6 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID3Duty;
         
         /// <summary>
-        /// MenuRoleID4Duty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID4Duty;
-        
-        /// <summary>
         /// MenuRoleID99 control.
         /// </summary>
         /// <remarks>
@@ -191,33 +173,6 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleID99;
-        
-        /// <summary>
-        /// noti_ins_none control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins_none;
-        
-        /// <summary>
-        /// noti_ins control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins;
-        
-        /// <summary>
-        /// noti_get_ins control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_get_ins;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

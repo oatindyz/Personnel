@@ -23,7 +23,7 @@ namespace Personnel
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SessionTimeOut.Text = Session.Timeout.ToString() + " Minutes";
+            SessionTimeOut.Text = Session.Timeout.ToString() + " นาที";
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             PersonnelSystem ps99 = PersonnelSystem.GetRoleAdmin(this);
             PersonnelSystem ps1 = PersonnelSystem.GetRoleFree(this);
@@ -58,7 +58,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = false;
                 }
                 else if (loginPerson1.PERSON_ROLE_ID == 1)
                 {
@@ -66,7 +65,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = false;
                 }
                 else if (loginPerson2.PERSON_ROLE_ID == 2)
                 {
@@ -74,7 +72,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = true;
                     MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = false;
                 }
                 else if (loginPerson3.PERSON_ROLE_ID == 3)
                 {
@@ -82,15 +79,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = false;
                     MenuRoleID3Duty.Visible = true;
-                    MenuRoleID4Duty.Visible = false;
-                }
-                else if (loginPerson3.PERSON_ROLE_ID == 4)
-                {
-                    MenuRoleID99.Visible = false;
-                    MenuPublic.Visible = true;
-                    MenuRoleID2Duty.Visible = false;
-                    MenuRoleID3Duty.Visible = false;
-                    MenuRoleID4Duty.Visible = true;
                 }
                 else
                 {
@@ -98,7 +86,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuRoleID2Duty.Visible = true;
                     MenuRoleID3Duty.Visible = true;
-                    MenuRoleID4Duty.Visible = true;
                 }
 
             }

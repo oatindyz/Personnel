@@ -12,7 +12,8 @@ namespace Personnel.Class
     {
 
         public static readonly string PROVIDER = "System.Data.OracleClient";
-        public static readonly string DATA_SOURCE = "203.158.140.67";
+        //public static readonly string DATA_SOURCE = "203.158.140.67";
+        public static readonly string DATA_SOURCE = "localhost";
         public static readonly string PORT = "1521";
         public static readonly string SID = "orcl";
         public static readonly string USER_ID = "PERSONNEL";
@@ -183,7 +184,7 @@ namespace Personnel.Class
                     {
                         while (reader.Read())
                         {
-                            if (reader.GetString(0) == personID && reader.GetString(1) == password)
+                            if (reader.GetString(0) == personID && reader.GetDateTime(1).ToString("dd/MM/yyyy") == password)
                             {
                                 return true;
                             }
@@ -327,7 +328,7 @@ namespace Personnel.Class
                             uoc_staff.STF_LNAME = reader.GetValue(i++).ToString();
                             uoc_staff.GENDER_ID = reader.GetValue(i++).ToString();
                             uoc_staff.GENDER_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.BIRTHDAY = reader.GetDateTime(i++).ToString("dd/MM/yyyy");
+                            uoc_staff.BIRTHDAY = Convert.ToDateTime(reader.GetValue(i++).ToString()).ToString("dd/MM/yyyy");
                             uoc_staff.HOMEADD = reader.GetValue(i++).ToString();
                             uoc_staff.MOO = reader.GetValue(i++).ToString();
                             uoc_staff.STREET = reader.GetValue(i++).ToString();
@@ -356,8 +357,8 @@ namespace Personnel.Class
                             uoc_staff.POSITION_WORK = reader.GetValue(i++).ToString();
                             uoc_staff.DEPARTMENT_ID = reader.GetValue(i++).ToString();
                             uoc_staff.DEPARTMENT_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.DATE_INWORK = reader.GetDateTime(i++).ToString("dd/MM/yyyy");
-                            uoc_staff.DATE_START_THIS_U = reader.GetDateTime(i++).ToString("dd/MM/yyyy");
+                            uoc_staff.DATE_INWORK = Convert.ToDateTime(reader.GetValue(i++).ToString()).ToString("dd/MM/yyyy");
+                            uoc_staff.DATE_START_THIS_U = Convert.ToDateTime(reader.GetValue(i++).ToString()).ToString("dd/MM/yyyy");
                             uoc_staff.SPECIAL_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.TEACH_ISCED_ID = reader.GetValue(i++).ToString();
                             uoc_staff.TEACH_ISCED_NAME = reader.GetValue(i++).ToString();
@@ -379,7 +380,7 @@ namespace Personnel.Class
                             uoc_staff.RELIGION_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.MOVEMENT_TYPE_ID = reader.GetValue(i++).ToString();
                             uoc_staff.MOVEMENT_TYPE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOVEMENT_DATE = reader.IsDBNull(i++) ? "" : reader.GetDateTime(i++).ToString("dd/MM/yyyy");
+                            uoc_staff.MOVEMENT_DATE = reader.GetValue(i++).ToString();
                             uoc_staff.DECORATION = reader.GetValue(i++).ToString();
                             uoc_staff.RESULT1 = reader.GetValue(i++).ToString();
                             uoc_staff.PERCENT_SALARY1 = reader.GetValue(i++).ToString();

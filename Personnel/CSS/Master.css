@@ -84,6 +84,15 @@ input[type=radio] + label {
     font-size: 18px;
     color: #8080a0;
 }
+.ps-ms-main-hd-name2 {
+    vertical-align: top;
+    display: inline-block;
+    line-height: 16px;
+    margin-left: 10px;
+    margin-top:6px;
+    font-size: 14px;
+    color: #8080a0;
+}
 .ps-ms-main-hd-right {
     float: right;
 }
@@ -194,6 +203,23 @@ input[type=radio] + label {
     color: #ffffff;
     background-color: rgb(237,28,36);
 }
+.ps-ms-logout2 {
+    display: inline-block;
+    font-family: Arial;
+    font-size: 12px;
+    text-decoration: none;
+    padding: 0px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    color: #ff9503;
+    background-color: #f8f8f8;
+    height: 24px;
+    line-height: 24px;
+    vertical-align: top;
+    margin-top: 3px;
+    color: #ffffff;
+    background-color: rgb(237,28,36);
+}
 .ps-ms-logout:hover {
 
 }
@@ -211,7 +237,6 @@ input[type=radio] + label {
     line-height: 30px;
     border-bottom: 2px solid transparent;
     vertical-align: top;
-    margin-left: 20px;
 }
 .ps-ms-user:hover {
     color: #000000;
@@ -1197,7 +1222,6 @@ input[type=radio] + label {
 }
 .ps-lb-red-b {
     color: rgb(206,91,91);
-    font-weight: bold;
 }
 .ps-lb-green {
     color: rgb(92,230,56);
@@ -1371,4 +1395,7 @@ input[type=radio] + label {
 }
 .ekknidBottom{
     margin-bottom:10px
+}
+.w100per{
+    width:100%
 }

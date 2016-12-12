@@ -23,7 +23,7 @@ namespace Personnel
         protected void BindData()
         {
             OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING);
-            OracleDataAdapter sda = new OracleDataAdapter("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME, PERSON_ROLE_ID, (SELECT PERSON_ROLE_NAME FROM TB_PERSON_ROLE WHERE TB_PERSON_ROLE.PERSON_ROLE_ID = UOC_STAFF.PERSON_ROLE_ID) PERSON_ROLE_NAME FROM UOC_STAFF ORDER BY UOC_ID DESC", con);
+            OracleDataAdapter sda = new OracleDataAdapter("SELECT UOC_ID,STF_FNAME || ' ' || STF_LNAME NAME, (SELECT FAC_NAME FROM REF_FAC WHERE UOC_STAFF.DEPARTMENT_ID = REF_FAC.FAC_ID) FAC_NAME, PERSON_ROLE_ID FROM UOC_STAFF ORDER BY UOC_ID DESC", con);
             DataTable dt = new DataTable();
             sda.Fill(dt);
             myRepeater.DataSource = dt;
@@ -52,14 +52,11 @@ namespace Personnel
         {
             if (e.Item.ItemType == ListItemType.Item || e.Item.ItemType == ListItemType.AlternatingItem)
             {
-                //DataValueField = "PERSON_ROLE_ID" DataTextField = "PERSON_ROLE_NAME"
-                //ddlSubDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", ""));
-
                 ((DropDownList)e.Item.FindControl("ddlRole")).DataSource = SqlDataSource1;
                 ((DropDownList)e.Item.FindControl("ddlRole")).DataValueField = "PERSON_ROLE_ID";
                 ((DropDownList)e.Item.FindControl("ddlRole")).DataTextField = "PERSON_ROLE_NAME";
-                ((DropDownList)e.Item.FindControl("ddltest")).Items.FindByValue("PERSON_ROLE_ID".ToString()).Selected = true;
                 ((DropDownList)e.Item.FindControl("ddlRole")).DataBind();
+                
             }
         }
 
