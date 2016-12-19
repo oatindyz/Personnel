@@ -1215,10 +1215,10 @@
     <Content Include="Image\dcicon1.png" />
     <Content Include="Image\Doc16.png" />
     <Content Include="Image\document-16.png" />
-    <Content Include="Image\githubdotcom.jpg" />
     <Content Include="Image\lock-icon.png" />
     <Content Include="Image\logout.png" />
     <Content Include="Image\plus-gray.png" />
+    <Content Include="Image\rmutto_1280x480.jpg" />
     <Content Include="Image\Small\Thumbs.db" />
     <Content Include="Image\Thumbs.db" />
     <Content Include="Image\x32\Thumbs.db" />
@@ -1730,6 +1730,7 @@
     <Content Include="fonts\THSarabunNew.ttf" />
     <Content Include="less\agency.less" />
     <None Include="Properties\PublishProfiles\Web.pubxml" />
+    <Content Include="ReportAcademic-admin.aspx" />
     <Content Include="reportGP7-admin.aspx" />
     <Content Include="reportleave-admin.aspx" />
     <Content Include="reportproject-fliter-admin.aspx" />
@@ -1756,8 +1757,6 @@
     <Content Include="Image\Button\reload.png" />
     <Content Include="Image\favicon.ico" />
     <Content Include="Image\font_icon.png" />
-    <Content Include="Image\insignia.jpg" />
-    <Content Include="Image\insignia01.jpg" />
     <Content Include="Image\Insignia\จ.ช..png" />
     <Content Include="Image\Insignia\จ.ม..png" />
     <Content Include="Image\Insignia\ต.ช..png" />
@@ -3621,6 +3620,13 @@
       <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAcademic-admin.aspx.cs">
+      <DependentUpon>ReportAcademic-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportAcademic-admin.aspx.designer.cs">
+      <DependentUpon>ReportAcademic-admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="reportGP7-admin.aspx.cs">
       <DependentUpon>reportGP7-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

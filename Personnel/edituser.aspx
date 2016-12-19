@@ -153,13 +153,13 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">อำเภอ<span class="ps-lb-red" />*</td>
+                                    <td class="col1">เขต/อำเภอ<span class="ps-lb-red" />*</td>
                                     <td class="col2">
                                         <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ตำบล<span class="ps-lb-red" />*</td>
+                                    <td class="col1">แขวง/ตำบล<span class="ps-lb-red" />*</td>
                                     <td class="col2">
                                         <asp:DropDownList ID="ddlSubDistrict" runat="server" CssClass="form-control input-sm select2" required="required" tabindex="1"></asp:DropDownList>
                                     </td>
@@ -207,7 +207,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ประเภทตำแหน่ง</td>
+                                    <td class="col1">ประเภทบุคลากรย่อย</td>
                                     <td class="col2">
                                         <asp:Label ID="lbSubStafftype" runat="server"></asp:Label>
                                     </td>

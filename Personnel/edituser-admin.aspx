@@ -131,19 +131,19 @@
                     <div class="panel panel-default">
                         <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                             <tr>
-                                <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน<span class="ps-lb-red" />*</td>
+                                <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน</td>
                                 <td class="col2">
                                     <asp:Label ID="lbCitizenID" runat="server"></asp:Label>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">มหาวิทยาลัย</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Univ">มหาวิทยาลัย</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlUniv" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">คำนำหน้าชื่อ(ยึดตามบัตรประชาชน)</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Title">คำนำหน้าชื่อ(ยึดตามบัตรประชาชน)</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
@@ -161,7 +161,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">เพศ</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Gender">เพศ</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGender" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
@@ -191,20 +191,20 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">จังหวัด<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Province">จังหวัด</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlProvince" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlProvince_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">อำเภอ<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Amphur">เขต/อำเภอ</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlDistrict" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlDistrict_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
 
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ตำบล<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Tambon">แขวง/ตำบล</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlSubDistrict" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -222,7 +222,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">สัญชาติ<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Nation">สัญชาติ</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlNation" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -234,37 +234,37 @@
                     <div class="panel panel-default">
                         <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                             <tr>
-                                <td class="col1" style="width: 400px;">ประเภทบุคลากร<span class="ps-lb-red" />*</td>
+                                <td class="col1" style="width: 400px;"><a href="Manage-Droplist.aspx?id=Stafftype">ประเภทบุคลากร</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlStafftype" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ระยะเวลาจ้าง<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=TimeContact">ระยะเวลาจ้าง</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlTimeContact" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ประเภทเงินจ้าง<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Budget">ประเภทเงินจ้าง</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlBudget" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ประเภทตำแหน่ง<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=SubStafftype">ประเภทบุคลากรย่อย</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlSubStafftype" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlSubStafftype_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ตำแหน่งบริหาร</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=AdminPosition">ตำแหน่งบริหาร</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlAdminPosition" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ระดับตำแหน่ง<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Position">ระดับตำแหน่ง</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlPosition" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -276,7 +276,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">คณะ/หน่วยงานที่สังกัด หรือเทียบเท่า<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Department">คณะ/หน่วยงานที่สังกัด หรือเทียบเท่า</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlDepartment" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -300,13 +300,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)<span id="spTeachISCED" runat="server" /></td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=TeachISCED">กลุ่มสาขาวิชาที่สอน(ISCED)</a><span id="spTeachISCED" runat="server" /></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ระดับการศึกษาที่จบสูงสุด<span class="ps-lb-red" />*</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=GradLev">ระดับการศึกษาที่จบสูงสุด</a><span class="ps-lb-red" />*</td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGradLev" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlGradLev_SelectedIndexChanged" AutoPostBack="true" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -318,13 +318,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)<span id="spGradISCED" runat="server" /></td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=TeachISCED">กลุ่มสาขาวิชาที่จบสูงสุด(ISCED)</a><span id="spGradISCED" runat="server" /></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGradISCED" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">สาขาวิชาที่จบสูงสุด<span id="spGradProg" runat="server" /></td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=GradProg">สาขาวิชาที่จบสูงสุด</a><span id="spGradProg" runat="server" /></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGradProg" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
                                 </td>
@@ -336,7 +336,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ประเทศที่จบการศึกษาสูงสุด</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Nation">ประเทศที่จบการศึกษาสูงสุด</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlGradCountry" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
@@ -348,7 +348,7 @@
                     <div class="panel panel-default">
                         <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                             <tr>
-                                <td class="col1" style="width: 400px;">ความพิการ</td>
+                                <td class="col1" style="width: 400px;"><a href="Manage-Droplist.aspx?id=Deform">ความพิการ</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlDeform" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
@@ -372,13 +372,13 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ศาสนา</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=Religion">ศาสนา</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlReligion" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>
                             </tr>
                             <tr>
-                                <td class="col1">ประเภทการดำรงตำแหน่งปัจจุบัน</td>
+                                <td class="col1"><a href="Manage-Droplist.aspx?id=MovementType">ประเภทการดำรงตำแหน่งปัจจุบัน</a></td>
                                 <td class="col2">
                                     <asp:DropDownList ID="ddlMovementType" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                 </td>

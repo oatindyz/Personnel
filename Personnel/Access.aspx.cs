@@ -153,7 +153,8 @@ namespace Personnel
                                             Session["ROLE-PERSONNEL"] = ps;
                                             Session["ROLE-GP7"] = ps;
                                             Response.Redirect("ChangePassword.aspx");
-                                            Response.Redirect("Default.aspx");
+                                            //Response.Redirect("Default.aspx");
+                                            Response.Redirect("reportacademic-admin.aspx");
                                         }
                                         else
                                         {
@@ -173,7 +174,8 @@ namespace Personnel
                                             Session["ROLE-FREE"] = ps;
                                             Session["ROLE-PERSONNEL"] = ps;
                                             Session["ROLE-GP7"] = ps;
-                                            Response.Redirect("Default.aspx");
+                                            //Response.Redirect("Default.aspx");
+                                            Response.Redirect("reportacademic-admin.aspx");
                                         }
                                         else
                                         {

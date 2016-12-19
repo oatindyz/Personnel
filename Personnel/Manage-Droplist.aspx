@@ -23,51 +23,51 @@
     <style>
         body {
             font-family: "Lato", sans-serif;
+            transition: background-color .5s;
         }
 
         .sidenav {
             height: 100%;
             width: 0;
-            margin-top: 35px;
             position: fixed;
             z-index: 1;
             top: 0;
             left: 0;
-            background-color: rgb(245,245,245);
+            background-color: #111;
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
         }
 
-            .sidenav a {
-                padding: 8px 8px 8px 32px;
-                text-decoration: none;
-                font-size: 16px;
-                color: #000000;
-                display: block;
-                transition: 0.1s;
-            }
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 16px;
+            color: #818181;
+            display: block;
+            transition: 0.3s
+        }
 
-                .sidenav a:hover, .offcanvas a:focus {
-                    color: #808080;
-                }
+        .sidenav a:hover, .offcanvas a:focus{
+            color: #f1f1f1;
+        }
 
-            .sidenav .closebtn {
-                position: absolute;
-                top: 0;
-                right: 25px;
-                font-size: 36px;
-                margin-left: 50px;
-            }
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #main {
+            transition: margin-left .5s;
+            padding: 16px;
+        }
 
         @media screen and (max-height: 450px) {
-            .sidenav {
-                padding-top: 15px;
-            }
-
-                .sidenav a {
-                    font-size: 18px;
-                }
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
         }
     </style>
     <script>
@@ -124,7 +124,8 @@
         <a>
             <asp:LinkButton ID="lbuMenuMovementType" runat="server" OnClick="lbuMenuMovementType_Click"><img src="Image/Small/wrench.png" class="icon_left"/> ประเภทการดำรงตำแหน่งปัจจุบัน</asp:LinkButton></a>
     </div>
-    <span style="font-size: 20px; cursor: pointer" onclick="openNav()">&#9776; เลือกเมนูที่ต้องการ</span>
+    <div id="divShowMenu" runat="server" class="ps-header">
+    <img src="Image/Small/wrench.png" /><asp:Label ID="Label20" runat="server" Text="&#9776; เลือกเมนู" onclick="openNav()" style="font-size: 20px; cursor: pointer"></asp:Label></div>
     <div>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ORCL %>" ProviderName="<%$ ConnectionStrings:ORCL.ProviderName %>" SelectCommand="SELECT * FROM &quot;TB_STATUS_ACTIVE&quot;"></asp:SqlDataSource>
 
@@ -520,17 +521,17 @@
 
         <asp:Panel ID="Panel7" runat="server" CssClass="divpan">
             <div id="divheader7" runat="server" class="ps-header" visible="false">
-                <img src="Image/Small/wrench.png" /><asp:Label ID="Label6" runat="server" Text="สัญชาติ"></asp:Label></div>
+                <img src="Image/Small/wrench.png" /><asp:Label ID="Label6" runat="server" Text="สัญชาติ/ประเทศ"></asp:Label></div>
             <div id="divInsertNation" runat="server" class="dataTable_wrapper" visible="false">
                 <div class="ps-header">
                     <img src="Image/Small/Add.png" />เพิ่มข้อมูล
                 </div>
                 <table class="table table-striped table-bordered table-hover">
                     <tr>
-                        <td>รหัสสัญชาติ<span class="ps-lb-red" />*<br />
+                        <td>รหัสสัญชาติ/ประเทศ<span class="ps-lb-red" />*<br />
                             <asp:TextBox ID="tbInsertIdNation" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"/>
                         </td>
-                        <td>ชื่อสัญชาติ<span class="ps-lb-red" />*<br />
+                        <td>ชื่อสัญชาติ/ประเทศ<span class="ps-lb-red" />*<br />
                             <asp:TextBox ID="tbInsertNameNation" runat="server" CssClass="form-control input-sm" required="required" tabindex="1"/>
                         </td>
                         <td>สถานะการใช้งาน<span class="ps-lb-red" />*<br />
@@ -552,8 +553,8 @@
                     <thead>
                         <tr>
                             <th>ลำดับที่</th>
-                            <th>รหัสสัญชาติ</th>
-                            <th>ชื่อสัญชาติ</th>
+                            <th>รหัสสัญชาติ/ประเทศ</th>
+                            <th>ชื่อสัญชาติ/ประเทศ</th>
                             <th>สถานะการใช้งาน</th>
                             <th>จัดการข้อมูล</th>
                         </tr>
