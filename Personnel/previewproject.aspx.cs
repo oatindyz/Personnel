@@ -83,25 +83,25 @@ namespace Personnel
                         while (reader.Read())
                         {
                             int i = 0;
-                            lbName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbPosition.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbDepartment.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbCATEGORY_ID.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbPROJECT_NAME.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbADDRESS_PROJECT.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbDateStart.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
-                            lbDateEnd.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
+                            lbName.Text = reader.GetString(i); ++i;
+                            lbPosition.Text = reader.GetString(i); ++i;
+                            lbDepartment.Text = reader.GetString(i); ++i;
+                            lbCATEGORY_ID.Text = reader.GetString(i); ++i;
+                            lbPROJECT_NAME.Text = reader.GetString(i); ++i;
+                            lbADDRESS_PROJECT.Text = reader.GetString(i); ++i;
+                            lbDateStart.Text = reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
+                            lbDateEnd.Text = reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
                             lbEXPENSES.Text = reader.IsDBNull(i) ? "0" : reader.GetInt32(i).ToString("#,###"); ++i;
-                            lbFUNDING.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbCERTIFICATE.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbSUMMARIZE_PROJECT.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbRESULT_TEACHING.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbRESULT_ACADEMIC.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbDIFFICULTY_PROJECT.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbRESULT_PROJECT.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbRESULT_RESEARCHING.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbRESULT_OTHER.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            lbCOUNSEL.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lbFUNDING.Text = reader.GetString(i); ++i;
+                            lbCERTIFICATE.Text = reader.GetString(i); ++i;
+                            lbSUMMARIZE_PROJECT.Text = reader.GetString(i); ++i;
+                            lbRESULT_TEACHING.Text = reader.GetString(i); ++i;
+                            lbRESULT_ACADEMIC.Text = reader.GetString(i); ++i;
+                            lbDIFFICULTY_PROJECT.Text = reader.GetString(i); ++i;
+                            lbRESULT_PROJECT.Text = reader.GetString(i); ++i;
+                            lbRESULT_RESEARCHING.Text = reader.GetString(i); ++i;
+                            lbRESULT_OTHER.Text = reader.GetString(i); ++i;
+                            lbCOUNSEL.Text = reader.GetString(i); ++i;
 
 
                         }

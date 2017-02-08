@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="edituser.aspx.cs" Inherits="Personnel.edituser" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-  <script>
+    <script>
         $(function () {
             //Initialize Select2 Elements
             $(".select2").select2();
@@ -251,13 +251,12 @@
                                 <tr>
                                     <td class="col1">สาขางานที่เชี่ยวชาญ</td>
                                     <td class="col2">
-                                        <asp:TextBox ID="tbSpecialName" runat="server" CssClass="form-control input-sm"></asp:TextBox>
+                                        <asp:Label ID="lbSpecialName" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="col1">กลุ่มสาขาวิชาที่สอน(ISCED)</td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlTeachISCED" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                         <asp:Label ID="lbTeachISCED" runat="server"></asp:Label>
                                     </td>
                                 </tr>

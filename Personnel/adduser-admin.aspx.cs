@@ -19,7 +19,11 @@ namespace Personnel
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            BindDDL();
+            if (!IsPostBack)
+            {
+                BindDDL();
+            }
+            
             if (MultiView1.ActiveViewIndex == 0)
             {
                 btnSelectView0.CssClass = "btn btn-info";
@@ -642,18 +646,6 @@ namespace Personnel
                 }
             }
             return id;
-        }
-
-        protected void ddlPrefixName_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string ValueGenderID = DatabaseManager.ExecuteString("SELECT GENDER_ID FROM REF_PREFIX_NAME");
-            if(ddlPrefixName.SelectedValue == "1")
-            {
-
-            }else if (ddlPrefixName.SelectedValue == "2")
-            {
-
-            }
         }
 
     }

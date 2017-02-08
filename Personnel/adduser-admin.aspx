@@ -201,7 +201,7 @@
                                 <tr>
                                     <td class="col1"><a href="Manage-Droplist.aspx?id=Title">คำนำหน้าชื่อ(ยึดตามบัตรประชาชน)</a></td>
                                     <td class="col2">
-                                        <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="form-control input-sm select2" OnSelectedIndexChanged="ddlPrefixName_SelectedIndexChanged"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="form-control input-sm select2"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>

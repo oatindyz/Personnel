@@ -11,11 +11,11 @@ namespace Personnel
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            for (int i = 0; i < Session.Count; i++)
+            /*for (int i = 0; i < Session.Count; i++)
             {
                 var crntSession = Session.Keys[i];
                 Response.Write(string.Concat(crntSession, "=", Session[crntSession]) + "<br />");
-            }
+            }*/
 
             Session.Remove("วิทยาเขตบางพระ0");
             Session.Remove("วิทยาเขตบางพระ1");

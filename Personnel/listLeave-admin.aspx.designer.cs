@@ -10,51 +10,42 @@
 namespace Personnel {
     
     
-    public partial class testpage {
+    public partial class listLeave_admin {
         
         /// <summary>
-        /// lbuSearch control.
+        /// notification control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl notification;
         
         /// <summary>
-        /// lbuSearchAll control.
+        /// Dp1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSearchAll;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Dp1;
         
         /// <summary>
-        /// lbuSend control.
+        /// divLoad control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSend;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoad;
         
         /// <summary>
-        /// Table1 control.
+        /// myRepeater control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table Table1;
-        
-        /// <summary>
-        /// hf1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hf1;
+        protected global::System.Web.UI.WebControls.Repeater myRepeater;
     }
 }

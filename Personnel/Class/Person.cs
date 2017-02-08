@@ -462,9 +462,7 @@ namespace Personnel.Class
                 query += " SUB_DISTRICT_ID = :SUB_DISTRICT_ID ,";
                 query += " TELEPHONE = :TELEPHONE ,";
                 query += " ZIPCODE = :ZIPCODE ,";
-                query += " NATION_ID = :NATION_ID ,";
-                query += " SPECIAL_NAME = :SPECIAL_NAME ,";
-                query += " TEACH_ISCED_ID = :TEACH_ISCED_ID ";
+                query += " NATION_ID = :NATION_ID ";
                 query += " where UOC_ID = :UOC_ID ";
 
                 using (OracleCommand com = new OracleCommand(query, con))
@@ -478,8 +476,6 @@ namespace Personnel.Class
                     com.Parameters.Add(new OracleParameter("TELEPHONE", TELEPHONE));
                     com.Parameters.Add(new OracleParameter("ZIPCODE", ZIPCODE));
                     com.Parameters.Add(new OracleParameter("NATION_ID", NATION_ID));
-                    com.Parameters.Add(new OracleParameter("SPECIAL_NAME", SPECIAL_NAME));
-                    com.Parameters.Add(new OracleParameter("TEACH_ISCED_ID", TEACH_ISCED_ID));
                     com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
 
                     if (com.ExecuteNonQuery() > 0)

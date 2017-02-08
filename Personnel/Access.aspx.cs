@@ -148,13 +148,8 @@ namespace Personnel
                                             PersonnelSystem ps = new PersonnelSystem();
                                             ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                                             Session["PersonnelSystem"] = ps;
-                                            Session["ROLE-ADMIN"] = ps;
-                                            Session["ROLE-FREE"] = ps;
-                                            Session["ROLE-PERSONNEL"] = ps;
-                                            Session["ROLE-GP7"] = ps;
                                             Response.Redirect("ChangePassword.aspx");
-                                            //Response.Redirect("Default.aspx");
-                                            Response.Redirect("reportacademic-admin.aspx");
+                                            Response.Redirect("Default.aspx");
                                         }
                                         else
                                         {
@@ -170,12 +165,7 @@ namespace Personnel
                                             PersonnelSystem ps = new PersonnelSystem();
                                             ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
                                             Session["PersonnelSystem"] = ps;
-                                            Session["ROLE-ADMIN"] = ps;
-                                            Session["ROLE-FREE"] = ps;
-                                            Session["ROLE-PERSONNEL"] = ps;
-                                            Session["ROLE-GP7"] = ps;
-                                            //Response.Redirect("Default.aspx");
-                                            Response.Redirect("reportacademic-admin.aspx");
+                                            Response.Redirect("Default.aspx");
                                         }
                                         else
                                         {

@@ -110,6 +110,14 @@ namespace Personnel.Class
             return ST_LOGIN_ID == 1;
         }
 
+        public bool IsMale()
+        {
+            return GENDER_ID == "1";
+        }
+        public bool IsFemale()
+        {
+            return GENDER_ID == "2";
+        }
 
     }
 }

@@ -28,16 +28,6 @@ namespace Personnel
                     btnSelectView2.CssClass = "btn btn-primary";
                 }
 
-                if (loginPerson.SUBSTAFFTYPE_ID == "2")
-                {
-                    lbTeachISCED.Visible = true;
-                    ddlTeachISCED.Visible = false;
-                }
-                else
-                {
-                    ddlTeachISCED.Visible = true;
-                    lbTeachISCED.Visible = false;
-                }
                 BindDDL();
                 ReadSelectID();
                 BindLabel();
@@ -50,7 +40,6 @@ namespace Personnel
             ddlDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก อำเภอ--", ""));
             ddlSubDistrict.Items.Insert(0, new ListItem("--กรุณาเลือก ตำบล--", ""));
             DatabaseManager.BindDropDown(ddlNation, "SELECT * FROM REF_NATION ORDER BY NATION_NAME_ENG", "NATION_NAME_ENG", "NATION_ID", "--กรุณาเลือก--");
-            DatabaseManager.BindDropDown(ddlTeachISCED, "SELECT * FROM REF_ISCED  ORDER BY ISCED_ID", "ISCED_NAME", "ISCED_ID", "--กรุณาเลือก--");
         }
 
         public void ChangeNotification(string type)
@@ -88,9 +77,6 @@ namespace Personnel
             ddlSubDistrict.CssClass = "form-control input-sm select2";
             tbZipcode.CssClass = "form-control input-sm";
             ddlNation.CssClass = "form-control input-sm select2";
-
-            tbSpecialName.CssClass = "form-control input-sm";
-            ddlTeachISCED.CssClass = "form-control input-sm select2";
         }
 
         private void AddNotification(string text)
@@ -273,8 +259,8 @@ namespace Personnel
                             tbZipcode.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                             ddlNation.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
 
-                            tbSpecialName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            ddlTeachISCED.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
+                            lbSpecialName.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            lbTeachISCED.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
                         }
                     }
                 }
@@ -369,17 +355,6 @@ namespace Personnel
             person.TELEPHONE = tbTelephone.Text;
             person.ZIPCODE = tbZipcode.Text;
             person.NATION_ID = ddlNation.SelectedValue;
-
-            person.SPECIAL_NAME = tbSpecialName.Text;
-            
-            if(loginPerson.SUBSTAFFTYPE_ID == "2")
-            {
-                person.TEACH_ISCED_ID = "(null)";
-            }
-            else
-            {
-                person.TEACH_ISCED_ID = ddlTeachISCED.SelectedValue;
-            }
 
             person.UOC_ID = loginPerson.UOC_ID;
 

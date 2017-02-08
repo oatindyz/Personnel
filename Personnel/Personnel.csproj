@@ -1198,6 +1198,8 @@
     <Content Include="datetimepicker\jquery.datetimepicker.min.css" />
     <Content Include="datetimepicker\jquery.datetimepicker.min.js" />
     <Content Include="Default.aspx" />
+    <Content Include="DetailGP7.aspx" />
+    <Content Include="DetailUser.aspx" />
     <Content Include="dist\css\sb-admin-2.css" />
     <Content Include="dist\css\timeline.css" />
     <Content Include="dist\js\sb-admin-2.js" />
@@ -1676,10 +1678,14 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="listGP7-admin.aspx" />
+    <Content Include="listLeave-admin.aspx" />
     <Content Include="listproject-admin.aspx" />
     <Content Include="listproject.aspx" />
+    <Content Include="listrequest-admin.aspx" />
     <Content Include="listuser-admin.aspx" />
     <Content Include="Manage-Droplist.aspx" />
+    <Content Include="ManageLeave.aspx" />
+    <Content Include="managerequestlist.aspx" />
     <Content Include="managerole-admin.aspx" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
     <Content Include="plugins\ckeditor\ckeditor.pack" />
@@ -3342,6 +3348,7 @@
     <Content Include="previewuser-admin.aspx" />
     <Content Include="Profile.aspx" />
     <Content Include="reportproject-admin.aspx" />
+    <Content Include="RequestEditData.aspx" />
     <Content Include="Scripts\ai.0.15.0-build58334.js" />
     <Content Include="Scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -3377,7 +3384,7 @@
     <Content Include="Script\jquery-1.7.1.min.js" />
     <Content Include="Script\jquery-ui-1.8.20.min.js" />
     <Content Include="Script\JSFunction.js" />
-    <Content Include="testpage.aspx" />
+    <Content Include="test1.aspx" />
     <Content Include="Upload\PersonImage\fmiiwnji26a2epv1l9a1ju31.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3509,6 +3516,20 @@
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DetailGP7.aspx.cs">
+      <DependentUpon>DetailGP7.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetailGP7.aspx.designer.cs">
+      <DependentUpon>DetailGP7.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetailUser.aspx.cs">
+      <DependentUpon>DetailUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetailUser.aspx.designer.cs">
+      <DependentUpon>DetailUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="editproject-admin.aspx.cs">
       <DependentUpon>editproject-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3547,6 +3568,13 @@
     <Compile Include="listGP7-admin.aspx.designer.cs">
       <DependentUpon>listGP7-admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listLeave-admin.aspx.cs">
+      <DependentUpon>listLeave-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listLeave-admin.aspx.designer.cs">
+      <DependentUpon>listLeave-admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listproject-admin.aspx.cs">
       <DependentUpon>listproject-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3561,6 +3589,13 @@
     <Compile Include="listproject.aspx.designer.cs">
       <DependentUpon>listproject.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listrequest-admin.aspx.cs">
+      <DependentUpon>listrequest-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listrequest-admin.aspx.designer.cs">
+      <DependentUpon>listrequest-admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listuser-admin.aspx.cs">
       <DependentUpon>listuser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3574,6 +3609,20 @@
     </Compile>
     <Compile Include="Manage-Droplist.aspx.designer.cs">
       <DependentUpon>Manage-Droplist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageLeave.aspx.cs">
+      <DependentUpon>ManageLeave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageLeave.aspx.designer.cs">
+      <DependentUpon>ManageLeave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="managerequestlist.aspx.cs">
+      <DependentUpon>managerequestlist.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="managerequestlist.aspx.designer.cs">
+      <DependentUpon>managerequestlist.aspx</DependentUpon>
     </Compile>
     <Compile Include="managerole-admin.aspx.cs">
       <DependentUpon>managerole-admin.aspx</DependentUpon>
@@ -3673,6 +3722,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DTgp7.xsd</DependentUpon>
     </Compile>
+    <Compile Include="RequestEditData.aspx.cs">
+      <DependentUpon>RequestEditData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="RequestEditData.aspx.designer.cs">
+      <DependentUpon>RequestEditData.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3681,12 +3737,12 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="testpage.aspx.cs">
-      <DependentUpon>testpage.aspx</DependentUpon>
+    <Compile Include="test1.aspx.cs">
+      <DependentUpon>test1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="testpage.aspx.designer.cs">
-      <DependentUpon>testpage.aspx</DependentUpon>
+    <Compile Include="test1.aspx.designer.cs">
+      <DependentUpon>test1.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>

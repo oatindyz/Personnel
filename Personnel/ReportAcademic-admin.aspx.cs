@@ -20,9 +20,11 @@ namespace Personnel
             {
                 ddlView.Items.Add(new ListItem("แสดงจำนวนบุคลารสายวิชาการ จำแนกตามประเภทบุคลากร คณะ และตำแหน่งทางวิชาการ", "1"));
                 ddlView.Items.Add(new ListItem("แสดงจำนวนบุคลารสายวิชาการ จำแนกตามประเภทบุคลากร คณะ และวุฒิการศึกษา", "2"));
+                ddlView.Items.Add(new ListItem("แสดงจำนวนบุคลารสายสนับสนุน จำแนกตามประเภทบุคลากร หน่วยงาน และวุฒิการศึกษา", "3"));
+                //DatabaseManager.BindDropDown(ddlUniv, "SELECT * FROM REF_UNIV ORDER BY ABS(UNIV_ID) ASC", "UNIV_NAME_TH", "UNIV_ID", "--กรุณาเลือก--");
+                //DatabaseManager.BindDropDown(ddlDepartment, "SELECT * FROM REF_FAC ORDER BY ABS(FAC_ID) ASC", "FAC_NAME", "FAC_ID", "--กรุณาเลือก--");
             }
 
-            //Bindจำนวนบุคลารสายวิชาการจำแนกตามประเภทบุคลากรคณะและวุฒิการศึกษา();
             if (ddlView.SelectedValue == "1")
             {
                 Bindจำนวนบุคลารสายวิชาการจำแนกตามประเภทบุคลากรคณะและตำแหน่งทางวิชาการ();
@@ -30,6 +32,10 @@ namespace Personnel
             else if (ddlView.SelectedValue == "2")
             {
                 Bindจำนวนบุคลารสายวิชาการจำแนกตามประเภทบุคลากรคณะและวุฒิการศึกษา();
+            }
+            else if (ddlView.SelectedValue == "3")
+            {
+                Bindจำนวนบุคลารสายสนับสนุนจำแนกตามภรปะเภทบุคลากรหน่วยงานและวุฒิการศึกษา();
             }
         }
 
@@ -2217,6 +2223,74 @@ namespace Personnel
                 { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "" + total18; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
                 { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "" + total19; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
 
+                table.Rows.Add(row);
+            }
+
+            Panel1.Controls.Clear();
+            Panel1.Controls.Add(table);
+            return table;
+        }
+        //
+        private Table Bindจำนวนบุคลารสายสนับสนุนจำแนกตามภรปะเภทบุคลากรหน่วยงานและวุฒิการศึกษา()
+        {
+            Table table = new Table();
+            table.CssClass = "ps-table-1";
+
+            {
+                TableHeaderRow row = new TableHeaderRow();
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "สรุปข้อมูลจำนวนบุคลากรสายวิชาการ จำแนกตามประเภทบุคลากร คณะ และวุฒิการศึกษา ปี 2559 (ข้อมูล ณ เดือนพฤศจิกายน 2559)"; cell.Style["text-align"] = "center"; cell.ColumnSpan = 31; row.Cells.Add(cell); }
+                table.Rows.Add(row);
+            }
+
+            {
+                TableHeaderRow row = new TableHeaderRow();
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "คณะ/สำนัก/สถาบัน "; cell.RowSpan = 2; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ข้าราชการพลเรือน"; cell.ColumnSpan = 5; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "พนักงานในสถาบันฯ"; cell.ColumnSpan = 5; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "พนักงานราชการ"; cell.ColumnSpan = 5; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ลูกจ้างประจำ"; cell.ColumnSpan = 5; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ลูกจ้างชั่วคราว"; cell.ColumnSpan = 5; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวมทั้งสิ้น"; cell.ColumnSpan = 5; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                table.Rows.Add(row);
+            }
+
+            {
+                TableHeaderRow row = new TableHeaderRow();
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.เอก"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.โท"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ต่ำกว่า ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวม"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.เอก"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.โท"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ต่ำกว่า ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวม"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.เอก"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.โท"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ต่ำกว่า ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวม"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.เอก"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.โท"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ต่ำกว่า ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวม"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.เอก"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.โท"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ต่ำกว่า ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวม"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.เอก"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.โท"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "ต่ำกว่า ป.ตรี"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
+                { TableHeaderCell cell = new TableHeaderCell(); cell.Text = "รวม"; cell.Style["text-align"] = "center"; row.Cells.Add(cell); }
                 table.Rows.Add(row);
             }
 

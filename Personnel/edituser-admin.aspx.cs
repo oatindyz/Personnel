@@ -289,8 +289,8 @@ namespace Personnel
                             ddlDeform.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;//
 
                             tbSitNo.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            tbSalary.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
-                            tbPositionSalary.Text = reader.IsDBNull(i) ? "" : reader.GetString(i); ++i;
+                            tbSalary.Text = reader.IsDBNull(i) ? "" : reader.GetInt32(i).ToString(); ++i;
+                            tbPositionSalary.Text = reader.IsDBNull(i) ? "" : reader.GetInt32(i).ToString(); ++i;
                             ddlReligion.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             ddlMovementType.SelectedValue = reader.IsDBNull(i) ? null : reader.GetString(i); ++i;
                             tbMovementDate.Text = reader.IsDBNull(i) ? "" : reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
