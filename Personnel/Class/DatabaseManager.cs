@@ -90,7 +90,7 @@ namespace Personnel.Class
             }
             return seq;
         }
-        public static void ExeDDL2String(DropDownList ddl ,string sql)
+        public static void ExeDDL2String(DropDownList ddl, string sql)
         {
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
@@ -215,7 +215,7 @@ namespace Personnel.Class
                 }
             }
             return false;
-        }   
+        }
 
         public static UOC_STAFF GetOUC_STAFF(string CITIZEN_ID)
         {
@@ -225,6 +225,20 @@ namespace Personnel.Class
             {
                 con.Open();
                 using (OracleCommand com = new OracleCommand(
+
+                   "SELECT UOC_ID," +
+                   "CITIZEN_ID," +
+                   "STF_FNAME," +
+                   "STF_LNAME," +
+                   "(SELECT STAFFTYPE_NAME FROM REF_STAFFTYPE WHERE REF_STAFFTYPE.STAFFTYPE_ID = UOC_STAFF.STAFFTYPE_ID) STAFFTYPE_NAME," +
+                   "(SELECT POSITION_NAME_TH FROM REF_POSITION WHERE REF_POSITION.POSITION_ID = UOC_STAFF.POSITION_ID) POSITION_NAME," +
+                   "(SELECT ADMIN_NAME FROM REF_ADMIN WHERE REF_ADMIN.ADMIN_ID = UOC_STAFF.ADMIN_POSITION_ID) ADMIN_POSITION_NAME," +
+                   "(SELECT FAC_NAME FROM REF_FAC WHERE REF_FAC.FAC_ID = UOC_STAFF.DEPARTMENT_ID) DEPARTMENT_NAME," +
+                   "ST_LOGIN_ID," +
+                    "PERSON_ROLE_ID" +
+                   " FROM UOC_STAFF WHERE CITIZEN_ID = '" + CITIZEN_ID + "'", con))
+
+                /*using (OracleCommand com = new OracleCommand(
 
                    "SELECT UOC_ID," +
                    "CITIZEN_ID," +
@@ -308,98 +322,111 @@ namespace Personnel.Class
                    "COUPLE_NAME," +
                    "COUPLE_LNAME," +
                    "COUPLE_ONAME" +
-                   " FROM UOC_STAFF WHERE CITIZEN_ID = '" + CITIZEN_ID + "'", con))
+                   " FROM UOC_STAFF WHERE CITIZEN_ID = '" + CITIZEN_ID + "'", con))*/
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
                         while (reader.Read())
                         {
-
                             UOC_STAFF uoc_staff = new UOC_STAFF();
                             int i = 0;
-                            uoc_staff.UOC_ID = reader.GetInt32(i++);
+
+                            uoc_staff.UOC_ID = Convert.ToInt32(reader.GetValue(i++).ToString());
                             uoc_staff.CITIZEN_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.YEAR = reader.GetValue(i++).ToString();
-                            uoc_staff.UNIV_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.UNIV_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.PREFIX_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.PREFIX_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.STF_FNAME = reader.GetValue(i++).ToString();
                             uoc_staff.STF_LNAME = reader.GetValue(i++).ToString();
-                            uoc_staff.GENDER_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.GENDER_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.BIRTHDAY = Convert.ToDateTime(reader.GetValue(i++).ToString()).ToString("dd/MM/yyyy");
-                            uoc_staff.HOMEADD = reader.GetValue(i++).ToString();
-                            uoc_staff.MOO = reader.GetValue(i++).ToString();
-                            uoc_staff.STREET = reader.GetValue(i++).ToString();
-                            uoc_staff.SUB_DISTRICT_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.SUB_DISTRICT_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.DISTRICT_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.DISTRICT_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.PROVINCE_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.PROVINCE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.TELEPHONE = reader.GetValue(i++).ToString();
-                            uoc_staff.ZIPCODE = reader.GetValue(i++).ToString();
-                            uoc_staff.NATION_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.NATION_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.STAFFTYPE_ID = reader.GetValue(i++).ToString();
                             uoc_staff.STAFFTYPE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.TIME_CONTACT_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.TIME_CONTACT_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.BUDGET_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.BUDGET_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.SUBSTAFFTYPE_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.SUBSTAFFTYPE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.ADMIN_POSITION_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.ADMIN_POSITION_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.POSITION_ID = reader.GetValue(i++).ToString();
                             uoc_staff.POSITION_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.POSITION_WORK = reader.GetValue(i++).ToString();
-                            uoc_staff.DEPARTMENT_ID = reader.GetValue(i++).ToString();
+                            uoc_staff.ADMIN_POSITION_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.DEPARTMENT_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.DATE_INWORK = Convert.ToDateTime(reader.GetValue(i++).ToString()).ToString("dd/MM/yyyy");
-                            uoc_staff.DATE_START_THIS_U = Convert.ToDateTime(reader.GetValue(i++).ToString()).ToString("dd/MM/yyyy");
-                            uoc_staff.SPECIAL_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.TEACH_ISCED_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.TEACH_ISCED_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_LEV_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_LEV_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_CURR = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_ISCED_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_ISCED_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_PROG = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_UNIV = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_COUNTRY_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.GRAD_COUNTRY_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.DEFORM_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.DEFORM_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.SIT_NO = reader.GetValue(i++).ToString();
-                            uoc_staff.SALARY = reader.GetValue(i++).ToString();
-                            uoc_staff.POSITION_SALARY = reader.GetValue(i++).ToString();
-                            uoc_staff.RELIGION_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.RELIGION_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOVEMENT_TYPE_ID = reader.GetValue(i++).ToString();
-                            uoc_staff.MOVEMENT_TYPE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOVEMENT_DATE = reader.GetValue(i++).ToString();
-                            uoc_staff.DECORATION = reader.GetValue(i++).ToString();
-                            uoc_staff.RESULT1 = reader.GetValue(i++).ToString();
-                            uoc_staff.PERCENT_SALARY1 = reader.GetValue(i++).ToString();
-                            uoc_staff.RESULT2 = reader.GetValue(i++).ToString();
-                            uoc_staff.PERCENT_SALARY2 = reader.GetValue(i++).ToString();
-                            uoc_staff.PASSWORD = reader.GetValue(i++).ToString();
                             uoc_staff.ST_LOGIN_ID = reader.GetInt32(i++);
-                            uoc_staff.ST_LOGIN_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.PERSON_ROLE_ID = reader.GetInt32(i++);
-                            uoc_staff.PERSON_ROLE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.FATHER_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.FATHER_LNAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOTHER_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOTHER_LNAME = reader.GetValue(i++).ToString();
-                            uoc_staff.MOTHER_ONAME = reader.GetValue(i++).ToString();
-                            uoc_staff.COUPLE_NAME = reader.GetValue(i++).ToString();
-                            uoc_staff.COUPLE_LNAME = reader.GetValue(i++).ToString();
-                            uoc_staff.COUPLE_ONAME = reader.GetValue(i++).ToString();
 
+                            /* UOC_STAFF uoc_staff = new UOC_STAFF();
+                             int i = 0;
+                             uoc_staff.UOC_ID = Convert.ToInt32(reader.GetValue(i++).ToString());
+                             uoc_staff.CITIZEN_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.YEAR = reader.GetValue(i++).ToString();
+                             uoc_staff.UNIV_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.UNIV_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.PREFIX_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.PREFIX_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.STF_FNAME = reader.GetValue(i++).ToString();
+                             uoc_staff.STF_LNAME = reader.GetValue(i++).ToString();
+                             uoc_staff.GENDER_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.GENDER_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.BIRTHDAY = reader.IsDBNull(i++) ? "" : reader.GetValue(i++).ToString();
+                             uoc_staff.HOMEADD = reader.GetValue(i++).ToString();
+                             uoc_staff.MOO = reader.GetValue(i++).ToString();
+                             uoc_staff.STREET = reader.GetValue(i++).ToString();
+                             uoc_staff.SUB_DISTRICT_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.SUB_DISTRICT_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.DISTRICT_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.DISTRICT_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.PROVINCE_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.PROVINCE_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.TELEPHONE = reader.GetValue(i++).ToString();
+                             uoc_staff.ZIPCODE = reader.GetValue(i++).ToString();
+                             uoc_staff.NATION_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.NATION_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.STAFFTYPE_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.STAFFTYPE_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.TIME_CONTACT_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.TIME_CONTACT_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.BUDGET_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.BUDGET_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.SUBSTAFFTYPE_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.SUBSTAFFTYPE_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.ADMIN_POSITION_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.ADMIN_POSITION_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.POSITION_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.POSITION_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.POSITION_WORK = reader.GetValue(i++).ToString();
+                             uoc_staff.DEPARTMENT_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.DEPARTMENT_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.DATE_INWORK = reader.IsDBNull(i++) ? "" : reader.GetValue(i++).ToString();
+                             uoc_staff.DATE_START_THIS_U = reader.IsDBNull(i++) ? "" : reader.GetValue(i++).ToString();
+                             uoc_staff.SPECIAL_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.TEACH_ISCED_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.TEACH_ISCED_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_LEV_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_LEV_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_CURR = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_ISCED_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_ISCED_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_PROG = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_UNIV = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_COUNTRY_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.GRAD_COUNTRY_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.DEFORM_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.DEFORM_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.SIT_NO = reader.GetValue(i++).ToString();
+                             uoc_staff.SALARY = reader.GetValue(i++).ToString();
+                             uoc_staff.POSITION_SALARY = reader.GetValue(i++).ToString();
+                             uoc_staff.RELIGION_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.RELIGION_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.MOVEMENT_TYPE_ID = reader.GetValue(i++).ToString();
+                             uoc_staff.MOVEMENT_TYPE_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.MOVEMENT_DATE = reader.GetValue(i++).ToString();
+                             uoc_staff.DECORATION = reader.GetValue(i++).ToString();
+                             uoc_staff.RESULT1 = reader.GetValue(i++).ToString();
+                             uoc_staff.PERCENT_SALARY1 = reader.GetValue(i++).ToString();
+                             uoc_staff.RESULT2 = reader.GetValue(i++).ToString();
+                             uoc_staff.PERCENT_SALARY2 = reader.GetValue(i++).ToString();
+                             uoc_staff.PASSWORD = reader.GetValue(i++).ToString();
+                             uoc_staff.ST_LOGIN_ID = reader.GetInt32(i++);
+                             uoc_staff.ST_LOGIN_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.PERSON_ROLE_ID = reader.GetInt32(i++);
+                             uoc_staff.PERSON_ROLE_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.FATHER_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.FATHER_LNAME = reader.GetValue(i++).ToString();
+                             uoc_staff.MOTHER_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.MOTHER_LNAME = reader.GetValue(i++).ToString();
+                             uoc_staff.MOTHER_ONAME = reader.GetValue(i++).ToString();
+                             uoc_staff.COUPLE_NAME = reader.GetValue(i++).ToString();
+                             uoc_staff.COUPLE_LNAME = reader.GetValue(i++).ToString();
+                             uoc_staff.COUPLE_ONAME = reader.GetValue(i++).ToString();
+                             */
                             return uoc_staff;
                         }
                     }

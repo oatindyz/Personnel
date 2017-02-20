@@ -1741,6 +1741,7 @@
     <Content Include="reportleave-admin.aspx" />
     <Content Include="reportproject-fliter-admin.aspx" />
     <Content Include="reportproject.aspx" />
+    <Content Include="ReportSummary-admin.aspx" />
     <Content Include="Report\DTgp7.xsc">
       <DependentUpon>DTgp7.xsd</DependentUpon>
     </Content>
@@ -3503,6 +3504,8 @@
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Class\DatabaseManager.cs" />
+    <Compile Include="Class\Campus.cs" />
+    <Compile Include="Class\Department.cs" />
     <Compile Include="Class\Manage.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
@@ -3710,6 +3713,13 @@
     </Compile>
     <Compile Include="reportproject.aspx.designer.cs">
       <DependentUpon>reportproject.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ReportSummary-admin.aspx.cs">
+      <DependentUpon>ReportSummary-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ReportSummary-admin.aspx.designer.cs">
+      <DependentUpon>ReportSummary-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Report\CR\personGP71.cs">
       <AutoGen>True</AutoGen>

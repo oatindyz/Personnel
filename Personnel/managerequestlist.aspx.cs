@@ -32,7 +32,7 @@ namespace Personnel
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,RELIGION_ID FROM TB_EDIT_ITEM WHERE ID_EDIT = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'", con))
+                using (OracleCommand com = new OracleCommand("SELECT UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,RELIGION_ID FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -169,7 +169,7 @@ namespace Personnel
                         }
                     }
                 }
-                int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_EDIT WHERE ID_EDIT = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
+                int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
                 using (OracleCommand com = new OracleCommand("SELECT (SELECT UNIV_NAME_TH FROM REF_UNIV WHERE REF_UNIV.UNIV_ID = UOC_STAFF.UNIV_ID) UNIV_NAME," +
                     "(SELECT FULLNAME FROM REF_PREFIX_NAME WHERE UOC_STAFF.PREFIX_NAME = REF_PREFIX_NAME.PREFIX_NAME_ID) PREFIX_NAME," +
                     "STF_FNAME," +
@@ -246,20 +246,20 @@ namespace Personnel
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
-            UPDATE_REQUEST_EDIT();
+            UPDATE_REQUEST();
             MultiView1.ActiveViewIndex = 1;
         }
 
-        public int UPDATE_REQUEST_EDIT()
+        public int UPDATE_REQUEST()
         {
-            int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_EDIT WHERE ID_EDIT = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
+            int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
             int id = 0;
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("UPDATE TB_EDIT SET STATUS_ID = :STATUS_ID, DATE_END = :DATE_END WHERE UOC_ID = '" + uoc_id + "'", con))
+                using (OracleCommand com = new OracleCommand("UPDATE TB_REQUEST SET STATUS_ID = :STATUS_ID, DATE_END = :DATE_END WHERE UOC_ID = '" + uoc_id + "'", con))
                 {
                     com.Parameters.Add(new OracleParameter("STATUS_ID", "1"));
                     com.Parameters.Add(new OracleParameter("DATE_END", DateTime.Today));
@@ -374,7 +374,7 @@ namespace Personnel
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_EDIT WHERE ID_EDIT = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
+            /*int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_EDIT WHERE ID_EDIT = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
             int id = 0;
 
             OracleConnection.ClearAllPools();
@@ -390,6 +390,7 @@ namespace Personnel
                 }
             }
             MultiView1.ActiveViewIndex = 2;
+            */
         }
 
     }

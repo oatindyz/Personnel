@@ -66,7 +66,7 @@ namespace Personnel
 
             DatabaseManager.BindDropDown(ddlReligion, "SELECT * FROM REF_RELIGION ORDER BY ABS(RELIGION_ID) ASC", "RELIGION_NAME_TH", "RELIGION_ID", "--กรุณาเลือก--");
         }
-               
+
         private void ReadSelectID()
         {
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
@@ -88,7 +88,7 @@ namespace Personnel
                             tbLastName.Text = reader.GetString(i); ++i;
                             ddlGender.SelectedValue = reader.GetString(i); ++i;
                             tbBirthday.Text = reader.GetDateTime(i).ToString("dd/MM/yyyy"); ++i;
-                            
+
                             ddlStafftype.SelectedValue = reader.GetString(i); ++i;
                             ddlTimeContact.SelectedValue = reader.GetString(i); ++i;
                             ddlBudget.SelectedValue = reader.GetString(i); ++i;
@@ -128,14 +128,15 @@ namespace Personnel
             {
                 lb4Univ.Text = ddlUniv.SelectedItem.Text;
                 tr4_lb4Univ.Visible = true;
-            }else{ tr4_lb4Univ.Visible = false;}
+            }
+            else { tr4_lb4Univ.Visible = false; }
 
             if (cbPrefixName.Checked)
             {
                 lb4PrefixName.Text = ddlPrefixName.SelectedItem.Text;
                 tr4_lb4PrefixName.Visible = true;
             }
-            else { tr4_lb4PrefixName.Visible = false;}
+            else { tr4_lb4PrefixName.Visible = false; }
 
             if (cbName.Checked)
             {
@@ -303,7 +304,7 @@ namespace Personnel
         }
 
         protected void lbuAddPerson_Click(object sender, EventArgs e)
-        {        
+        {
             MultiView1.ActiveViewIndex = 2;
             btnAddPerson.Visible = false;
             btnBack.Visible = false;
@@ -331,19 +332,11 @@ namespace Personnel
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("INSERT INTO TB_EDIT (STATUS_ID,UOC_ID,DATE_START) VALUES (:STATUS_ID,:UOC_ID,:DATE_START)", con))
+                using (OracleCommand com2 = new OracleCommand("INSERT INTO TB_REQUEST (UOC_ID,STATUS_ID,DATE_START,UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,RELIGION_ID) VALUES (:UOC_ID,:STATUS_ID,:DATE_START,:UNIV_ID,:PREFIX_NAME,:STF_FNAME,:STF_LNAME,:GENDER_ID,:BIRTHDAY,:STAFFTYPE_ID,:TIME_CONTACT_ID,:BUDGET_ID,:SUBSTAFFTYPE_ID,:ADMIN_POSITION_ID,:POSITION_ID,:POSITION_WORK,:DEPARTMENT_ID,:DATE_INWORK,:DATE_START_THIS_U,:SPECIAL_NAME,:TEACH_ISCED_ID,:GRAD_LEV_ID,:GRAD_CURR,:GRAD_ISCED_ID,:GRAD_PROG,:GRAD_UNIV,:GRAD_COUNTRY_ID,:RELIGION_ID)", con))
                 {
-                    com.Parameters.Add(new OracleParameter("STATUS_ID", "0"));
-                    com.Parameters.Add(new OracleParameter("UOC_ID", loginPerson.UOC_ID));
-                    com.Parameters.Add(new OracleParameter("DATE_START", DateTime.Today));
-                    
-                    id = com.ExecuteNonQuery();
-                }
-                int IDLast = DatabaseManager.ExecuteInt("SELECT * FROM (SELECT ID_EDIT FROM TB_EDIT ORDER BY ID_EDIT DESC) WHERE ROWNUM = 1");
-
-                using (OracleCommand com2 = new OracleCommand("INSERT INTO TB_EDIT_ITEM (ID_EDIT,UNIV_ID,PREFIX_NAME,STF_FNAME,STF_LNAME,GENDER_ID,BIRTHDAY,STAFFTYPE_ID,TIME_CONTACT_ID,BUDGET_ID,SUBSTAFFTYPE_ID,ADMIN_POSITION_ID,POSITION_ID,POSITION_WORK,DEPARTMENT_ID,DATE_INWORK,DATE_START_THIS_U,SPECIAL_NAME,TEACH_ISCED_ID,GRAD_LEV_ID,GRAD_CURR,GRAD_ISCED_ID,GRAD_PROG,GRAD_UNIV,GRAD_COUNTRY_ID,RELIGION_ID) VALUES (:ID_EDIT,:UNIV_ID,:PREFIX_NAME,:STF_FNAME,:STF_LNAME,:GENDER_ID,:BIRTHDAY,:STAFFTYPE_ID,:TIME_CONTACT_ID,:BUDGET_ID,:SUBSTAFFTYPE_ID,:ADMIN_POSITION_ID,:POSITION_ID,:POSITION_WORK,:DEPARTMENT_ID,:DATE_INWORK,:DATE_START_THIS_U,:SPECIAL_NAME,:TEACH_ISCED_ID,:GRAD_LEV_ID,:GRAD_CURR,:GRAD_ISCED_ID,:GRAD_PROG,:GRAD_UNIV,:GRAD_COUNTRY_ID,:RELIGION_ID)", con))
-                {
-                    com2.Parameters.Add(new OracleParameter("ID_EDIT", IDLast));
+                    com2.Parameters.Add(new OracleParameter("UOC_ID", loginPerson.UOC_ID));
+                    com2.Parameters.Add(new OracleParameter("STATUS_ID", "0"));
+                    com2.Parameters.Add(new OracleParameter("DATE_START", DateTime.Today));
                     if (cbUniv.Checked) { com2.Parameters.Add(new OracleParameter("UNIV_ID", ddlUniv.SelectedValue)); } else { com2.Parameters.Add(new OracleParameter("UNIV_ID", DBNull.Value)); }
                     if (cbPrefixName.Checked) { com2.Parameters.Add(new OracleParameter("PREFIX_NAME", ddlPrefixName.SelectedValue)); } else { com2.Parameters.Add(new OracleParameter("PREFIX_NAME", DBNull.Value)); }
                     if (cbName.Checked) { com2.Parameters.Add(new OracleParameter("STF_FNAME", tbName.Text)); } else { com2.Parameters.Add(new OracleParameter("STF_FNAME", DBNull.Value)); }
@@ -368,152 +361,12 @@ namespace Personnel
                     if (cbGradProg.Checked) { com2.Parameters.Add(new OracleParameter("GRAD_PROG", ddlGradProg.SelectedValue)); } else { com2.Parameters.Add(new OracleParameter("GRAD_PROG", DBNull.Value)); }
                     if (cbGradUniv.Checked) { com2.Parameters.Add(new OracleParameter("GRAD_UNIV", tbGradUniv.Text)); } else { com2.Parameters.Add(new OracleParameter("GRAD_UNIV", DBNull.Value)); }
                     if (cbGradCountry.Checked) { com2.Parameters.Add(new OracleParameter("GRAD_COUNTRY_ID", ddlGradCountry.SelectedValue)); } else { com2.Parameters.Add(new OracleParameter("GRAD_COUNTRY_ID", DBNull.Value)); }
-                    if (cbReligion.Checked) { com2.Parameters.Add(new OracleParameter("RELIGION_ID", ddlReligion.SelectedValue)); } else { com2.Parameters.Add(new OracleParameter("RELIGION_ID", DBNull.Value)); }               
+                    if (cbReligion.Checked) { com2.Parameters.Add(new OracleParameter("RELIGION_ID", ddlReligion.SelectedValue)); } else { com2.Parameters.Add(new OracleParameter("RELIGION_ID", DBNull.Value)); }
 
                     id2 = com2.ExecuteNonQuery();
                 }
-
-                /*
-                
-
-                if (cbUniv.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(1,ddlUniv.SelectedValue,IDLast);
-                }
-
-                if (cbPrefixName.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(2, ddlPrefixName.SelectedValue, IDLast);
-                }
-
-                if (cbName.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(3, tbName.Text, IDLast);
-                }
-
-                if (cbLastName.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(4, tbLastName.Text, IDLast);
-                }
-
-                if (cbGender.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(5, ddlGender.SelectedValue, IDLast);
-                }
-
-                if (cbBirthday.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(6, tbBirthday.Text, IDLast);
-                }
-
-                if (cbStafftype.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(7, ddlStafftype.SelectedValue, IDLast);
-                }
-
-                if (cbTimeContact.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(8, ddlTimeContact.SelectedValue, IDLast);
-                }
-
-                if (cbBudget.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(9, ddlBudget.SelectedValue, IDLast);
-                }
-                
-                if (cbSubStafftype.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(10, ddlSubStafftype.SelectedValue, IDLast);
-                }
-                
-                if (cbAdminPosition.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(11, ddlAdminPosition.SelectedValue, IDLast);
-                }
-                
-                if (cbPosition.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(12, ddlPosition.SelectedValue, IDLast);
-                }
-                
-                if (cbPositionWork.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(13, tbPositionWork.Text, IDLast);
-                }
-               
-                if (cbDepartment.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(14, ddlDepartment.SelectedValue, IDLast);
-                }
-               
-                if (cbDateInwork.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(15, tbDateInwork.Text, IDLast);
-                }
-                
-                if (cbDateStartThisU.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(16, tbDateStartThisU.Text, IDLast);
-                }
-                
-                if (cbSpecialName.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(17, tbSpecialName.Text, IDLast);
-                }
-               
-                if (cbTeachISCED.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(18, ddlTeachISCED.SelectedValue, IDLast);
-                }
-               
-                if (cbGradLev.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(19, ddlGradLev.SelectedValue, IDLast);
-                }
-               
-                if (cbGradCURR.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(20, tbGradCURR.Text, IDLast);
-                }
-                
-                if (cbGradISCED.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(21, ddlGradISCED.SelectedValue, IDLast);
-                }
-                
-                if (cbGradProg.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(22, ddlGradProg.SelectedValue, IDLast);
-                }
-                
-                if (cbGradUniv.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(23, tbGradUniv.Text, IDLast);
-                }
-               
-                if (cbGradCountry.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(24, ddlGradCountry.SelectedValue, IDLast);
-                }
-               
-                if (cbReligion.Checked)
-                {
-                    INSERT_REQUEST_EDIT_ITEM(25, ddlReligion.SelectedValue, IDLast);
-                }*/
-
             }
             return id;
-        }
-
-        public void PopulateNullParameters(OracleCommand cmd)
-        {
-            foreach (OracleParameter p in cmd.Parameters)
-            {
-                if (p.Value == null)
-                {
-                    p.Value = DBNull.Value;
-                }
-            }
         }
 
     }
