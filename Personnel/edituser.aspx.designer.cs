@@ -58,6 +58,15 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbCitizenID;
         
         /// <summary>
+        /// cbUniv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbUniv;
+        
+        /// <summary>
         /// lbUniv control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,24 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbUniv;
+        
+        /// <summary>
+        /// ddlUniv control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUniv;
+        
+        /// <summary>
+        /// cbPrefixName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbPrefixName;
         
         /// <summary>
         /// lbPrefixName control.
@@ -76,6 +103,24 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbPrefixName;
         
         /// <summary>
+        /// ddlPrefixName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlPrefixName;
+        
+        /// <summary>
+        /// cbName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbName;
+        
+        /// <summary>
         /// lbName control.
         /// </summary>
         /// <remarks>
@@ -85,6 +130,24 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
+        /// tbName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbName;
+        
+        /// <summary>
+        /// cbLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox cbLastName;
+        
+        /// <summary>
         /// lbLastName control.
         /// </summary>
         /// <remarks>
@@ -92,6 +155,15 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lbLastName;
+        
+        /// <summary>
+        /// tbLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbLastName;
         
         /// <summary>
         /// lbGender control.

@@ -101,7 +101,7 @@ namespace Personnel
                 if (id1.Visible)
                     p2.Controls.Add(lbDeleteImagePresent);
             }
-
+            /*
             lbPrefix.Text = LoginPerson.PREFIX_NAME;
             lbName.Text = LoginPerson.STF_FNAME;
             lbLastName.Text = LoginPerson.STF_LNAME;
@@ -113,7 +113,7 @@ namespace Personnel
             lbProvince.Text = LoginPerson.PROVINCE_NAME;
             lbDistrict.Text = LoginPerson.DISTRICT_NAME;
             lbSubDistrict.Text = LoginPerson.SUB_DISTRICT_NAME;
-            lbZipcode.Text = LoginPerson.ZIPCODE;
+            lbZipcode.Text = LoginPerson.ZIPCODE;*/
 
         }
 

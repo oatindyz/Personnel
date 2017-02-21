@@ -87,33 +87,46 @@
                         <div class="panel panel-default">
                             <table class="table table-striped table-bordered table-hover" style="width: 100%;">
                                 <tr>
-                                    <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน</td>
+                                    <td class="col1" style="width: 400px;">รหัสประจำตัวประชาชน
+                                    </td>
                                     <td class="col2">
                                         <asp:Label ID="lbCitizenID" runat="server"></asp:Label>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">มหาวิทยาลัย</td>
+                                    <td class="col1">มหาวิทยาลัย
+                                         <asp:CheckBox ID="cbUniv" runat="server" AutoPostBack="true" OnCheckedChanged="cbUniv_CheckedChanged" />
+                                    </td>
                                     <td class="col2">
                                         <asp:Label ID="lbUniv" runat="server"></asp:Label>
+                                        <asp:DropDownList ID="ddlUniv" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1" Visible="false"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">คำนำหน้าชื่อ(ยึดตามบัตรประชาชน)</td>
+                                    <td class="col1">คำนำหน้าชื่อ(ยึดตามบัตรประชาชน)
+                                        <asp:CheckBox ID="cbPrefixName" runat="server" AutoPostBack="true" OnCheckedChanged="cbPrefixName_CheckedChanged" />
+                                    </td>
                                     <td class="col2">
                                         <asp:Label ID="lbPrefixName" runat="server"></asp:Label>
+                                        <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1" Visible="false"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">ชื่อ</td>
+                                    <td class="col1">ชื่อ
+                                        <asp:CheckBox ID="cbName" runat="server" AutoPostBack="true" OnCheckedChanged="cbName_CheckedChanged" />
+                                    </td>
                                     <td class="col2">
                                         <asp:Label ID="lbName" runat="server"></asp:Label>
+                                        <asp:TextBox ID="tbName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1" Visible="false"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td class="col1">นามสกุล</td>
+                                    <td class="col1">นามสกุล
+                                        <asp:CheckBox ID="cbLastName" runat="server" AutoPostBack="true" OnCheckedChanged="cbLastName_CheckedChanged" />
+                                    </td>
                                     <td class="col2">
                                         <asp:Label ID="lbLastName" runat="server"></asp:Label>
+                                        <asp:TextBox ID="tbLastName" runat="server" CssClass="form-control input-sm" required="required" TabIndex="1" Visible="false"></asp:TextBox>
                                     </td>
                                 </tr>
                                 <tr>
