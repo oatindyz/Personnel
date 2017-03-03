@@ -206,7 +206,7 @@ namespace Personnel.Class
                     query += "where 1=1";
                     if (!string.IsNullOrEmpty(UOC_ID))
                     {
-                        query += " and UOC_ID :UOC_ID";
+                        query += " and UOC_ID like :UOC_ID";
                     }
                 }
                 using (OracleCommand com = new OracleCommand(query, con))

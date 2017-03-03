@@ -11,7 +11,7 @@ using Personnel.Class;
 
 namespace Personnel
 {
-    public partial class listLeave_admin : System.Web.UI.Page
+    public partial class listInsig_admin : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -37,8 +37,9 @@ namespace Personnel
             {
                 LinkButton lbu = (LinkButton)e.Item.FindControl("lbuEdit");
                 string value = lbu.CommandArgument;
-                Response.Redirect("ManageLeave.aspx?id=" + value);
+                Response.Redirect("ManageInsig.aspx?id=" + value);
             }
         }
+
     }
 }

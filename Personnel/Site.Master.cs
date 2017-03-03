@@ -14,8 +14,10 @@ namespace Personnel
 {
     public partial class Site : System.Web.UI.MasterPage
     {
-        protected void Page_Init(object sender, EventArgs e) {
-            if (PersonnelSystem.GetPersonnelSystem(this) == null) {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (PersonnelSystem.GetPersonnelSystem(this) == null)
+            {
                 Response.Redirect("Access.aspx");
                 return;
             }
@@ -24,6 +26,7 @@ namespace Personnel
         protected void Page_Load(object sender, EventArgs e)
         {
             SessionTimeOut.Text = Session.Timeout.ToString() + " นาที";
+
             PersonnelSystem ps = PersonnelSystem.GetPersonnelSystem(this);
             UOC_STAFF loginPerson = ps.LoginPerson;
 
@@ -49,7 +52,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuPublic2.Visible = true;
                     MenuRolePerson.Visible = false;
-                    MenuRoleGP7.Visible = false;
                     MenuRoleInsig.Visible = false;
                     MenuRoleSalary.Visible = false;
                     MenuRoleLeave.Visible = false;
@@ -60,7 +62,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuPublic2.Visible = true;
                     MenuRolePerson.Visible = false;
-                    MenuRoleGP7.Visible = false;
                     MenuRoleInsig.Visible = false;
                     MenuRoleSalary.Visible = false;
                     MenuRoleLeave.Visible = false;
@@ -71,7 +72,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuPublic2.Visible = true;
                     MenuRolePerson.Visible = true;
-                    MenuRoleGP7.Visible = false;
                     MenuRoleInsig.Visible = false;
                     MenuRoleSalary.Visible = false;
                     MenuRoleLeave.Visible = false;
@@ -82,8 +82,7 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuPublic2.Visible = true;
                     MenuRolePerson.Visible = false;
-                    MenuRoleGP7.Visible = true;
-                    MenuRoleInsig.Visible = false;
+                    MenuRoleInsig.Visible = true;
                     MenuRoleSalary.Visible = false;
                     MenuRoleLeave.Visible = false;
                     MenuRoleAdmin.Visible = false;
@@ -93,9 +92,8 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuPublic2.Visible = true;
                     MenuRolePerson.Visible = false;
-                    MenuRoleGP7.Visible = false;
-                    MenuRoleInsig.Visible = true;
-                    MenuRoleSalary.Visible = false;
+                    MenuRoleInsig.Visible = false;
+                    MenuRoleSalary.Visible = true;
                     MenuRoleLeave.Visible = false;
                     MenuRoleAdmin.Visible = false;
                 }
@@ -104,18 +102,6 @@ namespace Personnel
                     MenuPublic.Visible = true;
                     MenuPublic2.Visible = true;
                     MenuRolePerson.Visible = false;
-                    MenuRoleGP7.Visible = false;
-                    MenuRoleInsig.Visible = false;
-                    MenuRoleSalary.Visible = true;
-                    MenuRoleLeave.Visible = false;
-                    MenuRoleAdmin.Visible = false;
-                }
-                else if (loginPerson.PERSON_ROLE_ID == 6)
-                {
-                    MenuPublic.Visible = true;
-                    MenuPublic2.Visible = true;
-                    MenuRolePerson.Visible = false;
-                    MenuRoleGP7.Visible = false;
                     MenuRoleInsig.Visible = false;
                     MenuRoleSalary.Visible = false;
                     MenuRoleLeave.Visible = true;
@@ -123,6 +109,9 @@ namespace Personnel
                 }
 
             }
+
+            //Declare
+            int countRequestID = 0;
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
@@ -149,6 +138,47 @@ namespace Personnel
                             }
                         }
                     }
+                }
+
+                if (loginPerson.PERSON_ROLE_ID == 2)
+                {
+                    //Count
+                    using (OracleCommand com = new OracleCommand("SELECT COUNT(STATUS_ID) FROM TB_REQUEST WHERE STATUS_ID = 0", con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                countRequestID = reader.GetInt32(0);
+                                IntCountRequest.Text = "คุณมีรายการที่ต้องอนุมัติ" + reader.GetInt32(0).ToString() + "รายการ";
+                            }
+                        }
+                    }
+                    
+                    noti_request_none.Visible = false;
+                    noti_request_approve.Visible = false;
+
+                    int count = countRequestID;
+
+                    if (countRequestID == 0)
+                    {
+                        noti_request_none.Visible = true;
+                    }
+                    else
+                    {
+                        noti_request_approve.Visible = true;
+                    }
+
+                    if (count > 0)
+                    {
+                        noti_alert.InnerText = "" + count;
+                        noti_alert.Attributes["class"] = "ps-ms-main-hd-noti-alert";
+                    }
+                }
+                else
+                {
+                    NotiAllsee.Visible = true;
+                    NotiManageRequest.Visible = false;
                 }
             }
 

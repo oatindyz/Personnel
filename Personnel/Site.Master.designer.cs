@@ -40,6 +40,15 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl menu1;
         
         /// <summary>
+        /// noti_alert control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_alert;
+        
+        /// <summary>
         /// lbuUser control.
         /// </summary>
         /// <remarks>
@@ -166,15 +175,6 @@ namespace Personnel {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRolePerson;
         
         /// <summary>
-        /// MenuRoleGP7 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleGP7;
-        
-        /// <summary>
         /// MenuRoleInsig control.
         /// </summary>
         /// <remarks>
@@ -209,6 +209,78 @@ namespace Personnel {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl MenuRoleAdmin;
+        
+        /// <summary>
+        /// NotiAllsee control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotiAllsee;
+        
+        /// <summary>
+        /// NotiManageRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl NotiManageRequest;
+        
+        /// <summary>
+        /// noti_request_none control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_request_none;
+        
+        /// <summary>
+        /// noti_request_approve control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_request_approve;
+        
+        /// <summary>
+        /// IntCountRequest control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label IntCountRequest;
+        
+        /// <summary>
+        /// noti_ins_none control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins_none;
+        
+        /// <summary>
+        /// noti_ins control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_ins;
+        
+        /// <summary>
+        /// noti_get_ins control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl noti_get_ins;
         
         /// <summary>
         /// ContentPlaceHolder1 control.

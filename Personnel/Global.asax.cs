@@ -18,6 +18,31 @@ namespace Personnel
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
+        protected void Session_Start(object sender, EventArgs e)
+        {
+            Session.Timeout = 30;
+        }
+
+        protected void Session_End(object sender, EventArgs e)
+        {
+            if (Session["PersonnelSystem"].ToString() == "")
+            {
+                Server.Transfer("Access.aspx");
+            }
+            Session.Abandon();
+            Session.Clear();
+        }
+
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+
+        }
+
         protected void Application_Error(object sender, EventArgs e)
         {
             var serverError = Server.GetLastError() as HttpException;
@@ -33,5 +58,11 @@ namespace Personnel
                 }
             }
         }
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+
+        }
+
     }  
 }

@@ -1254,6 +1254,7 @@
     <Content Include="img\team\1.JPG" />
     <Content Include="img\team\2.JPG" />
     <Content Include="img\team\3.JPG" />
+    <Content Include="Inaccessible.aspx" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.concat.min.js" />
     <Content Include="jquery.mCustomScrollbar\jquery.mCustomScrollbar.css" />
     <Content Include="jQueryCalendarThai\images\add.gif" />
@@ -1679,12 +1680,15 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="listGP7-admin.aspx" />
+    <Content Include="listInsig-admin.aspx" />
     <Content Include="listLeave-admin.aspx" />
     <Content Include="listproject-admin.aspx" />
     <Content Include="listproject.aspx" />
     <Content Include="listrequest-admin.aspx" />
+    <Content Include="listSalary-admin.aspx" />
     <Content Include="listuser-admin.aspx" />
     <Content Include="Manage-Droplist.aspx" />
+    <Content Include="ManageInsig.aspx" />
     <Content Include="ManageLeave.aspx" />
     <Content Include="managerequestlist.aspx" />
     <Content Include="managerole-admin.aspx" />
@@ -1860,7 +1864,6 @@
     <Content Include="Image\มทร.ตะวันออก.jpg" />
     <Content Include="js\index.js" />
     <Content Include="js\morris-data.js" />
-    <Content Include="ManageTimecontact-admin.aspx" />
     <Content Include="plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="plugins\bootstrap-slider\slider.css" />
     <Content Include="plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.js" />
@@ -3385,6 +3388,23 @@
     <Content Include="Script\jquery-1.7.1.min.js" />
     <Content Include="Script\jquery-ui-1.8.20.min.js" />
     <Content Include="Script\JSFunction.js" />
+    <Content Include="Upload\DrCer\0eu9ksfy2r6imt93n6vc0l0u.jpg" />
+    <Content Include="Upload\DrCer\3hxshqkfv83d9zmj1llqngmg.jpg" />
+    <Content Include="Upload\DrCer\4hvc.png" />
+    <Content Include="Upload\DrCer\6atwt1boqhp5m2j1z5eeztey.jpg" />
+    <Content Include="Upload\DrCer\7ye0.png" />
+    <Content Include="Upload\DrCer\8yim.png" />
+    <Content Include="Upload\DrCer\cdft.png" />
+    <Content Include="Upload\DrCer\gu1a.png" />
+    <Content Include="Upload\DrCer\k3hn.png" />
+    <Content Include="Upload\DrCer\lgbp.png" />
+    <Content Include="Upload\DrCer\pvklsh4n84zad8hpkoi0wi2q.jpg" />
+    <Content Include="Upload\DrCer\r0sw2t43ohyj4ukoi0cgx3a4.jpg" />
+    <Content Include="Upload\DrCer\rjys5lqt3zhjcmgmhgcqacj5.jpg" />
+    <Content Include="Upload\DrCer\rp9i.png" />
+    <Content Include="Upload\DrCer\sp0h.png" />
+    <Content Include="Upload\DrCer\w4ta.png" />
+    <Content Include="Upload\DrCer\zsvzddv9wa52bqcqnfp528sa.jpg" />
     <Content Include="Upload\PersonImage\fmiiwnji26a2epv1l9a1ju31.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -3448,6 +3468,7 @@
     <Content Include="scss\_mixins.scss" />
     <Content Include="scss\_variables.scss" />
     <Content Include="Upload\Project\PDF\UID=4000&amp;count=0.pdf" />
+    <Content Include="Upload\DrCer\Thumbs.db" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3505,6 +3526,7 @@
     <Compile Include="Class\DatabaseManager.cs" />
     <Compile Include="Class\Campus.cs" />
     <Compile Include="Class\Department.cs" />
+    <Compile Include="Class\LeaveData.cs" />
     <Compile Include="Class\Manage.cs" />
     <Compile Include="Class\Person.cs" />
     <Compile Include="Class\PersonnelSystem.cs" />
@@ -3563,12 +3585,26 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Inaccessible.aspx.cs">
+      <DependentUpon>Inaccessible.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Inaccessible.aspx.designer.cs">
+      <DependentUpon>Inaccessible.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listGP7-admin.aspx.cs">
       <DependentUpon>listGP7-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="listGP7-admin.aspx.designer.cs">
       <DependentUpon>listGP7-admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="listInsig-admin.aspx.cs">
+      <DependentUpon>listInsig-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listInsig-admin.aspx.designer.cs">
+      <DependentUpon>listInsig-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="listLeave-admin.aspx.cs">
       <DependentUpon>listLeave-admin.aspx</DependentUpon>
@@ -3598,6 +3634,13 @@
     <Compile Include="listrequest-admin.aspx.designer.cs">
       <DependentUpon>listrequest-admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="listSalary-admin.aspx.cs">
+      <DependentUpon>listSalary-admin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="listSalary-admin.aspx.designer.cs">
+      <DependentUpon>listSalary-admin.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listuser-admin.aspx.cs">
       <DependentUpon>listuser-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3611,6 +3654,13 @@
     </Compile>
     <Compile Include="Manage-Droplist.aspx.designer.cs">
       <DependentUpon>Manage-Droplist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageInsig.aspx.cs">
+      <DependentUpon>ManageInsig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageInsig.aspx.designer.cs">
+      <DependentUpon>ManageInsig.aspx</DependentUpon>
     </Compile>
     <Compile Include="ManageLeave.aspx.cs">
       <DependentUpon>ManageLeave.aspx</DependentUpon>
@@ -3632,13 +3682,6 @@
     </Compile>
     <Compile Include="managerole-admin.aspx.designer.cs">
       <DependentUpon>managerole-admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManageTimecontact-admin.aspx.cs">
-      <DependentUpon>ManageTimecontact-admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageTimecontact-admin.aspx.designer.cs">
-      <DependentUpon>ManageTimecontact-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="MyCrypto.cs" />
@@ -3739,6 +3782,7 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
+    <Compile Include="Util.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

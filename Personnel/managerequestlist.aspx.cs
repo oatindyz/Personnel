@@ -39,38 +39,6 @@ namespace Personnel
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("SELECT (SELECT (SELECT UNIV_NAME_TH FROM REF_UNIV WHERE REF_UNIV.UNIV_ID = TB_REQUEST.UNIV_ID) FROM TB_REQUEST WHERE TB_REQUEST.UOC_ID = TB_REQUEST.UOC_ID) UNIV_NAME, (SELECT (SELECT FULLNAME FROM REF_PREFIX_NAME WHERE TB_REQUEST.PREFIX_NAME = REF_PREFIX_NAME.PREFIX_NAME_ID) FROM TB_REQUEST WHERE TB_REQUEST.UOC_ID = TB_REQUEST.UOC_ID) PRE_NAME, STF_FNAME, STF_LNAME, UNIV_ID, PREFIX_NAME FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'", con))
-                {
-                    using (OracleDataReader reader = com.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            int i = 0;
-                            if (!reader.IsDBNull(0))
-                            {
-                                tr4_lb4Univ.Visible = true;
-                                lb4Univ2.Text = reader.GetValue(i).ToString(); ++i;
-                            }
-                            if (!reader.IsDBNull(1))
-                            {
-                                tr4_lb4PrefixName.Visible = true;
-                                lb4PrefixName2.Text = reader.GetValue(i).ToString(); ++i;
-                            }
-                            if (!reader.IsDBNull(2))
-                            {
-                                tr4_lb4Name.Visible = true;
-                                lb4Name2.Text = reader.GetValue(i).ToString(); ++i;
-                            }
-                            if (!reader.IsDBNull(3))
-                            {
-                                tr4_lb4LastName.Visible = true;
-                                lb4LastName2.Text = reader.GetValue(i).ToString(); ++i;
-                            }
-                            ddlUniv.SelectedValue = reader.GetValue(4).ToString(); ++i;
-                            ddlPrefixName.SelectedValue = reader.GetValue(5).ToString(); ++i;
-                        }
-                    }
-                }
                 int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
                 using (OracleCommand com = new OracleCommand("SELECT (SELECT UNIV_NAME_TH FROM REF_UNIV WHERE REF_UNIV.UNIV_ID = UOC_STAFF.UNIV_ID) UNIV_NAME," +
                     "(SELECT FULLNAME FROM REF_PREFIX_NAME WHERE UOC_STAFF.PREFIX_NAME = REF_PREFIX_NAME.PREFIX_NAME_ID) PREFIX_NAME," +
@@ -87,10 +55,46 @@ namespace Personnel
                             lb4PrefixName.Text = reader.GetValue(i).ToString(); ++i;
                             lb4Name.Text = reader.GetValue(i).ToString(); ++i;
                             lb4LastName.Text = reader.GetValue(i).ToString(); ++i;
-                            
                         }
                     }
                 }
+
+                using (OracleCommand com = new OracleCommand("SELECT UNIV_ID, PREFIX_NAME, STF_FNAME, STF_LNAME FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int i = 0;
+
+                            if (!reader.IsDBNull(0))
+                            {
+                                tr4_lb4Univ.Visible = true;
+                                lb4Univ2.Text = reader.GetValue(i).ToString(); ++i;
+                            }
+                            ++i;
+                            if (!reader.IsDBNull(1))
+                            {
+                                tr4_lb4PrefixName.Visible = true;
+                                lb4PrefixName2.Text = reader.GetValue(i).ToString(); ++i;
+                            }
+                            ++i;
+                            if (!reader.IsDBNull(2))
+                            {
+                                tr4_lb4Name.Visible = true;
+                                lb4Name2.Text = reader.GetValue(i).ToString(); ++i;
+                            }
+                            ++i;
+                            if (!reader.IsDBNull(3))
+                            {
+                                tr4_lb4LastName.Visible = true;
+                                lb4LastName2.Text = reader.GetValue(i).ToString(); ++i;
+                            }
+                            ++i;
+                        }
+                    }
+                }
+
             }
         }
 

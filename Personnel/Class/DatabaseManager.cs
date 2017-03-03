@@ -228,10 +228,11 @@ namespace Personnel.Class
 
                    "SELECT UOC_ID," +
                    "CITIZEN_ID," +
+                   "(SELECT FULLNAME FROM REF_PREFIX_NAME WHERE UOC_STAFF.PREFIX_NAME = REF_PREFIX_NAME.PREFIX_NAME_ID) PREFIX_NAME," +
                    "STF_FNAME," +
                    "STF_LNAME," +
                    "(SELECT STAFFTYPE_NAME FROM REF_STAFFTYPE WHERE REF_STAFFTYPE.STAFFTYPE_ID = UOC_STAFF.STAFFTYPE_ID) STAFFTYPE_NAME," +
-                   "(SELECT POSITION_NAME_TH FROM REF_POSITION WHERE REF_POSITION.POSITION_ID = UOC_STAFF.POSITION_ID) POSITION_NAME," +
+                   "POSITION_WORK," +
                    "(SELECT ADMIN_NAME FROM REF_ADMIN WHERE REF_ADMIN.ADMIN_ID = UOC_STAFF.ADMIN_POSITION_ID) ADMIN_POSITION_NAME," +
                    "(SELECT FAC_NAME FROM REF_FAC WHERE REF_FAC.FAC_ID = UOC_STAFF.DEPARTMENT_ID) DEPARTMENT_NAME," +
                    "ST_LOGIN_ID," +
@@ -333,6 +334,7 @@ namespace Personnel.Class
 
                             uoc_staff.UOC_ID = Convert.ToInt32(reader.GetValue(i++).ToString());
                             uoc_staff.CITIZEN_ID = reader.GetValue(i++).ToString();
+                            uoc_staff.PREFIX_NAME = reader.GetValue(i++).ToString();
                             uoc_staff.STF_FNAME = reader.GetValue(i++).ToString();
                             uoc_staff.STF_LNAME = reader.GetValue(i++).ToString();
                             uoc_staff.STAFFTYPE_NAME = reader.GetValue(i++).ToString();

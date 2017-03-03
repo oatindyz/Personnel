@@ -10,7 +10,7 @@
 namespace Personnel {
     
     
-    public partial class ManageTimecontact_admin {
+    public partial class ManageInsig {
         
         /// <summary>
         /// Panel1 control.
@@ -22,111 +22,129 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Panel Panel1;
         
         /// <summary>
-        /// txtSearchIDtimecon control.
+        /// lbName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchIDtimecon;
+        protected global::System.Web.UI.WebControls.Label lbName;
         
         /// <summary>
-        /// txtSearchNametimecon control.
+        /// lbStafftype control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSearchNametimecon;
+        protected global::System.Web.UI.WebControls.Label lbStafftype;
         
         /// <summary>
-        /// lbuSearch control.
+        /// lbPosition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSearch;
+        protected global::System.Web.UI.WebControls.Label lbPosition;
         
         /// <summary>
-        /// lbuRefresh control.
+        /// lbDepartment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuRefresh;
+        protected global::System.Web.UI.WebControls.Label lbDepartment;
         
         /// <summary>
-        /// Panel2 control.
+        /// lbLastInsig control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel Panel2;
+        protected global::System.Web.UI.WebControls.Label lbLastInsig;
         
         /// <summary>
-        /// txtInsertIDtimecon control.
+        /// lbSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertIDtimecon;
+        protected global::System.Web.UI.WebControls.Label lbSalary;
         
         /// <summary>
-        /// txtInsertNametimecon control.
+        /// lbPositionSalary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtInsertNametimecon;
+        protected global::System.Web.UI.WebControls.Label lbPositionSalary;
         
         /// <summary>
-        /// lbuSubmit control.
+        /// ddlInsigItem control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuSubmit;
+        protected global::System.Web.UI.WebControls.DropDownList ddlInsigItem;
         
         /// <summary>
-        /// lbuCancel control.
+        /// lbHighEnd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuCancel;
+        protected global::System.Web.UI.WebControls.Label lbHighEnd;
         
         /// <summary>
-        /// ScriptManager1 control.
+        /// tbGetDate control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager ScriptManager1;
+        protected global::System.Web.UI.WebControls.TextBox tbGetDate;
         
         /// <summary>
-        /// UpdatePanel1 control.
+        /// btnSaveInsig control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        protected global::System.Web.UI.WebControls.Button btnSaveInsig;
         
         /// <summary>
-        /// GridView1 control.
+        /// btnDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.LinkButton btnDelete;
+        
+        /// <summary>
+        /// divLoadInsig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoadInsig;
+        
+        /// <summary>
+        /// GridViewInsig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewInsig;
     }
 }

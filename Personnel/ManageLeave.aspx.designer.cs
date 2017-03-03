@@ -121,6 +121,24 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.LinkButton lbuSelectHuj;
         
         /// <summary>
+        /// divLoadLeave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLoadLeave;
+        
+        /// <summary>
+        /// GridViewLeave control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridViewLeave;
+        
+        /// <summary>
         /// MV1_V2 control.
         /// </summary>
         /// <remarks>
@@ -391,22 +409,67 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.FileUpload FileUpload1;
         
         /// <summary>
-        /// lbuS1Back control.
+        /// ddlS1BossLowID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuS1Back;
+        protected global::System.Web.UI.WebControls.DropDownList ddlS1BossLowID;
         
         /// <summary>
-        /// lbuS1Check control.
+        /// tbS1BossLowComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuS1Check;
+        protected global::System.Web.UI.WebControls.TextBox tbS1BossLowComment;
+        
+        /// <summary>
+        /// ddlS1BossHighID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlS1BossHighID;
+        
+        /// <summary>
+        /// tbS1BossHighComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1BossHighComment;
+        
+        /// <summary>
+        /// tbS1OfficerComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbS1OfficerComment;
+        
+        /// <summary>
+        /// lbuS1Back2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lbuS1Back2;
+        
+        /// <summary>
+        /// lbuS1Check2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lbuS1Check2;
         
         /// <summary>
         /// MV1_V3 control.
@@ -796,31 +859,67 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Label lbS2DrCer;
         
         /// <summary>
-        /// tbBoss control.
+        /// lbS2BossLowID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tbBoss;
+        protected global::System.Web.UI.WebControls.Label lbS2BossLowID;
         
         /// <summary>
-        /// lbuS2Back control.
+        /// lbS2BossLowComment control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuS2Back;
+        protected global::System.Web.UI.WebControls.Label lbS2BossLowComment;
         
         /// <summary>
-        /// lbuS2Finish control.
+        /// lbS2BossHighID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuS2Finish;
+        protected global::System.Web.UI.WebControls.Label lbS2BossHighID;
+        
+        /// <summary>
+        /// lbS2BossHighComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbS2BossHighComment;
+        
+        /// <summary>
+        /// lbS2OfficerComment control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbS2OfficerComment;
+        
+        /// <summary>
+        /// lbuS2Back2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lbuS2Back2;
+        
+        /// <summary>
+        /// lbuS2Finish2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button lbuS2Finish2;
         
         /// <summary>
         /// VX_F control.
@@ -838,7 +937,7 @@ namespace Personnel {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuBackMain;
+        protected global::System.Web.UI.WebControls.Button lbuBackMain;
         
         /// <summary>
         /// lbuHistory control.
@@ -847,7 +946,7 @@ namespace Personnel {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbuHistory;
+        protected global::System.Web.UI.WebControls.Button lbuHistory;
         
         /// <summary>
         /// hfSql control.

@@ -126,14 +126,14 @@
     </script>
 
     <script type="text/javascript">
-    var myVar = setInterval(myTimer, 60000);
-    var d = '<%= Session.Timeout %>';
+        var myVar = setInterval(myTimer, 60000);
+        var d = '<%= Session.Timeout %>';
     function myTimer() {
-        d = d - 1;        
+        d = d - 1;
         document.getElementById("<%= SessionTimeOut.ClientID %>").innerHTML = d.toString() + ' นาที';
     }
     </script>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0" />
     <!--<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />-->
 
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -153,7 +153,11 @@
                             <div class="ps-ms-main-hd-name">ระบบบุคลากร</div>
 
                         </div>
+
                         <div class="ps-ms-main-hd-right">
+                            <div id="menu2" class="ps-ms-main-hd-button">
+                                <img src="Image/x32/notification.png" /></div>
+                            <span class="ps-ms-main-hd-noti-alert-none" id="noti_alert" runat="server">0</span>
                             <asp:LinkButton ID="lbuUser" runat="server" OnClick="lbuUser_Click" CssClass="ps-ms-user">
                                 <span class="ps-ms-profile-div">
                                     <img src="Image/no_image.png" class="ps-ms-profile-pic" id="profile_pic" runat="server" /></span>
@@ -235,115 +239,142 @@
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10" style="text-align: center;">
-                                    <a href="profile.aspx"><img src="Image/Small/search.png" class="icon_left" />ดูประวัติส่วนตัว</a>
-                                    <a href="ChangePassword.aspx"><img src="Image/lock-icon.png" class="icon_left" />เปลี่ยนรหัสผ่าน</a>
+                                    <a href="profile.aspx">
+                                        <img src="Image/Small/search.png" class="icon_left" />ดูประวัติส่วนตัว</a>
+                                    <a href="ChangePassword.aspx">
+                                        <img src="Image/lock-icon.png" class="icon_left" />เปลี่ยนรหัสผ่าน</a>
                                 </div>
                             </div>
-                        </div>    
+                        </div>
 
                         <div id="MenuPublic" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/person2.png" />บุคลากร</div>
                             </div>
                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">   
-                                    <a href="edituser.aspx"><img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
-                                    <a href="detailuser.aspx"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลบุคลากร</a>
-                                    <a href="detailgp7.aspx"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูล ก.พ.7</a>
-                                    <a href="listproject.aspx"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการพัฒนาบุคลากร</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลเครื่องราชฯ</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการขึ้นเงินเดือน</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการลา</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลประวัติการดำรงตำแหน่งทางบริหาร</a>
+                                <div class="ps-box-ct10">
+                                    <a href="edituser.aspx">
+                                        <img src="Image/Small/edit.png" />แก้ไขข้อมูลบุคลากร</a>
+                                    <a href="detailuser.aspx">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลบุคลากร</a>
+                                    <a href="detailgp7.aspx">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูล ก.พ.7</a>
+                                    <a href="listproject.aspx">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการพัฒนาบุคลากร</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลเครื่องราชฯ</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการขึ้นเงินเดือน</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการลา</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลประวัติการดำรงตำแหน่งทางบริหาร</a>
                                 </div>
                             </div>
                         </div>
 
                         <div id="MenuPublic2" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/person2.png" />บุคลากร</div>
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/person2.png" />บุคลากร</div>
                             </div>
                             <div class="ps-box-i0">
-                                <div class="ps-box-ct10">   
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูลบุคลากร</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูล ก.พ.7</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูลการพัฒนาบุคลากร</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูลเครื่องราชฯ</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูลการขึ้นเงินเดือน</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูลการลา</a>
-                                    <a href="#"><img src="Image/book_edit.png" />ออกรายงานข้อมูลประวัติการดำรงตำแหน่งทางบริหาร</a>
+                                <div class="ps-box-ct10">
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลบุคลากร</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูล ก.พ.7</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลการพัฒนาบุคลากร</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลเครื่องราชฯ</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลการขึ้นเงินเดือน</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลการลา</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลประวัติการดำรงตำแหน่งทางบริหาร</a>
                                 </div>
                             </div>
                         </div>
 
                         <div id="MenuRolePerson" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0"><div class="ps-box-hd10"><img src="Image/Small/document.png" />เจ้าหน้าที่บุคลากร(ดูแลส่วนงานบุคลากร)</div>
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/document.png" />เจ้าหน้าที่บุคลากร</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="listrequest-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลคำร้องการแก้ไขข้อมูล</a>
-                                    <a href="listuser-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลบุคลากร</a>
-                                    <a href="listproject-admin.aspx"><img src="Image/Small/lock.png" />จัดการข้อมูลการพัฒนาบุคลากร</a>
-                                    <a href="#"><img src="Image/book_edit.png" />จัดการข้อมูลตำแหน่งทางบริหาร</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลบุคลากร</a>
-                                    <a href="reportacademic-admin.aspx"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลการพัฒนาบุคลากร</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลตำแหน่งทางบริหาร</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลที่จัดส่ง สกอ.</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="MenuRoleGP7" runat="server" class="ps-box-il-ms">
-                            <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />เจ้าหน้าที่บุคลากร(ดูแลส่วนงานก.พ.7)</div>
-                            </div>
-                            <div class="ps-box-i0">
-                                <div class="ps-box-ct10">
-                                    <a href="listGP7-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลก.พ.7</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลก.พ.7</a>
+                                    <a href="listrequest-admin.aspx">
+                                        <img src="Image/Small/lock.png" />จัดการข้อมูลคำร้องการแก้ไขข้อมูล</a>
+                                    <a href="listuser-admin.aspx">
+                                        <img src="Image/Small/lock.png" />จัดการข้อมูลบุคลากร</a>
+                                    <a href="listproject-admin.aspx">
+                                        <img src="Image/Small/lock.png" />จัดการข้อมูลการพัฒนาบุคลากร</a>
+                                    <a href="#">
+                                        <img src="Image/book_edit.png" />จัดการข้อมูลตำแหน่งทางบริหาร</a>
+                                    <a href="#">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลบุคลากร</a>
+                                    <a href="reportacademic-admin.aspx">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลการพัฒนาบุคลากร</a>
+                                    <a href="#">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลตำแหน่งทางบริหาร</a>
+                                    <a href="#">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลที่จัดส่ง สกอ.</a>
                                 </div>
                             </div>
                         </div>
 
                         <div id="MenuRoleInsig" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />เจ้าหน้าที่บุคลากร(ดูแลส่วนงานเครื่องราชฯ)</div>
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/document.png" />เจ้าหน้าที่เครื่องราชฯ</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="#"><img src="Image/book_edit.png" />จัดการข้อมูลเครื่องราชฯ</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลเครื่องราชฯ</a>
+                                    <a href="listInsig-admin.aspx">
+                                        <img src="Image/book_edit.png" />จัดการข้อมูลเครื่องราชฯ</a>
+                                    <a href="#">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลเครื่องราชฯ</a>
                                 </div>
                             </div>
                         </div>
 
                         <div id="MenuRoleSalary" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />เจ้าหน้าที่บุคลากร(ดูแลส่วนงานการขึ้นเงินเดือน)</div>
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/document.png" />เจ้าหน้าที่การขึ้นเงินเดือน</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="#"><img src="Image/book_edit.png" />จัดการข้อมูลการขึ้นเงินเดือน</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลการขึ้นเงินเดือน</a>
+                                    <a href="listSalary-admin.aspx">
+                                        <img src="Image/book_edit.png" />จัดการข้อมูลการขึ้นเงินเดือน</a>
+                                    <a href="#">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลการขึ้นเงินเดือน</a>
                                 </div>
                             </div>
                         </div>
 
                         <div id="MenuRoleLeave" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/document.png" />เจ้าหน้าที่บุคลากร(ดูแลส่วนงานการลา)</div>
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/document.png" />เจ้าหน้าที่การลา</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
-                                    <a href="listLeave-admin.aspx"><img src="Image/book_edit.png" />จัดการข้อมูลการลา</a>
-                                    <a href="#"><img src="Image/Small/lock.png" />ออกรายงานข้อมูลการลา</a>
+                                    <a href="listLeave-admin.aspx">
+                                        <img src="Image/book_edit.png" />จัดการข้อมูลการลา</a>
+                                    <a href="#">
+                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลการลา</a>
                                 </div>
                             </div>
                         </div>
 
                         <div id="MenuRoleAdmin" runat="server" class="ps-box-il-ms">
                             <div class="ps-box-i0">
-                                <div class="ps-box-hd10"><img src="Image/Small/wrench.png" />ผู้ดูแลระบบ</div>
+                                <div class="ps-box-hd10">
+                                    <img src="Image/Small/wrench.png" />ผู้ดูแลระบบ</div>
                             </div>
                             <div class="ps-box-i0">
                                 <div class="ps-box-ct10">
@@ -358,6 +389,52 @@
                     </div>
                 </div>
 
+                <div id="menu2-ct" class="ps-ms-main-drop">
+                        <div class="ps-ms-main-drop-hd">
+                            <img src="Image/x32/notification.png"/>การแจ้งเตือน
+                        </div>
+                        <div id="NotiAllsee" runat="server" class="ps-box-il-ms" visible="false">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />ไม่มีการแจ้งเตือน</div>
+                            </div>
+                        </div>
+                        <div id="NotiManageRequest" runat="server" class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/document.png" />จัดการคำร้องขอแก้ไขข้อมูล</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_request_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนคำร้องขอแก้ไขข้อมูล</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_request_approve" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/correct.png' class='icon_left' />    <asp:Label ID="IntCountRequest" runat="server"></asp:Label></div><br />
+                                    <div><a href='listrequest-admin.aspx'>ไปหน้าการอนุมัติ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="ps-box-il-ms">
+                            <div class="ps-box-i0">
+                                <div class="ps-box-hd10-cen"><img src="Image/Small/medal.png" />เครื่องราชอิสริยาภรณ์</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins_none" runat="server">
+                                <div class="ps-box-hd10-cen" style="color: #a0a0a0; margin-top: 120px;">ไม่มีการแจ้งเตือนเครื่องราชฯ</div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณมีสิทธิขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Request.aspx'>ไปหน้าการขอเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                            <div class="ps-box-i0" id="noti_get_ins" runat="server">
+                                <div class="ps-box-ct10-cen">
+                                    <div><img src='Image/Small/medal.png' class='icon_left' />คุณได้รับการแจ้งผลการขอเครื่องราชฯ</div><br />
+                                    <div><a href='INSG_Qualified_Detail.aspx'>ไปหน้าประวัติการได้รับเครื่องราชฯ<img src='Image/Small/next.png' class='icon_right' /></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+
                 <div class="ps-ms-main-ct">
                     <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
                     </asp:ContentPlaceHolder>
@@ -368,7 +445,6 @@
                         Copyright © 2016 Rajamangala University of Technology Tawan-ok. All rights reserved
                     </div>
                 </div>
-
             </div>
         </div>
     </form>
