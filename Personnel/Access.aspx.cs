@@ -164,6 +164,8 @@ namespace Personnel
                                         {
                                             PersonnelSystem ps = new PersonnelSystem();
                                             ps.LoginPerson = DatabaseManager.GetOUC_STAFF(tbUsername.Text);
+
+                                            
                                             Session["PersonnelSystem"] = ps;
                                             Response.Redirect("Default.aspx");
                                         }

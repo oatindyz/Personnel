@@ -940,15 +940,6 @@ namespace Personnel {
         protected global::System.Web.UI.WebControls.Button lbuBackMain;
         
         /// <summary>
-        /// lbuHistory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button lbuHistory;
-        
-        /// <summary>
         /// hfSql control.
         /// </summary>
         /// <remarks>

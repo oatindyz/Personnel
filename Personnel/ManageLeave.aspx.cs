@@ -849,26 +849,32 @@ namespace Personnel
             else if (hfLeaveTypeID.Value == "2")
             {
                 leaveData.AddLeaveBusiness();
+                leaveData.ExecuteAllow();
             }
             else if (hfLeaveTypeID.Value == "3")
             {
                 leaveData.AddLeaveGiveBirth();
+                leaveData.ExecuteAllow();
             }
             else if (hfLeaveTypeID.Value == "4")
             {
                 leaveData.AddLeaveRest();
+                leaveData.ExecuteAllow();
             }
             else if (hfLeaveTypeID.Value == "5")
             {
                 leaveData.AddLeaveHelpGiveBirth();
+                leaveData.ExecuteAllow();
             }
             else if (hfLeaveTypeID.Value == "6")
             {
                 leaveData.AddLeaveOrdain();
+                leaveData.ExecuteAllow();
             }
             else if (hfLeaveTypeID.Value == "7")
             {
                 leaveData.AddLeaveHuj();
+                leaveData.ExecuteAllow();
             }
 
             ClearNotification();
@@ -878,11 +884,6 @@ namespace Personnel
         protected void lbuBackMain_Click(object sender, EventArgs e)
         {
             Response.Redirect("Default.aspx");
-        }
-
-        protected void lbuHistory_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("LeaveHistory.aspx");
         }
 
         #region ViewState DataTable

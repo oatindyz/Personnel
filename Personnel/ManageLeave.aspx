@@ -144,7 +144,7 @@
                                         <asp:Label ID="lblProUOC_ID11" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.LEAVE_TYPE_NAME") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="วันที่ขอลา">
+                                <asp:TemplateField HeaderText="วันที่บันทึกการลา">
                                     <ItemTemplate>
                                         <asp:Label ID="lbReqDate" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.REQ_DATE") %>'></asp:Label>
                                     </ItemTemplate>
@@ -548,11 +548,9 @@
 
             <asp:View ID="VX_F" runat="server">
                 <div class="ps-div-title-red">บันทึกการลาสำเร็จ</div>
-                <div style="text-align: center; color: #808080; margin-bottom: 10px;">ระบบได้บันทึกข้อมูลการลาเรียบร้อยแล้ว<br />
-                    สามารถตรวจสอบการลาได้ที่เมนู การลา -> ประวัติการลา</div>
+                <div style="text-align: center; color: #808080; margin-bottom: 10px;">ระบบได้บันทึกข้อมูลการลาเรียบร้อยแล้ว<br /></div>
                 <div style="text-align: center; margin-bottom: 10px;">
                     <asp:Button ID="lbuBackMain" runat="server" CssClass="btn btn-default ekknidRight" OnClick="lbuBackMain_Click" Text="กลับหน้าหลัก"></asp:Button>
-                    <asp:Button ID="lbuHistory" runat="server" CssClass="btn btn-default" OnClick="lbuHistory_Click" Text="ไปหน้าประวัติการลา"></asp:Button>
                 </div>
             </asp:View>
 

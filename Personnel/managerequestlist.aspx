@@ -5,6 +5,8 @@
     <div class="default_page_style">
         <div class="ps-header">
             <img src="Image/Small/comment.png" />จัดการข้อมูลคำร้องการแก้ไขข้อมูล
+            <span style="text-align: right; float: right;"><a href="listrequest-admin.aspx">
+            <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
         </div>
 
         <div class="panel panel-default">
@@ -31,7 +33,7 @@
                                     </td>
                                     <td class="col2" style="width: 33%">
                                         <asp:Label ID="lb4Univ2" runat="server"></asp:Label>
-                                        <asp:DropDownList ID="ddlUniv" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1" Visible="false"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlUniv" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1" Visible="false" Enabled="false"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr id="tr4_lb4PrefixName" runat="server" visible="false">
@@ -41,7 +43,7 @@
                                     </td>
                                     <td class="col2">
                                         <asp:Label ID="lb4PrefixName2" runat="server"></asp:Label>
-                                        <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1" Visible="false"></asp:DropDownList>
+                                        <asp:DropDownList ID="ddlPrefixName" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1" Visible="false" Enabled="false"></asp:DropDownList>
                                     </td>
                                 </tr>
                                 <tr id="tr4_lb4Name" runat="server" visible="false">

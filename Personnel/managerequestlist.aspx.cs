@@ -70,27 +70,40 @@ namespace Personnel
                             if (!reader.IsDBNull(0))
                             {
                                 tr4_lb4Univ.Visible = true;
-                                lb4Univ2.Text = reader.GetValue(i).ToString(); ++i;
+                                ddlUniv.SelectedValue = reader.IsDBNull(i) ? "" : reader.GetValue(i).ToString(); ++i;
+                                ddlUniv.Visible = true;
+                            }else
+                            {
+                                ++i;
                             }
-                            ++i;
                             if (!reader.IsDBNull(1))
                             {
                                 tr4_lb4PrefixName.Visible = true;
-                                lb4PrefixName2.Text = reader.GetValue(i).ToString(); ++i;
+                                ddlPrefixName.SelectedValue = reader.IsDBNull(i) ? "" : reader.GetValue(i).ToString(); ++i;
+                                ddlPrefixName.Visible = true;
                             }
-                            ++i;
+                            else
+                            {
+                                ++i;
+                            }
                             if (!reader.IsDBNull(2))
                             {
                                 tr4_lb4Name.Visible = true;
                                 lb4Name2.Text = reader.GetValue(i).ToString(); ++i;
                             }
-                            ++i;
+                            else
+                            {
+                                ++i;
+                            }
                             if (!reader.IsDBNull(3))
                             {
                                 tr4_lb4LastName.Visible = true;
                                 lb4LastName2.Text = reader.GetValue(i).ToString(); ++i;
                             }
-                            ++i;
+                            else
+                            {
+                                ++i;
+                            }
                         }
                     }
                 }
@@ -150,14 +163,14 @@ namespace Personnel
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            /*int uoc_id = DatabaseManager.ExecuteInt("SELECT UOC_ID FROM TB_EDIT WHERE ID_EDIT = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
+            int r_id = DatabaseManager.ExecuteInt("SELECT R_ID FROM TB_REQUEST WHERE R_ID = '" + int.Parse(MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString())) + "'");
             int id = 0;
 
             OracleConnection.ClearAllPools();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                using (OracleCommand com = new OracleCommand("UPDATE TB_EDIT SET STATUS_ID = :STATUS_ID, DATE_END = :DATE_END WHERE UOC_ID = '" + uoc_id + "'", con))
+                using (OracleCommand com = new OracleCommand("UPDATE TB_REQUEST SET STATUS_ID = :STATUS_ID, DATE_END = :DATE_END WHERE R_ID = '" + r_id + "'", con))
                 {
                     com.Parameters.Add(new OracleParameter("STATUS_ID", "2"));
                     com.Parameters.Add(new OracleParameter("DATE_END", DateTime.Today));
@@ -166,7 +179,7 @@ namespace Personnel
                 }
             }
             MultiView1.ActiveViewIndex = 2;
-            */
+            
         }
 
     }

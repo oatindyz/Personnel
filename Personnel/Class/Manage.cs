@@ -23,15 +23,35 @@ namespace Personnel.Class
             this.INSIG_GET_DATE = INSIG_GET_DATE;
         }
 
-        public DataTable SELECT_ManageInsig(string INSIG_ID, string UOC_ID, string INSIG_ITEM_ID, string INSIG_GET_DATE)
+        public DataTable SELECT_ManageInsig(string INSIG_ID, string UOC_ID)
         {
             DataTable dt = new DataTable();
             using (OracleConnection con = new OracleConnection(DatabaseManager.CONNECTION_STRING))
             {
                 con.Open();
-                string query = "SELECT INSIG_ID, UOC_ID, (SELECT INSIG_NAME || ' | ' || INSIG_NAME_FULL FROM TB_INSIG_ITEM WHERE TB_INSIG_ITEM.INSIG_ITEM_ID = TB_INSIG.INSIG_ITEM_ID ) INSIG_ITEM_ID, TO_CHAR(INSIG_GET_DATE,'dd/MM/yyyy') INSIG_GET_DATE FROM TB_INSIG ORDER BY UOC_ID ASC, INSIG_GET_DATE ASC";
+                string query = "SELECT INSIG_ID, UOC_ID, (SELECT INSIG_NAME || ' | ' || INSIG_NAME_FULL FROM TB_INSIG_ITEM WHERE TB_INSIG_ITEM.INSIG_ITEM_ID = TB_INSIG.INSIG_ITEM_ID ) INSIG_ITEM_ID, TO_CHAR(INSIG_GET_DATE,'dd/MM/yyyy') INSIG_GET_DATE FROM TB_INSIG ";
+                if (!string.IsNullOrEmpty(INSIG_ID) || !string.IsNullOrEmpty(UOC_ID))
+                {
+                    query += "where 1=1";
+                    if (!string.IsNullOrEmpty(INSIG_ID))
+                    {
+                        query += " and INSIG_ID like :INSIG_ID";
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        query += " and UOC_ID like :UOC_ID";
+                    }
+                }
                 using (OracleCommand com = new OracleCommand(query, con))
                 {
+                    if (!string.IsNullOrEmpty(INSIG_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("INSIG_ID", INSIG_ID));
+                    }
+                    if (!string.IsNullOrEmpty(UOC_ID))
+                    {
+                        com.Parameters.Add(new OracleParameter("UOC_ID", UOC_ID));
+                    }
                     using (OracleDataAdapter sd = new OracleDataAdapter(com))
                     {
                         sd.Fill(dt);

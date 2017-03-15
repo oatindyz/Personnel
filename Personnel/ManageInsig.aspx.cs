@@ -126,7 +126,7 @@ namespace Personnel
         protected void BindManage()
         {
             ClassInsig MInsig = new ClassInsig();
-            DataTable dt = MInsig.SELECT_ManageInsig("", MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()), "", "");
+            DataTable dt = MInsig.SELECT_ManageInsig("", MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()));
             GridViewInsig.DataSource = dt;
             GridViewInsig.DataBind();
             SetViewState(dt);
@@ -197,7 +197,7 @@ namespace Personnel
                     }
                 }
 
-                using (OracleCommand com = new OracleCommand("SELECT (SELECT INSIG_NAME || ' | ' || INSIG_NAME_FULL FROM TB_INSIG_ITEM WHERE TB_INSIG_ITEM.INSIG_ITEM_ID = TB_INSIG.INSIG_ITEM_ID) INSIG, INSIG_GET_DATE FROM TB_INSIG WHERE UOC_ID = 1 AND insig_get_date = (SELECT MAX(INSIG_GET_DATE) FROM TB_INSIG WHERE UOC_ID = '" + MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()) + "')", con))
+                using (OracleCommand com = new OracleCommand("SELECT (SELECT INSIG_NAME || ' | ' || INSIG_NAME_FULL FROM TB_INSIG_ITEM WHERE TB_INSIG_ITEM.INSIG_ITEM_ID = TB_INSIG.INSIG_ITEM_ID) INSIG, INSIG_GET_DATE FROM TB_INSIG WHERE UOC_ID = '" + MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()) + "' AND insig_get_date = (SELECT MAX(INSIG_GET_DATE) FROM TB_INSIG WHERE UOC_ID = '" + MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()) + "')", con))
                 {
                     using (OracleDataReader reader = com.ExecuteReader())
                     {
@@ -234,7 +234,7 @@ namespace Personnel
             
             if (DateText.AddYears(-543) <= LastInsig)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('วันที่ต้องไม่มากกว่าชั้นเครื่องราช "+ LastNameInsig.ToString() + "')", true);
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('วันที่ไม่สามารถต่ำกว่าวันที่ของชั้นเครื่องราช "+ LastNameInsig.ToString() + "')", true);
                 return;
             }
 
@@ -251,7 +251,8 @@ namespace Personnel
                 }
             }
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('เพิ่มข้อมูลเรียบร้อย')", true);
-            ReadSelectID();
+
+            tbGetDate.Text = "";
             BindManage();
             BindDDL();
         }
@@ -259,6 +260,13 @@ namespace Personnel
         protected void btnDelete_Click(object sender, EventArgs e)
         {
             int InSIG_ID = DatabaseManager.ExecuteInt("SELECT INSIG_ID FROM TB_INSIG WHERE UOC_ID = '" + MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()) + "' AND insig_get_date = (SELECT MAX(INSIG_GET_DATE) FROM TB_INSIG WHERE UOC_ID = '" + MyCrypto.GetDecryptedQueryString(Request.QueryString["id"].ToString()) + "' )");
+
+            if (InSIG_ID == 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ไม่มีรายการข้อมูลจึงไม่สามารถลบได้')", true);
+                return;
+            }
+
             DatabaseManager.ExecuteInt("delete TB_INSIG where INSIG_ID = " + InSIG_ID);
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('ลบข้อมูลเรียบร้อย')", true);
             ReadSelectID();
