@@ -13,7 +13,7 @@ namespace Personnel.Class
 
         public static readonly string PROVIDER = "System.Data.OracleClient";
         //public static readonly string DATA_SOURCE = "203.158.140.67";
-        public static readonly string DATA_SOURCE = "localhost";
+        public static readonly string DATA_SOURCE = "192.168.1.49";
         public static readonly string PORT = "1521";
         public static readonly string SID = "orcl";
         public static readonly string USER_ID = "PERSONNEL";
@@ -501,6 +501,285 @@ namespace Personnel.Class
                 }
             }
             return false;
+        }
+
+        public static int GetLeaveRequiredCountByCommander(string citizenID)
+        {
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT COUNT(LEV_BOSS_DATA.LEAVE_BOSS_ID) FROM LEV_DATA, LEV_BOSS_DATA WHERE LEAVE_STATUS_ID IN(1,4) AND LEV_DATA.LEAVE_ID = LEV_BOSS_DATA.LEAVE_ID AND LEV_DATA.BOSS_STATE = LEV_BOSS_DATA.STATE AND LEV_BOSS_DATA.CITIZEN_ID = '" + citizenID + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int count = int.Parse(reader.GetInt32(0).ToString());
+                            return count;
+                        }
+                    }
+                }
+            }
+            return -1;
+        }
+        public static List<DateTime> GetLeaveDateTimeFromToDate(string citizenID)
+        {
+            OracleConnection.ClearAllPools();
+            List<DateTime> list = new List<DateTime>();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT FROM_DATE, TO_DATE FROM LEV_DATA WHERE PS_ID = '" + citizenID + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime start = reader.GetDateTime(0);
+                            DateTime to = reader.GetDateTime(1);
+                            while (true)
+                            {
+                                if (!list.Contains(start))
+                                {
+                                    list.Add(start);
+                                }
+                                start = start.AddDays(1);
+                                if ((to - start).TotalDays < 0)
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return list;
+        }
+        public static string รหัสหัวหน้าฝ่าย(string DVID)
+        {
+            OracleConnection.ClearAllPools();
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 4 AND PS_WORK_DIVISION_ID = " + DVID, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสหัวหน้าภาควิชา(string DVID)
+        {
+            OracleConnection.ClearAllPools();
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 7 AND PS_DIVISION_ID = " + DVID, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสคณบดี(string FID)
+        {
+            OracleConnection.ClearAllPools();
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 3 AND PS_FACULTY_ID = " + FID, con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static string รหัสอธิการบดี(string CID)
+        {
+            OracleConnection.ClearAllPools();
+            string citizenID = "-1";
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                using (OracleCommand com = new OracleCommand("SELECT PS_CITIZEN_ID FROM PS_PERSON WHERE PS_ADMIN_POS_ID = 1", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            citizenID = reader.GetString(0);
+                        }
+                    }
+                }
+            }
+            return citizenID;
+        }
+        public static List<UOC_STAFF> รหัสหัวหน้า(string citizenID)
+        {
+            List<UOC_STAFF> bossList = new List<UOC_STAFF>();
+            OracleConnection.ClearAllPools();
+            using (OracleConnection con = new OracleConnection(CONNECTION_STRING))
+            {
+                con.Open();
+                int workPositionID = -1;
+                int adminPositionPower = 0;
+                int facultyID = 0;
+                int divisionID = 0;
+                int workDivisionID = 0;
+                int adminPositionID = 0;
+                int campusID = 0;
+                bool no_me = false;
+                bool cancel = false;
+                using (OracleCommand com = new OracleCommand("SELECT PS_WORK_POS_ID, PS_FACULTY_ID, PS_DIVISION_ID, PS_WORK_DIVISION_ID, PS_ADMIN_POS_ID, PS_CAMPUS_ID FROM PS_PERSON WHERE PS_CITIZEN_ID = '" + citizenID + "'", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            workPositionID = reader.GetInt32(0);
+                            facultyID = reader.GetInt32(1);
+                            divisionID = reader.GetInt32(2);
+
+                            if (reader.IsDBNull(3))
+                            {
+                                workDivisionID = -1;
+                            }
+                            else
+                            {
+                                workDivisionID = reader.GetInt32(3);
+                            }
+                            adminPositionID = reader.GetInt32(4);
+                            campusID = reader.GetInt32(5);
+
+                        }
+                    }
+                }
+                using (OracleCommand com = new OracleCommand("SELECT ADMIN_POSITION_POWER FROM PS_PERSON, TB_ADMIN_POSITION WHERE PS_CITIZEN_ID = '" + citizenID + "' AND PS_ADMIN_POS_ID = ADMIN_POSITION_ID", con))
+                {
+                    using (OracleDataReader reader = com.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            adminPositionPower = reader.GetInt32(0);
+                        }
+                    }
+                }
+                int bossNodeType = -1;
+                int bossNodeTypeID = -1;
+                if ((workPositionID == 10108 || workPositionID == 10077) && (adminPositionPower >= 3 || adminPositionPower == 0))
+                { //อาจารย์
+                    if (adminPositionPower == 0)
+                    {
+                        bossNodeType = 3;
+                        bossNodeTypeID = divisionID;
+                    }
+                    else if (adminPositionPower == 3)
+                    {
+                        bossNodeType = 3;
+                        bossNodeTypeID = divisionID;
+                        no_me = true;
+                    }
+                }
+                else
+                {
+                    if (adminPositionPower == 2 && adminPositionID != 4)
+                    {
+                        bossNodeType = 2;
+                        bossNodeTypeID = facultyID;
+                    }
+                    else if (adminPositionID == 4)
+                    { //คณบดี
+                        bossNodeType = 1;
+                        bossNodeTypeID = campusID;
+                    }
+                    else if (adminPositionID == 2)
+                    { //รองอธิการ
+                        bossNodeType = -1;
+                        bossNodeTypeID = -1;
+                    }
+                    else if (adminPositionID == 1)
+                    { //อธิการ
+                        cancel = true;
+                    }
+                }
+                if (cancel)
+                {
+                    return null;
+                }
+
+                int? nextNodeID = null;
+                while (true)
+                {
+                    string sql = "SELECT * FROM TB_BOSS_NODE WHERE BOSS_NODE_TYPE = " + bossNodeType + " AND BOSS_NODE_TYPE_ID = '" + bossNodeTypeID + "'";
+                    if (bossNodeType == -1)
+                    {
+                        sql = "SELECT * FROM TB_BOSS_NODE WHERE BOSS_NODE_ID = 1";
+                    }
+                    if (nextNodeID != null)
+                    {
+                        sql = "SELECT * FROM TB_BOSS_NODE WHERE BOSS_NODE_ID = " + nextNodeID;
+                    }
+                    using (OracleCommand com = new OracleCommand(sql, con))
+                    {
+                        using (OracleDataReader reader = com.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                if (reader.IsDBNull(3))
+                                {
+                                    nextNodeID = null;
+                                }
+                                else
+                                {
+                                    nextNodeID = reader.GetInt32(3);
+                                }
+
+                                string bossID = reader.GetString(6);
+                                UOC_STAFF p = GetOUC_STAFF(bossID);
+                                if (no_me)
+                                {
+                                    no_me = false;
+                                }
+                                else
+                                {
+                                    bossList.Add(p);
+                                }
+
+
+                            }
+                        }
+                    }
+                    if (nextNodeID == null)
+                        break;
+                }
+
+
+
+
+            }
+            return bossList;
         }
 
     }

@@ -1,108 +1,89 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ManageLeave.aspx.cs" Inherits="Personnel.ManageLeave" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Leave.aspx.cs" Inherits="Personnel.Leave" MaintainScrollPositionOnPostback="true" %>
 
+<%@ Register Assembly="Microsoft.ReportViewer.WebForms, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" Namespace="Microsoft.Reporting.WebForms" TagPrefix="rsweb" %>
+<%@ Register Assembly="System.Web.DataVisualization, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" Namespace="System.Web.UI.DataVisualization.Charting" TagPrefix="asp" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <script>
         $(function () {
-            //Initialize Select2 Elements
-            $(".select2").select2();
-
-            //Datemask dd/mm/yyyy
-            $("#datemask").inputmask("dd/mm/yyyy", { "placeholder": "dd/mm/yyyy" });
-            //Datemask2 mm/dd/yyyy
-            $("#datemask2").inputmask("mm/dd/yyyy", { "placeholder": "mm/dd/yyyy" });
-            //Money Euro
-            $("[data-mask]").inputmask();
-
-            //Date range picker
-            $('#reservation').daterangepicker();
-            //Date range picker with time picker
-            $('#reservationtime').daterangepicker({ timePicker: true, timePickerIncrement: 30, format: 'MM/DD/YYYY h:mm A' });
-            //Date range as a button
-            $('#daterange-btn').daterangepicker(
-                {
-                    ranges: {
-                        'Today': [moment(), moment()],
-                        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                        'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                        'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                        'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-                    },
-                    startDate: moment().subtract(29, 'days'),
-                    endDate: moment()
-                },
-            function (start, end) {
-                $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-            }
-            );
-
-            //iCheck for checkbox and radio inputs
-            $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
-                checkboxClass: 'icheckbox_minimal-blue',
-                radioClass: 'iradio_minimal-blue'
-            });
-            //Red color scheme for iCheck
-            $('input[type="checkbox"].minimal-red, input[type="radio"].minimal-red').iCheck({
-                checkboxClass: 'icheckbox_minimal-red',
-                radioClass: 'iradio_minimal-red'
-            });
-            //Flat red color scheme for iCheck
-            $('input[type="checkbox"].flat-red, input[type="radio"].flat-red').iCheck({
-                checkboxClass: 'icheckbox_flat-green',
-                radioClass: 'iradio_flat-green'
-            });
-
-            //Colorpicker
-            $(".my-colorpicker1").colorpicker();
-            //color picker with addon
-            $(".my-colorpicker2").colorpicker();
-
-            //Timepicker
-            $(".timepicker").timepicker({
-                showInputs: false
-            });
+            $("#ContentPlaceHolder1_tbS1FromDate, #ContentPlaceHolder1_tbS1ToDate").datepicker($.datepicker.regional["th"]);
+            $("#ContentPlaceHolder1_tbS1GBDate, #ContentPlaceHolder1_tbS1OrdainDate").datepicker($.datepicker.regional["th"]);
         });
     </script>
+    <link href="CSS/Leave.css" rel="stylesheet" />
 
-    <script type="text/javascript">
-        $(function () {
-            var thaiYear = function (ct) {
-                var leap = 3;
-                var dayWeek = ["พฤ.", "ศ.", "ส.", "อา.", "จ.", "อ.", "พ."];
-                if (ct) {
-                    var yearL = new Date(ct).getFullYear() - 543;
-                    leap = (((yearL % 4 == 0) && (yearL % 100 != 0)) || (yearL % 400 == 0)) ? 2 : 3;
-                    if (leap == 2) {
-                        dayWeek = ["ศ.", "ส.", "อา.", "จ.", "อ.", "พ.", "พฤ."];
-                    }
-                }
-                this.setOptions({
-                    i18n: { th: { dayOfWeek: dayWeek } }, dayOfWeekStart: leap,
-                })
-            };
-
-            $('#ContentPlaceHolder1_tbS1FromDate,#ContentPlaceHolder1_tbS1ToDate').datetimepicker({
-                timepicker: false,
-                format: 'd/m/Y',
-                lang: 'th',
-                onChangeMonth: thaiYear,
-                onShow: thaiYear,
-                yearOffset: 543,
-                closeOnDateSelect: true,
-            });
-        });
-    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+
     <div class="default_page_style">
         <div class="ps-header">
-            <img src="Image/Small/document-create.png" />จัดการข้อมูลการลา
-            <span style="text-align: right; float: right;"><a href="listLeave-admin.aspx">
-                <img src="Image/Small/back.png" />ย้อนกลับ</a></span>
+            <img src="Image/Small/document-create.png" />ทำการลา
         </div>
 
+        
         <asp:HiddenField ID="hfLeaveTypeID" runat="server" />
         <asp:HiddenField ID="hfLeaveTypeName" runat="server" />
+
+        <div id="divReq" runat="server">
+            <div class="ps-div-title-red">เงื่อนไขการลา</div>
+            <table class="ps-table-1" style="margin: 0 auto; margin-bottom: 20px;">
+                <tr>
+                    <th>ประเภทการลา</th>
+                    <th>เงื่อนไขการลา</th>
+                </tr>
+                <tr id="trReqSick" runat="server">
+                    <td><div class="ps-lb-blue-b">ลาป่วย</div></td>
+                    <td>
+                        <div id="divSickFrom" runat="server">สามารถลาได้ตั้งแต่ <asp:Label ID="lbSickFrom" runat="server" Text="Label" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>ลาตั้งแต่ <span class="ps-lb-red-b">30</span> วันขึ้นไป จำเป็นต้องแนบ <span style="color: rgb(206,91,91); font-weight: bold;">ใบรับรองแพทย์</span></div>
+                        <div>สามารถลาได้อีก <asp:Label ID="lbSickLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
+                    </td>
+                </tr>
+                <tr id="trReqBusiness" runat="server">
+                    <td><div class="ps-lb-blue-b">ลากิจ</div></td>
+                    <td>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqBusinessDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqBusinessDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>สามารถลาได้อีก <asp:Label ID="lbBusinessLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
+                    </td>
+                </tr>
+                <tr id="trReqRest" runat="server">
+                    <td><div class="ps-lb-blue-b">ลาพักผ่อน</div></td>
+                    <td>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqRestDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqRestDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>สามารถลาได้อีก <asp:Label ID="lbRestLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
+                    </td>
+                </tr>
+                <tr id="trReqGiveBirth" runat="server">
+                    <td><div class="ps-lb-blue-b">ลาคลอดบุตร</div></td>
+                    <td>
+                         <div>สามารถลาย้อนหลังได้ <asp:Label ID="lbReqGiveBirthDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqGiveBirthDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                    </td>
+                </tr>
+                <tr id="trReqHelpGiveBirth" runat="server">
+                    <td><div class="ps-lb-blue-b">ลาไปช่วยเหลือภริยาที่คลอดบุตร</div></td>
+                    <td>
+                        <div>สามารถลาย้อนหลังได้ <asp:Label ID="lbReqHelpGiveBirthDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วันหรือตั้งแต่วันที่ <asp:Label ID="lbReqHelpGiveBirthDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                    </td>
+                </tr>
+                <tr id="trReqOrdain" runat="server">
+                    <td><div class="ps-lb-blue-b">ลาไปอุปสมบท</div></td>
+                    <td>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqOrdainDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน หรือตั้งแต่วันที่ <asp:Label ID="lbReqOrdainDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>สามารถลาได้อีก <asp:Label ID="lbOrdainLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
+                    </td>
+                </tr>
+                <tr id="trReqHuj" runat="server">
+                    <td><div class="ps-lb-blue-b">ลาไปประกอบพิธีฮัจญ์</div></td>
+                    <td>
+                        <div>จะต้องลาล่วงหน้า <asp:Label ID="lbReqHujDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน หรือตั้งแต่วันที่ <asp:Label ID="lbReqHujDate" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> เป็นต้นไป</div>
+                        <div>สามารถลาได้อีก <asp:Label ID="lbHujLeftDay" runat="server" Text="?" CssClass="ps-lb-red-b"></asp:Label> วัน</div>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+        
+        
 
         <div id="notification" runat="server"></div>
 
@@ -120,69 +101,18 @@
                         <asp:LinkButton ID="lbuSelectHuj" runat="server" CssClass="ps-button" OnClick="lbuSelectHuj_Click"><img src="Image/Small/document-create.png" class="icon_left" />ลาไปประกอบพิธีฮัจญ์</asp:LinkButton>
                     </div>
                 </div>
-
-                <div id="divLoadLeave" runat="server" class="dataTable_wrapper ekknidTop">
-                    <div class="ps-header">
-                        <img src="Image/Small/list.png" />ข้อมูล
-                    </div>
-                    <div style="margin-top: 10px; overflow-x: auto; width: 100%;">
-                        <asp:GridView ID="GridViewLeave" runat="server" Style="margin-left: auto; margin-right: auto;"
-                            AutoGenerateColumns="false"
-                            AllowPaging="true"
-                            DataKeyNames="LEAVE_ID"
-                            OnRowDeleting="modDeleteCommand"
-                            OnRowDataBound="GridViewLeave_RowDataBound"
-                            OnPageIndexChanging="myGridViewLeave_PageIndexChanging" PageSize="10" CssClass="table table-striped table-bordered table-condensed" Width="100%">
-                            <Columns>
-                                <asp:TemplateField HeaderText="ลำดับที่" ControlStyle-CssClass="center100">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblRowNumber" Text='<%# Container.DataItemIndex + 1 %>' runat="server" />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ประเภทการลา">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lblProUOC_ID11" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.LEAVE_TYPE_NAME") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="วันที่บันทึกการลา">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbReqDate" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.REQ_DATE") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="วันที่ทำการลา">
-                                    <ItemTemplate>
-                                        <asp:Label ID="lbDateLeave" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.DATE_LEAVE") %>'></asp:Label>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                                <asp:TemplateField HeaderText="ลบ">
-                                    <ItemTemplate>
-                                        <asp:LinkButton ID="DeleteButton1" runat="server" CausesValidation="false" CommandName="Delete" Text="Delete" Width="50px"></asp:LinkButton>
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Columns>
-                        </asp:GridView>
-                    </div>
-                </div>
             </asp:View>
             <asp:View ID="MV1_V2" runat="server">
+                
                 <div>
-                    <div class="ps-header">
-                        <img src="Image/Small/document.png" class="icon_left" />กรุณากรอกข้อมูลการลา
-                    </div>
-                    <table class="table table-striped table-bordered table-hover" style="margin: 0 auto;">
-
-                        <tr id="HeaderName" runat="server" visible="false" style="text-align: center;">
-                            <th colspan="2" style="text-align: center;">
-                                <asp:Label ID="lbHeaderName" runat="server" Text="?" Style="text-align: center;"></asp:Label>
-                            </th>
-                        </tr>
-
+                    <div class="ps-div-title-red">กรุณากรอกข้อมูลการลา</div>
+                    <table class="ps-table-1" style="margin: 0 auto;">
                         <tr id="trS1WifeName" runat="server">
                             <td class="col1">
                                 <img src="Image/Small/person2.png" class="icon_left" />ชื่อภริยา</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1WifeFirstName" runat="server" CssClass="form-control input-sm" placeHolder="ชื่อจริง" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
-                                <asp:TextBox ID="tbS1WifeLastName" runat="server" CssClass="form-control input-sm" placeHolder="นามสกุล" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1WifeFirstName" runat="server" CssClass="ps-textbox" placeHolder="ชื่อจริง"></asp:TextBox>
+                                <asp:TextBox ID="tbS1WifeLastName" runat="server" CssClass="ps-textbox" placeHolder="นามสกุล"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1GBDate" runat="server">
@@ -190,7 +120,7 @@
                                 <img src="Image/Small/calendar.png" class="icon_left" />
                                 คลอดบุตรวันที่</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1GBDate" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1GBDate" runat="server" CssClass="ps-textbox" style="width: 80px;"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1Ordained" runat="server">
@@ -207,7 +137,7 @@
                                 <img src="Image/Small/bell.png" class="icon_left" />
                                 ชื่อวัด</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1TempleName" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1TempleName" runat="server" CssClass="ps-textbox" style="width: 200px;"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1TempleLocation" runat="server">
@@ -215,7 +145,7 @@
                                 <img src="Image/Small/location.png" class="icon_left" />
                                 สถานที่</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1TempleLocation" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1TempleLocation" runat="server" CssClass="ps-textbox" style="width: 200px;"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1OrdainDate" runat="server">
@@ -223,7 +153,7 @@
                                 <img src="Image/Small/calendar.png" class="icon_left" />
                                 อุปสมบทวันที่</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1OrdainDate" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1OrdainDate" runat="server" CssClass="ps-textbox" style="width: 80px;"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1Hujed" runat="server">
@@ -239,94 +169,56 @@
                             <td class="col1">
                                 <img src="Image/Small/calendar.png" class="icon_left" />วันที่ลา</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1FromDate" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1FromDate" runat="server" CssClass="ps-textbox" style="width: 80px;"></asp:TextBox>
                                 <span style="width: 10px; display: inline-block;"></span>
-                                <span style="color: #808080;">ถึง </span>
-                                <asp:TextBox ID="tbS1ToDate" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <span style="color: #808080;">ถึง </span><asp:TextBox ID="tbS1ToDate" runat="server" CssClass="ps-textbox" style="width: 80px;"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1Reason" runat="server">
                             <td class="col1">
                                 <img src="Image/Small/a.png" class="icon_left" />เหตุผล</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1Reason" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1Reason" runat="server" CssClass="ps-textbox" style="width: 200px;"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1Contact" runat="server">
                             <td class="col1">
                                 <img src="Image/Small/comment.png" class="icon_left" />ติดต่อได้ที่</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1Contact" runat="server" CssClass="form-control input-sm" Style="width: 200px;" placeHolder="สถานที่" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1Contact" runat="server" CssClass="ps-textbox" style="width: 200px;" placeHolder="สถานที่"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1Phone" runat="server">
                             <td class="col1">
                                 <img src="Image/Small/phone.png" class="icon_left" />เบอร์โทรศัพท์</td>
                             <td class="col2">
-                                <asp:TextBox ID="tbS1Phone" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
+                                <asp:TextBox ID="tbS1Phone" runat="server" CssClass="ps-textbox"></asp:TextBox>
                             </td>
                         </tr>
                         <tr id="trS1DrCer" runat="server">
                             <td class="col1">
                                 <img src="Image/Small/clip.png" class="icon_left" />ใบรับรองแพทย์</td>
                             <td class="col2">
-                                <asp:FileUpload ID="FileUpload1" runat="server" required="required" TabIndex="1" />
+                                <asp:FileUpload ID="FileUpload1" runat="server" />
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชา</td>
-                            <td class="col2">
-                                <asp:DropDownList ID="ddlS1BossLowID" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/a.png" class="icon_left" />ความเห็นผู้บังคับบัญชา</td>
-                            <td class="col2">
-                                <asp:TextBox ID="tbS1BossLowComment" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/person2.png" class="icon_left" />ผู้อนุมัติ</td>
-                            <td class="col2">
-                                <asp:DropDownList ID="ddlS1BossHighID" runat="server" CssClass="form-control input-sm select2" required="required" TabIndex="1"></asp:DropDownList>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/a.png" class="icon_left" />ความเห็นผู้อนุมัติ</td>
-                            <td class="col2">
-                                <asp:TextBox ID="tbS1BossHighComment" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/a.png" class="icon_left" />ความเห็นเจ้าหน้าที่</td>
-                            <td class="col2">
-                                <asp:TextBox ID="tbS1OfficerComment" runat="server" CssClass="form-control input-sm" Style="width: 200px;" required="required" TabIndex="1"></asp:TextBox>
-                            </td>
-                        </tr>
+                        
                     </table>
                     <div style="text-align: center; margin-top: 10px;">
-                        <asp:Button ID="lbuS1Back2" runat="server" CssClass="btn btn-default ekknidRight" OnClick="lbuS1Back_Click" Text="ย้อนกลับ"></asp:Button>
-                        <asp:Button ID="lbuS1Check2" runat="server" CssClass="btn btn-default" OnClick="lbuS1Check_Click" Text="ต่อไป"></asp:Button>
+                        <asp:LinkButton ID="lbuS1Back" runat="server" CssClass="ps-button" OnClick="lbuS1Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                        <asp:LinkButton ID="lbuS1Check" runat="server" CssClass="ps-button" OnClick="lbuS1Check_Click">ต่อไป<img src="Image/Small/next.png" class="icon_right"/></asp:LinkButton>
                     </div>
-
+   
                 </div>
-
+                
 
             </asp:View>
             <asp:View ID="MV1_V3" runat="server">
                 <div>
-                    <div class="ps-header">
-                        <img src="Image/Small/document.png" class="icon_left" />ข้อมูลการลา
-                    </div>
-                    <div class="ps-div-title-red"></div>
-                    <table class="table table-striped table-bordered table-hover" style="margin: 0 auto;">
+                    <div class="ps-div-title-red">ข้อมูลการลา</div>
+                    <table class="ps-table-1" style="margin: 0 auto;">
                         <tr>
-                            <td class="col1" style="width: 400px;">ประเภทการลา</td>
+                            <td class="col1">ประเภทการลา</td>
                             <td class="col2">
                                 <asp:Label ID="lbS2LeaveTypeName" runat="server"></asp:Label>
                             </td>
@@ -502,55 +394,29 @@
                                 <asp:Label ID="lbS2DrCer" runat="server"></asp:Label>
                             </td>
                         </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/person2.png" class="icon_left" />ผู้บังคับบัญชา</td>
-                            <td class="col2">
-                                <asp:Label ID="lbS2BossLowID" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/a.png" class="icon_left" />ความเห็นผู้บังคับบัญชา</td>
-                            <td class="col2">
-                                <asp:Label ID="lbS2BossLowComment" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/person2.png" class="icon_left" />ผู้อนุมัติ</td>
-                            <td class="col2">
-                                <asp:Label ID="lbS2BossHighID" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/a.png" class="icon_left" />ความเห็นผู้อนุมัติ</td>
-                            <td class="col2">
-                                <asp:Label ID="lbS2BossHighComment" runat="server"></asp:Label>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="col1">
-                                <img src="Image/Small/a.png" class="icon_left" />ความเห็นเจ้าหน้าที่</td>
-                            <td class="col2">
-                                <asp:Label ID="lbS2OfficerComment" runat="server"></asp:Label>
-                            </td>
-                        </tr>
                     </table>
 
+                    <div class="ps-separator"></div>
+
+                    <div class="ps-div-title-red" style="margin-top: 10px;">ผู้บังคับบัญชา</div>
+
+                    <div style="text-align: center;">
+                        <asp:Table ID="tbBoss" runat="server" Style="text-align: center; display: inline-block;"></asp:Table>
+                    </div>
+                    
                     <div style="text-align: center; margin-top: 10px;">
-                        <asp:Button ID="lbuS2Back2" runat="server" CssClass="btn btn-default ekknidRight" OnClick="lbuS2Back_Click" Text="ย้อนกลับ"></asp:Button>
-                        <asp:Button ID="lbuS2Finish2" runat="server" CssClass="btn btn-default" OnClick="lbuS2Finish_Click" Text="ยืนคำขอลา"></asp:Button>
+                        <asp:LinkButton ID="lbuS2Back" runat="server" CssClass="ps-button" OnClick="lbuS2Back_Click"><img src="Image/Small/back.png" class="icon_left"/>ย้อนกลับ</asp:LinkButton>
+                    <asp:LinkButton ID="lbuS2Finish" runat="server" CssClass="ps-button" OnClick="lbuS2Finish_Click"><img src="Image/Small/document-create.png" class="icon_left"/>ยืนคำขอลา</asp:LinkButton>
                     </div>
                 </div>
+                
             </asp:View>
-
             <asp:View ID="VX_F" runat="server">
-                <div class="ps-div-title-red">บันทึกการลาสำเร็จ</div>
-                <div style="text-align: center; color: #808080; margin-bottom: 10px;">ระบบได้บันทึกข้อมูลการลาเรียบร้อยแล้ว<br /></div>
+                <div class="ps-div-title-red">ส่งคำขอการลาสำเร็จ</div>
+                <div style="text-align: center; color: #808080; margin-bottom: 10px;">การลาจะมีผลต่อเมื่อผู้บังคับบัญชาอนุมัติการลาเรียบร้อย<br />สามารถตรวจสอบสถานะการลาได้ที่เมนู การลา -> ประวัติการลา</div>
                 <div style="text-align: center; margin-bottom: 10px;">
-                    <asp:Button ID="lbuBackMain" runat="server" CssClass="btn btn-default ekknidRight" OnClick="lbuBackMain_Click" Text="กลับหน้าหลัก"></asp:Button>
+                    <asp:LinkButton ID="lbuBackMain" runat="server" CssClass="ps-button" OnClick="lbuBackMain_Click"><img class="icon_left" src="Image/Small/back.png" />กลับหน้าหลัก</asp:LinkButton>
+                    <asp:LinkButton ID="lbuHistory" runat="server" CssClass="ps-button" OnClick="lbuHistory_Click"><img class="icon_left" src="Image/Small/back.png" />ไปหน้าสถานะและประวัติ</asp:LinkButton>
                 </div>
             </asp:View>
 
