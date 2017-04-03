@@ -268,8 +268,6 @@
                                         <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการขึ้นเงินเดือน</a>
                                     <a href="#">
                                         <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลการลา</a>
-                                    <a href="#">
-                                        <img src="Image/book_edit.png" />ดูรายละเอียดข้อมูลประวัติการดำรงตำแหน่งทางบริหาร</a>
                                 </div>
                             </div>
                         </div>
@@ -293,8 +291,6 @@
                                         <img src="Image/book_edit.png" />ออกรายงานข้อมูลการขึ้นเงินเดือน</a>
                                     <a href="#">
                                         <img src="Image/book_edit.png" />ออกรายงานข้อมูลการลา</a>
-                                    <a href="#">
-                                        <img src="Image/book_edit.png" />ออกรายงานข้อมูลประวัติการดำรงตำแหน่งทางบริหาร</a>
                                 </div>
                             </div>
                         </div>
@@ -312,14 +308,12 @@
                                         <img src="Image/Small/lock.png" />จัดการข้อมูลบุคลากร</a>
                                     <a href="listproject-admin.aspx">
                                         <img src="Image/Small/lock.png" />จัดการข้อมูลการพัฒนาบุคลากร</a>
-                                    <a href="#">
-                                        <img src="Image/book_edit.png" />จัดการข้อมูลตำแหน่งทางบริหาร</a>
+                                    <a href="Manage-Droplist.aspx">
+                                        <img src="Image/Small/wrench.png" />จัดการข้อมูลตัวเลือก(Dropdown List)</a>
                                     <a href="#">
                                         <img src="Image/Small/lock.png" />ออกรายงานข้อมูลบุคลากร</a>
                                     <a href="reportacademic-admin.aspx">
                                         <img src="Image/Small/lock.png" />ออกรายงานข้อมูลการพัฒนาบุคลากร</a>
-                                    <a href="#">
-                                        <img src="Image/Small/lock.png" />ออกรายงานข้อมูลตำแหน่งทางบริหาร</a>
                                     <a href="#">
                                         <img src="Image/Small/lock.png" />ออกรายงานข้อมูลที่จัดส่ง สกอ.</a>
                                 </div>

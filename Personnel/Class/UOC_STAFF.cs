@@ -20,7 +20,7 @@ namespace Personnel.Class
         public string STF_LNAME;
         public string GENDER_ID;
         public string GENDER_NAME;
-        public string BIRTHDAY;
+        public DateTime? BIRTHDAY;
         public string HOMEADD;
         public string MOO;
         public string STREET;
@@ -49,8 +49,8 @@ namespace Personnel.Class
         public string POSITION_WORK;
         public string DEPARTMENT_ID;
         public string DEPARTMENT_NAME;
-        public string DATE_INWORK;
-        public string DATE_START_THIS_U;
+        public DateTime? DATE_INWORK;
+        public DateTime? DATE_START_THIS_U;
         public string SPECIAL_NAME;
         public string TEACH_ISCED_ID;
         public string TEACH_ISCED_NAME;
@@ -72,7 +72,7 @@ namespace Personnel.Class
         public string RELIGION_NAME;
         public string MOVEMENT_TYPE_ID;
         public string MOVEMENT_TYPE_NAME;
-        public string MOVEMENT_DATE;
+        public DateTime? MOVEMENT_DATE;
         public string DECORATION;
         public string RESULT1;
         public string PERCENT_SALARY1;
@@ -91,6 +91,49 @@ namespace Personnel.Class
         public string COUPLE_NAME;
         public string COUPLE_LNAME;
         public string COUPLE_ONAME;
+
+        public string AdminPositionPower;
+        public string PositionWorkName;
+        public string AdminPositionName;
+
+        public string AdminPositionID;
+        public string CampusID;
+        public string CampusName;
+        public string FacultyID;
+        public string FacultyName;
+        public string DivisionID;
+        public string DivisionName;
+        public string WorkDivisionID;
+        public string WorkDivisionName;
+
+        public string FirstName;
+        public string LastName;
+
+
+        public string AdminPositionNameExtra()
+        {
+            if (AdminPositionID == "1")
+            {
+                return "มหาวิทยาลัยเทคโนโลยีราชมงคลตะวันออก";
+            }
+            else if (AdminPositionID == "2")
+            {
+                return CampusName;
+            }
+            else if (AdminPositionID == "4")
+            {
+                return FacultyName;
+            }
+            else if (AdminPositionID == "5")
+            {
+                return WorkDivisionName;
+            }
+            else if (AdminPositionID == "10")
+            {
+                return DivisionName;
+            }
+            return AdminPositionName;
+        }
 
         public string FullName
         {

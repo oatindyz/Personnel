@@ -765,6 +765,7 @@
     <Content Include="bootstrap\js\bootstrap.js" />
     <Content Include="bootstrap\js\bootstrap.min.js" />
     <Content Include="bootstrap\js\npm.js" />
+    <Content Include="Boss.aspx" />
     <Content Include="bower_components\bootstrap-social\bootstrap-social.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.css" />
     <Content Include="bower_components\bootstrap\dist\css\bootstrap-theme.min.css" />
@@ -1671,6 +1672,14 @@
     <Content Include="bower_components\morrisjs\spec\support\placeholder.coffee" />
     <Content Include="bower_components\morrisjs\spec\viz\run.sh" />
     <Content Include="bower_components\raphael\bower.json" />
+    <Content Include="Leave.aspx" />
+    <Content Include="LeaveAllow.aspx" />
+    <Content Include="LeaveCancel.aspx" />
+    <Content Include="LeaveClaim.aspx" />
+    <Content Include="LeaveComment.aspx" />
+    <Content Include="LeaveHistory.aspx" />
+    <Content Include="LeavePermission.aspx" />
+    <Content Include="LeaveReport.aspx" />
     <Content Include="less\mixins.less" />
     <Content Include="less\sb-admin-2.less" />
     <Content Include="less\variables.less" />
@@ -1680,16 +1689,12 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="listGP7-admin.aspx" />
-    <Content Include="listInsig-admin.aspx" />
-    <Content Include="listLeave-admin.aspx" />
     <Content Include="listproject-admin.aspx" />
     <Content Include="listproject.aspx" />
     <Content Include="listrequest-admin.aspx" />
     <Content Include="listSalary-admin.aspx" />
     <Content Include="listuser-admin.aspx" />
     <Content Include="Manage-Droplist.aspx" />
-    <Content Include="ManageInsig.aspx" />
-    <Content Include="ManageLeave.aspx" />
     <Content Include="managerequestlist.aspx" />
     <Content Include="managerole-admin.aspx" />
     <Content Include="plugins\ckeditor\CHANGES.md" />
@@ -1740,6 +1745,9 @@
     <Content Include="fonts\THSarabunNew Italic.ttf" />
     <Content Include="fonts\THSarabunNew.ttf" />
     <Content Include="less\agency.less" />
+    <Content Include="WorkingDay.aspx" />
+    <Content Include="WorkingTime.aspx" />
+    <Content Include="WorkingTimeHistory.aspx" />
     <None Include="Properties\PublishProfiles\Web.pubxml" />
     <Content Include="ReportAcademic-admin.aspx" />
     <Content Include="reportGP7-admin.aspx" />
@@ -3518,6 +3526,13 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Boss.aspx.cs">
+      <DependentUpon>Boss.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Boss.aspx.designer.cs">
+      <DependentUpon>Boss.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3528,6 +3543,7 @@
     <Compile Include="Class\DatabaseManager.cs" />
     <Compile Include="Class\Campus.cs" />
     <Compile Include="Class\Department.cs" />
+    <Compile Include="Class\LeaveBossData.cs" />
     <Compile Include="Class\LeaveData.cs" />
     <Compile Include="Class\Manage.cs" />
     <Compile Include="Class\Person.cs" />
@@ -3594,26 +3610,68 @@
     <Compile Include="Inaccessible.aspx.designer.cs">
       <DependentUpon>Inaccessible.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Leave.aspx.cs">
+      <DependentUpon>Leave.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Leave.aspx.designer.cs">
+      <DependentUpon>Leave.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveAllow.aspx.cs">
+      <DependentUpon>LeaveAllow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveAllow.aspx.designer.cs">
+      <DependentUpon>LeaveAllow.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveCancel.aspx.cs">
+      <DependentUpon>LeaveCancel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveCancel.aspx.designer.cs">
+      <DependentUpon>LeaveCancel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveClaim.aspx.cs">
+      <DependentUpon>LeaveClaim.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveClaim.aspx.designer.cs">
+      <DependentUpon>LeaveClaim.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveComment.aspx.cs">
+      <DependentUpon>LeaveComment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveComment.aspx.designer.cs">
+      <DependentUpon>LeaveComment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveHistory.aspx.cs">
+      <DependentUpon>LeaveHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveHistory.aspx.designer.cs">
+      <DependentUpon>LeaveHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeavePermission.aspx.cs">
+      <DependentUpon>LeavePermission.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeavePermission.aspx.designer.cs">
+      <DependentUpon>LeavePermission.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveReport.aspx.cs">
+      <DependentUpon>LeaveReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveReport.aspx.designer.cs">
+      <DependentUpon>LeaveReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="listGP7-admin.aspx.cs">
       <DependentUpon>listGP7-admin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="listGP7-admin.aspx.designer.cs">
       <DependentUpon>listGP7-admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="listInsig-admin.aspx.cs">
-      <DependentUpon>listInsig-admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="listInsig-admin.aspx.designer.cs">
-      <DependentUpon>listInsig-admin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="listLeave-admin.aspx.cs">
-      <DependentUpon>listLeave-admin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="listLeave-admin.aspx.designer.cs">
-      <DependentUpon>listLeave-admin.aspx</DependentUpon>
     </Compile>
     <Compile Include="listproject-admin.aspx.cs">
       <DependentUpon>listproject-admin.aspx</DependentUpon>
@@ -3656,20 +3714,6 @@
     </Compile>
     <Compile Include="Manage-Droplist.aspx.designer.cs">
       <DependentUpon>Manage-Droplist.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManageInsig.aspx.cs">
-      <DependentUpon>ManageInsig.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageInsig.aspx.designer.cs">
-      <DependentUpon>ManageInsig.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="ManageLeave.aspx.cs">
-      <DependentUpon>ManageLeave.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ManageLeave.aspx.designer.cs">
-      <DependentUpon>ManageLeave.aspx</DependentUpon>
     </Compile>
     <Compile Include="managerequestlist.aspx.cs">
       <DependentUpon>managerequestlist.aspx</DependentUpon>
@@ -3791,6 +3835,27 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingDay.aspx.cs">
+      <DependentUpon>WorkingDay.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingDay.aspx.designer.cs">
+      <DependentUpon>WorkingDay.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingTime.aspx.cs">
+      <DependentUpon>WorkingTime.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingTime.aspx.designer.cs">
+      <DependentUpon>WorkingTime.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="WorkingTimeHistory.aspx.cs">
+      <DependentUpon>WorkingTimeHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WorkingTimeHistory.aspx.designer.cs">
+      <DependentUpon>WorkingTimeHistory.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
